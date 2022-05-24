@@ -6,6 +6,7 @@ using DataAccessLayer.Repositories;
 using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Models
 {
@@ -35,7 +36,7 @@ namespace BusinessLayer.Models
             repository = new UsersRepository();
         }
 
-        public AcctionResult SaveChanges()
+        public async Task<AcctionResult> SaveChanges()
         {
             var dataModel = new Users()
             {
@@ -53,15 +54,15 @@ namespace BusinessLayer.Models
                 switch (Operation)
                 {
                     case Operation.Insert:
-                        repository.Insert(dataModel);
+                        await repository.Insert(dataModel);
                         return new AcctionResult(true, "Usuario guardado correctamente !");
 
                     case Operation.Update:
-                        repository.Update(dataModel);
+                        await repository.Update(dataModel);
                         return new AcctionResult(true, "Usuario modificado correctamente !");
 
                     case Operation.Delete:
-                        repository.Delete(this.IdUsers);
+                        await repository.Delete(this.IdUsers);
                         return new AcctionResult(true, "Usuario eliminado correctamente !");
 
                     default:
@@ -77,15 +78,15 @@ namespace BusinessLayer.Models
             }
         }
 
-        public AcctionResult LogIn(string username, string password)
+        public async Task<AcctionResult> LogIn(string username, string password)
         {
             try
             {
-                var user = repository.GetUser(username, password);
+                var user = await repository.GetUser(username, password);
 
                 if (user != null)
                 {
-                    repository.UpdateLastConnection(DateTime.Now, user.IdUsers);
+                    await repository.UpdateLastConnection(DateTime.Now, user.IdUsers);
 
                     UserCache.IdUsers = user.IdUsers;
                     UserCache.Username = user.Username;
@@ -101,9 +102,9 @@ namespace BusinessLayer.Models
             }
         }
         
-        public IEnumerable<UsersModel> getAll()
+        public async Task<IEnumerable<UsersModel>> GetAll()
         {
-            var dataModel = repository.GetAll();
+            var dataModel = await repository.GetAll();
 
             var list = new List<UsersModel>();
             foreach (Users item in dataModel) 

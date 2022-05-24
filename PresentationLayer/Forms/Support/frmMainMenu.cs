@@ -8,10 +8,30 @@ namespace Presentation
 {
     public partial class frmMainMenu : Form
     {
-        public frmMainMenu()
+        private static frmMainMenu instance;
+
+        private static readonly object _lock = new object();
+
+        private frmMainMenu()
         {
             InitializeComponent();
         }
+
+        public static frmMainMenu GetInstance()
+        {
+            if (instance == null)
+            {
+                lock (_lock)
+                {
+                    if (instance == null)
+                        instance = new frmMainMenu();
+                }
+            }
+
+            return instance;
+        }
+
+        public string FooterMessage { get => lblState.Text; set => lblState.Text = value; }
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
@@ -36,9 +56,7 @@ namespace Presentation
             lblState.ForeColor = Color.Brown;
             lblState.Text = "Sesión no iniciada";
 
-            var result = new frmLogin().ShowDialog();
-
-            if (result == DialogResult.Cancel)
+            if (frmLogin.GetInstance().ShowDialog() == DialogResult.Cancel)
                 Application.Exit();
 
             lblState.ForeColor = Color.DarkGreen;

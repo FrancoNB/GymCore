@@ -9,7 +9,7 @@ namespace DataAccessLayer.InterfaceRepositories
 {
     public interface IUsersRepository : ICrudRepository<Users>
     {
-        Users GetUser(string username, string password);
-        int UpdateLastConnection(DateTime lastConnection, int idUser);
+        Task<Users> GetUser(string username, string password);
+        Task<int> UpdateLastConnection(DateTime lastConnection, int idUser);
     }
 }

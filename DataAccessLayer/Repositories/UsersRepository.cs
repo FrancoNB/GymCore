@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
@@ -27,7 +28,7 @@ namespace DataAccessLayer.Repositories
             this.selectByUserAndPass = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
         }
 
-        public int Insert(Users entity)
+        public async Task<int> Insert(Users entity)
         {
             parameters = new List<MySqlParameter>
             {
@@ -39,10 +40,10 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@lastConnection", entity.LastConnection)
             };
 
-            return ExecuteNonQuery(insert);
+            return await ExecuteNonQueryAsync(insert);
         }
 
-        public int Update(Users entity)
+        public async Task<int> Update(Users entity)
         {
             parameters = new List<MySqlParameter>
             {
@@ -55,10 +56,10 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@idUsers", entity.IdUsers)
             };
 
-            return ExecuteNonQuery(update);
+            return await ExecuteNonQueryAsync(update);
         }
 
-        public int UpdateLastConnection(DateTime lastConnection, int idUser)
+        public async Task<int> UpdateLastConnection(DateTime lastConnection, int idUser)
         {
             parameters = new List<MySqlParameter>
             {
@@ -66,22 +67,22 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@idUsers", idUser)
             };
 
-            return ExecuteNonQuery(updateLastConnection);
+            return await ExecuteNonQueryAsync(updateLastConnection);
         }
 
-        public int Delete(int id)
+        public async Task<int> Delete(int id)
         {
             parameters = new List<MySqlParameter>
             {
                 new MySqlParameter("@idUsers", id)
             };
 
-            return ExecuteNonQuery(delete);
+            return await ExecuteNonQueryAsync(delete);
         }
 
-        public IEnumerable<Users> GetAll()
+        public async Task<IEnumerable<Users>> GetAll()
         {
-            using (var table = ExecuteReader(selectAll))
+            using (var table = await ExecuteReaderAsync(selectAll))
             {
                 var list = new List<Users>();
 
@@ -103,7 +104,7 @@ namespace DataAccessLayer.Repositories
             }
         }
 
-        public Users GetUser(string username, string password)
+        public async Task<Users> GetUser(string username, string password)
         {
             parameters = new List<MySqlParameter>
             {
@@ -111,7 +112,7 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@password", password),
             };
 
-            using (var table = ExecuteReader(selectByUserAndPass))
+            using (var table = await ExecuteReaderAsync(selectByUserAndPass))
             {
                 if (table.Rows.Count > 0)
                 {

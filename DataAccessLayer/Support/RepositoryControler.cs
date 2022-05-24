@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace DataAccessLayer.Support
 {
@@ -8,7 +9,7 @@ namespace DataAccessLayer.Support
     {
         protected List<MySqlParameter> parameters;
 
-        protected int ExecuteNonQuery(string transaction)
+        protected async Task<int> ExecuteNonQueryAsync(string transaction)
         {
             try
             {
@@ -29,7 +30,7 @@ namespace DataAccessLayer.Support
 
                         parameters.Clear();
 
-                        return command.ExecuteNonQuery();
+                        return await command.ExecuteNonQueryAsync();
                     }
                 }
             }
@@ -39,7 +40,7 @@ namespace DataAccessLayer.Support
             }
         }
 
-        protected DataTable ExecuteReader(string transaction)
+        protected async Task<DataTable> ExecuteReaderAsync(string transaction)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace DataAccessLayer.Support
 
                         parameters.Clear();
 
-                        using (var reader = command.ExecuteReader())
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
                             using (var table = new DataTable())
                             {

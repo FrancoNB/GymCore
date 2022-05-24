@@ -36,11 +36,11 @@
             this.btnManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.btnQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSystem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEndSesion = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mstPPal = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblState = new System.Windows.Forms.Label();
-            this.btnEndSesion = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mstPPal.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +102,20 @@
             this.btnSystem.Size = new System.Drawing.Size(65, 21);
             this.btnSystem.Text = "Sistema";
             // 
+            // btnEndSesion
+            // 
+            this.btnEndSesion.Name = "btnEndSesion";
+            this.btnEndSesion.Size = new System.Drawing.Size(180, 22);
+            this.btnEndSesion.Text = "Cerrar Sesión";
+            this.btnEndSesion.Click += new System.EventHandler(this.btnEndSesion_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(180, 22);
+            this.btnExit.Text = "Salir";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // mstPPal
             // 
             this.mstPPal.BackColor = System.Drawing.SystemColors.Control;
@@ -139,20 +153,6 @@
             this.lblState.TabIndex = 0;
             this.lblState.Text = "Sesion no iniciada !";
             this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnEndSesion
-            // 
-            this.btnEndSesion.Name = "btnEndSesion";
-            this.btnEndSesion.Size = new System.Drawing.Size(180, 22);
-            this.btnEndSesion.Text = "Cerrar Sesión";
-            this.btnEndSesion.Click += new System.EventHandler(this.btnEndSesion_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(180, 22);
-            this.btnExit.Text = "Salir";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmMainMenu
             // 

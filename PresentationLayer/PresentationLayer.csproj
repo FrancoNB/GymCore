@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\Support\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,7 +99,6 @@
     <Folder Include="Forms\Queries\" />
     <Folder Include="Forms\Register\" />
     <Folder Include="Forms\System\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">

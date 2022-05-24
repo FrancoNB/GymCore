@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Models;
+using Presentation.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +14,32 @@ namespace Presentation.Forms.Support
 {
     public partial class frmLogin : Form
     {
-        private UsersModel userModel;
+        private static frmLogin instance;
 
-        public frmLogin()
+        private static readonly object _lock = new object();
+
+        private frmLogin()
         {
             userModel = new UsersModel();
 
             InitializeComponent();
         }
+
+        public static frmLogin GetInstance()
+        {
+            if (instance == null)
+            {
+                lock (_lock)
+                {
+                    if (instance == null)
+                        instance = new frmLogin();
+                }
+            }
+
+            return instance;
+        }
+
+        private UsersModel userModel;
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -28,7 +47,7 @@ namespace Presentation.Forms.Support
             this.Close();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtUsername.Text == "")
             {
@@ -44,7 +63,11 @@ namespace Presentation.Forms.Support
                 }
                 else
                 {
-                    var acctionResult = userModel.LogIn(txtUsername.Text, txtPassword.Text);
+                    LoadNotification.Show("Iniciando Sesión...");
+
+                    var acctionResult = await userModel.LogIn(txtUsername.Text, txtPassword.Text);
+
+                    LoadNotification.Hide();
 
                     if (acctionResult.Result)
                     {

@@ -8,9 +8,9 @@ namespace DataAccessLayer.InterfaceRepositories
 {
     public interface ICrudRepository<Entity> where Entity : class
     {
-        int Insert(Entity entity);
-        int Update(Entity entity);
-        int Delete(int id);
-        IEnumerable<Entity> GetAll();
+        Task<int> Insert(Entity entity);
+        Task<int> Update(Entity entity);
+        Task<int> Delete(int id);
+        Task<IEnumerable<Entity>> GetAll();
     }
 }
