@@ -39,6 +39,14 @@ namespace Presentation.Forms.Support
             userModel = new UsersModel();
         }
 
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            txtPassword.Clear();
+            txtUsername.Clear();
+
+            txtUsername.Select();
+        }
+
         private UsersModel userModel;
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -49,37 +57,21 @@ namespace Presentation.Forms.Support
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "")
+            LoadNotification.Show("Iniciando Sesión...");
+
+            var acctionResult = await userModel.LogIn();
+
+            LoadNotification.Hide();
+
+            if (acctionResult.Result)
             {
-                MessageBox.Show("Debes introducir un Username... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtUsername.Select();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                if (txtPassword.Text == "")
-                {
-                    MessageBox.Show("Debes introducir una Contraseña... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    txtPassword.Select();
-                }
-                else
-                {
-                    LoadNotification.Show("Iniciando Sesión...");
-
-                    var acctionResult = await userModel.LogIn(txtUsername.Text, txtPassword.Text);
-
-                    LoadNotification.Hide();
-
-                    if (acctionResult.Result)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtUsername.Select();
-                    }
-                }
+                MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsername.Select();
             }
         }
 
@@ -100,6 +92,16 @@ namespace Presentation.Forms.Support
                 e.Handled = true;
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            userModel.Username = txtUsername.Text;
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            userModel.Password = txtPassword.Text;
         }
     }
 }

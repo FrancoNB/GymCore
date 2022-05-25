@@ -39,8 +39,17 @@
             this.btnQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSystem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEndSesion = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mstPPal = new System.Windows.Forms.MenuStrip();
+            this.suscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planesDeTrabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asistenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuentasCorrientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.mstPPal.SuspendLayout();
             this.SuspendLayout();
@@ -108,6 +117,12 @@
             // btnManagement
             // 
             this.btnManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnManagement.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.suscripcionesToolStripMenuItem,
+            this.planesDeTrabajoToolStripMenuItem,
+            this.rutinasToolStripMenuItem,
+            this.asistenciaToolStripMenuItem,
+            this.pagosToolStripMenuItem});
             this.btnManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnManagement.Name = "btnManagement";
             this.btnManagement.Size = new System.Drawing.Size(64, 21);
@@ -116,6 +131,10 @@
             // btnQuery
             // 
             this.btnQuery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnQuery.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clientesToolStripMenuItem,
+            this.asistenciasToolStripMenuItem,
+            this.cuentasCorrientesToolStripMenuItem});
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(76, 21);
@@ -125,8 +144,8 @@
             // 
             this.btnSystem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnSystem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEndSesion,
-            this.btnExit});
+            this.usuariosToolStripMenuItem,
+            this.btnEndSesion});
             this.btnSystem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnSystem.Name = "btnSystem";
             this.btnSystem.Size = new System.Drawing.Size(65, 21);
@@ -141,15 +160,6 @@
             this.btnEndSesion.Text = "Cerrar Sesión";
             this.btnEndSesion.Click += new System.EventHandler(this.btnEndSesion_Click);
             // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(180, 22);
-            this.btnExit.Text = "Salir";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
             // mstPPal
             // 
             this.mstPPal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -158,12 +168,93 @@
             this.btnRegister,
             this.btnManagement,
             this.btnQuery,
-            this.btnSystem});
+            this.btnSystem,
+            this.btnExit});
             this.mstPPal.Location = new System.Drawing.Point(0, 0);
             this.mstPPal.Name = "mstPPal";
             this.mstPPal.Size = new System.Drawing.Size(808, 25);
             this.mstPPal.TabIndex = 0;
             this.mstPPal.Text = "menuStrip1";
+            // 
+            // suscripcionesToolStripMenuItem
+            // 
+            this.suscripcionesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.suscripcionesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.suscripcionesToolStripMenuItem.Name = "suscripcionesToolStripMenuItem";
+            this.suscripcionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.suscripcionesToolStripMenuItem.Text = "Suscripciones";
+            // 
+            // pagosToolStripMenuItem
+            // 
+            this.pagosToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.pagosToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
+            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pagosToolStripMenuItem.Text = "Pagos";
+            // 
+            // planesDeTrabajoToolStripMenuItem
+            // 
+            this.planesDeTrabajoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.planesDeTrabajoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.planesDeTrabajoToolStripMenuItem.Name = "planesDeTrabajoToolStripMenuItem";
+            this.planesDeTrabajoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planesDeTrabajoToolStripMenuItem.Text = "Planes de Trabajo";
+            // 
+            // asistenciaToolStripMenuItem
+            // 
+            this.asistenciaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.asistenciaToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.asistenciaToolStripMenuItem.Name = "asistenciaToolStripMenuItem";
+            this.asistenciaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asistenciaToolStripMenuItem.Text = "Asistencia";
+            // 
+            // rutinasToolStripMenuItem
+            // 
+            this.rutinasToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.rutinasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.rutinasToolStripMenuItem.Name = "rutinasToolStripMenuItem";
+            this.rutinasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rutinasToolStripMenuItem.Text = "Rutinas";
+            // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.clientesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            // 
+            // asistenciasToolStripMenuItem
+            // 
+            this.asistenciasToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.asistenciasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.asistenciasToolStripMenuItem.Name = "asistenciasToolStripMenuItem";
+            this.asistenciasToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.asistenciasToolStripMenuItem.Text = "Asistencias";
+            // 
+            // cuentasCorrientesToolStripMenuItem
+            // 
+            this.cuentasCorrientesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.cuentasCorrientesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.cuentasCorrientesToolStripMenuItem.Name = "cuentasCorrientesToolStripMenuItem";
+            this.cuentasCorrientesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.cuentasCorrientesToolStripMenuItem.Text = "Cuentas Corrientes";
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.usuariosToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            // 
+            // btnExit
+            // 
+            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(45, 21);
+            this.btnExit.Text = "Salir";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmMainMenu
             // 
@@ -198,8 +289,17 @@
         private System.Windows.Forms.ToolStripMenuItem btnQuery;
         private System.Windows.Forms.ToolStripMenuItem btnSystem;
         private System.Windows.Forms.ToolStripMenuItem btnEndSesion;
-        private System.Windows.Forms.ToolStripMenuItem btnExit;
         private System.Windows.Forms.MenuStrip mstPPal;
+        private System.Windows.Forms.ToolStripMenuItem suscripcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planesDeTrabajoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rutinasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asistenciaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asistenciasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cuentasCorrientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnExit;
     }
 }
 
