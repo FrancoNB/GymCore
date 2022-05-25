@@ -18,13 +18,6 @@ namespace Presentation.Forms.Support
 
         private static readonly object _lock = new object();
 
-        private frmLogin()
-        {
-            userModel = new UsersModel();
-
-            InitializeComponent();
-        }
-
         public static frmLogin GetInstance()
         {
             if (instance == null)
@@ -37,6 +30,13 @@ namespace Presentation.Forms.Support
             }
 
             return instance;
+        }
+
+        private frmLogin()
+        {
+            InitializeComponent();
+
+            userModel = new UsersModel();
         }
 
         private UsersModel userModel;
@@ -75,8 +75,10 @@ namespace Presentation.Forms.Support
                         this.Close();
                     }
                     else
+                    {
                         MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        txtUsername.Select();
+                    }
                 }
             }
         }

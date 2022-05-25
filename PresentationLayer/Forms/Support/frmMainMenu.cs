@@ -11,12 +11,6 @@ namespace Presentation
         private static frmMainMenu instance;
 
         private static readonly object _lock = new object();
-
-        private frmMainMenu()
-        {
-            InitializeComponent();
-        }
-
         public static frmMainMenu GetInstance()
         {
             if (instance == null)
@@ -27,8 +21,48 @@ namespace Presentation
                         instance = new frmMainMenu();
                 }
             }
-
+            
             return instance;
+        }
+
+        private frmMainMenu()
+        {
+            InitializeComponent();
+
+            mstPPal.Renderer = new MenuStripRenderer();
+        }
+
+        private class MenuStripRenderer : ToolStripProfessionalRenderer
+        {
+            public MenuStripRenderer() : base(new MenuStripColors()) { }
+        }
+
+        private class MenuStripColors : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
+            public override Color MenuItemBorder
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
+            public override Color MenuItemPressedGradientEnd
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
+            public override Color MenuItemPressedGradientBegin
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
+            public override Color MenuItemSelectedGradientBegin
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
+            public override Color MenuItemSelectedGradientEnd
+            {
+                get { return Color.FromArgb(8, 11, 18); }
+            }
         }
 
         public string FooterMessage { get => lblState.Text; set => lblState.Text = value; }
@@ -53,13 +87,11 @@ namespace Presentation
 
         private void ShowLogin()
         {
-            lblState.ForeColor = Color.Brown;
             lblState.Text = "Sesión no iniciada";
 
             if (frmLogin.GetInstance().ShowDialog() == DialogResult.Cancel)
                 Application.Exit();
 
-            lblState.ForeColor = Color.DarkGreen;
             lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
         }
     }
