@@ -86,7 +86,7 @@
   <ItemGroup>
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Support\ICrudRepository.cs" />
-    <Compile Include="RepositoriesInterface\IUsersRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Support\RepositoryControler.cs" />
