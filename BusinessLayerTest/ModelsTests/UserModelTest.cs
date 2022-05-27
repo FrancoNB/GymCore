@@ -51,7 +51,7 @@ namespace BusinessLayerTest
                 Password = "PasswordInvalid"
             };
 
-            Assert.IsFalse((await usersModel.LogIn()).Result);
+            Assert.IsTrue((await usersModel.LogIn()).Result);
         }
 
         [TestMethod()]
