@@ -52,6 +52,9 @@
     <Compile Include="Controls\GymCoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\GymCoreComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\GymCoreDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
