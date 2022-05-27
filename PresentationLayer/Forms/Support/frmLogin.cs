@@ -75,25 +75,6 @@ namespace Presentation.Forms.Support
             }
         }
 
-        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar.Equals((char)Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-
-        }
-
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar.Equals((char)Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
             userModel.Username = txtUsername.Text;
