@@ -49,10 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\ConfigSystem\frmUsers.cs" />
-    <Compile Include="Forms\ConfigSystem\frmUsers.Designer.cs">
-      <DependentUpon>frmUsers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\GymCoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
