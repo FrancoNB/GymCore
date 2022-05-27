@@ -23,6 +23,8 @@ namespace Presentation.Utilities
             frmMainMenu.GetInstance().FooterMessage = msg;
             Cursor.Current = Cursors.WaitCursor;
 
+            frmMainMenu.GetInstance().Refresh();
+
             foreach (Form frm in Application.OpenForms)
             {
                 if (frm.Modal)
