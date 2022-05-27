@@ -109,7 +109,6 @@
     <Folder Include="Forms\Management\" />
     <Folder Include="Forms\Queries\" />
     <Folder Include="Forms\Register\" />
-    <Folder Include="Forms\System\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
