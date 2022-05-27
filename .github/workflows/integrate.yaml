@@ -10,14 +10,21 @@ on:
 jobs:
   ci_to_devolp:
     runs-on: windows-latest    
+    
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - run: npm ci # Integracion limpio de integracion continua
-      - run: npm test # Validacion de la funcion
-      - run: npm run build # Compila el programa
+    - uses: actions/checkout@v2
+      
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+    
+    - name: Restore NuGet packages
+      run: nuget restore GymCore.sln
+    
+    - name: Build the Solution
+      run: msbuild GymCore.sln /p:Configuration=Release
       
       
       
