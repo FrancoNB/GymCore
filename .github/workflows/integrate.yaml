@@ -20,11 +20,11 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
       
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.1
+    - name: Setup VSTest
+      uses: darenm/Setup-VSTest@v1
       
-    - name: Setup Unit Testing
-      uses: actions/checkout@v2.1.0
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
       
     - name: Restore Packages
       run: nuget restore GymCore.sln
@@ -32,13 +32,5 @@ jobs:
     - name: Build solution
       run: msbuild GymCore.sln -t:rebuild -property:Configuration=Release
     
-    - name: Unit Testing
-      run: dotnet test
-      
-      
-      
-      
-      
-      
-      
-    
+    - name: Run Tests
+      run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
