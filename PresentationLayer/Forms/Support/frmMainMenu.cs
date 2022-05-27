@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Cache;
+using Presentation.Forms.ConfigSystem;
 using Presentation.Forms.Support;
 using System;
 using System.Drawing;
@@ -89,10 +90,15 @@ namespace Presentation
         {
             lblState.Text = "Sesión no iniciada";
 
-            if (frmLogin.GetInstance().ShowDialog() == DialogResult.Cancel)
+            if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
             lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            frmUsers.GetInstance().ShowDialog(this);
         }
     }
 }
