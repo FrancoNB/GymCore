@@ -22,12 +22,19 @@ jobs:
       
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
-
+      
+    - name: Setup Unit Testing
+      uses: actions/checkout@v2.1.0
+      
     - name: Restore Packages
       run: nuget restore GymCore.sln
 
     - name: Build solution
       run: msbuild GymCore.sln -t:rebuild -property:Configuration=Release
+    
+    - name: Unit Testing
+      run: dotnet test
+      
       
       
       
