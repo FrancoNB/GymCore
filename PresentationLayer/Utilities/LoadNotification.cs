@@ -25,8 +25,11 @@ namespace Presentation.Utilities
 
             foreach (Form frm in Application.OpenForms)
             {
-                frm.Enabled = false;
-                auxListDisableForms.Add(frm);
+                if (frm.Modal)
+                {
+                    frm.Enabled = false;
+                    auxListDisableForms.Add(frm);
+                }
             }
         }
 
