@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GymCoreButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GymCoreTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Support\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,7 +100,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="Forms\Management\" />
     <Folder Include="Forms\Queries\" />
     <Folder Include="Forms\Register\" />
