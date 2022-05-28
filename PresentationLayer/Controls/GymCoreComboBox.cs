@@ -15,6 +15,8 @@ namespace Presentation.Controls
 
         public GymCoreComboBox() 
         {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             BackColor = _backColor;
             Size = new Size() { Height = 406 };
             Font = new Font("Calibri", 12.0f);

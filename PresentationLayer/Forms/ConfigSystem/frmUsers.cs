@@ -1,0 +1,356 @@
+﻿using BusinessLayer.Models;
+using BusinessLayer.ValueObjects;
+using Presentation.Utilities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Presentation.Forms.ConfigSystem
+{
+    public partial class frmUsers : Form
+    {
+        private static frmUsers instance;
+
+        private static readonly object _lock = new object();
+        public static frmUsers GetInstance()
+        {
+            if (instance == null)
+            {
+                lock (_lock)
+                {
+                    if (instance == null)
+                        instance = new frmUsers();
+                }
+            }
+
+            return instance;
+        }
+
+        private readonly UsersModel userWorkingModel;
+        private IEnumerable<UsersModel> usersList;
+        public frmUsers()
+        {
+            InitializeComponent();
+
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            userWorkingModel = new UsersModel();
+        }
+
+        private void frmUsers_Load(object sender, EventArgs e)
+        {
+            cbxType.Items.Add("Administrador");
+            cbxType.Items.Add("Entrenador");
+            cbxType.Items.Add("Cajero");
+
+            dgvUsersList.Columns.Add("idUser", "ID USUARIO");
+            dgvUsersList.Columns.Add("RegisterDate", "FEC. ALTA");
+            dgvUsersList.Columns.Add("Username", "USUARIO");
+            dgvUsersList.Columns.Add("LastConnection", "ULT. CONEXION");
+
+            dgvUsersList.Columns["idUser"].Visible = false;
+
+            dgvUsersList.Columns["RegisterDate"].Width = 60;
+            dgvUsersList.Columns["LastConnection"].Width = 115;
+
+            dgvUsersList.Columns["RegisterDate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUsersList.Columns["LastConnection"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            SetControlsDefaultState();        
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            userWorkingModel.Operation = Operation.Insert;
+            
+            ClearSelectionDgv();
+
+            rdbEnabled.Checked = true;
+
+            SetControlsActiveState();      
+        }
+
+        private void SetControlsDefaultState()
+        {
+            txtPassword.Clear();
+            txtUsername.Clear();
+            txtRepeatPassword.Clear();
+            cbxType.SelectedItem = null;
+            rdbEnabled.Checked = false;
+            rdbDisabled.Checked = false;
+
+            ControlsUtilities.DisableContainerControls(pnlData);
+            ControlsUtilities.EnabledContainerControls(pnlList);
+
+            btnNew.Enabled = true;
+            btnDelete.Enabled = true;
+            btnUpdate.Enabled = true;
+            btnSave.Enabled = false;
+            btnClose.Enabled = true;
+            btnCancel.Enabled = false;
+
+            LoadUserList();
+
+            btnNew.Select();
+        }
+
+        private async void LoadUserList()
+        {
+            LoadNotification.Show("Cargando listado de usuarios...");
+
+            usersList = await userWorkingModel.GetAll();
+
+            LoadDgvUsersList(usersList);
+
+            LoadNotification.Hide();
+        }
+
+        private void LoadDgvUsersList(IEnumerable<UsersModel> usersList)
+        {
+            dgvUsersList.Rows.Clear();
+
+            if (usersList != null)
+            {
+                foreach (UsersModel user in usersList)
+                {
+                    dgvUsersList.Rows.Add(user.IdUsers, user.RegisterDateString, user.Username, user.LastConnectionString);
+                }
+
+                ClearSelectionDgv();
+            }
+        }
+
+        private void SetControlsActiveState()
+        {
+            btnNew.Enabled = false;
+            btnDelete.Enabled = false;
+            btnUpdate.Enabled = false;
+            btnSave.Enabled = true;
+            btnClose.Enabled = false;
+            btnCancel.Enabled = true;
+
+            ControlsUtilities.DisableContainerControls(pnlList);
+            ControlsUtilities.EnabledContainerControls(pnlData);
+
+            txtUsername.Select();
+        }
+
+        private void ClearSelectionDgv()
+        {
+            txtPassword.Clear();
+            txtUsername.Clear();
+            txtRepeatPassword.Clear();
+            cbxType.SelectedItem = null;
+            rdbEnabled.Checked = false;
+            rdbDisabled.Checked = false;
+
+            dgvUsersList.CurrentCell = null;
+            dgvUsersList.ClearSelection();
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            userWorkingModel.Username = txtUsername.Text;
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            userWorkingModel.Password = txtPassword.Text;
+        }
+
+        private void cbxType_TextChanged(object sender, EventArgs e)
+        {
+            if (cbxType.Text == "Administrador")
+                userWorkingModel.Type = UsersModel.UsersTypes.Manager;
+            else if (cbxType.Text == "Entrenador")
+                userWorkingModel.Type = UsersModel.UsersTypes.Trainer;
+            else if (cbxType.Text == "Cajero")
+                userWorkingModel.Type = UsersModel.UsersTypes.Accountant;
+            else
+                userWorkingModel.Type = UsersModel.UsersTypes.Null;
+        }
+
+        private void rdbEnabledOrDisabled_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbEnabled.Checked)
+                userWorkingModel.State = UsersModel.UsersStates.Enabled;
+            else if (rdbDisabled.Checked)
+                userWorkingModel.State = UsersModel.UsersStates.Disabled;
+            else
+                userWorkingModel.State = UsersModel.UsersStates.Null;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dgvUsersList.CurrentCell != null)
+            {
+                userWorkingModel.Operation = Operation.Update;
+
+                SetControlsActiveState();
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el usuario que deseas modificar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);               
+            }
+        }
+
+        private void dgvUsersList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var selectUser = usersList.ToList().Find(user => user.IdUsers == Convert.ToInt32(dgvUsersList.CurrentRow.Cells["idUser"].Value));
+
+                userWorkingModel.IdUsers = selectUser.IdUsers;
+                userWorkingModel.RegisterDate = selectUser.RegisterDate;
+                userWorkingModel.LastConnection = selectUser.LastConnection;
+                txtUsername.Text = selectUser.Username;
+                txtPassword.Text = selectUser.Password;
+                txtRepeatPassword.Text = selectUser.Password;
+                cbxType.Text = selectUser.TypeString;
+
+                if (selectUser.State == UsersModel.UsersStates.Enabled)
+                {
+                    rdbEnabled.Checked = true;
+                }
+                else
+                {
+                    rdbDisabled.Checked = true;
+                }
+
+                btnUpdate.Select();
+            }
+            else 
+            {
+                ClearSelectionDgv();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            SetControlsDefaultState();
+        }
+
+        private async void btnSave_ClickAsync(object sender, EventArgs e)
+        {
+            if (txtPassword.Text != txtRepeatPassword.Text)
+            {
+                MessageBox.Show("Las contraseñas no coinciden... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Select();
+                return;
+            }
+
+            string footMsg;
+            string succesMsg;
+            DialogResult confirm;
+
+            if (userWorkingModel.Operation == Operation.Insert)
+            {
+                confirm = MessageBox.Show("Guardar usuario ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Guardando usuario...";
+                succesMsg = "Usuario guardado con exito !";
+            }
+            else if (userWorkingModel.Operation == Operation.Update)
+            {
+                confirm = MessageBox.Show("Modificar usuario ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Modificando usuario...";
+                succesMsg = "Usuario modificado con exito !";
+            } 
+            else
+            {
+                MessageBox.Show("No se establecio la operacion a realizar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(confirm == DialogResult.OK)
+            {
+                LoadNotification.Show(footMsg);
+
+                var acctionResult = await userWorkingModel.SaveChanges();
+
+                LoadNotification.Hide();
+
+                if(acctionResult.Result)
+                {
+                    SetControlsDefaultState();
+
+                    MessageBox.Show(succesMsg, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUsername.Select();
+                }
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvUsersList.CurrentCell != null)
+            {
+                DialogResult confirm = MessageBox.Show("Eliminar usuario ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.OK)
+                {
+                    LoadNotification.Show("Eliminando usuario...");
+
+                    userWorkingModel.Operation = Operation.Delete;
+
+                    var acctionResult = await userWorkingModel.SaveChanges();
+
+                    LoadNotification.Hide();
+
+                    if (acctionResult.Result)
+                    {
+                        txtSearch.Clear();
+
+                        LoadUserList();
+
+                        MessageBox.Show("Usuario eliminado con exito !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el usuario que deseas eliminar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                LoadDgvUsersList(usersList.ToList().FindAll(user => user.Username.ToLower().Contains(txtSearch.Text.ToLower())));
+            }
+            else
+            {
+                LoadDgvUsersList(usersList);
+            }
+        }
+
+        private void dgvUsersList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dgvUsersList.HitTest(e.X, e.Y).Equals(DataGridView.HitTestInfo.Nowhere))
+                {
+                    ClearSelectionDgv();
+                }
+            }
+        }
+    }
+}

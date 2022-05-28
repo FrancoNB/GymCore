@@ -13,8 +13,6 @@ namespace Presentation.Utilities
         private static string contextFooterMessage;
         private static Cursor contextCursor;
 
-        private static List<Form> auxListDisableForms = new List<Form>();
-
         public static void Show(string msg = "Cargando...")
         {
             contextFooterMessage = frmMainMenu.GetInstance().FooterMessage;
@@ -23,26 +21,16 @@ namespace Presentation.Utilities
             frmMainMenu.GetInstance().FooterMessage = msg;
             Cursor.Current = Cursors.WaitCursor;
 
-            foreach (Form frm in Application.OpenForms)
-            {
-                if (frm.Modal)
-                {
-                    frm.Enabled = false;
-                    auxListDisableForms.Add(frm);
-                }
-            }
+            ControlsUtilities.DisableAllControls();
+
+            frmMainMenu.GetInstance().Refresh();
         }
 
         public static void Hide()
         {
             frmMainMenu.GetInstance().FooterMessage = contextFooterMessage;
 
-            foreach (Form frm in auxListDisableForms)
-            {
-                frm.Enabled = true;
-            }
-
-            auxListDisableForms.Clear();
+            ControlsUtilities.EnabledAllControls();
 
             Cursor.Current = contextCursor;     
         }
