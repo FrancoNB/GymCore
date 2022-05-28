@@ -43,11 +43,23 @@ namespace BusinessLayerTest
         }
 
         [TestMethod()]
-        public async Task LogIn_InvalidTest()
+        public async Task LogIn_InvalidTest_1()
         {
             usersModel = new UsersModel(mockUsersRepository.Object)
             {
                 Username = "UserInvalid",
+                Password = "PasswordInvalid"
+            };
+
+            Assert.IsFalse((await usersModel.LogIn()).Result);
+        }
+
+        [TestMethod()]
+        public async Task LogIn_InvalidTest_2()
+        {
+            usersModel = new UsersModel(mockUsersRepository.Object)
+            {
+                Username = "UserValid",
                 Password = "PasswordInvalid"
             };
 
