@@ -61,11 +61,57 @@ namespace BusinessLayer.Models
             }
         }
         public UsersTypes Type { get => _type; set => _type = value; }
-        public string TypeString { get => GetStringType(); }
+        public string TypeString
+        {
+            get
+            {
+                if (Type == UsersTypes.Manager)
+                    return "Administrador";
+                else if (Type == UsersTypes.Trainer)
+                    return "Entrenador";
+                else if (Type == UsersTypes.Accountant)
+                    return "Cajero";
+                else
+                    return null;
+            }
+
+            private set
+            {
+                if (value == "Administrador")
+                    Type = UsersTypes.Manager;
+                else if (value == "Entrenador")
+                    Type = UsersTypes.Trainer;
+                else if (value == "Cajero")
+                    Type = UsersTypes.Accountant;
+                else
+                    Type = UsersTypes.Null;
+            }
+        }
         public string Username { get => _username; set => _username = value; }
         public string Password { get => _password; set => _password = value; }
         public UsersStates State { get => _state; set => _state = value; }
-        public string StateString { get => GetStringState(); }
+        public string StateString
+        {
+            get
+            {
+                if (State == UsersStates.Enabled)
+                    return "Habilitado";
+                else if (State == UsersStates.Disabled)
+                    return "Deshabilitado";
+                else
+                    return null;
+            }
+
+            private set
+            {
+                if (value == "Habilitado")
+                    State = UsersStates.Enabled;
+                else if (value == "Deshabilitado")
+                    State = UsersStates.Disabled;
+                else
+                    State = UsersStates.Null;
+            }
+        }
         public DateTime LastConnection { get => _lastConnection; set => _lastConnection = value; }
         public string LastConnectionString
         {
@@ -174,10 +220,10 @@ namespace BusinessLayer.Models
                     {
                         IdUsers = item.IdUsers,
                         RegisterDate = item.RegisterDate,
-                        Type = GetEnumTypes(item.Type),
+                        TypeString = item.Type,
                         Username = item.Username,
                         Password = item.Password,
-                        State = GetEnumState(item.State),
+                        StateString = item.State,
                         LastConnection = item.LastConnection
                     });
                 }
@@ -254,51 +300,6 @@ namespace BusinessLayer.Models
             if (IdUsers < 1)
                 throw new ArgumentException("No se selecciono ningun usuario para eliminar... !");
         }
-
-        private string GetStringState()
-        {
-            if (this.State == UsersStates.Enabled)
-                return "Habilitado";
-            else if (this.State == UsersStates.Disabled)
-                return "Deshabilitado";
-            else
-                return null;
-        }
-
-        private string GetStringType()
-        {
-            if (this.Type == UsersTypes.Manager)
-                return "Administrador";
-            else if (this.Type == UsersTypes.Trainer)
-                return "Entrenador";
-            else if (this.Type == UsersTypes.Accountant)
-                return "Cajero";
-            else
-                return null;
-        }
-
-        private UsersStates GetEnumState(string state)
-        {
-            if (state == "Habilitado")
-                return UsersStates.Enabled;
-            else if (state == "Deshabilitado")
-                return UsersStates.Disabled;
-            else
-                return UsersStates.Null;
-        }
-
-        private UsersTypes GetEnumTypes(string type)
-        {
-            if (type == "Administrador")
-                return UsersTypes.Manager;
-            else if (type == "Entrenador")
-                return UsersTypes.Trainer;
-            else if (type == "Cajero")
-                return UsersTypes.Accountant;
-            else
-                return UsersTypes.Null;
-        }
-
         #endregion
     }
 }
