@@ -13,6 +13,8 @@ namespace Presentation.Controls
 
         public GymCoreDataGridView()
         {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();

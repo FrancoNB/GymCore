@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ControlsUtilities.cs" />
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>

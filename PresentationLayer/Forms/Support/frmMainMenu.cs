@@ -30,6 +30,8 @@ namespace Presentation
         {
             InitializeComponent();
 
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             mstPPal.Renderer = new MenuStripRenderer();
         }
 

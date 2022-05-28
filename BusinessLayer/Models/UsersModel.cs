@@ -12,29 +12,84 @@ namespace BusinessLayer.Models
 {
     public class UsersModel
     {
-    
+
+        public enum UsersStates
+        {
+            Enabled,
+            Disabled,
+            Null
+        }
+
+        public enum UsersTypes
+        {
+            Manager,
+            Trainer,
+            Accountant,
+            Null
+        }
+
         #region "FIELDS"
         private int _idUsers;
         private DateTime _registerDate;
-        private string _type;
+        private UsersTypes _type;
         private string _username;
         private string _password;
-        private string _state;
+        private UsersStates _state;
         private DateTime _lastConnection;
         #endregion
 
         #region "GETERS/SETTERS"
         public int IdUsers { get => _idUsers; set => _idUsers = value; }
-        public DateTime RegisterDate { get => _registerDate; private set => _registerDate = value; }
-        public string Type { get => _type; set => _type = value; }
+        public DateTime RegisterDate { get => _registerDate; set => _registerDate = value; }
+        public string RegisterDateString
+        {
+            get
+            {
+                if(RegisterDate == null)
+                {
+                    return string.Empty;
+                }
+                else if (RegisterDate == DateTime.MinValue)
+                {
+                    return "Desconocida";
+                }
+                else
+                {
+                    return RegisterDate.ToString("dd/MM/yy");
+                }
+
+            }
+        }
+        public UsersTypes Type { get => _type; set => _type = value; }
+        public string TypeString { get => GetStringType(); }
         public string Username { get => _username; set => _username = value; }
         public string Password { get => _password; set => _password = value; }
-        public string State{ get => _state; set => _state = value; }
-        public DateTime LastConnection { get => _lastConnection; private set => _lastConnection = value; }
+        public UsersStates State { get => _state; set => _state = value; }
+        public string StateString { get => GetStringState(); }
+        public DateTime LastConnection { get => _lastConnection; set => _lastConnection = value; }
+        public string LastConnectionString
+        {
+            get
+            {
+                if (LastConnection == null)
+                {
+                    return string.Empty;
+                }
+                else if (LastConnection == DateTime.MinValue)
+                {
+                    return "Nunca";
+                }
+                else
+                {
+                    return LastConnection.ToString("dd/MM/yy HH:mm:ss");
+                }
+
+            }
+        }
         #endregion
 
         private IUsersRepository repository;
-        public Operation Operation { private get; set; }
+        public Operation Operation { get; set; }
 
         public UsersModel()
         {
@@ -48,17 +103,6 @@ namespace BusinessLayer.Models
 
         public async Task<AcctionResult> SaveChanges()
         {
-            var dataModel = new Users()
-            {
-                IdUsers = this.IdUsers,
-                RegisterDate = this.RegisterDate,
-                Type = this.Type,
-                Username = this.Username,
-                Password = this.Password,
-                State = this.State,
-                LastConnection = this.LastConnection
-            };
-
             try
             {
                 switch (Operation)
@@ -84,8 +128,8 @@ namespace BusinessLayer.Models
             } 
             catch (Exception ex)
             {
-                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 2627)
-                    return new AcctionResult(false, "El nombre de usuario " + dataModel.Username + " no esta disponible... !");
+                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1062)
+                    return new AcctionResult(false, "El nombre de usuario " + Username + " no esta disponible... !");
                 else
                     return new AcctionResult(false, ex.Message);
             }
@@ -124,16 +168,19 @@ namespace BusinessLayer.Models
             var list = new List<UsersModel>();
             foreach (Users item in dataModel) 
             {
-                list.Add(new UsersModel
+                if (item.Type != "Desarrollador")
                 {
-                    IdUsers = item.IdUsers,
-                    RegisterDate = item.RegisterDate,
-                    Type = item.Type,
-                    Username = item.Username,
-                    Password = item.Password,
-                    State = item.State,
-                    LastConnection = item.LastConnection
-                });
+                    list.Add(new UsersModel
+                    {
+                        IdUsers = item.IdUsers,
+                        RegisterDate = item.RegisterDate,
+                        Type = GetEnumTypes(item.Type),
+                        Username = item.Username,
+                        Password = item.Password,
+                        State = GetEnumState(item.State),
+                        LastConnection = item.LastConnection
+                    });
+                }
             }
 
             return list;
@@ -145,10 +192,10 @@ namespace BusinessLayer.Models
             {
                 IdUsers = this.IdUsers,
                 RegisterDate = this.RegisterDate,
-                Type = this.Type,
+                Type = this.TypeString,
                 Username = this.Username,
                 Password = this.Password,
-                State = this.State,
+                State = this.StateString,
                 LastConnection = this.LastConnection
             };
         }
@@ -171,10 +218,10 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ArgumentException("Se debe especificar una contraseña para el nuevo usuario... !");
 
-            if (string.IsNullOrWhiteSpace(Type))
+            if (string.IsNullOrWhiteSpace(TypeString))
                 throw new ArgumentException("Se debe especificar un tipo para el nuevo usuario... !");
 
-            if (string.IsNullOrWhiteSpace(State))
+            if (string.IsNullOrWhiteSpace(StateString))
                 throw new ArgumentException("Se debe especificar el estado del nuevo usuario... !");
 
             IdUsers = -1;
@@ -193,10 +240,10 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ArgumentException("La contraseña no puede quedar vacia... !");
 
-            if (string.IsNullOrWhiteSpace(Type))
+            if (string.IsNullOrWhiteSpace(TypeString))
                 throw new ArgumentException("el tipo de usuario no puede quedar vacio... !");
 
-            if (string.IsNullOrWhiteSpace(State))
+            if (string.IsNullOrWhiteSpace(StateString))
                 throw new ArgumentException("El estado del usuario no puede quedar vacio... !");
 
             RegisterDate = DateTime.Now;
@@ -207,6 +254,51 @@ namespace BusinessLayer.Models
             if (IdUsers < 1)
                 throw new ArgumentException("No se selecciono ningun usuario para eliminar... !");
         }
+
+        private string GetStringState()
+        {
+            if (this.State == UsersStates.Enabled)
+                return "Habilitado";
+            else if (this.State == UsersStates.Disabled)
+                return "Deshabilitado";
+            else
+                return null;
+        }
+
+        private string GetStringType()
+        {
+            if (this.Type == UsersTypes.Manager)
+                return "Administrador";
+            else if (this.Type == UsersTypes.Trainer)
+                return "Entrenador";
+            else if (this.Type == UsersTypes.Accountant)
+                return "Cajero";
+            else
+                return null;
+        }
+
+        private UsersStates GetEnumState(string state)
+        {
+            if (state == "Habilitado")
+                return UsersStates.Enabled;
+            else if (state == "Deshabilitado")
+                return UsersStates.Disabled;
+            else
+                return UsersStates.Null;
+        }
+
+        private UsersTypes GetEnumTypes(string type)
+        {
+            if (type == "Administrador")
+                return UsersTypes.Manager;
+            else if (type == "Entrenador")
+                return UsersTypes.Trainer;
+            else if (type == "Cajero")
+                return UsersTypes.Accountant;
+            else
+                return UsersTypes.Null;
+        }
+
         #endregion
     }
 }

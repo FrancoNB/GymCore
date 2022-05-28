@@ -220,7 +220,7 @@
             this.btnUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(180, 22);
+            this.btnUsers.Size = new System.Drawing.Size(155, 22);
             this.btnUsers.Text = "Usuarios";
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
@@ -229,7 +229,7 @@
             this.btnEndSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnEndSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnEndSesion.Name = "btnEndSesion";
-            this.btnEndSesion.Size = new System.Drawing.Size(180, 22);
+            this.btnEndSesion.Size = new System.Drawing.Size(155, 22);
             this.btnEndSesion.Text = "Cerrar Sesión";
             this.btnEndSesion.Click += new System.EventHandler(this.btnEndSesion_Click);
             // 
@@ -265,6 +265,7 @@
             this.ClientSize = new System.Drawing.Size(808, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.mstPPal);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mstPPal;
