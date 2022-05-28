@@ -36,7 +36,7 @@ namespace DataAccessLayer.Support
             }
             catch (MySqlException ex)
             {
-                throw new RepositoryException(ex.Message, ex.Number);
+                throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
             }
         }
 
@@ -54,12 +54,15 @@ namespace DataAccessLayer.Support
                         command.CommandText = transaction;
                         command.CommandType = CommandType.Text;
 
-                        foreach (MySqlParameter parameter in parameters)
+                        if (parameters != null)
                         {
-                            command.Parameters.Add(parameter);
-                        }
+                            foreach (MySqlParameter parameter in parameters)
+                            {
+                                command.Parameters.Add(parameter);
+                            }
 
-                        parameters.Clear();
+                            parameters.Clear();
+                        }
 
                         using (var reader = await command.ExecuteReaderAsync())
                         {
@@ -75,7 +78,7 @@ namespace DataAccessLayer.Support
             } 
             catch(MySqlException ex)
             {
-                throw new RepositoryException(ex.Message, ex.Number);
+                throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
             }  
         }
     }

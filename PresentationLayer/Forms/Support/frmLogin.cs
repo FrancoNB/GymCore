@@ -36,6 +36,8 @@ namespace Presentation.Forms.Support
         {
             InitializeComponent();
 
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             userModel = new UsersModel();
         }
 
