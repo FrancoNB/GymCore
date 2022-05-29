@@ -138,6 +138,8 @@ namespace Presentation.Forms.ConfigSystem
             ControlsUtilities.DisableContainerControls(pnlList);
             ControlsUtilities.EnabledContainerControls(pnlData);
 
+            txtSearch.Clear();
+
             txtUsername.Select();
         }
 
@@ -251,20 +253,17 @@ namespace Presentation.Forms.ConfigSystem
             }
 
             string footMsg;
-            string succesMsg;
             DialogResult confirm;
 
             if (userWorkingModel.Operation == Operation.Insert)
             {
                 confirm = MessageBox.Show("Guardar usuario ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 footMsg = "Guardando usuario...";
-                succesMsg = "Usuario guardado con exito !";
             }
             else if (userWorkingModel.Operation == Operation.Update)
             {
                 confirm = MessageBox.Show("Modificar usuario ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 footMsg = "Modificando usuario...";
-                succesMsg = "Usuario modificado con exito !";
             } 
             else
             {
@@ -280,17 +279,12 @@ namespace Presentation.Forms.ConfigSystem
 
                 LoadNotification.Hide();
 
-                if(acctionResult.Result)
-                {
+                if (!acctionResult.Result)
+                    txtUsername.Select();
+                else
                     SetControlsDefaultState();
 
-                    MessageBox.Show(succesMsg, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtUsername.Select();
-                }
+                MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);          
             }
         }
 
@@ -315,13 +309,11 @@ namespace Presentation.Forms.ConfigSystem
                         txtSearch.Clear();
 
                         LoadUserList();
+                    }
 
-                        MessageBox.Show("Usuario eliminado con exito !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    btnNew.Select();
                 }
             }
             else
