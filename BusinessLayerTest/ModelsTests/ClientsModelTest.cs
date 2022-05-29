@@ -45,8 +45,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "TestClientAddress",
                 Phone = "123456789",
                 Mail = "TestClientMail",
-                Observations = "TestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "TestClientObservations"
             };
 
             Assert.IsTrue((await clientsModel.SaveChanges()).Result);
@@ -60,8 +59,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
                 Name = "TestClient",
                 Surname = "",
-                Phone = "123456789",
-                State = ClientsModel.ClientsStates.Enabled
+                Phone = "123456789"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -79,8 +77,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "TestClientAddress",
                 Phone = "123456789",
                 Mail = "TestMail",
-                Observations = "TestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "TestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -99,8 +96,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
                 Mail = "UpdateTestMail",
-                Observations = "UpdateTestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "UpdateTestClientObservations"
             };
 
             Assert.IsTrue((await clientsModel.SaveChanges()).Result);
@@ -119,8 +115,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
                 Mail = "UpdateTestMail",
-                Observations = "UpdateTestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "UpdateTestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -139,8 +134,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
                 Mail = "UpdateTestMail",
-                Observations = "UpdateTestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "UpdateTestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -158,8 +152,7 @@ namespace BusinessLayerTest.ModelsTests
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
                 Mail = "UpdateTestMail",
-                Observations = "UpdateTestClientObservations",
-                State = ClientsModel.ClientsStates.Enabled
+                Observations = "UpdateTestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
