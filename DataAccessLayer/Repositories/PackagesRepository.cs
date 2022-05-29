@@ -22,7 +22,7 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.insert = "INSERT INTO Packages (Name, NumberSessions, AvailableDays, Price) VALUES (@name, @numberSessions, @availableDays, @price)";
             this.update = "UPDATE Packages SET Name = @name, NumberSessions = @numberSessions, AvailableDays = @availableDays, Price = @price";
             this.delete = "DELETE FROM Packages WHERE IdPackages = @idPackages";
-            this.selectAll = "SELECT * FROM Packages";
+            this.selectAll = "SELECT * FROM Packages"; 
         }
 
         public async Task<int> Insert(Packages entity)

@@ -28,7 +28,7 @@ namespace DataAccessLayer.Repositories
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
-            this.selectAll = "SELECT * FROM Subscriptions";
+            this.selectAll = "SELECT * FROM Subscriptions"; 
 
         }
 

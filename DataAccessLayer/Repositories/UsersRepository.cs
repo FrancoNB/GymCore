@@ -26,7 +26,7 @@ namespace DataAccessLayer.Repositories
             this.delete = "DELETE FROM Users WHERE IdUsers = @idUsers";
             this.selectAll = "SELECT * FROM Users";
             this.selectByUserAndPass = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
-        }
+        } 
 
         public async Task<int> Insert(Users entity)
         {

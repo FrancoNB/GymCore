@@ -29,7 +29,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                            + "ButtocksPoints = @buttocksPoints, TrapeziusPoints = @trapeziusPoints, DorsalPoints = @dorsalPoints, LumbarsPoints = @lumbarPoints, PectoralPoints = @pectoralPoints, "
                            + "AbdominalPoints = @abdominalPoints, ObliquesPoints =  @obliquesPoints, BicepsPoints = @bicepsPoints, TricepsPoints = @tricepsPoints, ForearmPoints = @forearmPoints, "
                            + "PosteriorDeltoidsPoints = @posteriorDeltoidsPoints, LateralDeltoidsPoints = @lateralDeltoidsPoints, AnteriorDeltoidPoints = @anteriorDeltoidsPoints, "
-                           + "AdductorPoints = @adductorPoints) WHERE IdExercises = @idExercices";
+                           + "AdductorPoints = @adductorPoints) WHERE IdExercises = @idExercices"; 
 
             this.delete = "DELETE FROM Exercises WHERE IdExercises = @idExercises";
 
