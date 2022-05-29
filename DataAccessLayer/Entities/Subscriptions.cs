@@ -10,33 +10,33 @@ namespace DataAccessLayer.Entities
     {
         private int _idsubscriptions;
         private int _ticketCode;
-        private DateTime _start_date;
+        private DateTime _startDate;
         private string _package;
         private double _price;
-        private int _total_sessions;
-        private int _used_sessions;
-        private int _available_sessions;
-        private DateTime _end_date;
-        private DateTime _expire_date;
+        private int _totalSessions;
+        private int _usedSessions;
+        private int _availableSessions;
+        private DateTime _endDate;
+        private DateTime _expireDate;
         private string _observations;
         private string _state;
-        private int _clients_idclients;
-        private int _current_accounts_idcurrent_accounts;
+        private int _clientsIdclients;
+        private int _currentAccountsIdcurrentAccounts;
 
         public int IdSubscriptions { get => _idsubscriptions; set => _idsubscriptions = value; }
         public int TicketCode { get => _ticketCode; set => _ticketCode = value; }
-        public DateTime StartDate { get => _start_date; set => _start_date = value; }
+        public DateTime StartDate { get => _startDate; set => _startDate = value; }
         public string Package { get => _package; set => _package = value; }
         public double Price { get => _price; set => _price = value; }
-        public int TotalSessions { get => _total_sessions; set => _total_sessions = value; }
-        public int UsedSessions { get => _used_sessions; set => _used_sessions = value; }
-        public int AvailableSessions { get => _available_sessions; set => _available_sessions = value; }
-        public DateTime EndDate { get => _end_date; set => _end_date = value; }
-        public DateTime ExpireDate { get => _expire_date; set => _expire_date = value; }
+        public int TotalSessions { get => _totalSessions; set => _totalSessions = value; }
+        public int UsedSessions { get => _usedSessions; set => _usedSessions = value; }
+        public int AvailableSessions { get => _availableSessions; set => _availableSessions = value; }
+        public DateTime EndDate { get => _endDate; set => _endDate = value; }
+        public DateTime ExpireDate { get => _expireDate; set => _expireDate = value; }
         public string Observations { get => _observations; set => _observations = value;}
         public string State { get => _state; set => _state = value; }
-        public int ClientsIdClients { get => _clients_idclients; set => _clients_idclients = value; }
-        public int CurrentAccountsIdCurrentAccounts { get => _current_accounts_idcurrent_accounts; set=> _current_accounts_idcurrent_accounts = value; }
+        public int ClientsIdClients { get => _clientsIdclients; set => _clientsIdclients = value; }
+        public int CurrentAccountsIdCurrentAccounts { get => _currentAccountsIdcurrentAccounts; set=> _currentAccountsIdcurrentAccounts = value; }
 
 
     }
