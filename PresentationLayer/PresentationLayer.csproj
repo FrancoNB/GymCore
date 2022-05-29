@@ -67,6 +67,12 @@
     <Compile Include="Controls\GymCoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Register\frmRegisterClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterClients.Designer.cs">
+      <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Support\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\frmRegisterClients.resx">
+      <DependentUpon>frmRegisterClients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Support\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -118,7 +127,6 @@
   <ItemGroup>
     <Folder Include="Forms\Management\" />
     <Folder Include="Forms\Queries\" />
-    <Folder Include="Forms\Register\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
