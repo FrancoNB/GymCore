@@ -63,7 +63,7 @@ namespace BusinessLayer.Models
                 else if (Type == UsersTypes.Accountant)
                     return "Cajero";
                 else
-                    return null;
+                    return "Indeterminado";
             }
 
             private set
@@ -78,8 +78,8 @@ namespace BusinessLayer.Models
                     Type = UsersTypes.Null;
             }
         }
-        public string Username { get => _username; set => _username = value; }
-        public string Password { get => _password; set => _password = value; }
+        public string Username { get => _username; set => _username = value.Trim(); }
+        public string Password { get => _password; set => _password = value.Trim(); }
         public DateTime LastConnection { get => _lastConnection; set => _lastConnection = value; }
         public string LastConnectionString
         {
