@@ -1,6 +1,4 @@
 ﻿using System;
-using DataAccessLayer.InterfaceRepositories;
-using DataAccessLayer.Repositories;
 using DataAccessLayer.Entities;
 using BusinessLayer.ValueObjects;
 using System.Collections.Generic;
@@ -8,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Support;
+using DataAccessLayer.Repositories.Interfaces;
+using DataAccessLayer.InterfaceRepositories;
 
 namespace BusinessLayer.Models
 {
@@ -104,33 +104,31 @@ namespace BusinessLayer.Models
             }
             catch (Exception ex)
             {
-                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1062)
-                    return new AcctionResult(false, "El nombre de usuario " + Username + " no esta disponible... !");
-                else
-                    return new AcctionResult(false, ex.Message);
+                return new AcctionResult(false, ex.Message);
             }
         }
 
-        public async Task<IEnumerable<UsersModel>> GetAll()
+        public async Task<IEnumerable<ClientsModel>> GetAll()
         {
             var dataModel = await repository.GetAll();
 
-            var list = new List<UsersModel>();
-            foreach (Users item in dataModel)
+            var list = new List<ClientsModel>();
+
+            foreach (Clients item in dataModel)
             {
-                if (item.Type != "Desarrollador")
+                list.Add(new ClientsModel
                 {
-                    list.Add(new UsersModel
-                    {
-                        IdUsers = item.IdUsers,
-                        RegisterDate = item.RegisterDate,
-                        Type = GetEnumTypes(item.Type),
-                        Username = item.Username,
-                        Password = item.Password,
-                        State = GetEnumState(item.State),
-                        LastConnection = item.LastConnection
-                    });
-                }
+                    IdClients = item.IdClients,
+                    RegisterDate = item.RegisterDate,
+                    Name = item.Name,
+                    Surname = item.Surname,
+                    Locality = item.Locality,
+                    Address = item.Address,
+                    Phone = item.Phone,
+                    Mail = item.Mail,
+                    Observations = item.Observations,
+                    StateString = item.State
+                });
             }
 
             return list;
@@ -141,7 +139,7 @@ namespace BusinessLayer.Models
             return new Clients()
             {
                 IdClients = this.IdClients,
-                Date = this.RegisterDate,
+                RegisterDate = this.RegisterDate,
                 Name = this.Name,
                 Surname = this.Surname,
                 Locality = this.Locality,
