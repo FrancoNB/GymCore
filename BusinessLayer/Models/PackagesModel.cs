@@ -48,17 +48,17 @@ namespace BusinessLayer.Models
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Plan de trabajo cargado correctamente... !");
+                        return new AcctionResult(true, "Paquete de suscripción cargado correctamente... !");
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Plan de trabajo modificado correctamente... !");
+                        return new AcctionResult(true, "Paquete de suscripción modificado correctamente... !");
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdPackages);
-                        return new AcctionResult(true, "Cliente eliminado correctamente... !");
+                        return new AcctionResult(true, "Paquete de suscripción eliminado correctamente... !");
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
@@ -106,7 +106,7 @@ namespace BusinessLayer.Models
         private void ValidateInsert()
         {
             if (string.IsNullOrWhiteSpace(Name))
-                throw new ArgumentException("Se debe especificar el nombre del plan de trabajo... !");
+                throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
             if (NumberSessions >= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
@@ -120,10 +120,10 @@ namespace BusinessLayer.Models
         private void ValidateUpdate()
         {
             if (IdPackages < 1)
-                throw new ArgumentException("No se selecciono ningun plan de trabajo para modificar... !");
+                throw new ArgumentException("No se selecciono ningun paquete de suscripción para modificar... !");
 
             if (string.IsNullOrWhiteSpace(Name))
-                throw new ArgumentException("Se debe especificar el nombre del plan de trabajo... !");
+                throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
             if (NumberSessions >= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
@@ -136,7 +136,7 @@ namespace BusinessLayer.Models
         private void ValidateDelete()
         {
             if (IdPackages < 1)
-                throw new ArgumentException("No se selecciono ningun plan de trabajo para eliminar... !");
+                throw new ArgumentException("No se selecciono ningun paquete de suscripción para eliminar... !");
         }
     }
 }
