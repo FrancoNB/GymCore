@@ -51,9 +51,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.rdbEnabled = new System.Windows.Forms.RadioButton();
-            this.rdbDisabled = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
@@ -353,45 +350,6 @@
             this.label5.TabIndex = 21;
             this.label5.Text = "Repetir Contraseña";
             // 
-            // rdbEnabled
-            // 
-            this.rdbEnabled.AutoSize = true;
-            this.rdbEnabled.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbEnabled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.rdbEnabled.Location = new System.Drawing.Point(147, 186);
-            this.rdbEnabled.Name = "rdbEnabled";
-            this.rdbEnabled.Size = new System.Drawing.Size(94, 23);
-            this.rdbEnabled.TabIndex = 4;
-            this.rdbEnabled.TabStop = true;
-            this.rdbEnabled.Text = "Habilitado";
-            this.rdbEnabled.UseVisualStyleBackColor = true;
-            this.rdbEnabled.CheckedChanged += new System.EventHandler(this.rdbEnabledOrDisabled_CheckedChanged);
-            // 
-            // rdbDisabled
-            // 
-            this.rdbDisabled.AutoSize = true;
-            this.rdbDisabled.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbDisabled.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.rdbDisabled.Location = new System.Drawing.Point(271, 186);
-            this.rdbDisabled.Name = "rdbDisabled";
-            this.rdbDisabled.Size = new System.Drawing.Size(117, 23);
-            this.rdbDisabled.TabIndex = 5;
-            this.rdbDisabled.TabStop = true;
-            this.rdbDisabled.Text = "Deshabilitado";
-            this.rdbDisabled.UseVisualStyleBackColor = true;
-            this.rdbDisabled.CheckedChanged += new System.EventHandler(this.rdbEnabledOrDisabled_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label6.Location = new System.Drawing.Point(7, 187);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 19);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "Estado";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -424,13 +382,10 @@
             this.pnlData.Controls.Add(this.txtPassword);
             this.pnlData.Controls.Add(this.txtRepeatPassword);
             this.pnlData.Controls.Add(this.label7);
-            this.pnlData.Controls.Add(this.rdbEnabled);
-            this.pnlData.Controls.Add(this.label6);
-            this.pnlData.Controls.Add(this.rdbDisabled);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(456, 33);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(568, 216);
+            this.pnlData.Size = new System.Drawing.Size(568, 181);
             this.pnlData.TabIndex = 31;
             // 
             // txtUsername
@@ -532,9 +487,6 @@
         private Controls.GymCoreTextBox txtUsername;
         private System.Windows.Forms.Label label5;
         private Controls.GymCoreTextBox txtRepeatPassword;
-        private System.Windows.Forms.RadioButton rdbEnabled;
-        private System.Windows.Forms.RadioButton rdbDisabled;
-        private System.Windows.Forms.Label label6;
         private Controls.GymCoreTextBox txtPassword;
         private System.Windows.Forms.Label label7;
         private Controls.GymCoreDataGridView dgvUsersList;
