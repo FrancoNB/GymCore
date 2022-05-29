@@ -13,13 +13,6 @@ namespace BusinessLayer.Models
 {
     public class ClientsModel
     {
-        public enum ClientsStates
-        {
-            Enabled,
-            Disabled,
-            Null
-        }
-
         private int _idClients;
         private DateTime _registerDate;
         private string _name;
@@ -29,10 +22,28 @@ namespace BusinessLayer.Models
         private string _phone;
         private string _mail;
         private string _observations;
-        private ClientsStates _state;
 
         public int IdClients { get => _idClients; set => _idClients = value; }
         public DateTime RegisterDate { get => _registerDate; set => _registerDate = value; }
+        public string RegisterDateString
+        {
+            get
+            {
+                if (RegisterDate == null)
+                {
+                    return string.Empty;
+                }
+                else if (RegisterDate == DateTime.MinValue)
+                {
+                    return "Desconocida";
+                }
+                else
+                {
+                    return RegisterDate.ToString("dd/MM/yy");
+                }
+
+            }
+        }
         public string Name { get => _name; set => _name = value; }
         public string Surname { get => _surname; set => _surname = value; }
         public string Locality { get => _locality; set => _locality = value; }
@@ -40,29 +51,6 @@ namespace BusinessLayer.Models
         public string Phone { get => _phone; set => _phone = value; }
         public string Mail { get => _mail; set => _mail = value; }
         public string Observations { get => _observations; set => _observations = value; }
-        public ClientsStates State { get => _state; set => _state = value; }
-        public string StateString 
-        { 
-            get
-            {
-                if (State == ClientsStates.Enabled)
-                    return "Habilitado";
-                else if (State == ClientsStates.Disabled)
-                    return "Deshabilitado";
-                else
-                    return null;
-            }
-
-            set
-            {
-                if (value == "Habilitado")
-                    State = ClientsStates.Enabled;
-                else if (value == "Deshabilitado")
-                    State = ClientsStates.Disabled;
-                else
-                    State = ClientsStates.Null;
-            }
-        }
 
         private IClientsRepository repository;
         public Operation Operation { get; set; }
@@ -126,8 +114,7 @@ namespace BusinessLayer.Models
                     Address = item.Address,
                     Phone = item.Phone,
                     Mail = item.Mail,
-                    Observations = item.Observations,
-                    StateString = item.State
+                    Observations = item.Observations
                 });
             }
 
@@ -146,8 +133,7 @@ namespace BusinessLayer.Models
                 Address = this.Address,
                 Phone = this.Phone,
                 Mail = this.Mail,
-                Observations = this.Observations,
-                State = this.StateString
+                Observations = this.Observations
             };
         }
 
@@ -173,7 +159,6 @@ namespace BusinessLayer.Models
 
             IdClients = -1;
             RegisterDate = DateTime.Now;
-            State = ClientsStates.Enabled;
         }
 
         private void ValidateUpdate()
@@ -186,9 +171,6 @@ namespace BusinessLayer.Models
 
             if (string.IsNullOrWhiteSpace(Surname))
                 throw new ArgumentException("Se debe especificar el apellido del cliente... !");
-
-            if (string.IsNullOrWhiteSpace(StateString))
-                throw new ArgumentException("Se debe especificar el estado del cliente... !");
 
             if (string.IsNullOrWhiteSpace(Locality))
                 Locality = "-";
