@@ -26,7 +26,7 @@ namespace BusinessLayer.Models
         public int IdClients { get => _idClients; set => _idClients = value; }
         public DateTime RegisterDate { get => _registerDate; set => _registerDate = value; }
         public string RegisterDateString
-        {
+        { 
             get
             {
                 if (RegisterDate == null)
@@ -40,7 +40,7 @@ namespace BusinessLayer.Models
                 else
                 {
                     return RegisterDate.ToString("dd/MM/yy");
-                }
+            }
 
             }
         }
