@@ -8,16 +8,16 @@ namespace DataAccessLayer.Entities
 {
     public class Packages
     {
-        private int _idpackages;
+        private int _idPackages;
         private string _name;
-        private int _number_sessions;
-        private int _available_days;
+        private int _numberSessions;
+        private int _availableDays;
         private double _price;
 
-        public int IdPackages { get => _idpackages; set => _idpackages = value; }
+        public int IdPackages { get => _idPackages; set => _idPackages = value; }
         public string Name { get => _name; set => _name = value; }
-        public int NumberSessions { get => _number_sessions; set => _number_sessions = value; }
-        public int AvailableDays { get => _available_days; set => _available_days = value; }
+        public int NumberSessions { get => _numberSessions; set => _numberSessions = value; }
+        public int AvailableDays { get => _availableDays; set => _availableDays = value; }
         public double Price { get => _price; set => _price = value; }
 
     }
