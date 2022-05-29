@@ -373,6 +373,7 @@
             this.dgvClientsList.Size = new System.Drawing.Size(456, 435);
             this.dgvClientsList.TabIndex = 19;
             this.dgvClientsList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientsList_CellClick);
+            this.dgvClientsList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvClientsList_MouseUp);
             // 
             // pnlList
             // 

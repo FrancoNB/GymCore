@@ -133,7 +133,7 @@ namespace PresentationLayer.Forms.Register
 
             dgvClientsList.Columns["idClient"].Visible = false;
 
-            dgvClientsList.Columns["RegisterDate"].Width = 60;
+            dgvClientsList.Columns["RegisterDate"].Width = 80;
 
             SetControlsDefaultState();
         }
