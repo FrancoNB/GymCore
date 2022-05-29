@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         {
             this.insert = "INSERT INTO Clients (RegisterDate, Name, Surname, Locality, Address, Phone, Mail, Observations, State) VALUES (@registerDate, @name, @surname, @locality, @address, @phone, @mail, @observations, @state)".
             this.update = "UPDATE Clients SET RegisterDate = @registerDate, Name = @name, Surname = @surname, Locality = @locality, Address = @addres, Phone = @phone, Mail = @mail, State = @state WHERE IdClients = @idClients";
-            this.delete = "DELELTE FROM Clients WHERE IdClients = @idClients";
+            this.delete = "DELETE FROM Clients WHERE IdClients = @idClients";
             this.selectAll = "SELECT * FROM Clients";
         }
 
