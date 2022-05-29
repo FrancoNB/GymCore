@@ -40,8 +40,7 @@ namespace BusinessLayer.Models
                 else
                 {
                     return RegisterDate.ToString("dd/MM/yy");
-            }
-
+                }
             }
         }
         public string Name { get => _name; set => _name = value; }
