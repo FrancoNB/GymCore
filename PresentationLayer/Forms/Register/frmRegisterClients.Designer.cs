@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms.Register
+﻿namespace PresentationLayer.Forms.Register
 {
     partial class frmRegisterClients
     {
@@ -33,37 +33,37 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txtName = new Presentation.Controls.GymCoreTextBox();
+            this.txtName = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMail = new PresentationLayer.Controls.GymCoreTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPhone = new PresentationLayer.Controls.GymCoreTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtAddress = new PresentationLayer.Controls.GymCoreTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtLocality = new PresentationLayer.Controls.GymCoreTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSurname = new PresentationLayer.Controls.GymCoreTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtObservations = new PresentationLayer.Controls.GymCoreTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSearch = new Presentation.Controls.GymCoreTextBox();
-            this.dgvClientsList = new Presentation.Controls.GymCoreDataGridView();
+            this.txtSearch = new PresentationLayer.Controls.GymCoreTextBox();
+            this.dgvClientsList = new PresentationLayer.Controls.GymCoreDataGridView();
             this.pnlList = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnNew = new Presentation.Controls.GymCoreButton();
-            this.btnUpdate = new Presentation.Controls.GymCoreButton();
-            this.btnDelete = new Presentation.Controls.GymCoreButton();
-            this.btnCancel = new Presentation.Controls.GymCoreButton();
-            this.btnSave = new Presentation.Controls.GymCoreButton();
+            this.btnNew = new PresentationLayer.Controls.GymCoreButton();
+            this.btnUpdate = new PresentationLayer.Controls.GymCoreButton();
+            this.btnDelete = new PresentationLayer.Controls.GymCoreButton();
+            this.btnCancel = new PresentationLayer.Controls.GymCoreButton();
+            this.btnSave = new PresentationLayer.Controls.GymCoreButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnClose = new Presentation.Controls.GymCoreButton();
+            this.btnClose = new PresentationLayer.Controls.GymCoreButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtSurname = new Presentation.Controls.GymCoreTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtLocality = new Presentation.Controls.GymCoreTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtAddress = new Presentation.Controls.GymCoreTextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPhone = new Presentation.Controls.GymCoreTextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtMail = new Presentation.Controls.GymCoreTextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtObservations = new Presentation.Controls.GymCoreTextBox();
             this.pnlData.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientsList)).BeginInit();
@@ -108,6 +108,137 @@
             this.pnlData.Size = new System.Drawing.Size(568, 316);
             this.pnlData.TabIndex = 35;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label11.Location = new System.Drawing.Point(6, 247);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(105, 19);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "Observaciones";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label10.Location = new System.Drawing.Point(6, 209);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 19);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "Mail";
+            // 
+            // txtMail
+            // 
+            this.txtMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMail.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtMail.Location = new System.Drawing.Point(117, 207);
+            this.txtMail.MaxLength = 100;
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(439, 27);
+            this.txtMail.TabIndex = 5;
+            this.txtMail.TextChanged += new System.EventHandler(this.txtMail_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label9.Location = new System.Drawing.Point(6, 170);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 19);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Telefono";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhone.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtPhone.Location = new System.Drawing.Point(117, 168);
+            this.txtPhone.MaxLength = 45;
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(439, 27);
+            this.txtPhone.TabIndex = 4;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label8.Location = new System.Drawing.Point(6, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 19);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Direccion";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtAddress.Location = new System.Drawing.Point(117, 129);
+            this.txtAddress.MaxLength = 255;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(439, 27);
+            this.txtAddress.TabIndex = 3;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label7.Location = new System.Drawing.Point(6, 93);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 19);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Localidad";
+            // 
+            // txtLocality
+            // 
+            this.txtLocality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtLocality.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLocality.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtLocality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtLocality.Location = new System.Drawing.Point(117, 91);
+            this.txtLocality.MaxLength = 255;
+            this.txtLocality.Name = "txtLocality";
+            this.txtLocality.Size = new System.Drawing.Size(439, 27);
+            this.txtLocality.TabIndex = 2;
+            this.txtLocality.TextChanged += new System.EventHandler(this.txtLocality_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label5.Location = new System.Drawing.Point(6, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 19);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Apellido";
+            // 
+            // txtSurname
+            // 
+            this.txtSurname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSurname.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtSurname.Location = new System.Drawing.Point(117, 52);
+            this.txtSurname.MaxLength = 100;
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(439, 27);
+            this.txtSurname.TabIndex = 1;
+            this.txtSurname.TextChanged += new System.EventHandler(this.txtSurname_TextChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -118,6 +249,20 @@
             this.label1.Size = new System.Drawing.Size(60, 19);
             this.label1.TabIndex = 18;
             this.label1.Text = "Nombre";
+            // 
+            // txtObservations
+            // 
+            this.txtObservations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtObservations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtObservations.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtObservations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtObservations.Location = new System.Drawing.Point(117, 245);
+            this.txtObservations.MaxLength = 255;
+            this.txtObservations.Multiline = true;
+            this.txtObservations.Name = "txtObservations";
+            this.txtObservations.Size = new System.Drawing.Size(439, 60);
+            this.txtObservations.TabIndex = 6;
+            this.txtObservations.TextChanged += new System.EventHandler(this.txtObservations_TextChanged);
             // 
             // label2
             // 
@@ -378,151 +523,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1024, 33);
             this.panel1.TabIndex = 32;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label5.Location = new System.Drawing.Point(6, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 19);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Apellido";
-            // 
-            // txtSurname
-            // 
-            this.txtSurname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSurname.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtSurname.Location = new System.Drawing.Point(117, 52);
-            this.txtSurname.MaxLength = 100;
-            this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(439, 27);
-            this.txtSurname.TabIndex = 26;
-            this.txtSurname.TextChanged += new System.EventHandler(this.txtSurname_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label7.Location = new System.Drawing.Point(6, 93);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 19);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Localidad";
-            // 
-            // txtLoaclity
-            // 
-            this.txtLocality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtLocality.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLocality.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtLocality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtLocality.Location = new System.Drawing.Point(117, 91);
-            this.txtLocality.MaxLength = 255;
-            this.txtLocality.Name = "txtLoaclity";
-            this.txtLocality.Size = new System.Drawing.Size(439, 27);
-            this.txtLocality.TabIndex = 28;
-            this.txtLocality.TextChanged += new System.EventHandler(this.txtLocality_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label8.Location = new System.Drawing.Point(6, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 19);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "Direccion";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddress.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtAddress.Location = new System.Drawing.Point(117, 129);
-            this.txtAddress.MaxLength = 255;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(439, 27);
-            this.txtAddress.TabIndex = 30;
-            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label9.Location = new System.Drawing.Point(6, 170);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 19);
-            this.label9.TabIndex = 33;
-            this.label9.Text = "Telefono";
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhone.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtPhone.Location = new System.Drawing.Point(117, 168);
-            this.txtPhone.MaxLength = 45;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(439, 27);
-            this.txtPhone.TabIndex = 32;
-            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label10.Location = new System.Drawing.Point(6, 209);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 19);
-            this.label10.TabIndex = 35;
-            this.label10.Text = "Mail";
-            // 
-            // txtMail
-            // 
-            this.txtMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMail.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtMail.Location = new System.Drawing.Point(117, 207);
-            this.txtMail.MaxLength = 100;
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(439, 27);
-            this.txtMail.TabIndex = 34;
-            this.txtMail.TextChanged += new System.EventHandler(this.txtMail_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label11.Location = new System.Drawing.Point(6, 247);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(105, 19);
-            this.label11.TabIndex = 37;
-            this.label11.Text = "Observaciones";
-            // 
-            // txtObservations
-            // 
-            this.txtObservations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtObservations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtObservations.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtObservations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtObservations.Location = new System.Drawing.Point(117, 245);
-            this.txtObservations.MaxLength = 255;
-            this.txtObservations.Multiline = true;
-            this.txtObservations.Name = "txtObservations";
-            this.txtObservations.Size = new System.Drawing.Size(439, 60);
-            this.txtObservations.TabIndex = 36;
-            this.txtObservations.TextChanged += new System.EventHandler(this.txtObservations_TextChanged);
             // 
             // frmRegisterClients
             // 

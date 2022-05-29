@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
-using Presentation.Utilities;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.Register
+namespace PresentationLayer.Forms.Register
 {
     public partial class frmRegisterClients : Form
     {

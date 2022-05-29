@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms.Support
+﻿namespace PresentationLayer.Forms.Support
 {
     partial class frmLogin
     {
@@ -33,10 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnLogin = new Presentation.Controls.GymCoreButton();
-            this.btnExit = new Presentation.Controls.GymCoreButton();
-            this.txtUsername = new Presentation.Controls.GymCoreTextBox();
-            this.txtPassword = new Presentation.Controls.GymCoreTextBox();
+            this.btnLogin = new PresentationLayer.Controls.GymCoreButton();
+            this.btnExit = new PresentationLayer.Controls.GymCoreButton();
+            this.txtUsername = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtPassword = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 

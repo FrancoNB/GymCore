@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms.ConfigSystem
+﻿namespace PresentationLayer.Forms.ConfigSystem
 {
     partial class frmUsers
     {
@@ -35,29 +35,29 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnClose = new Presentation.Controls.GymCoreButton();
+            this.btnClose = new PresentationLayer.Controls.GymCoreButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnNew = new Presentation.Controls.GymCoreButton();
-            this.btnUpdate = new Presentation.Controls.GymCoreButton();
-            this.btnDelete = new Presentation.Controls.GymCoreButton();
-            this.btnCancel = new Presentation.Controls.GymCoreButton();
-            this.btnSave = new Presentation.Controls.GymCoreButton();
+            this.btnNew = new PresentationLayer.Controls.GymCoreButton();
+            this.btnUpdate = new PresentationLayer.Controls.GymCoreButton();
+            this.btnDelete = new PresentationLayer.Controls.GymCoreButton();
+            this.btnCancel = new PresentationLayer.Controls.GymCoreButton();
+            this.btnSave = new PresentationLayer.Controls.GymCoreButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlList = new System.Windows.Forms.Panel();
-            this.dgvUsersList = new Presentation.Controls.GymCoreDataGridView();
+            this.dgvUsersList = new PresentationLayer.Controls.GymCoreDataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSearch = new Presentation.Controls.GymCoreTextBox();
+            this.txtSearch = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
-            this.txtUsername = new Presentation.Controls.GymCoreTextBox();
-            this.cbxType = new Presentation.Controls.GymCoreComboBox();
-            this.txtPassword = new Presentation.Controls.GymCoreTextBox();
-            this.txtRepeatPassword = new Presentation.Controls.GymCoreTextBox();
+            this.txtUsername = new PresentationLayer.Controls.GymCoreTextBox();
+            this.cbxType = new PresentationLayer.Controls.GymCoreComboBox();
+            this.txtPassword = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtRepeatPassword = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlList.SuspendLayout();

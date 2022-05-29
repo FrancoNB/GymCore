@@ -1,12 +1,12 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
-using Presentation.Utilities;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.ConfigSystem
+namespace PresentationLayer.Forms.ConfigSystem
 {
     public partial class frmUsers : Form
     {
