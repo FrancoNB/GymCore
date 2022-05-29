@@ -31,7 +31,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                            + "PosteriorDeltoidsPoints = @posterior_deltoids_points, LateralDeltoidsPoints = @lateral_deltoids_points, AnteriorDeltoidPoints = @anterior_deltoids_points, "
                            + "AdductorPoints = @adductor_points)";
 
-            this.delete = "DELETE FROM Exercises WHERE IdExercises = @idExcercises";
+            this.delete = "DELETE FROM Exercises WHERE IdExercises = @idExercises";
 
             this.selectAll = "SELECT * FROM Exercises";
         }
