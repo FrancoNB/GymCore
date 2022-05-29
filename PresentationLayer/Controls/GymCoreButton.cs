@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,15 @@ namespace Presentation.Controls
         private readonly Color _foreColor = Color.FromArgb(139, 166, 145);
         private readonly Color _backColor = Color.FromArgb(12, 19, 46);
 
-        private readonly Color _disableBackColor = Color.Gray;
+        private readonly Color _disableBackColor = Color.FromArgb(50, 50, 50);
+
+        protected override bool ShowFocusCues
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         protected override void OnMouseEnter(EventArgs e)
         {
@@ -65,19 +74,25 @@ namespace Presentation.Controls
 
         protected override void OnEnabledChanged(EventArgs e)
         {
-            base.OnEnabledChanged(e);
-           
             if (!Enabled)
+            {
                 BackColor = _disableBackColor;
+            }
             else
-            { 
+            {
                 ForeColor = _foreColor;
                 BackColor = _backColor;
-            }         
+            }
+
+            base.OnEnabledChanged(e);
+
+            Invalidate();
         }
 
         public GymCoreButton()
         {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             BackColor = _backColor;
             Size = new Size(140, 31);
             FlatStyle = FlatStyle.Flat;

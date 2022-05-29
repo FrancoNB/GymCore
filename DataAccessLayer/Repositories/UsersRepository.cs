@@ -20,10 +20,10 @@ namespace DataAccessLayer.Repositories
 
         public UsersRepository()
         {
-            this.insert = "INSERT INTO Users VALUES (@registerDate, @type, @username, @password, @state, @lastConnection)";
+            this.insert = "INSERT INTO Users (RegisterDate, Type, Username, Password, State, LastConnection) VALUES (@registerDate, @type, @username, @password, @state, @lastConnection)";
             this.update = "UPDATE Users SET RegisterDate = @registerDate, Type = @type, Username = @username, Password = @password, State = @state, LastConnection = @lastConnection WHERE IdUsers = @idUsers";
             this.updateLastConnection = "UPDATE Users SET LastConnection = @lastConnection WHERE IdUsers = @idUsers";
-            this.delete = "DELELTE FROM Users WHERE IdUsers = @idUsers";
+            this.delete = "DELETE FROM Users WHERE IdUsers = @idUsers";
             this.selectAll = "SELECT * FROM Users";
             this.selectByUserAndPass = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
         }
@@ -32,7 +32,7 @@ namespace DataAccessLayer.Repositories
         {
             parameters = new List<MySqlParameter>
             {
-                new MySqlParameter("@registerDate", entity.RegisterDate),
+                new MySqlParameter("@registerDate", entity.RegisterDate.Date),
                 new MySqlParameter("@type", entity.Type),
                 new MySqlParameter("@username", entity.Username),
                 new MySqlParameter("@password", entity.Password),

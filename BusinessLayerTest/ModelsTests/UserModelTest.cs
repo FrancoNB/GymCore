@@ -82,7 +82,7 @@ namespace BusinessLayerTest
                 Operation = Operation.Insert,
                 Username = "TestUser",
                 Password = "*****",
-                Type = "-",
+                Type = UsersModel.UsersTypes.Accountant,
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -96,7 +96,7 @@ namespace BusinessLayerTest
                 Operation = Operation.Insert,
                 Username = "",
                 Password = "*****",
-                Type = "-",
+                Type = UsersModel.UsersTypes.Manager,
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);
@@ -111,7 +111,7 @@ namespace BusinessLayerTest
                 IdUsers = 1,
                 Username = "UpdateTestUser",
                 Password = "*****",
-                Type = "-",
+                Type = UsersModel.UsersTypes.Trainer,
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -126,7 +126,7 @@ namespace BusinessLayerTest
                 IdUsers = 1,
                 Username = "UpdateTestUser",
                 Password = "",
-                Type = "-",
+                Type = UsersModel.UsersTypes.Accountant,
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);

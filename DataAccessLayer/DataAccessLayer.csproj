@@ -84,7 +84,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Exercises.cs" />
+    <Compile Include="Entities\Clients.cs" />
+    <Compile Include="Entities\Subscriptions.cs" />
     <Compile Include="Entities\Users.cs" />
+    <Compile Include="Repositories\ClientsRepository.cs" />
+    <Compile Include="Repositories\ExercisesRepository.cs" />
+    <Compile Include="Repositories\SubscriptionsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IClientsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IExercisesRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISubscriptionsRepository.cs" />   
     <Compile Include="Support\ICrudRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
