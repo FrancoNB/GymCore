@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    internal class Clients
+    public class Clients
     {
         private int _idClients;
         private DateTime _date;
