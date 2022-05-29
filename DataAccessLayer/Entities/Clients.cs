@@ -17,7 +17,6 @@ namespace DataAccessLayer.Entities
         private string _phone;
         private string _mail;
         private string _observations;
-        private string _state;
 
         public int IdClients { get { return _idClients; } set { _idClients = value; } }
         public DateTime RegisterDate { get { return _date; } set { _date = value; } }
@@ -28,6 +27,5 @@ namespace DataAccessLayer.Entities
         public string Phone { get { return _phone; } set { _phone = value; } }
         public string Mail { get { return _mail; } set { _mail = value; } }
         public string Observations { get { return _observations; } set { _observations = value; } }
-        public string State { get { return _state; } set { _state = value; } }
     }
 }

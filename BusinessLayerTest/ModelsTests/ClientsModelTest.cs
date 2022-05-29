@@ -57,9 +57,13 @@ namespace BusinessLayerTest.ModelsTests
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestClient",
-                Surname = "",
-                Phone = "123456789"
+                Name = "",
+                Surname = "TestClientSurname",
+                Locality = "TestClientLocality",
+                Address = "TestClientAddress",
+                Phone = "123456789",
+                Mail = "TestClientMail",
+                Observations = "TestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -71,12 +75,12 @@ namespace BusinessLayerTest.ModelsTests
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "",
-                Surname = "TestClientSurname",
+                Name = "TestClientName",
+                Surname = "",
                 Locality = "TestClientLocality",
                 Address = "TestClientAddress",
                 Phone = "123456789",
-                Mail = "TestMail",
+                Mail = "TestClientMail",
                 Observations = "TestClientObservations"
             };
 
@@ -95,7 +99,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -114,7 +118,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -133,7 +137,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -151,7 +155,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail",
                 Observations = "UpdateTestClientObservations"
             };
 

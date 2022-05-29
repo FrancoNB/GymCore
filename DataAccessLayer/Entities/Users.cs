@@ -13,7 +13,6 @@ namespace DataAccessLayer.Entities
         private string _type;
         private string _username;
         private string _password;
-        private string _state;
         private DateTime _lastConnection;
 
         public int IdUsers { get => _idUsers; set => _idUsers = value; }
@@ -21,7 +20,6 @@ namespace DataAccessLayer.Entities
         public string Type { get => _type; set => _type = value; }
         public string Username { get => _username; set => _username = value; }
         public string Password { get => _password; set => _password = value; }
-        public string State { get => _state; set => _state = value; }
         public DateTime LastConnection { get => _lastConnection; set => _lastConnection = value; }
     }
 }

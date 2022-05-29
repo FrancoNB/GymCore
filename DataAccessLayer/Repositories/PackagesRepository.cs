@@ -20,9 +20,9 @@ namespace DataAccessLayer.Repositories.Interfaces
         public PackagesRepository()
         {
             this.insert = "INSERT INTO Packages (Name, NumberSessions, AvailableDays, Price) VALUES (@name, @numberSessions, @availableDays, @price)";
-            this.update = "UPDATE Packages SET Name = @name, NumberSessions = @numberSessions, AvailableDays = @availableDays, Price = @price";
+            this.update = "UPDATE Packages SET Name = @name, NumberSessions = @numberSessions, AvailableDays = @availableDays, Price = @price WHERE IdPackages = @idPackages";
             this.delete = "DELETE FROM Packages WHERE IdPackages = @idPackages";
-            this.selectAll = "SELECT * FROM Packages";
+            this.selectAll = "SELECT * FROM Packages"; 
         }
 
         public async Task<int> Insert(Packages entity)
@@ -43,7 +43,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@name", entity.Name),
                 new MySqlParameter("@numberSessions", entity.NumberSessions),
                 new MySqlParameter("@availableDays", entity.AvailableDays),
-                new MySqlParameter("@price", entity.Price)
+                new MySqlParameter("@price", entity.Price),
+                new MySqlParameter("@idPackages", entity.IdPackages)
             };
             return await ExecuteNonQueryAsync(update);
         }
