@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.InterfaceRepositories
 {
-    internal interface IClientsRepository : ICrudRepository<Clients>
+    public interface IClientsRepository : ICrudRepository<Clients>
     {
 
     }
