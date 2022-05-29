@@ -21,8 +21,8 @@ namespace DataAccessLayer.Repositories.Interfaces
         {
             this.insert = "INSERT into WorkPlans (Name, Category) VALUES (@name, @category)";
             this.update = "UPDATE WorkPlans SET Name = @name, Category = @category";
-            this.delete = "DELETE FROM WorkPlans WHERE idWorkPlans = @idWorkplan ";
-            this.selectAll = "SELECT* FROM WorkPlans";
+            this.delete = "DELETE FROM WorkPlans WHERE idWorkPlans = @idWorkplans ";
+            this.selectAll = "SELECT* FROM WorkPlans"; 
         }
 
         public async Task<int> Insert(WorkPlans entity)
@@ -40,8 +40,9 @@ namespace DataAccessLayer.Repositories.Interfaces
             parameters = new List<MySqlParameter>
             {
                new MySqlParameter("@name", entity.Name),
-                new MySqlParameter("@category", entity.Category),
-            };
+               new MySqlParameter("@category", entity.Category),
+               new MySqlParameter("@idWorkPlans", entity.IdWorkPlans
+            )};
             return await ExecuteNonQueryAsync(update);
         }
 
