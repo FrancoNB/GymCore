@@ -123,6 +123,7 @@ namespace PresentationLayer.Forms.ConfigSystem
             cbxType.Items.Add("Entrenador");
             cbxType.Items.Add("Cajero");
 
+            dgvUsersList.Columns.Clear();
             dgvUsersList.Columns.Add("idUser", "ID USUARIO");
             dgvUsersList.Columns.Add("RegisterDate", "FEC. ALTA");
             dgvUsersList.Columns.Add("Username", "USUARIO");

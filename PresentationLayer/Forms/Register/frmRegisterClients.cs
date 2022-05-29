@@ -127,6 +127,7 @@ namespace PresentationLayer.Forms.Register
 
         private void frmRegisterClients_Load(object sender, EventArgs e)
         {
+            dgvClientsList.Columns.Clear();
             dgvClientsList.Columns.Add("idClient", "ID CLIENTE");
             dgvClientsList.Columns.Add("RegisterDate", "FEC. ALTA");
             dgvClientsList.Columns.Add("CompleteName", "NOMBRE Y APELLIDO");

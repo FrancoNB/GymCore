@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         public ClientsRepository()
         {
             this.insert = "INSERT INTO Clients (RegisterDate, Name, Surname, Locality, Address, Phone, Mail, Observations) VALUES (@registerDate, @name, @surname, @locality, @address, @phone, @mail, @observations)";
-            this.update = "UPDATE Clients SET RegisterDate = @registerDate, Name = @name, Surname = @surname, Locality = @locality, Address = @addres, Phone = @phone, Mail = @mail, Observations = @observations WHERE IdClients = @idClients ";
+            this.update = "UPDATE Clients SET RegisterDate = @registerDate, Name = @name, Surname = @surname, Locality = @locality, Address = @address, Phone = @phone, Mail = @mail, Observations = @observations WHERE IdClients = @idClients ";
             this.delete = "DELETE FROM Clients WHERE IdClients = @idClients";
             this.selectAll = "SELECT * FROM Clients"; 
         }
