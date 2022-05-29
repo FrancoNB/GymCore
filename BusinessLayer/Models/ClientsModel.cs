@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DataAccessLayer.Support;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
+using System.Text.RegularExpressions;
 
 namespace BusinessLayer.Models
 {
@@ -43,13 +44,13 @@ namespace BusinessLayer.Models
                 }
             }
         }
-        public string Name { get => _name; set => _name = value; }
-        public string Surname { get => _surname; set => _surname = value; }
-        public string Locality { get => _locality; set => _locality = value; }
-        public string Address { get => _address; set => _address = value; }
-        public string Phone { get => _phone; set => _phone = value; }
-        public string Mail { get => _mail; set => _mail = value; }
-        public string Observations { get => _observations; set => _observations = value; }
+        public string Name { get => _name; set => _name = value.Trim(); }
+        public string Surname { get => _surname; set => _surname = value.Trim(); }
+        public string Locality { get => _locality; set => _locality = value.Trim(); }
+        public string Address { get => _address; set => _address = value.Trim(); }
+        public string Phone { get => _phone; set => _phone = value.Trim(); }
+        public string Mail { get => _mail; set => _mail = value.Trim(); }
+        public string Observations { get => _observations; set => _observations = value.Trim(); }
 
         private IClientsRepository repository;
         public Operation Operation { get; set; }
@@ -152,6 +153,19 @@ namespace BusinessLayer.Models
 
             if (string.IsNullOrWhiteSpace(Phone))
                 Phone = "-";
+            else
+            {
+                if (!IsPhoneNumber(Phone))
+                    throw new ArgumentException("El numero de telefono especificado no es valido... !");
+            }
+
+            if (string.IsNullOrWhiteSpace(Mail))
+                Mail = "-";
+            else
+            {
+                if (!IsValidEmail(Mail))
+                    throw new ArgumentException("El mail especificado no es valido... !");
+            }
 
             if (string.IsNullOrWhiteSpace(Observations))
                 Observations = "-";
@@ -175,10 +189,23 @@ namespace BusinessLayer.Models
                 Locality = "-";
 
             if (string.IsNullOrWhiteSpace(Address))
-                Address = "-";
+                Address = "-";      
 
             if (string.IsNullOrWhiteSpace(Phone))
                 Phone = "-";
+            else
+            {
+                if (!IsPhoneNumber(Phone))
+                    throw new ArgumentException("El numero de telefono especificado no es valido... !");
+            }
+
+            if (string.IsNullOrWhiteSpace(Mail))
+                Mail = "-";
+            else
+            {
+                if (!IsValidEmail(Mail))
+                    throw new ArgumentException("El mail especificado no es valido... !");
+            }
 
             if (string.IsNullOrWhiteSpace(Observations))
                 Observations = "-";
@@ -190,6 +217,33 @@ namespace BusinessLayer.Models
         {
             if (IdClients < 1)
                 throw new ArgumentException("No se selecciono ningun cliente para eliminar... !");
+        }
+
+        private bool IsValidEmail(string mail)
+        {
+            var trimmedEmail = mail.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+                return false;
+
+            try
+            {
+                return new System.Net.Mail.MailAddress(mail).Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsPhoneNumber(string number)
+        {
+            const string motif = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
+
+            if (number != null) 
+                return Regex.IsMatch(number, motif);
+            else 
+                return false;
         }
     }
 }
