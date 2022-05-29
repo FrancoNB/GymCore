@@ -12,14 +12,6 @@ namespace BusinessLayer.Models
 {
     public class UsersModel
     {
-
-        public enum UsersStates
-        {
-            Enabled,
-            Disabled,
-            Null
-        }
-
         public enum UsersTypes
         {
             Manager,
@@ -34,7 +26,6 @@ namespace BusinessLayer.Models
         private UsersTypes _type;
         private string _username;
         private string _password;
-        private UsersStates _state;
         private DateTime _lastConnection;
         #endregion
 
@@ -89,29 +80,6 @@ namespace BusinessLayer.Models
         }
         public string Username { get => _username; set => _username = value; }
         public string Password { get => _password; set => _password = value; }
-        public UsersStates State { get => _state; set => _state = value; }
-        public string StateString
-        {
-            get
-            {
-                if (State == UsersStates.Enabled)
-                    return "Habilitado";
-                else if (State == UsersStates.Disabled)
-                    return "Deshabilitado";
-                else
-                    return null;
-            }
-
-            private set
-            {
-                if (value == "Habilitado")
-                    State = UsersStates.Enabled;
-                else if (value == "Deshabilitado")
-                    State = UsersStates.Disabled;
-                else
-                    State = UsersStates.Null;
-            }
-        }
         public DateTime LastConnection { get => _lastConnection; set => _lastConnection = value; }
         public string LastConnectionString
         {
@@ -223,7 +191,6 @@ namespace BusinessLayer.Models
                         TypeString = item.Type,
                         Username = item.Username,
                         Password = item.Password,
-                        StateString = item.State,
                         LastConnection = item.LastConnection
                     });
                 }
@@ -241,7 +208,6 @@ namespace BusinessLayer.Models
                 Type = this.TypeString,
                 Username = this.Username,
                 Password = this.Password,
-                State = this.StateString,
                 LastConnection = this.LastConnection
             };
         }
@@ -267,9 +233,6 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(TypeString))
                 throw new ArgumentException("Se debe especificar un tipo para el nuevo usuario... !");
 
-            if (string.IsNullOrWhiteSpace(StateString))
-                throw new ArgumentException("Se debe especificar el estado del nuevo usuario... !");
-
             IdUsers = -1;
             RegisterDate = DateTime.Now;
             LastConnection = DateTime.MinValue;
@@ -288,9 +251,6 @@ namespace BusinessLayer.Models
 
             if (string.IsNullOrWhiteSpace(TypeString))
                 throw new ArgumentException("el tipo de usuario no puede quedar vacio... !");
-
-            if (string.IsNullOrWhiteSpace(StateString))
-                throw new ArgumentException("El estado del usuario no puede quedar vacio... !");
 
             RegisterDate = DateTime.Now;
         }
