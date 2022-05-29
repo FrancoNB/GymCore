@@ -83,7 +83,6 @@ namespace BusinessLayerTest
                 Username = "TestUser",
                 Password = "*****",
                 Type = UsersModel.UsersTypes.Accountant,
-                State = UsersModel.UsersStates.Enabled
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -98,7 +97,6 @@ namespace BusinessLayerTest
                 Username = "",
                 Password = "*****",
                 Type = UsersModel.UsersTypes.Manager,
-                State = UsersModel.UsersStates.Enabled
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);
@@ -114,7 +112,6 @@ namespace BusinessLayerTest
                 Username = "UpdateTestUser",
                 Password = "*****",
                 Type = UsersModel.UsersTypes.Trainer,
-                State = UsersModel.UsersStates.Enabled
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -130,7 +127,6 @@ namespace BusinessLayerTest
                 Username = "UpdateTestUser",
                 Password = "",
                 Type = UsersModel.UsersTypes.Accountant,
-                State = UsersModel.UsersStates.Disabled
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);
