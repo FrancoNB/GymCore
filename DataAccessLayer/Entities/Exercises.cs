@@ -26,6 +26,8 @@ namespace DataAccessLayer.Entities
         private int _lateral_deltoid_points;
         private int _anterior_deltoid_points;
         private int _adductor_points;
+        private int _lumbar_points;
+        private int _pectoral_points;
 
         public int IdExercises { get => _idExercises; set => _idExercises = value; }
         public string Name { get => _name; set => _name = value; }
@@ -45,6 +47,9 @@ namespace DataAccessLayer.Entities
         public int LateralDeltoidPoints { get => _lateral_deltoid_points; set => _lateral_deltoid_points = value; }
         public int AnteriorDeltoidPoints { get => _anterior_deltoid_points; set => _anterior_deltoid_points = value; }
         public int AddcutorPoints { get => _adductor_points; set => _adductor_points = value; }
+        public int LumbarPoints { get => _lumbar_points; set => _lumbar_points = value; }
+        public int PectoralPoints { get => _pectoral_points; set => _pectoral_points = value; }
+
 
     }
 }
