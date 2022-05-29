@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Controls
+namespace PresentationLayer.Controls
 {
     public class GymCoreDataGridView : DataGridView
     {

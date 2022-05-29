@@ -1,12 +1,12 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
-using Presentation.Utilities;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.ConfigSystem
+namespace PresentationLayer.Forms.ConfigSystem
 {
     public partial class frmUsers : Form
     {
@@ -123,6 +123,7 @@ namespace Presentation.Forms.ConfigSystem
             cbxType.Items.Add("Entrenador");
             cbxType.Items.Add("Cajero");
 
+            dgvUsersList.Columns.Clear();
             dgvUsersList.Columns.Add("idUser", "ID USUARIO");
             dgvUsersList.Columns.Add("RegisterDate", "FEC. ALTA");
             dgvUsersList.Columns.Add("Username", "USUARIO");
