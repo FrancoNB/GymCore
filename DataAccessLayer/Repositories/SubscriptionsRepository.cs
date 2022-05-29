@@ -19,12 +19,12 @@ namespace DataAccessLayer.Repositories
         public SubscriptionsRepository()
         {
             this.insert = "INSERT INTO Subscriptions (TicketCode, StartDate, Package, Price, TotalSessions, UsedSessions, AvailableSessions, EndDate, ExpireDate, Observations, "
-                        + "State, ClientsIdClients, CurrentAccountsIdCurrentAccounts) VALUES (@ticket_code, @start_date, @package, @price, @total_sessions, @used_sessions, "
-                        + "@availabe_sessions, @end_date, @expire_date, @observations, @state, @clients_idclients, @current_accounts_idcurrentaccounts)";
+                        + "State, ClientsIdClients, CurrentAccountsIdCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
+                        + "@availabeSessions, @endDate, @expireDate, @observations, @state, @clientsIdClients, @currentAccountsIdcurrentAccounts)";
 
             this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
                         + "UsedSessions = @used_sessions, AvailableSessions = @availabe_sessions, EndDate = @end_date,  ExpireDate = @expire_date, Observations = @observations, "
-                        + "State = @state, ClientsIdClients = @clients_idclients, CurrentAccountsIdCurrentAccounts = @current_accounts_idcurrentaccounts ";
+                        + "State = @state, ClientsIdClients = @clients_idclients, CurrentAccountsIdCurrentAccounts = @current_accounts_idcurrentaccounts WHERE IdSubscriptions = @idSubscriptions";
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
@@ -36,19 +36,19 @@ namespace DataAccessLayer.Repositories
         {
             parameters = new List<MySqlParameter>
             {
-                new MySqlParameter("@ticket_code", entity.TicketCode),
-                new MySqlParameter("@start_date", entity.StartDate),
+                new MySqlParameter("@ticketCode", entity.TicketCode),
+                new MySqlParameter("@startDate", entity.StartDate),
                 new MySqlParameter("@package", entity.Package),
                 new MySqlParameter("@price", entity.Price),
-                new MySqlParameter("@total_sessions", entity.TotalSessions),
-                new MySqlParameter("@used_sessions", entity.UsedSessions),
-                new MySqlParameter("@availabe_sessions", entity.AvailableSessions),
-                new MySqlParameter("@end_date", entity.EndDate),
-                new MySqlParameter("@expire_date", entity.ExpireDate),
+                new MySqlParameter("@totalSessions", entity.TotalSessions),
+                new MySqlParameter("@usedSessions", entity.UsedSessions),
+                new MySqlParameter("@availabeSessions", entity.AvailableSessions),
+                new MySqlParameter("@endDate", entity.EndDate),
+                new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@clients_idclients", entity.ClientsIdClients),
-                new MySqlParameter("@current_accounts_idcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
+                new MySqlParameter("@clientsIdclients", entity.ClientsIdClients),
+                new MySqlParameter("@currentAccountsIdcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -57,19 +57,20 @@ namespace DataAccessLayer.Repositories
         {
             parameters = new List<MySqlParameter>
             {
-                new MySqlParameter("@ticket_code", entity.TicketCode),
-                new MySqlParameter("@start_date", entity.StartDate),
+                new MySqlParameter("@ticketCode", entity.TicketCode),
+                new MySqlParameter("@startDate", entity.StartDate),
                 new MySqlParameter("@package", entity.Package),
                 new MySqlParameter("@price", entity.Price),
-                new MySqlParameter("@total_sessions", entity.TotalSessions),
-                new MySqlParameter("@used_sessions", entity.UsedSessions),
-                new MySqlParameter("@availabe_sessions", entity.AvailableSessions),
-                new MySqlParameter("@end_date", entity.EndDate),
-                new MySqlParameter("@expire_date", entity.ExpireDate),
+                new MySqlParameter("@totalSessions", entity.TotalSessions),
+                new MySqlParameter("@usedSessions", entity.UsedSessions),
+                new MySqlParameter("@availabeSessions", entity.AvailableSessions),
+                new MySqlParameter("@endDate", entity.EndDate),
+                new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@clients_idclients", entity.ClientsIdClients),
-                new MySqlParameter("@current_accounts_idcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
+                new MySqlParameter("@clientsIdclients", entity.ClientsIdClients),
+                new MySqlParameter("@currentAccountsIdcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts),
+                new MySqlParameter("@idSubscriptions", entity.IdSubscriptions)
             };
             return await ExecuteNonQueryAsync(update);
         }

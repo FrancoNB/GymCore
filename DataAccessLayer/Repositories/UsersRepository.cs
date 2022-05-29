@@ -20,8 +20,8 @@ namespace DataAccessLayer.Repositories
 
         public UsersRepository()
         {
-            this.insert = "INSERT INTO Users (RegisterDate, Type, Username, Password, State, LastConnection) VALUES (@registerDate, @type, @username, @password, @state, @lastConnection)";
-            this.update = "UPDATE Users SET RegisterDate = @registerDate, Type = @type, Username = @username, Password = @password, State = @state, LastConnection = @lastConnection WHERE IdUsers = @idUsers";
+            this.insert = "INSERT INTO Users (RegisterDate, Type, Username, Password, LastConnection) VALUES (@registerDate, @type, @username, @password, @lastConnection)";
+            this.update = "UPDATE Users SET RegisterDate = @registerDate, Type = @type, Username = @username, Password = @password, LastConnection = @lastConnection WHERE IdUsers = @idUsers";
             this.updateLastConnection = "UPDATE Users SET LastConnection = @lastConnection WHERE IdUsers = @idUsers";
             this.delete = "DELETE FROM Users WHERE IdUsers = @idUsers";
             this.selectAll = "SELECT * FROM Users";
@@ -36,7 +36,6 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@type", entity.Type),
                 new MySqlParameter("@username", entity.Username),
                 new MySqlParameter("@password", entity.Password),
-                new MySqlParameter("@state", entity.State),
                 new MySqlParameter("@lastConnection", entity.LastConnection)
             };
 
@@ -51,7 +50,6 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@type", entity.Type),
                 new MySqlParameter("@username", entity.Username),
                 new MySqlParameter("@password", entity.Password),
-                new MySqlParameter("@state", entity.State),
                 new MySqlParameter("@lastConnection", entity.LastConnection),
                 new MySqlParameter("@idUsers", entity.IdUsers)
             };
@@ -95,7 +93,6 @@ namespace DataAccessLayer.Repositories
                         Type = row["Type"].ToString(),
                         Username = row["Username"].ToString(),
                         Password = row["Password"].ToString(),
-                        State = row["State"].ToString(),
                         LastConnection = Convert.ToDateTime(row["LastConnection"])
                     });
                 }
@@ -123,7 +120,6 @@ namespace DataAccessLayer.Repositories
                         Type = table.Rows[0]["Type"].ToString(),
                         Username = table.Rows[0]["Username"].ToString(),
                         Password = table.Rows[0]["Password"].ToString(),
-                        State = table.Rows[0]["State"].ToString(),
                         LastConnection = Convert.ToDateTime(table.Rows[0]["LastConnection"])
                     };
                 } else
