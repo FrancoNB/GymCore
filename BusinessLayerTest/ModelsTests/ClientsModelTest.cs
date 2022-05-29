@@ -43,7 +43,7 @@ namespace BusinessLayerTest.ModelsTests
                 Surname = "TestClientSurname",
                 Locality = "TestClientLocality",
                 Address = "TestClientAddress",
-                Phone = "123456789",
+                Phone = "1234567891",
                 Mail = "TestClientMail@Email.com",
                 Observations = "TestClientObservations"
             };
@@ -134,7 +134,7 @@ namespace BusinessLayerTest.ModelsTests
                 Surname = "UpdateTestClientSurname",
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
-                Phone = "123456789",
+                Phone = "1234567891",
                 Mail = "UpdateTestClientMail@Email.com",
                 Observations = "UpdateTestClientObservations"
             };
