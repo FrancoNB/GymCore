@@ -96,7 +96,7 @@
     <Compile Include="Entities\Clients.cs" />
     <Compile Include="Entities\Packages.cs" />
     <Compile Include="Entities\Payments.cs" />
-    <Compile Include="Entities\Routine.cs" />
+    <Compile Include="Entities\Routines.cs" />
     <Compile Include="Entities\Subscriptions.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\WorkPlans.cs" />
@@ -110,13 +110,13 @@
     <Compile Include="Repositories\Interfaces\IAssistsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPaymentsRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRoutineRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoutinesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansDetailRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorksRepository.cs" />
     <Compile Include="Repositories\PackagesRepository.cs" />
     <Compile Include="Repositories\PaymentsRepository.cs" />
-    <Compile Include="Repositories\RoutineRepository.cs" />
+    <Compile Include="Repositories\RoutinesRepository.cs" />
     <Compile Include="Repositories\SubscriptionsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IClientsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IExercisesRepository.cs" />

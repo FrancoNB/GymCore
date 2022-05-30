@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    public class Routine
+    public class Routines
     {
         private int _idRoutine;
         private DateTime _startDate;
@@ -20,6 +20,6 @@ namespace DataAccessLayer.Entities
         public DateTime EndDate { get => _endDate; set => _endDate = value; }
         public string State { get => _state; set => _state = value; }
         public int IdClients { get => _idClients; set => _idClients = value; }
-        public int IDWorkPlans { get => _idWorkPlans; set => _idWorkPlans = value; }
+        public int IdWorkPlans { get => _idWorkPlans; set => _idWorkPlans = value; }
     }
 }
