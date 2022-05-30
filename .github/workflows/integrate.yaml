@@ -25,7 +25,8 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql root password: ${{ secrets.DB_PASSWORD }}
+        mysql user: root
+        mysql password: ${{ secrets.DB_PASSWORD }}
     
     #- name: Start MySQL
     #  run: sudo service mysql start
