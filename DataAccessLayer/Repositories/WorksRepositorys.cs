@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 
 namespace DataAccessLayer.Repositories.Interfaces
-{    internal class WorksRepositorys : RepositoryControler, IWorksRepository
+{    public class WorksRepositorys : RepositoryControler, IWorksRepository
     {
         private readonly string insert;
         private readonly string update;
