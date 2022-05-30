@@ -40,7 +40,7 @@ jobs:
       run: mysql -u root -proot
       
     - name: Configure MYSQL User
-      run: mysql execute="ALTER USER 'root'@'localhost' IDENTIFIED BY ${{ secrets.DB_PASSWORD }};" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
+      run: mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY ${{ secrets.DB_PASSWORD }};" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
         
   ci_to_devolp:
     runs-on: windows-latest
