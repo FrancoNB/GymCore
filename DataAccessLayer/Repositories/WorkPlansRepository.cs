@@ -20,8 +20,8 @@ namespace DataAccessLayer.Repositories.Interfaces
         public WorkPlansRepository()
         {
             this.insert = "INSERT into WorkPlans (Name, Category) VALUES (@name, @category)";
-            this.update = "UPDATE WorkPlans SET Name = @name, Category = @category";
-            this.delete = "DELETE FROM WorkPlans WHERE idWorkPlans = @idWorkplans ";
+            this.update = "UPDATE WorkPlans SET Name = @name, Category = @category WHERE IdWorkPlans = @idWorkPlans";
+            this.delete = "DELETE FROM WorkPlans WHERE IdWorkPlans = @idWorkplans";
             this.selectAll = "SELECT* FROM WorkPlans"; 
         }
 
@@ -65,7 +65,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new WorkPlans()
                     {
-                        IdWorkPlans = Convert.ToInt32(row["idWorkPlans"]),
+                        IdWorkPlans = Convert.ToInt32(row["IdWorkPlans"]),
                         Name = row["Name"].ToString(),
                         Category = row["Category"].ToString(),
                     });

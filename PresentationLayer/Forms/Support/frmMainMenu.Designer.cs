@@ -1,4 +1,4 @@
-﻿namespace Presentation
+﻿namespace PresentationLayer
 {
     partial class frmMainMenu
     {
@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblState = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.ToolStripMenuItem();
-            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRegisterClients = new System.Windows.Forms.ToolStripMenuItem();
             this.paquetesDeSuscripcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejerciciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnManagement = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +82,7 @@
             // 
             this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnRegister.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clienteToolStripMenuItem,
+            this.btnRegisterClients,
             this.paquetesDeSuscripcionToolStripMenuItem,
             this.ejerciciosToolStripMenuItem});
             this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
@@ -90,13 +90,14 @@
             this.btnRegister.Size = new System.Drawing.Size(48, 21);
             this.btnRegister.Text = "Altas";
             // 
-            // clienteToolStripMenuItem
+            // btnRegisterClients
             // 
-            this.clienteToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.clienteToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.clienteToolStripMenuItem.Text = "Cliente";
+            this.btnRegisterClients.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnRegisterClients.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnRegisterClients.Name = "btnRegisterClients";
+            this.btnRegisterClients.Size = new System.Drawing.Size(218, 22);
+            this.btnRegisterClients.Text = "Cliente";
+            this.btnRegisterClients.Click += new System.EventHandler(this.btnRegisterClients_Click);
             // 
             // paquetesDeSuscripcionToolStripMenuItem
             // 
@@ -284,7 +285,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.ToolStripMenuItem btnRegister;
-        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnRegisterClients;
         private System.Windows.Forms.ToolStripMenuItem paquetesDeSuscripcionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnManagement;

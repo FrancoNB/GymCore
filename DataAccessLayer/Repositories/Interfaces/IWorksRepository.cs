@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.InterfaceRepositories
 {
-    public interface IWorkPlansRepository : ICrudRepository<WorkPlans>
+    public interface IWorksRepository : ICrudRepository<Works>
     {
-
     }
 }

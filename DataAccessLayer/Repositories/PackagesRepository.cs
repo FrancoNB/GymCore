@@ -68,7 +68,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Packages()
                     {
-                        IdPackages = Convert.ToInt32(row["idPackages"]),
+                        IdPackages = Convert.ToInt32(row["IdPackages"]),
                         Name = row["Name"].ToString(),
                         NumberSessions = Convert.ToInt32(row["NumberSessions"]),
                         AvailableDays = Convert.ToInt32(row["AvailableDays"]),
