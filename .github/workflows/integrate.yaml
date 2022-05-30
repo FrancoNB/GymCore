@@ -10,11 +10,17 @@ on:
     branches: [develop]
     
 jobs:
-  config_db:
-    runs-on: ubuntu-20.04
+#  config_db:
+#    runs-on: ubuntu-20.04
 
+#    steps:
+#    - uses: actions/checkout@v1
+    
+  buil_and_test:
+    runs-on: windows-latest
+    
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     
     - name: Stop MySQL
       run: sudo service mysql stop
@@ -28,25 +34,19 @@ jobs:
         mysql root password: ${{ secrets.DB_PASSWORD }}
     
     - name: Start MySQL
-      run: sudo service mysql start
+      run: Runas service mysql start
       
     - name: Setup MySQL User
       run: mysql --user=root --password=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
     
     - name: Stop MySQL
-      run: sudo service mysql stop
+      run: Runas service mysql stop
       
     - name: Start MySQL
-      run: sudo service mysql start
+      run: Runas service mysql start
       
     - name: Create GymCoreDB
       run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="source GymCoreDB.sql"
-      
-  buil_and_test:
-    runs-on: windows-latest
-    
-    steps:
-    - uses: actions/checkout@v2
  
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
