@@ -26,7 +26,7 @@ jobs:
       run: mysql --user=root --execute="GRANT ALL PRIVILEGES ON * . * TO 'GymCore'@'localhost';" --execute="FLUSH PRIVILEGES;"
       
     - name: Create Database
-      run: mysql --user=GymCore --password=Gym@Core123 --execute="source DataBase/GymCoreDB.sql;"
+      run: mysql --user=GymCore --password=Gym@Core123 --execute="source DataBase/ScriptGenerationGymCoreDatabase.sql;"
       
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
