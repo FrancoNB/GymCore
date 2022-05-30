@@ -16,6 +16,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public CurrentAccountsRepository()
         {
@@ -27,6 +28,8 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.delete = "DELETE FROM CurrentAccounts WHERE IdCurrentAccounts = @idCurrentAccounts";
 
             this.selectAll = "SELECT * FROM CurrentAccounts";
+
+            this.selectMaxId = "SELECT Max(IdCurrentAccounts) as lastId FROM CurrentAccounts";
         }
 
         public async Task<int> Insert(CurrentAccounts entity)
@@ -89,6 +92,16 @@ namespace DataAccessLayer.Repositories.Interfaces
                     });
                 }
                 return list;
+            }
+        }
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
             }
         }
     }

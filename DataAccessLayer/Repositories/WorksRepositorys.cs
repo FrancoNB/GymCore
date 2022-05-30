@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 
 namespace DataAccessLayer.Repositories.Interfaces
-{    internal class WorksRepositorys : RepositoryControler, IWorksRepository
+{    public class WorksRepositorys : RepositoryControler, IWorksRepository
     {
         private readonly string insert;
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public WorksRepositorys()
         {
@@ -25,6 +26,8 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.delete = "DELETE FROM WorkPlans WHERE IdWorks = @idWorks";
 
             this.selectAll = "SELECT* FROM Works";
+
+            this.selectMaxId = "SELECT Max(IdWorks) as lastId FROM Works";
         }
 
         public async Task<int> Insert(Works entity)
@@ -89,7 +92,17 @@ namespace DataAccessLayer.Repositories.Interfaces
                 }
                 return list;
             }
+        }
 
+        public async Task<int> GetLastId() 
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
+            }
         }
     }
 }
