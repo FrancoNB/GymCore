@@ -24,6 +24,9 @@ jobs:
         
     - name: Setup MySQL User
       run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '260999fnb';";
+  
+    - name: Create Database
+      run: mysql --user=root --execute="source GymCoreDB.sql";
       
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
