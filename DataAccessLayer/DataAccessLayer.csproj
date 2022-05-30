@@ -101,7 +101,7 @@
     <Compile Include="Entities\WorkPlansDetail.cs" />
     <Compile Include="Entities\Works.cs" />
     <Compile Include="Repositories\ClientsRepository.cs" />
-    <Compile Include="Repositories\CurrerntAccountsRepository.cs" />
+    <Compile Include="Repositories\CurrentAccountsRepository.cs" />
     <Compile Include="Repositories\ExercisesRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICurrentAccountsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
