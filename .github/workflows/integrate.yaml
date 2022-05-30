@@ -1,5 +1,5 @@
 #Configure
-name: continuos integration GymCore .NET
+name: continuos integration GymCore
 
 on:
   push:
@@ -7,13 +7,27 @@ on:
   pull_request:
     branches: [develop]
     
-jobs:
-  ci_to_devolp:
+jobs:     
+  buil_and_test:
     runs-on: windows-latest
-
+    
     steps:
     - uses: actions/checkout@v2
     
+    - name: Setup MySQL
+      uses: ankane/setup-mysql@v1
+      with:
+        mysql-version: '8.0'
+        
+    - name: Create MySQL User
+      run: mysql --user=root --execute="CREATE USER 'GymCore'@'localhost' IDENTIFIED BY 'Gym@Core123';"
+   
+    - name: Setup MySQL User
+      run: mysql --user=root --execute="GRANT ALL PRIVILEGES ON * . * TO 'GymCore'@'localhost';" --execute="FLUSH PRIVILEGES;"
+      
+    - name: Create Database
+      run: mysql --user=GymCore --password=Gym@Core123 --execute="source DataBase/ScriptGenerationGymCoreDatabase.sql;"
+      
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
 
@@ -22,7 +36,7 @@ jobs:
       
     - name: Setup VSTest
       uses: darenm/Setup-VSTest@v1
-      
+
     - name: Navigate to Workspace
       run: cd $GITHUB_WORKSPACE
       
@@ -32,5 +46,8 @@ jobs:
     - name: Build solution
       run: msbuild GymCore.sln -t:rebuild -property:Configuration=Release
     
-    - name: Run Tests
+    - name: Run Data Access Layer Test
+      run: vstest.console.exe .\DataAccessLayerTest\bin\Release\DataAccessLayerTest.dll
+      
+    - name: Run Bussines Layer Tests
       run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
