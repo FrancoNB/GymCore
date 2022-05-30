@@ -21,11 +21,14 @@ jobs:
       with:
         mysql version: '8.0'
         
+    - name: Create MySQL User
+      run: mysql --user=root --execute="CREATE USER 'GymCore'@'localhost' IDENTIFIED BY 'Gym@Core123';"
+   
     - name: Setup MySQL User
-      run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';";
-  
+      run: mysql --user=root --execute="GRANT ALL PRIVILEGES ON * . * TO 'GymCore'@'localhost';" --execute="FLUSH PRIVILEGES;"
+      
     - name: Create Database
-      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="source GymCoreDB.sql";
+      run: mysql --user=GymCore --password=Gym@Core123 --execute="source GymCoreDB.sql;"
       
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
