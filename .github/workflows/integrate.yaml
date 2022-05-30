@@ -25,11 +25,16 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql root password: 260999fnb
     
     - name: Start MySQL
       run: sudo service mysql start
-    
+      
+    - name: Configure MySQL user
+      run: mysql --execute="use mysql;" --execute= "update user set password=PASSWORD('260999fnb') where User='root';" --execute="flush privileges;" --execute="quit;"
+      
+    - name: Restart MySQL
+      run: sudo service mysql stop | sudo service mysql start
+      
     - name: Create Database
       run: mysql --user=root --password=260999fnb --execute="source GymCoreDB.sql"
         
@@ -57,9 +62,8 @@ jobs:
     - name: Build solution
       run: msbuild GymCore.sln -t:rebuild -property:Configuration=Release
     
-    - name: Run Bussines Layer Tests
-      run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
-      
     - name: Run Data Access Layer Test
       run: vstest.console.exe .\DataAccessLayerTest\bin\Release\DataAccessLayerTest.dll
-
+      
+    - name: Run Bussines Layer Tests
+      run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
