@@ -25,17 +25,13 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql user: GymCore
-        mysql password: Gym@Core123
+        mysql root password: 260999fnb
     
     - name: Start MySQL
       run: sudo service mysql start
     
     - name: Create Database
-      run: mysql --user=GymCore --password=Gym@Core123 --execute="source GymCoreDB.sql"
-      
-    - name: Show Database
-      run: mysql --user=GymCore --password=Gym@Core123 --execute="USE GymCore;" --execute="SHOW TABLES;"
+      run: mysql --user=root --password=260999fnb --execute="source GymCoreDB.sql"
         
   ci_to_devolp:
     runs-on: windows-latest
