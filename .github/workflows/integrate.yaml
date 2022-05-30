@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    - name: Shutdown Ubuntu MySQL (SUDO)
+    - name: Stop MySQL
       run: sudo service mysql stop
         
-    - name: Set up MySQL 8.0
+    - name: Setup MySQL 8.0
       uses: mirromutth/mysql-action@master
       with:
         host port: 5859
@@ -30,12 +30,7 @@ jobs:
     - name: Start MySQL
       run: sudo service mysql start
       
-    #- name: Configure MySQL user
-    #  run: mysql --execute="use mysql;" --execute= "update user set password=PASSWORD('260999fnb') where User='root';" --execute="flush privileges;" --execute="quit;"
-      
-
-      
-    - name: Setup MySQL
+    - name: Setup MySQL User
       run: mysql --user=root --password=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
     
     - name: Stop MySQL
