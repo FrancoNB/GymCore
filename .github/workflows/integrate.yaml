@@ -24,7 +24,7 @@ jobs:
     - name: Setup MySQL User
       run: mysql --help | grep /my.cnf | xargs ls
       
-    - run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ DB_PASSWORD }}';";
+    #- run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ DB_PASSWORD }}';";
       
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
