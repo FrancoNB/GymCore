@@ -17,6 +17,7 @@ namespace DataAccessLayer.Repositories
         private readonly string delete;
         private readonly string selectAll;
         private readonly string selectByUserAndPass;
+        private readonly string selectMaxId;
 
         public UsersRepository()
         {
@@ -26,6 +27,7 @@ namespace DataAccessLayer.Repositories
             this.delete = "DELETE FROM Users WHERE IdUsers = @idUsers";
             this.selectAll = "SELECT * FROM Users";
             this.selectByUserAndPass = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
+            this.selectMaxId = "SELECT Max(IdUsers) as lastid FROM Users";
         } 
 
         public async Task<int> Insert(Users entity)
@@ -124,6 +126,16 @@ namespace DataAccessLayer.Repositories
                     };
                 } else
                     return null;
+            }
+        }
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
             }
         }
     }

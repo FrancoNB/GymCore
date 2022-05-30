@@ -17,6 +17,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public RoutineRepository()
         {
@@ -24,6 +25,7 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.update = "UPDATE Routine SET StartDate = @startDate, EndDate = @endDate, State = @state, IdClients = @idClients, IdWorksPlans = @idWorksPlans WHERE IdRoutine = @idRoutine";
             this.delete = "DELETE FROM Routne WHERE IdRoutine = @idRoutine";
             this.selectAll = "SELECT * FROM Routine";
+            this.selectMaxId = "SELECT Max(IdRoutine) as lastid FROM Routine";
         }
 
         public async Task<int> Insert(Routine entity)
@@ -80,6 +82,17 @@ namespace DataAccessLayer.Repositories.Interfaces
                     });
                 }
                 return list;
+            }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
             }
         }
     }

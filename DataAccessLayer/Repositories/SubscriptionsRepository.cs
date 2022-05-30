@@ -15,6 +15,7 @@ namespace DataAccessLayer.Repositories
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public SubscriptionsRepository()
         {
@@ -28,7 +29,9 @@ namespace DataAccessLayer.Repositories
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
-            this.selectAll = "SELECT * FROM Subscriptions"; 
+            this.selectAll = "SELECT * FROM Subscriptions";
+
+            this.selectMaxId = "SELECT Max(IdSubscriptions) as lastid FROM Subscriptions";
 
         }
 
@@ -112,6 +115,17 @@ namespace DataAccessLayer.Repositories
                     });
                 }
                 return list;
+            }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
             }
         }
     }
