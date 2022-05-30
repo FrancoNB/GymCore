@@ -28,8 +28,8 @@ jobs:
         mysql user: root
         mysql password: ${{ secrets.DB_PASSWORD }}
     
-    #- name: Start MySQL
-    #  run: sudo service mysql start
+    - name: Start MySQL
+      run: sudo service mysql start
       
     #- name: Configure MySQL user
     #  run: mysql --execute="use mysql;" --execute= "update user set password=PASSWORD('260999fnb') where User='root';" --execute="flush privileges;" --execute="quit;"
