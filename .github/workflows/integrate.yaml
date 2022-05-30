@@ -25,8 +25,7 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql user: root
-        mysql password: ${{ secrets.DB_PASSWORD }}
+        mysql root password: ${{ secrets.DB_PASSWORD }}
     
     - name: Start MySQL
       run: sudo service mysql start
@@ -38,7 +37,7 @@ jobs:
     #  run: sudo service mysql stop | sudo service mysql start
       
     - name: Create Database
-      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
+      run: mysql -u root -p${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
         
   ci_to_devolp:
     runs-on: windows-latest
