@@ -8,8 +8,8 @@ on:
     branches: [develop]
     
 jobs:
-  ci_to_devolp:
-    runs-on: windows-latest
+  config_db:
+    runs-on: ubuntu-latest
     
     services:
       mysql-service:
@@ -24,6 +24,9 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+          
+  ci_to_devolp:
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v2
