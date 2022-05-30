@@ -36,11 +36,8 @@ jobs:
     #- name: Restart MySQL
     #  run: sudo service mysql stop | sudo service mysql start
       
-    - name: MySQL Login
-      run: mysql -u root -proot
-      
-    - name: Configure MYSQL User
-      run: mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY ${{ secrets.DB_PASSWORD }};" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
+    - name: Setup MySQL
+      run: mysql --user=root --password=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY ${{ secrets.DB_PASSWORD }};" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
         
   ci_to_devolp:
     runs-on: windows-latest
