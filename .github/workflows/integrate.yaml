@@ -11,10 +11,6 @@ jobs:
   config_db:
     runs-on: ubuntu-20.04
 
-    strategy:
-      matrix:
-        node-version: ['10.x']
-
     steps:
     - uses: actions/checkout@v1
     
@@ -30,7 +26,8 @@ jobs:
       uses: mirromutth/mysql-action@master
       with:
         mysql version: 8.0
-        mysql database: test
+        host port: 5859
+        mysql database: GymCore
         mysql root password: ${{ secrets.DB_PASSWORD }}
         
     - name: npm install, build, and test
