@@ -1,11 +1,9 @@
 #Configure
-name: continuos integration GymCore .NET
+name: continuos integration GymCore
 
 on:
   push:
-    branches: 
-    - develop
-    - Franco_CI
+    branches: [develop]
   pull_request:
     branches: [develop]
     
