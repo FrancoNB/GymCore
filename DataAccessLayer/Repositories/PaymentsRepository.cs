@@ -26,7 +26,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         + "IdClients = @idClients, IdCurrentAccounts = @idCurrentAccounts WHERE IdPayments = @idPayments";
             this.delete = "DELETE FROM Payments WHERE IdPayments = @idPayments";
             this.selectAll = "SELECT * FROM Payments";
-            this.selectMaxId = "SELECT Max(IdPayments) as lastid FROM Payments";
+            this.selectMaxId = "SELECT Max(IdPayments) as lastId FROM Payments";
         }
 
         public async Task<int> Insert(Payments entity)

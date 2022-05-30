@@ -27,7 +27,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
             this.selectAll = "SELECT* FROM Works";
 
-            this.selectMaxId = "SELECT Max(IdWorks) as lastid FROM Works";
+            this.selectMaxId = "SELECT Max(IdWorks) as lastId FROM Works";
         }
 
         public async Task<int> Insert(Works entity)

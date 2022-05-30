@@ -31,7 +31,7 @@ namespace DataAccessLayer.Repositories
 
             this.selectAll = "SELECT * FROM Subscriptions";
 
-            this.selectMaxId = "SELECT Max(IdSubscriptions) as lastid FROM Subscriptions";
+            this.selectMaxId = "SELECT Max(IdSubscriptions) as lastId FROM Subscriptions";
 
         }
 

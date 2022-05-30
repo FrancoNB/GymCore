@@ -27,7 +27,7 @@ namespace DataAccessLayer.Repositories
             this.delete = "DELETE FROM Users WHERE IdUsers = @idUsers";
             this.selectAll = "SELECT * FROM Users";
             this.selectByUserAndPass = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
-            this.selectMaxId = "SELECT Max(IdUsers) as lastid FROM Users";
+            this.selectMaxId = "SELECT Max(IdUsers) as lastId FROM Users";
         } 
 
         public async Task<int> Insert(Users entity)

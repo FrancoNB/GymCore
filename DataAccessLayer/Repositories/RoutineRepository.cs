@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.update = "UPDATE Routine SET StartDate = @startDate, EndDate = @endDate, State = @state, IdClients = @idClients, IdWorksPlans = @idWorksPlans WHERE IdRoutine = @idRoutine";
             this.delete = "DELETE FROM Routne WHERE IdRoutine = @idRoutine";
             this.selectAll = "SELECT * FROM Routine";
-            this.selectMaxId = "SELECT Max(IdRoutine) as lastid FROM Routine";
+            this.selectMaxId = "SELECT Max(IdRoutine) as lastId FROM Routine";
         }
 
         public async Task<int> Insert(Routine entity)
