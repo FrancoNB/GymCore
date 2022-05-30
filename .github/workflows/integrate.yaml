@@ -21,8 +21,8 @@ jobs:
       with:
         mysql-version: 8.0
     
-    - name: Create MySQL User
-      run: mysql --user=root --password=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'abc';";
+    - name: Setup MySQL User
+      run: mysqladmin --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'abc';";
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
