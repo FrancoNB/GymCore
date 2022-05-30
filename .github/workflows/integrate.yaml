@@ -19,14 +19,13 @@ jobs:
     - name: Setup MySQL
       uses: ankane/setup-mysql@v1
       with:
-        host port: 5859
         mysql version: '8.0'
         
     - name: Setup MySQL User
-      run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '260999fnb';";
+      run: mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';";
   
     - name: Create Database
-      run: mysql --user=root --execute="source GymCoreDB.sql";
+      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="source GymCoreDB.sql";
       
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
