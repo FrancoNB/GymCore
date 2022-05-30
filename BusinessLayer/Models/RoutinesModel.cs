@@ -12,7 +12,7 @@ using DataAccessLayer.Entities;
 
 namespace BusinessLayer.Models
 {
-    public class RoutineModel
+    public class RoutinesModel
     {
         private int _idRoutine;
         private DateTime _startDate;
@@ -21,23 +21,23 @@ namespace BusinessLayer.Models
         private int _idClients;
         private int _idWorkPlans;
 
-        public int IdRoutine { get => _idRoutine; set => _idRoutine = value; }
+        public int IdRoutines { get => _idRoutine; set => _idRoutine = value; }
         public DateTime StartDate { get => _startDate; set => _startDate = value; }
         public DateTime EndDate { get => _endDate; set => _endDate = value; }
         public string State { get => _state; set => _state = value; }
         public int IdClients { get => _idClients; set => _idClients = value; }
-        public int IDWorkPlans { get => _idWorkPlans; set => _idWorkPlans = value; }
+        public int IdWorkPlans { get => _idWorkPlans; set => _idWorkPlans = value; }
 
-        private IRoutineRepository repository;
+        private IRoutinesRepository repository;
 
         public Operation Operation { get; set; }
 
-        public RoutineModel()
+        public RoutinesModel()
         {
-            repository = new RoutineRepository();
+            repository = new RoutinesRepository();
         }
 
-        public RoutineModel(IRoutineRepository repository)
+        public RoutinesModel(IRoutinesRepository repository)
         {
             this.repository = repository;
         }
@@ -58,7 +58,7 @@ namespace BusinessLayer.Models
 
                     case Operation.Delete:
                         ValidateDelete();
-                        await repository.Delete(IdRoutine);
+                        await repository.Delete(IdRoutines);
                         return new AcctionResult(true, "Rutina eliminada correctamente... !");
 
                     default:
@@ -70,42 +70,42 @@ namespace BusinessLayer.Models
                 return new AcctionResult(false, ex.Message);
             }
         }
-        public async Task<IEnumerable<RoutineModel>> GetAll()
+        public async Task<IEnumerable<RoutinesModel>> GetAll()
         {
             var dataModel = await repository.GetAll();
 
-            var list = new List<RoutineModel>();
+            var list = new List<RoutinesModel>();
 
-            foreach (Routine item in dataModel)
+            foreach (Routines item in dataModel)
             {
-                list.Add(new RoutineModel
+                list.Add(new RoutinesModel
                 {
-                    IdRoutine = item.IdRoutine,
+                    IdRoutines = item.IdRoutine,
                     StartDate = item.StartDate,
                     EndDate = item.EndDate,
                     State = item.State,
                     IdClients = item.IdClients,
-                    IDWorkPlans = item.IDWorkPlans,
+                    IdWorkPlans = item.IdWorkPlans,
                 });
             }
             return list;
         }
 
-        private Routine GetDataEntity()
+        private Routines GetDataEntity()
         {
-            return new Routine()
+            return new Routines()
             {
-                IdRoutine = this.IdRoutine,
+                IdRoutine = this.IdRoutines,
                 StartDate = this.StartDate,
                 EndDate = this.EndDate,
                 State = this.State,
                 IdClients = this.IdClients,
-                IDWorkPlans = this.IDWorkPlans,
+                IdWorkPlans = this.IdWorkPlans,
             };
         }
         private void ValidateInsert() {
 
-            if (IDWorkPlans < 1)
+            if (IdWorkPlans < 1)
                 throw new ArgumentException("Debe haber un plan de tranajo asociado a la rutina... !");
 
             if (IdClients < 1)
@@ -114,21 +114,21 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(State))
                 throw new ArgumentException("Se debe especificar el estado de la rutina... !");
 
-            if(StartDate == null)
+            if (StartDate == null)
                 throw new ArgumentException("Se debe indicar la fecha de inicio de la rutina... !");
 
             if (EndDate == null)
                 throw new ArgumentException("Se debe indicar la fecha de finalizacion de la rutina... !");
             
-            IdRoutine = -1;
+            IdRoutines = -1;
 
         }
         private void ValidateUpdate() {
             
-            if(IdRoutine < 1)
+            if (IdRoutines < 1)
                 throw new ArgumentException("No se selecciono ninguna rutina para modificar.. !");
             
-            if (IDWorkPlans < 1)
+            if (IdWorkPlans < 1)
                 throw new ArgumentException("Debe haber un plan de trabajo asociado a la rutina... !");
 
             if (IdClients < 1)
@@ -145,9 +145,8 @@ namespace BusinessLayer.Models
 
         }
         private void ValidateDelete() {
-            if (IdRoutine < 1)
+            if (IdRoutines < 1)
                 throw new ArgumentException("No se selecciono ninguna rutina para eliminar... !");
         }
-
     }
 }
