@@ -26,6 +26,15 @@ jobs:
         host port: 5859
         mysql database: GymCore
         mysql root password: ${{ secrets.DB_PASSWORD }}
+    
+    - name: Start MySQL
+      run: sudo service mysql start
+    
+    - name: Verify MySQL
+      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }}
+      
+    - name: List existing SQL databases
+      run: mysql --user=root --password=root --execute="show databases;"
         
   ci_to_devolp:
     runs-on: windows-latest
@@ -55,5 +64,5 @@ jobs:
       run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
       
     - name: Run Data Access Layer Test
-      run: vstest.console.exe .\DataAccessLayer\bin\Release\DataAccessLayer.dll
+      run: vstest.console.exe .\DataAccessLayerTest\bin\Release\DataAccessLayerTest.dll
 
