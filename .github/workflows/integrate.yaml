@@ -25,14 +25,13 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql database: 'GymCore'
         mysql root password: root #${{ secrets.DB_PASSWORD }}
     
     - name: Start MySQL
       run: sudo service mysql start
     
     - name: Verify MySQL
-      run: mysql --user=root --password=root
+      run: mysql --user=root --password=root --execute="CREATE DATABASE GymCore;"
       
     - name: List existing SQL databases
       run: mysql --user=root --password=root --execute="show databases;"
