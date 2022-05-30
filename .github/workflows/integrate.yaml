@@ -55,13 +55,5 @@ jobs:
       run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
       
     - name: Run Data Access Layer Test
-      env:
-        DB_CONNECTION: mysql
-        DB_DATABASE: GymCore
-        DB_PORT: 5859
-        DB_USER: root
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: |
-        php artisan migrate
-        vstest.console.exe .\DataAccessLayer\bin\Release\DataAccessLayer.dll
+      run: vstest.console.exe .\DataAccessLayer\bin\Release\DataAccessLayer.dll
 
