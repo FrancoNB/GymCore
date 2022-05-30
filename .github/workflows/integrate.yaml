@@ -25,18 +25,19 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
+        mysql root password: ${{ secrets.DatabasePassword }}
     
-    - name: Start MySQL
-      run: sudo service mysql start
+    #- name: Start MySQL
+    #  run: sudo service mysql start
       
-    - name: Configure MySQL user
-      run: mysql --execute="use mysql;" --execute= "update user set password=PASSWORD('260999fnb') where User='root';" --execute="flush privileges;" --execute="quit;"
+    #- name: Configure MySQL user
+    #  run: mysql --execute="use mysql;" --execute= "update user set password=PASSWORD('260999fnb') where User='root';" --execute="flush privileges;" --execute="quit;"
       
-    - name: Restart MySQL
-      run: sudo service mysql stop | sudo service mysql start
+    #- name: Restart MySQL
+    #  run: sudo service mysql stop | sudo service mysql start
       
     - name: Create Database
-      run: mysql --user=root --password=260999fnb --execute="source GymCoreDB.sql"
+      run: mysql -- --password=260999fnb --execute="source GymCoreDB.sql"
         
   ci_to_devolp:
     runs-on: windows-latest
