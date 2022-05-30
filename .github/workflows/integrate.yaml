@@ -22,7 +22,7 @@ jobs:
         mysql-version: 8.0
     
     - name: Create MySQL User
-    - run: mysql CREATE USER 'root'@'localhost' IDENTIFIED BY ${{ DB_PASSWORD }};
+      run: mysql CREATE USER 'root'@'localhost' IDENTIFIED BY ${{ DB_PASSWORD }};
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
