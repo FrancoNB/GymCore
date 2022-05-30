@@ -9,56 +9,20 @@ on:
   pull_request:
     branches: [develop]
     
-jobs:
-  config_db:
-    runs-on: ubuntu-20.04
-
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: Stop MySQL
-      run: sudo service mysql stop
-        
-    - name: Setup MySQL 8.0
-      uses: mirromutth/mysql-action@master
-      with:
-        host port: 5859
-        container port: 5859
-        mysql version: '8.0'
-        mysql root password: ${{ secrets.DB_PASSWORD }}
-    
-    - name: Start MySQL
-      run: sudo service mysql start
-      
-    - name: Setup MySQL User
-      run: mysql --user=root --password=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" #${{ secrets.DB_PASSWORD }} #--execute="source GymCoreDB.sql"
-    
-    - name: Stop MySQL
-      run: sudo service mysql stop
-      
-    - name: Start MySQL
-      run: sudo service mysql start
-      
-    - name: Create GymCoreDB
-      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="source GymCoreDB.sql"
-      
+jobs:     
   buil_and_test:
     runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v2
     
-    - uses: ankane/setup-mysql@v1
+    - name: Setup MySQL
+      uses: ankane/setup-mysql@v1
       with:
         mysql-version: 8.0
-        
-    - run: mysql --version
-    - run: mysql -e 'SELECT VERSION()'
-    - run: mysql -e 'SELECT CURRENT_USER()'
-    - run: mysql -e 'SELECT DATABASE()'
-    - run: mysql -e "SHOW VARIABLES LIKE 'socket'"
-    - run: mysqladmin create testdb2
-    - run: mysql -D testdb -e 'SELECT DATABASE()'
+    
+    - name: Create MySQL User
+    - run: mysql CREATE USER 'root'@'localhost' IDENTIFIED BY ${{ DB_PASSWORD }};
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
