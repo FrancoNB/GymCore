@@ -87,6 +87,7 @@
     <Compile Include="Entities\Exercises.cs" />
     <Compile Include="Entities\Clients.cs" />
     <Compile Include="Entities\Packages.cs" />
+    <Compile Include="Entities\Routine.cs" />
     <Compile Include="Entities\Subscriptions.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\WorkPlans.cs" />
@@ -95,10 +96,12 @@
     <Compile Include="Repositories\ClientsRepository.cs" />
     <Compile Include="Repositories\ExercisesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoutineRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansDetailRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorksRepository.cs" />
     <Compile Include="Repositories\PackagesRepository.cs" />
+    <Compile Include="Repositories\RoutineRepository.cs" />
     <Compile Include="Repositories\SubscriptionsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IClientsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IExercisesRepository.cs" />
