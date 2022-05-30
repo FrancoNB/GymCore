@@ -5,9 +5,9 @@ namespace DataAccessLayer.Support
     public abstract class RepositoryConnection
     {
         private static readonly string _host = "localhost";
-        private static readonly string _port = "5859";
-        private static readonly string _username = "root";
-        private static readonly string _password = "260999fnb";
+        private static readonly string _port = "3306";
+        private static readonly string _username = "GymCore";
+        private static readonly string _password = "Gym@Core123";
         private static readonly string _database = "GymCore";
 
         private static MySqlConnection _connection;
