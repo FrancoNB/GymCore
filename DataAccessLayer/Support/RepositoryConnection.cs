@@ -29,34 +29,68 @@ namespace DataAccessLayer.Support
             return _connection;
         }
 
-        protected static void BeginTransaction()
+        protected static void OpenConnection()
         {
-            if (_transaction != null)
+            lock (_lock)
             {
-                lock (_lock)
+                if (GetConnection().State != System.Data.ConnectionState.Open)
+                    GetConnection().Open();
+            }
+        }
+
+        protected static void CloseConnection()
+        {
+            lock (_lock)
+            {
+                if (GetConnection().State == System.Data.ConnectionState.Open)
                 {
                     if (_transaction == null)
-                        _transaction = GetConnection().BeginTransaction();
+                    {
+                        GetConnection().Close();
+                    }
+                }                
+            }
+        }
+
+        public static void BeginTransaction()
+        {
+            lock (_lock)
+            {
+                if (_transaction == null)
+                {
+                    OpenConnection();
+
+                    _transaction = GetConnection().BeginTransaction();
                 }
-            }       
+            }
         }
 
-        protected static void Commit()
+        public static void Commit()
         {
-            if (_transaction != null)
-                return;
+            lock (_lock)
+            {
+                if (_transaction != null)
+                {
+                    _transaction.Commit();
+                    _transaction = null;
 
-            _transaction.Commit();
-            _transaction = null;
+                    CloseConnection();
+                }
+            }
         }
 
-        protected static void RollBack()
+        public static void RollBack()
         {
-            if (_transaction != null)
-                return;
+            lock (_lock)
+            {
+                if (_transaction != null)
+                {
+                    _transaction.Rollback();
+                    _transaction = null;
 
-            _transaction.Rollback();
-            _transaction = null;
+                    CloseConnection();
+                }
+            }
         }
     }
 }
