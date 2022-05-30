@@ -31,7 +31,7 @@ jobs:
       run: sudo service mysql start
     
     - name: Verify MySQL
-      run: mysql --user=root --password=root --execute="CREATE DATABASE GymCore;"
+      run: mysql --user=root --password=root --execute=GymCoreDB.sql
       
     - name: List existing SQL databases
       run: mysql --user=root --password=root --execute="show databases;"
