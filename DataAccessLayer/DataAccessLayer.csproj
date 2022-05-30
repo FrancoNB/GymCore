@@ -90,9 +90,6 @@
     <Compile Include="Entities\Routine.cs" />
     <Compile Include="Entities\Subscriptions.cs" />
     <Compile Include="Entities\Users.cs" />
-    <Compile Include="Entities\WorkPlans.cs" />
-    <Compile Include="Entities\WorkPlansDetail.cs" />
-    <Compile Include="Entities\Works.cs" />
     <Compile Include="Repositories\ClientsRepository.cs" />
     <Compile Include="Repositories\ExercisesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
