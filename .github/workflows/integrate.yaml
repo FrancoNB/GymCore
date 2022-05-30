@@ -9,7 +9,7 @@ on:
     
 jobs:
   config_db:
-    runs-on: ubuntu-latest
+    runs-on: linux-latest
     
     services:
       mysql-service:
