@@ -4,6 +4,8 @@ using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace DataAccessLayerTest
@@ -72,6 +74,12 @@ namespace DataAccessLayerTest
             {
                 RepositoryConnection.RollBack();
             }
+        }
+
+        [TestMethod]
+        public async Task GetAll_Test()
+        {
+            CollectionAssert.AllItemsAreInstancesOfType((List<Clients>)await repository.GetAll(), typeof(Clients));
         }
     }
 }
