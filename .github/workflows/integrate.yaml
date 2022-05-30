@@ -25,8 +25,8 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql user: 'GymCore'
-        mysql password: 'Gym@Core123'
+        mysql user: GymCore
+        mysql password: Gym@Core123
     
     - name: Start MySQL
       run: sudo service mysql start
