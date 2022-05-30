@@ -25,16 +25,16 @@ jobs:
         host port: 5859
         container port: 5859
         mysql version: '8.0'
-        mysql root password: root #${{ secrets.DB_PASSWORD }}
+        mysql root password: ${{ secrets.DB_PASSWORD }}
     
     - name: Start MySQL
       run: sudo service mysql start
     
-    - name: Verify MySQL
-      run: mysql --user=root --password=root --execute="source GymCoreDB.sql"
+    - name: Create Database
+      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="source GymCoreDB.sql"
       
     - name: Show Database
-      run: mysql --user=root --password=root --execute="USE GymCore;" --execute="SHOW TABLES;"
+      run: mysql --user=root --password=${{ secrets.DB_PASSWORD }} --execute="USE GymCore;" --execute="SHOW TABLES;"
         
   ci_to_devolp:
     runs-on: windows-latest
