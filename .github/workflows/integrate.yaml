@@ -3,7 +3,9 @@ name: continuos integration GymCore .NET
 
 on:
   push:
-    branches: [develop]
+    branches:
+    - develop
+    - Franco_CI
   pull_request:
     branches: [develop]
     
