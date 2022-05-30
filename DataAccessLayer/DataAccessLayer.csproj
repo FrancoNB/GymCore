@@ -97,11 +97,9 @@
     <Compile Include="Repositories\ExercisesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAssistsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IPaymentsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansDetailRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorkPlansRepository.cs" />
     <Compile Include="Repositories\PackagesRepository.cs" />
-    <Compile Include="Repositories\PaymentsRepository.cs" />
     <Compile Include="Repositories\SubscriptionsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IClientsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IExercisesRepository.cs" />
