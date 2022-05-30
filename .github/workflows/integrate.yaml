@@ -3,7 +3,7 @@ name: continuos integration GymCore .NET
 
 on:
   push:
-    branches:
+    branches: 
     - develop
     - Franco_CI
   pull_request:
@@ -12,21 +12,12 @@ on:
 jobs:
   config_db:
     runs-on: ubuntu-20.04
-    
-    strategy:
-      matrix:
-        node-version: ['10.x']
-        
+
     steps:
     - uses: actions/checkout@v1
     
     - name: Shutdown Ubuntu MySQL (SUDO)
       run: sudo service mysql stop
-      
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
         
     - name: Set up MySQL 8.0
       uses: mirromutth/mysql-action@master
@@ -35,14 +26,6 @@ jobs:
         host port: 5859
         mysql database: GymCore
         mysql root password: ${{ secrets.DB_PASSWORD }}
-        
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run lint
-        npm test -- --password=${{ secrets.DB_PASSWORD }}
-      env:
-        CI: true
         
   ci_to_devolp:
     runs-on: windows-latest
@@ -81,3 +64,4 @@ jobs:
       run: |
         php artisan migrate
         vstest.console.exe .\DataAccessLayer\bin\Release\DataAccessLayer.dll
+
