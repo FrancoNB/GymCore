@@ -98,36 +98,6 @@ namespace BusinessLayerTest.ModelsTests
         }
 
         [TestMethod()]
-        public async Task SaveChanges_InvalidInsertTest_4()   //StartDate inválida
-        {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                EndDate = System.DateTime.Today
-            };
-
-            Assert.IsFalse((await routinesModel.SaveChanges()).Result);
-        }
-
-        [TestMethod()]
-        public async Task SaveChanges_InvalidInsertTest_5()   //EndDate inválida
-        {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today
-            };
-
-            Assert.IsFalse((await routinesModel.SaveChanges()).Result);
-        }
-
-        [TestMethod()]
         public async Task SaveChanges_ValidUpdateTest()
         {
             routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
@@ -207,38 +177,6 @@ namespace BusinessLayerTest.ModelsTests
                 State = "",
                 StartDate = System.DateTime.Today,
                 EndDate = System.DateTime.Today
-            };
-
-            Assert.IsFalse((await routinesModel.SaveChanges()).Result);
-        }
-
-        [TestMethod()]
-        public async Task SaveChanges_InvalidUpdateTest_5()   //StartDate inválida
-        {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = -1,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                EndDate = System.DateTime.Today
-            };
-
-            Assert.IsFalse((await routinesModel.SaveChanges()).Result);
-        }
-
-        [TestMethod()]
-        public async Task SaveChanges_InvalidUpdateTest_6()   //EndDate inválida
-        {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = -1,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
             };
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);

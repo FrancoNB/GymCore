@@ -113,12 +113,6 @@ namespace BusinessLayer.Models
                 
             if (string.IsNullOrWhiteSpace(State))
                 throw new ArgumentException("Se debe especificar el estado de la rutina... !");
-
-            if (StartDate == null)
-                throw new ArgumentException("Se debe indicar la fecha de inicio de la rutina... !");
-
-            if (EndDate == null)
-                throw new ArgumentException("Se debe indicar la fecha de finalizacion de la rutina... !");
             
             IdRoutines = -1;
 
@@ -136,13 +130,6 @@ namespace BusinessLayer.Models
 
             if (string.IsNullOrWhiteSpace(State))
                 throw new ArgumentException("Se debe especificar el estado de la rutina... !");
-
-            if (StartDate == null)
-                throw new ArgumentException("Se debe indicar la fecha de inicio de la rutina... !");
-
-            if (EndDate == null)
-                throw new ArgumentException("Se debe indicar la fecha de finalizacion de la rutina... !");
-
         }
         private void ValidateDelete() {
             if (IdRoutines < 1)
