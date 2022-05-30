@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Assists.cs" />
     <Compile Include="Entities\CurrentAccounts.cs" />
     <Compile Include="Entities\Exercises.cs" />
     <Compile Include="Entities\Clients.cs" />
@@ -100,11 +101,13 @@
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\WorkPlans.cs" />
     <Compile Include="Entities\WorkPlansDetail.cs" />
+    <Compile Include="Repositories\AssistsRepository.cs" />
     <Compile Include="Entities\Works.cs" />
     <Compile Include="Repositories\ClientsRepository.cs" />
     <Compile Include="Repositories\CurrentAccountsRepository.cs" />
     <Compile Include="Repositories\ExercisesRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICurrentAccountsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAssistsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPackagesRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPaymentsRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRoutineRepository.cs" />
