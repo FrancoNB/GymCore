@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtName = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlData = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@
             this.pnlData.Location = new System.Drawing.Point(456, 33);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(568, 125);
-            this.pnlData.TabIndex = 43;
+            this.pnlData.TabIndex = 0;
             // 
             // label11
             // 
@@ -187,34 +187,34 @@
             this.dgvExercisesList.AllowUserToDeleteRows = false;
             this.dgvExercisesList.AllowUserToResizeColumns = false;
             this.dgvExercisesList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle101.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvExercisesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle101;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvExercisesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
             this.dgvExercisesList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvExercisesList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
             this.dgvExercisesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvExercisesList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvExercisesList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle102.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle102.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle102.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle102.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle102.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle102;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.dgvExercisesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExercisesList.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle103.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle103.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle103.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle103.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle103.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.DefaultCellStyle = dataGridViewCellStyle38;
             this.dgvExercisesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvExercisesList.EnableHeadersVisualStyles = false;
             this.dgvExercisesList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -223,26 +223,28 @@
             this.dgvExercisesList.Name = "dgvExercisesList";
             this.dgvExercisesList.ReadOnly = true;
             this.dgvExercisesList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle104.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle104.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle104.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle104.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
             this.dgvExercisesList.RowHeadersWidth = 20;
             this.dgvExercisesList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle105.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
-            dataGridViewCellStyle105.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle105.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle105.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvExercisesList.RowsDefaultCellStyle = dataGridViewCellStyle105;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvExercisesList.RowsDefaultCellStyle = dataGridViewCellStyle40;
             this.dgvExercisesList.RowTemplate.Height = 30;
             this.dgvExercisesList.RowTemplate.ReadOnly = true;
             this.dgvExercisesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvExercisesList.Size = new System.Drawing.Size(456, 435);
             this.dgvExercisesList.TabIndex = 19;
+            this.dgvExercisesList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExercisesList_CellClick);
+            this.dgvExercisesList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvExercisesList_MouseUp);
             // 
             // txtSearch
             // 
@@ -255,6 +257,7 @@
             this.txtSearch.NumbersOnly = false;
             this.txtSearch.Size = new System.Drawing.Size(383, 27);
             this.txtSearch.TabIndex = 20;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // panel4
             // 
@@ -301,6 +304,7 @@
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "NUEVO";
             this.btnNew.UseVisualStyleBackColor = false;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnUpdate
             // 
@@ -315,6 +319,7 @@
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "MODIFICAR";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -329,6 +334,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "ELIMINAR";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnCancel
             // 
@@ -343,6 +349,7 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "CANCELAR";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -357,6 +364,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "GUARDAR";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel2
             // 
@@ -398,6 +406,7 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pnlList
             // 
@@ -467,7 +476,7 @@
             this.pnlPoints.Location = new System.Drawing.Point(456, 158);
             this.pnlPoints.Name = "pnlPoints";
             this.pnlPoints.Size = new System.Drawing.Size(568, 391);
-            this.pnlPoints.TabIndex = 118;
+            this.pnlPoints.TabIndex = 1;
             // 
             // label27
             // 
@@ -526,7 +535,7 @@
             this.txtAnteriorDeltoid.Name = "txtAnteriorDeltoid";
             this.txtAnteriorDeltoid.NumbersOnly = true;
             this.txtAnteriorDeltoid.Size = new System.Drawing.Size(92, 31);
-            this.txtAnteriorDeltoid.TabIndex = 153;
+            this.txtAnteriorDeltoid.TabIndex = 16;
             this.txtAnteriorDeltoid.Text = "100";
             this.txtAnteriorDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnteriorDeltoid.TextChanged += new System.EventHandler(this.txtAnteriorDeltoid_TextChanged);
@@ -542,7 +551,7 @@
             this.txtLateralDeltoid.Name = "txtLateralDeltoid";
             this.txtLateralDeltoid.NumbersOnly = true;
             this.txtLateralDeltoid.Size = new System.Drawing.Size(92, 31);
-            this.txtLateralDeltoid.TabIndex = 152;
+            this.txtLateralDeltoid.TabIndex = 15;
             this.txtLateralDeltoid.Text = "100";
             this.txtLateralDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLateralDeltoid.TextChanged += new System.EventHandler(this.txtLateralDeltoid_TextChanged);
@@ -558,7 +567,7 @@
             this.txtPosteriorDeltoid.Name = "txtPosteriorDeltoid";
             this.txtPosteriorDeltoid.NumbersOnly = true;
             this.txtPosteriorDeltoid.Size = new System.Drawing.Size(92, 31);
-            this.txtPosteriorDeltoid.TabIndex = 151;
+            this.txtPosteriorDeltoid.TabIndex = 14;
             this.txtPosteriorDeltoid.Text = "100";
             this.txtPosteriorDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPosteriorDeltoid.TextChanged += new System.EventHandler(this.txtPosteriorDeltoid_TextChanged);
@@ -585,7 +594,7 @@
             this.txtAductors.Name = "txtAductors";
             this.txtAductors.NumbersOnly = true;
             this.txtAductors.Size = new System.Drawing.Size(92, 31);
-            this.txtAductors.TabIndex = 149;
+            this.txtAductors.TabIndex = 3;
             this.txtAductors.Text = "100";
             this.txtAductors.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAductors.TextChanged += new System.EventHandler(this.txtAductors_TextChanged);
@@ -634,7 +643,7 @@
             this.txtForeArm.Name = "txtForeArm";
             this.txtForeArm.NumbersOnly = true;
             this.txtForeArm.Size = new System.Drawing.Size(92, 31);
-            this.txtForeArm.TabIndex = 145;
+            this.txtForeArm.TabIndex = 13;
             this.txtForeArm.Text = "100";
             this.txtForeArm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtForeArm.TextChanged += new System.EventHandler(this.txtForeArm_TextChanged);
@@ -661,7 +670,7 @@
             this.txtTriceps.Name = "txtTriceps";
             this.txtTriceps.NumbersOnly = true;
             this.txtTriceps.Size = new System.Drawing.Size(92, 31);
-            this.txtTriceps.TabIndex = 143;
+            this.txtTriceps.TabIndex = 12;
             this.txtTriceps.Text = "100";
             this.txtTriceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTriceps.TextChanged += new System.EventHandler(this.txtTriceps_TextChanged);
@@ -688,7 +697,7 @@
             this.txtBiceps.Name = "txtBiceps";
             this.txtBiceps.NumbersOnly = true;
             this.txtBiceps.Size = new System.Drawing.Size(92, 31);
-            this.txtBiceps.TabIndex = 141;
+            this.txtBiceps.TabIndex = 11;
             this.txtBiceps.Text = "100";
             this.txtBiceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBiceps.TextChanged += new System.EventHandler(this.txtBiceps_TextChanged);
@@ -737,7 +746,7 @@
             this.txtObliques.Name = "txtObliques";
             this.txtObliques.NumbersOnly = true;
             this.txtObliques.Size = new System.Drawing.Size(92, 31);
-            this.txtObliques.TabIndex = 137;
+            this.txtObliques.TabIndex = 10;
             this.txtObliques.Text = "100";
             this.txtObliques.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtObliques.TextChanged += new System.EventHandler(this.txtObliques_TextChanged);
@@ -764,7 +773,7 @@
             this.txtAbdominals.Name = "txtAbdominals";
             this.txtAbdominals.NumbersOnly = true;
             this.txtAbdominals.Size = new System.Drawing.Size(92, 31);
-            this.txtAbdominals.TabIndex = 135;
+            this.txtAbdominals.TabIndex = 9;
             this.txtAbdominals.Text = "100";
             this.txtAbdominals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAbdominals.TextChanged += new System.EventHandler(this.txtAbdominals_TextChanged);
@@ -791,7 +800,7 @@
             this.txtPectorals.Name = "txtPectorals";
             this.txtPectorals.NumbersOnly = true;
             this.txtPectorals.Size = new System.Drawing.Size(92, 31);
-            this.txtPectorals.TabIndex = 133;
+            this.txtPectorals.TabIndex = 8;
             this.txtPectorals.Text = "100";
             this.txtPectorals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPectorals.TextChanged += new System.EventHandler(this.txtPectorals_TextChanged);
@@ -818,7 +827,7 @@
             this.txtLumbars.Name = "txtLumbars";
             this.txtLumbars.NumbersOnly = true;
             this.txtLumbars.Size = new System.Drawing.Size(92, 31);
-            this.txtLumbars.TabIndex = 131;
+            this.txtLumbars.TabIndex = 6;
             this.txtLumbars.Text = "100";
             this.txtLumbars.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLumbars.TextChanged += new System.EventHandler(this.txtLumbars_TextChanged);
@@ -845,7 +854,7 @@
             this.txtDorsals.Name = "txtDorsals";
             this.txtDorsals.NumbersOnly = true;
             this.txtDorsals.Size = new System.Drawing.Size(92, 31);
-            this.txtDorsals.TabIndex = 129;
+            this.txtDorsals.TabIndex = 5;
             this.txtDorsals.Text = "100";
             this.txtDorsals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDorsals.TextChanged += new System.EventHandler(this.txtDorsals_TextChanged);
@@ -872,7 +881,7 @@
             this.txtTrapezius.Name = "txtTrapezius";
             this.txtTrapezius.NumbersOnly = true;
             this.txtTrapezius.Size = new System.Drawing.Size(92, 31);
-            this.txtTrapezius.TabIndex = 127;
+            this.txtTrapezius.TabIndex = 4;
             this.txtTrapezius.Text = "100";
             this.txtTrapezius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTrapezius.TextChanged += new System.EventHandler(this.txtTrapezius_TextChanged);
@@ -910,7 +919,7 @@
             this.txtButtocks.Name = "txtButtocks";
             this.txtButtocks.NumbersOnly = true;
             this.txtButtocks.Size = new System.Drawing.Size(92, 31);
-            this.txtButtocks.TabIndex = 124;
+            this.txtButtocks.TabIndex = 7;
             this.txtButtocks.Text = "100";
             this.txtButtocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtButtocks.TextChanged += new System.EventHandler(this.txtButtocks_TextChanged);
@@ -937,7 +946,7 @@
             this.txtCalves.Name = "txtCalves";
             this.txtCalves.NumbersOnly = true;
             this.txtCalves.Size = new System.Drawing.Size(92, 31);
-            this.txtCalves.TabIndex = 122;
+            this.txtCalves.TabIndex = 2;
             this.txtCalves.Text = "100";
             this.txtCalves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCalves.TextChanged += new System.EventHandler(this.txtCalves_TextChanged);
@@ -964,7 +973,7 @@
             this.txtHamstring.Name = "txtHamstring";
             this.txtHamstring.NumbersOnly = true;
             this.txtHamstring.Size = new System.Drawing.Size(92, 31);
-            this.txtHamstring.TabIndex = 120;
+            this.txtHamstring.TabIndex = 1;
             this.txtHamstring.Text = "100";
             this.txtHamstring.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHamstring.TextChanged += new System.EventHandler(this.txtHamstring_TextChanged);
@@ -991,7 +1000,7 @@
             this.txtQuadriceps.Name = "txtQuadriceps";
             this.txtQuadriceps.NumbersOnly = true;
             this.txtQuadriceps.Size = new System.Drawing.Size(92, 31);
-            this.txtQuadriceps.TabIndex = 118;
+            this.txtQuadriceps.TabIndex = 0;
             this.txtQuadriceps.Text = "100";
             this.txtQuadriceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtQuadriceps.TextChanged += new System.EventHandler(this.txtQuadriceps_TextChanged);

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Models;
+using BusinessLayer.ValueObjects;
 using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
@@ -93,12 +94,12 @@ namespace PresentationLayer.Forms.Register
 
             exercisesList = await exerciseWorkingModel.GetAll();
 
-            LoadDgvexercisesList(exercisesList);
+            LoadDgvExercisesList(exercisesList);
 
             LoadNotification.Hide();
         }
 
-        private void LoadDgvexercisesList(IEnumerable<ExercisesModel> exercisesList)
+        private void LoadDgvExercisesList(IEnumerable<ExercisesModel> exercisesList)
         {
             dgvExercisesList.Rows.Clear();
 
@@ -166,6 +167,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtQuadriceps.TextChanged -= txtQuadriceps_TextChanged;
                 txtQuadriceps.Text = "0";
+                txtQuadriceps.SelectionLength = txtQuadriceps.TextLength;
                 txtQuadriceps.TextChanged += txtQuadriceps_TextChanged;
             }
 
@@ -178,6 +180,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtHamstring.TextChanged -= txtHamstring_TextChanged;
                 txtHamstring.Text = "0";
+                txtHamstring.SelectionLength = txtHamstring.TextLength;
                 txtHamstring.TextChanged += txtHamstring_TextChanged;
             }
 
@@ -190,6 +193,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtCalves.TextChanged -= txtCalves_TextChanged;
                 txtCalves.Text = "0";
+                txtCalves.SelectionLength = txtCalves.TextLength;
                 txtCalves.TextChanged += txtCalves_TextChanged;
             }
 
@@ -202,6 +206,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtAductors.TextChanged -= txtAductors_TextChanged;
                 txtAductors.Text = "0";
+                txtAductors.SelectionLength = txtAductors.TextLength;
                 txtAductors.TextChanged += txtAductors_TextChanged;
             }
 
@@ -214,6 +219,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtTrapezius.TextChanged -= txtTrapezius_TextChanged;
                 txtTrapezius.Text = "0";
+                txtTrapezius.SelectionLength = txtTrapezius.TextLength;
                 txtTrapezius.TextChanged += txtTrapezius_TextChanged;
             }
 
@@ -226,6 +232,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtDorsals.TextChanged -= txtDorsals_TextChanged;
                 txtDorsals.Text = "0";
+                txtDorsals.SelectionLength = txtDorsals.TextLength;
                 txtDorsals.TextChanged += txtDorsals_TextChanged;
             }
 
@@ -238,6 +245,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtLumbars.TextChanged -= txtLumbars_TextChanged;
                 txtLumbars.Text = "0";
+                txtLumbars.SelectionLength = txtLumbars.TextLength;
                 txtLumbars.TextChanged += txtLumbars_TextChanged;
             }
 
@@ -250,6 +258,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtButtocks.TextChanged -= txtButtocks_TextChanged;
                 txtButtocks.Text = "0";
+                txtButtocks.SelectionLength = txtButtocks.TextLength;
                 txtButtocks.TextChanged += txtButtocks_TextChanged;
             }
 
@@ -262,6 +271,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtPectorals.TextChanged -= txtPectorals_TextChanged;
                 txtPectorals.Text = "0";
+                txtPectorals.SelectionLength = txtPectorals.TextLength;
                 txtPectorals.TextChanged += txtPectorals_TextChanged;
             }
 
@@ -274,6 +284,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtAbdominals.TextChanged -= txtAbdominals_TextChanged;
                 txtAbdominals.Text = "0";
+                txtAbdominals.SelectionLength = txtAbdominals.TextLength;
                 txtAbdominals.TextChanged += txtAbdominals_TextChanged;
             }
 
@@ -286,6 +297,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtObliques.TextChanged -= txtObliques_TextChanged;
                 txtObliques.Text = "0";
+                txtObliques.SelectionLength = txtObliques.TextLength;
                 txtObliques.TextChanged += txtObliques_TextChanged;
             }
 
@@ -298,6 +310,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtBiceps.TextChanged -= txtBiceps_TextChanged;
                 txtBiceps.Text = "0";
+                txtBiceps.SelectionLength = txtBiceps.TextLength;
                 txtBiceps.TextChanged += txtBiceps_TextChanged;
             }
 
@@ -310,6 +323,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtTriceps.TextChanged -= txtTriceps_TextChanged;
                 txtTriceps.Text = "0";
+                txtTriceps.SelectionLength = txtTriceps.TextLength;
                 txtTriceps.TextChanged += txtTriceps_TextChanged;
             }
 
@@ -322,6 +336,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtForeArm.TextChanged -= txtForeArm_TextChanged;
                 txtForeArm.Text = "0";
+                txtForeArm.SelectionLength = txtForeArm.TextLength;
                 txtForeArm.TextChanged += txtForeArm_TextChanged;
             }
 
@@ -334,6 +349,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtPosteriorDeltoid.TextChanged -= txtPosteriorDeltoid_TextChanged;
                 txtPosteriorDeltoid.Text = "0";
+                txtPosteriorDeltoid.SelectionLength = txtPosteriorDeltoid.TextLength;
                 txtPosteriorDeltoid.TextChanged += txtPosteriorDeltoid_TextChanged;
             }
 
@@ -346,6 +362,7 @@ namespace PresentationLayer.Forms.Register
             {
                 txtLateralDeltoid.TextChanged -= txtLateralDeltoid_TextChanged;
                 txtLateralDeltoid.Text = "0";
+                txtLateralDeltoid.SelectionLength = txtLateralDeltoid.TextLength;
                 txtLateralDeltoid.TextChanged += txtLateralDeltoid_TextChanged;
             }
 
@@ -358,10 +375,183 @@ namespace PresentationLayer.Forms.Register
             {
                 txtAnteriorDeltoid.TextChanged -= txtAnteriorDeltoid_TextChanged;
                 txtAnteriorDeltoid.Text = "0";
+                txtAnteriorDeltoid.SelectionLength = txtAnteriorDeltoid.TextLength;
                 txtAnteriorDeltoid.TextChanged += txtAnteriorDeltoid_TextChanged;
             }
 
             exerciseWorkingModel.AnteriorDeltoidPoints = (int)FormatUtilities.NumbersOnly(txtAnteriorDeltoid.Text);
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                LoadDgvExercisesList(exercisesList.ToList().FindAll(exercise => exercise.Name.ToLower().Contains(txtSearch.Text.ToLower())));
+            }
+            else
+            {
+                LoadDgvExercisesList(exercisesList);
+            }
+        }
+
+        private void dgvExercisesList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var selectExercise = exercisesList.ToList().Find(exercise => exercise.IdExercises == Convert.ToInt32(dgvExercisesList.CurrentRow.Cells["idExercise"].Value));
+
+                exerciseWorkingModel.IdExercises = selectExercise.IdExercises;
+     
+                txtName.Text = selectExercise.Name;
+                txtDetail.Text = selectExercise.Detail;
+                txtQuadriceps.Text = selectExercise.QuadricepsPoints.ToString();
+                txtHamstring.Text = selectExercise.CalvesPoints.ToString();
+                txtCalves.Text = selectExercise.CalvesPoints.ToString();
+                txtButtocks.Text = selectExercise.ButtocksPoints.ToString();
+                txtTrapezius.Text = selectExercise.TrapeziusPoints.ToString();
+                txtDorsals.Text = selectExercise.DorsalPoints.ToString();
+                txtLumbars.Text = selectExercise.LumbarPoints.ToString();
+                txtPectorals.Text = selectExercise.PectoralPoints.ToString();
+                txtAbdominals.Text = selectExercise.AbdominalPoints.ToString();
+                txtObliques.Text = selectExercise.ObliquesPoints.ToString();
+                txtBiceps.Text = selectExercise.BicepsPoints.ToString();
+                txtTriceps.Text = selectExercise.TricepsPoints.ToString();
+                txtForeArm.Text = selectExercise.ForeArmPoints.ToString();
+                txtPosteriorDeltoid.Text = selectExercise.PosteriorDeltoidPoints.ToString();
+                txtLateralDeltoid.Text = selectExercise.LateralDeltoidPoints.ToString();
+                txtAnteriorDeltoid.Text = selectExercise.AnteriorDeltoidPoints.ToString();
+                txtAductors.Text = selectExercise.AdductorPoints.ToString();
+
+                btnUpdate.Select();
+            }
+            else
+            {
+                ClearSelectionDgv();
+            }
+        }
+
+        private void dgvExercisesList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dgvExercisesList.HitTest(e.X, e.Y).Equals(DataGridView.HitTestInfo.Nowhere))
+                {
+                    ClearSelectionDgv();
+                }
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            exerciseWorkingModel.Operation = Operation.Insert;
+
+            ClearSelectionDgv();
+
+            SetControlsActiveState();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dgvExercisesList.CurrentCell != null)
+            {
+                exerciseWorkingModel.Operation = Operation.Update;
+
+                SetControlsActiveState();
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el ejercicio que deseas modificar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvExercisesList.CurrentCell != null)
+            {
+                DialogResult confirm = MessageBox.Show("Eliminar ejercicio ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.OK)
+                {
+                    LoadNotification.Show("Eliminando ejercicio...");
+
+                    exerciseWorkingModel.Operation = Operation.Delete;
+
+                    var acctionResult = await exerciseWorkingModel.SaveChanges();
+
+                    LoadNotification.Hide();
+
+                    if (acctionResult.Result)
+                    {
+                        txtSearch.Clear();
+
+                        LoadExercisesList();
+
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        btnNew.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el ejercicio que deseas eliminar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            string footMsg;
+            DialogResult confirm;
+
+            if (exerciseWorkingModel.Operation == Operation.Insert)
+            {
+                confirm = MessageBox.Show("Guardar ejercicio ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Guardando ejercicio...";
+            }
+            else if (exerciseWorkingModel.Operation == Operation.Update)
+            {
+                confirm = MessageBox.Show("Modificar ejercicio ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Modificando ejercicio...";
+            }
+            else
+            {
+                MessageBox.Show("No se establecio la operacion a realizar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (confirm == DialogResult.OK)
+            {
+                LoadNotification.Show(footMsg);
+
+                var acctionResult = await exerciseWorkingModel.SaveChanges();
+
+                LoadNotification.Hide();
+
+                if (!acctionResult.Result)
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtName.Select();
+                }
+                else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SetControlsDefaultState();
+                }
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            SetControlsDefaultState();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
