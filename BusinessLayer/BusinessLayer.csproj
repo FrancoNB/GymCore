@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Cache\UserCache.cs" />
     <Compile Include="Models\CurrentAccountsModel.cs" />
+    <Compile Include="Models\ExercisesModel.cs" />
     <Compile Include="Models\PackagesModel.cs" />
     <Compile Include="Models\ClientsModel.cs" />
     <Compile Include="Models\RoutinesModel.cs" />
