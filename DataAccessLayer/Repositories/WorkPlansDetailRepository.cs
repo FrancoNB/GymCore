@@ -72,8 +72,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                     list.Add(new WorkPlansDetail()
                     {
                         IdWorkPlansDetail = Convert.ToInt32(row["IdWorkPlansDetail"]),
-                        IdWorks = Convert.ToInt32(row["IdWork"]),
-                        IdWorkPlans = Convert.ToInt32(row["IdWorkPlans"]),
+                        IdWorks = Convert.ToInt32(row["Works_idWorks"]),
+                        IdWorkPlans = Convert.ToInt32(row["WorkPlans_idWorkPlans"]),
                         Day = Convert.ToInt32(row["Day"])
                     });
                 }

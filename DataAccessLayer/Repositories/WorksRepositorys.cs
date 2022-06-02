@@ -87,7 +87,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         RestTime = Convert.ToInt32(row["RestTimes"]),
                         Load = Convert.ToDouble(row["Load"]),
                         Intensity = Convert.ToInt32(row["Intensity"]),
-                        IdExercises = Convert.ToInt32(row["IdExcercises"])
+                        IdExercises = Convert.ToInt32(row["Exercises_idExcercises"])
                     });
                 }
                 return list;

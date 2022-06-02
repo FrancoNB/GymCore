@@ -70,8 +70,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                     {
                         IdAssists = Convert.ToInt32(row["IdAssists"]),
                         Date = Convert.ToDateTime(row["Date"]),
-                        IdClients = Convert.ToInt32(row["IdClients"]),
-                        IdSubscriptions = Convert.ToInt32(row["IdSubscriptions"])                 
+                        IdClients = Convert.ToInt32(row["Clients_idClients"]),
+                        IdSubscriptions = Convert.ToInt32(row["Subscriptions_idSubscriptions"])                 
                     });
                 }
                 return list;
