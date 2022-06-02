@@ -117,8 +117,8 @@ namespace BusinessLayer.Models
                     CalvesPoints = item.CalvesPoints,
                     ButtocksPoints = item.ButtocksPoints,
                     TrapeziusPoints = item.TrapeziusPoints,
-                    DorsalPoints = item.DorsalPoints,
-                    AbdominalPoints = item.AbdominalPoints,
+                    DorsalPoints = item.DorsalsPoints,
+                    AbdominalPoints = item.AbdominalsPoints,
                     ObliquesPoints = item.ObliquesPoints,
                     BicepsPoints = item.BicepsPoints,
                     TricepsPoints = item.TricepsPoints,
@@ -128,7 +128,7 @@ namespace BusinessLayer.Models
                     AnteriorDeltoidPoints = item.AnteriorDeltoidPoints,
                     AdductorPoints = item.AdductorPoints,
                     LumbarPoints = item.LumbarPoints,
-                    PectoralPoints = item.PectoralPoints,
+                    PectoralPoints = item.PectoralsPoints,
                 });
             }
             return list;
@@ -146,8 +146,8 @@ namespace BusinessLayer.Models
                 CalvesPoints = this.CalvesPoints,
                 ButtocksPoints = this.ButtocksPoints,
                 TrapeziusPoints = this.TrapeziusPoints,
-                DorsalPoints = this.DorsalPoints,
-                AbdominalPoints = this.AbdominalPoints,
+                DorsalsPoints = this.DorsalPoints,
+                AbdominalsPoints = this.AbdominalPoints,
                 ObliquesPoints = this.ObliquesPoints,
                 BicepsPoints = this.BicepsPoints,
                 TricepsPoints = this.TricepsPoints,
@@ -157,7 +157,7 @@ namespace BusinessLayer.Models
                 AnteriorDeltoidPoints = this.AnteriorDeltoidPoints,
                 AdductorPoints = this.AdductorPoints,
                 LumbarPoints = this.LumbarPoints,
-                PectoralPoints = this.PectoralPoints,
+                PectoralsPoints = this.PectoralPoints,
             };
         }
         private void ValidateInsert() {
