@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtName = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlData = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,13 +54,13 @@
             this.btnClose = new PresentationLayer.Controls.GymCoreButton();
             this.pnlList = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlPoints = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.gymCoreTextBox1 = new PresentationLayer.Controls.GymCoreTextBox();
-            this.gymCoreTextBox2 = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtAnteriorDeltoid = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtLateralDeltoid = new PresentationLayer.Controls.GymCoreTextBox();
             this.txtPosteriorDeltoid = new PresentationLayer.Controls.GymCoreTextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtAductors = new PresentationLayer.Controls.GymCoreTextBox();
@@ -102,7 +102,7 @@
             this.panel2.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlPoints.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
@@ -117,6 +117,7 @@
             this.txtName.NumbersOnly = false;
             this.txtName.Size = new System.Drawing.Size(467, 27);
             this.txtName.TabIndex = 0;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // pnlData
             // 
@@ -154,6 +155,7 @@
             this.txtDetail.NumbersOnly = false;
             this.txtDetail.Size = new System.Drawing.Size(467, 60);
             this.txtDetail.TabIndex = 1;
+            this.txtDetail.TextChanged += new System.EventHandler(this.txtDetail_TextChanged);
             // 
             // label1
             // 
@@ -185,34 +187,34 @@
             this.dgvExercisesList.AllowUserToDeleteRows = false;
             this.dgvExercisesList.AllowUserToResizeColumns = false;
             this.dgvExercisesList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvExercisesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle101.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvExercisesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle101;
             this.dgvExercisesList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvExercisesList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
             this.dgvExercisesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvExercisesList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvExercisesList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle102.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle102.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle102.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle102.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle102.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle102;
             this.dgvExercisesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExercisesList.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle103.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle103.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle103.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle103.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle103.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.DefaultCellStyle = dataGridViewCellStyle103;
             this.dgvExercisesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvExercisesList.EnableHeadersVisualStyles = false;
             this.dgvExercisesList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -221,21 +223,21 @@
             this.dgvExercisesList.Name = "dgvExercisesList";
             this.dgvExercisesList.ReadOnly = true;
             this.dgvExercisesList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExercisesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle104.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle104.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle104.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle104.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExercisesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle104;
             this.dgvExercisesList.RowHeadersWidth = 20;
             this.dgvExercisesList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvExercisesList.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle105.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            dataGridViewCellStyle105.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle105.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle105.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvExercisesList.RowsDefaultCellStyle = dataGridViewCellStyle105;
             this.dgvExercisesList.RowTemplate.Height = 30;
             this.dgvExercisesList.RowTemplate.ReadOnly = true;
             this.dgvExercisesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -419,53 +421,53 @@
             this.panel1.Size = new System.Drawing.Size(1024, 33);
             this.panel1.TabIndex = 40;
             // 
-            // panel3
+            // pnlPoints
             // 
-            this.panel3.Controls.Add(this.label27);
-            this.panel3.Controls.Add(this.label26);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.gymCoreTextBox1);
-            this.panel3.Controls.Add(this.gymCoreTextBox2);
-            this.panel3.Controls.Add(this.txtPosteriorDeltoid);
-            this.panel3.Controls.Add(this.label23);
-            this.panel3.Controls.Add(this.txtAductors);
-            this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.label21);
-            this.panel3.Controls.Add(this.label18);
-            this.panel3.Controls.Add(this.txtForeArm);
-            this.panel3.Controls.Add(this.label19);
-            this.panel3.Controls.Add(this.txtTriceps);
-            this.panel3.Controls.Add(this.label20);
-            this.panel3.Controls.Add(this.txtBiceps);
-            this.panel3.Controls.Add(this.label17);
-            this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.label48);
-            this.panel3.Controls.Add(this.txtObliques);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.txtAbdominals);
-            this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.txtPectorals);
-            this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.txtLumbars);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.txtDorsals);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.txtTrapezius);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.txtButtocks);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.txtCalves);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.txtHamstring);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.txtQuadriceps);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(456, 158);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(568, 391);
-            this.panel3.TabIndex = 118;
+            this.pnlPoints.Controls.Add(this.label27);
+            this.pnlPoints.Controls.Add(this.label26);
+            this.pnlPoints.Controls.Add(this.label25);
+            this.pnlPoints.Controls.Add(this.label24);
+            this.pnlPoints.Controls.Add(this.txtAnteriorDeltoid);
+            this.pnlPoints.Controls.Add(this.txtLateralDeltoid);
+            this.pnlPoints.Controls.Add(this.txtPosteriorDeltoid);
+            this.pnlPoints.Controls.Add(this.label23);
+            this.pnlPoints.Controls.Add(this.txtAductors);
+            this.pnlPoints.Controls.Add(this.label22);
+            this.pnlPoints.Controls.Add(this.label21);
+            this.pnlPoints.Controls.Add(this.label18);
+            this.pnlPoints.Controls.Add(this.txtForeArm);
+            this.pnlPoints.Controls.Add(this.label19);
+            this.pnlPoints.Controls.Add(this.txtTriceps);
+            this.pnlPoints.Controls.Add(this.label20);
+            this.pnlPoints.Controls.Add(this.txtBiceps);
+            this.pnlPoints.Controls.Add(this.label17);
+            this.pnlPoints.Controls.Add(this.label16);
+            this.pnlPoints.Controls.Add(this.label48);
+            this.pnlPoints.Controls.Add(this.txtObliques);
+            this.pnlPoints.Controls.Add(this.label15);
+            this.pnlPoints.Controls.Add(this.txtAbdominals);
+            this.pnlPoints.Controls.Add(this.label14);
+            this.pnlPoints.Controls.Add(this.txtPectorals);
+            this.pnlPoints.Controls.Add(this.label13);
+            this.pnlPoints.Controls.Add(this.txtLumbars);
+            this.pnlPoints.Controls.Add(this.label9);
+            this.pnlPoints.Controls.Add(this.txtDorsals);
+            this.pnlPoints.Controls.Add(this.label7);
+            this.pnlPoints.Controls.Add(this.txtTrapezius);
+            this.pnlPoints.Controls.Add(this.label12);
+            this.pnlPoints.Controls.Add(this.label10);
+            this.pnlPoints.Controls.Add(this.txtButtocks);
+            this.pnlPoints.Controls.Add(this.label8);
+            this.pnlPoints.Controls.Add(this.txtCalves);
+            this.pnlPoints.Controls.Add(this.label6);
+            this.pnlPoints.Controls.Add(this.txtHamstring);
+            this.pnlPoints.Controls.Add(this.label5);
+            this.pnlPoints.Controls.Add(this.txtQuadriceps);
+            this.pnlPoints.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPoints.Location = new System.Drawing.Point(456, 158);
+            this.pnlPoints.Name = "pnlPoints";
+            this.pnlPoints.Size = new System.Drawing.Size(568, 391);
+            this.pnlPoints.TabIndex = 118;
             // 
             // label27
             // 
@@ -513,35 +515,37 @@
             this.label24.TabIndex = 154;
             this.label24.Text = "Deltoid. Post.";
             // 
-            // gymCoreTextBox1
+            // txtAnteriorDeltoid
             // 
-            this.gymCoreTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.gymCoreTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gymCoreTextBox1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gymCoreTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.gymCoreTextBox1.Location = new System.Drawing.Point(334, 337);
-            this.gymCoreTextBox1.MaxLength = 3;
-            this.gymCoreTextBox1.Name = "gymCoreTextBox1";
-            this.gymCoreTextBox1.NumbersOnly = true;
-            this.gymCoreTextBox1.Size = new System.Drawing.Size(92, 31);
-            this.gymCoreTextBox1.TabIndex = 153;
-            this.gymCoreTextBox1.Text = "100";
-            this.gymCoreTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnteriorDeltoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtAnteriorDeltoid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAnteriorDeltoid.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnteriorDeltoid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtAnteriorDeltoid.Location = new System.Drawing.Point(334, 337);
+            this.txtAnteriorDeltoid.MaxLength = 3;
+            this.txtAnteriorDeltoid.Name = "txtAnteriorDeltoid";
+            this.txtAnteriorDeltoid.NumbersOnly = true;
+            this.txtAnteriorDeltoid.Size = new System.Drawing.Size(92, 31);
+            this.txtAnteriorDeltoid.TabIndex = 153;
+            this.txtAnteriorDeltoid.Text = "100";
+            this.txtAnteriorDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnteriorDeltoid.TextChanged += new System.EventHandler(this.txtAnteriorDeltoid_TextChanged);
             // 
-            // gymCoreTextBox2
+            // txtLateralDeltoid
             // 
-            this.gymCoreTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.gymCoreTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gymCoreTextBox2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gymCoreTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.gymCoreTextBox2.Location = new System.Drawing.Point(210, 337);
-            this.gymCoreTextBox2.MaxLength = 3;
-            this.gymCoreTextBox2.Name = "gymCoreTextBox2";
-            this.gymCoreTextBox2.NumbersOnly = true;
-            this.gymCoreTextBox2.Size = new System.Drawing.Size(92, 31);
-            this.gymCoreTextBox2.TabIndex = 152;
-            this.gymCoreTextBox2.Text = "100";
-            this.gymCoreTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLateralDeltoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtLateralDeltoid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLateralDeltoid.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLateralDeltoid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtLateralDeltoid.Location = new System.Drawing.Point(210, 337);
+            this.txtLateralDeltoid.MaxLength = 3;
+            this.txtLateralDeltoid.Name = "txtLateralDeltoid";
+            this.txtLateralDeltoid.NumbersOnly = true;
+            this.txtLateralDeltoid.Size = new System.Drawing.Size(92, 31);
+            this.txtLateralDeltoid.TabIndex = 152;
+            this.txtLateralDeltoid.Text = "100";
+            this.txtLateralDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLateralDeltoid.TextChanged += new System.EventHandler(this.txtLateralDeltoid_TextChanged);
             // 
             // txtPosteriorDeltoid
             // 
@@ -557,6 +561,7 @@
             this.txtPosteriorDeltoid.TabIndex = 151;
             this.txtPosteriorDeltoid.Text = "100";
             this.txtPosteriorDeltoid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPosteriorDeltoid.TextChanged += new System.EventHandler(this.txtPosteriorDeltoid_TextChanged);
             // 
             // label23
             // 
@@ -583,6 +588,7 @@
             this.txtAductors.TabIndex = 149;
             this.txtAductors.Text = "100";
             this.txtAductors.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAductors.TextChanged += new System.EventHandler(this.txtAductors_TextChanged);
             // 
             // label22
             // 
@@ -631,6 +637,7 @@
             this.txtForeArm.TabIndex = 145;
             this.txtForeArm.Text = "100";
             this.txtForeArm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtForeArm.TextChanged += new System.EventHandler(this.txtForeArm_TextChanged);
             // 
             // label19
             // 
@@ -657,6 +664,7 @@
             this.txtTriceps.TabIndex = 143;
             this.txtTriceps.Text = "100";
             this.txtTriceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTriceps.TextChanged += new System.EventHandler(this.txtTriceps_TextChanged);
             // 
             // label20
             // 
@@ -683,6 +691,7 @@
             this.txtBiceps.TabIndex = 141;
             this.txtBiceps.Text = "100";
             this.txtBiceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBiceps.TextChanged += new System.EventHandler(this.txtBiceps_TextChanged);
             // 
             // label17
             // 
@@ -731,6 +740,7 @@
             this.txtObliques.TabIndex = 137;
             this.txtObliques.Text = "100";
             this.txtObliques.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtObliques.TextChanged += new System.EventHandler(this.txtObliques_TextChanged);
             // 
             // label15
             // 
@@ -757,6 +767,7 @@
             this.txtAbdominals.TabIndex = 135;
             this.txtAbdominals.Text = "100";
             this.txtAbdominals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAbdominals.TextChanged += new System.EventHandler(this.txtAbdominals_TextChanged);
             // 
             // label14
             // 
@@ -783,6 +794,7 @@
             this.txtPectorals.TabIndex = 133;
             this.txtPectorals.Text = "100";
             this.txtPectorals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPectorals.TextChanged += new System.EventHandler(this.txtPectorals_TextChanged);
             // 
             // label13
             // 
@@ -809,6 +821,7 @@
             this.txtLumbars.TabIndex = 131;
             this.txtLumbars.Text = "100";
             this.txtLumbars.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLumbars.TextChanged += new System.EventHandler(this.txtLumbars_TextChanged);
             // 
             // label9
             // 
@@ -835,6 +848,7 @@
             this.txtDorsals.TabIndex = 129;
             this.txtDorsals.Text = "100";
             this.txtDorsals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDorsals.TextChanged += new System.EventHandler(this.txtDorsals_TextChanged);
             // 
             // label7
             // 
@@ -861,6 +875,7 @@
             this.txtTrapezius.TabIndex = 127;
             this.txtTrapezius.Text = "100";
             this.txtTrapezius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTrapezius.TextChanged += new System.EventHandler(this.txtTrapezius_TextChanged);
             // 
             // label12
             // 
@@ -898,6 +913,7 @@
             this.txtButtocks.TabIndex = 124;
             this.txtButtocks.Text = "100";
             this.txtButtocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtButtocks.TextChanged += new System.EventHandler(this.txtButtocks_TextChanged);
             // 
             // label8
             // 
@@ -924,6 +940,7 @@
             this.txtCalves.TabIndex = 122;
             this.txtCalves.Text = "100";
             this.txtCalves.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCalves.TextChanged += new System.EventHandler(this.txtCalves_TextChanged);
             // 
             // label6
             // 
@@ -950,6 +967,7 @@
             this.txtHamstring.TabIndex = 120;
             this.txtHamstring.Text = "100";
             this.txtHamstring.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHamstring.TextChanged += new System.EventHandler(this.txtHamstring_TextChanged);
             // 
             // label5
             // 
@@ -976,6 +994,7 @@
             this.txtQuadriceps.TabIndex = 118;
             this.txtQuadriceps.Text = "100";
             this.txtQuadriceps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtQuadriceps.TextChanged += new System.EventHandler(this.txtQuadriceps_TextChanged);
             // 
             // frmRegisterExercises
             // 
@@ -983,7 +1002,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(16)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(1024, 600);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlPoints);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.panel1);
@@ -993,6 +1012,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegisterExercises";
+            this.Load += new System.EventHandler(this.frmRegisterExercises_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExercisesList)).EndInit();
@@ -1002,8 +1022,8 @@
             this.panel2.ResumeLayout(false);
             this.pnlList.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlPoints.ResumeLayout(false);
+            this.pnlPoints.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1030,13 +1050,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label11;
         private PresentationLayer.Controls.GymCoreTextBox txtDetail;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlPoints;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private PresentationLayer.Controls.GymCoreTextBox gymCoreTextBox1;
-        private PresentationLayer.Controls.GymCoreTextBox gymCoreTextBox2;
+        private PresentationLayer.Controls.GymCoreTextBox txtAnteriorDeltoid;
+        private PresentationLayer.Controls.GymCoreTextBox txtLateralDeltoid;
         private PresentationLayer.Controls.GymCoreTextBox txtPosteriorDeltoid;
         private System.Windows.Forms.Label label23;
         private PresentationLayer.Controls.GymCoreTextBox txtAductors;
