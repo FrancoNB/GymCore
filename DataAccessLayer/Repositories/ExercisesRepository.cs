@@ -58,10 +58,10 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@bicepsPoints", entity.BicepsPoints),
                 new MySqlParameter("@tricepsPoints", entity.TricepsPoints),
                 new MySqlParameter("@forearmPoints", entity.ForeArmPoints),
-                new MySqlParameter("@posteriorDeltoidsPoints", entity.PosteriorDeltoidsPoints),
+                new MySqlParameter("@posteriorDeltoidsPoints", entity.PosteriorDeltoidPoints),
                 new MySqlParameter("@lateralDeltoidsPoints", entity.LateralDeltoidPoints),
                 new MySqlParameter("@anteriorDeltoidsPoints", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductorPoints", entity.AddcutorPoints),
+                new MySqlParameter("@adductorPoints", entity.AdductorPoints),
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -85,10 +85,10 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@biceps_points", entity.BicepsPoints),
                 new MySqlParameter("@triceps_points", entity.TricepsPoints),
                 new MySqlParameter("@forearm_points", entity.ForeArmPoints),
-                new MySqlParameter("@posterior_deltoids_points", entity.PosteriorDeltoidsPoints),
+                new MySqlParameter("@posterior_deltoids_points", entity.PosteriorDeltoidPoints),
                 new MySqlParameter("@lateral_deltoids_points", entity.LateralDeltoidPoints),
                 new MySqlParameter("@anterior_deltoids_points", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductor_points", entity.AddcutorPoints),
+                new MySqlParameter("@adductor_points", entity.AdductorPoints),
                 new MySqlParameter("@idExercices", entity.IdExercises)
             };
             return await ExecuteNonQueryAsync(update);
@@ -127,10 +127,10 @@ namespace DataAccessLayer.Repositories.Interfaces
                         BicepsPoints = Convert.ToInt32(row["BicepsPoints"]),
                         TricepsPoints = Convert.ToInt32(row["TricepsPoints"]),
                         ForeArmPoints = Convert.ToInt32(row["ForearmPoints"]),
-                        PosteriorDeltoidsPoints = Convert.ToInt32(row["PosteriorDeltoidsPoints"]),
+                        PosteriorDeltoidPoints = Convert.ToInt32(row["PosteriorDeltoidsPoints"]),
                         LateralDeltoidPoints = Convert.ToInt32(row["LateralDeltoidsPoints"]),
                         AnteriorDeltoidPoints = Convert.ToInt32(row["AnteriorDeltoidPoints"]),
-                        AddcutorPoints = Convert.ToInt32(row["AdductorPoints"]),
+                        AdductorPoints = Convert.ToInt32(row["AdductorPoints"]),
                         LumbarPoints = Convert.ToInt32(row["LumbarsPoints"]),
                         PectoralPoints = Convert.ToInt32(row["PectoralPoints"]),
                     }); 
