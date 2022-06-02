@@ -78,7 +78,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         EndDate = Convert.ToDateTime(row["EndDate"]),
                         State = row["State"].ToString(),
                         IdClients = Convert.ToInt32(row["Clients_idClients"]),
-                        IdWorkPlans = Convert.ToInt32(row["WorKPlans_idWorkPlans"])
+                        IdWorkPlans = Convert.ToInt32(row["WorkPlans_idWorkPlans"])
                     });
                 }
                 return list;
