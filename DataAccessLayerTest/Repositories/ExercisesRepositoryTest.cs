@@ -95,7 +95,15 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_1() 
+        public async Task Update_InvalidTest_1() //registro inexistente IdCurrentAccounts = 0
+        {
+            entity.IdExercises = 0;
+
+            Assert.AreEqual(0, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_2() 
         {
             await GetLastId_ValidTest();
 
@@ -112,6 +120,14 @@ namespace DataAccessLayerTest.Repositories
             await GetLastId_ValidTest();
 
             Assert.AreEqual(1, await repository.Delete(entity.IdExercises));
+        }
+
+        [TestMethod]
+        public async Task Delete_InvalidTest()
+        {
+            entity.IdExercises = 0;
+
+            Assert.AreEqual(0, await repository.Delete(entity.IdExercises));
         }
 
         [TestMethod]
