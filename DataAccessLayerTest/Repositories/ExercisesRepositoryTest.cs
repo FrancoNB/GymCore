@@ -101,7 +101,9 @@ namespace DataAccessLayerTest.Repositories
 
             entity.Detail = null;
 
-            Assert.AreEqual(1, await repository.Update(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1048, ex.Code);
         }
 
         [TestMethod]
