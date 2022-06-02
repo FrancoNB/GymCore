@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using PresentationLayer.Utilities;
 using BusinessLayer.ValueObjects;
 
-namespace Presentation.Forms.Register
+namespace PresentationLayer.Forms.Register
 {
     public partial class frmRegisterPackages : Form
     {
@@ -90,7 +90,7 @@ namespace Presentation.Forms.Register
             {
                 foreach (PackagesModel package in packagesList)
                 {
-                    dgvPackagesList.Rows.Add(package.IdPackages, package.Name, package.Price);
+                    dgvPackagesList.Rows.Add(package.IdPackages, package.Name, string.Format("$ {0:#,##0.00}", package.Price));
                 }
 
                 ClearSelectionDgv();
@@ -144,17 +144,53 @@ namespace Presentation.Forms.Register
 
         private void txtNumberSessions_TextChanged(object sender, EventArgs e)
         {
-            packageWorkingModel.NumberSessions = Convert.ToInt32(txtNumberSessions.Text);
+            packageWorkingModel.NumberSessions = (int)FormatUtilities.NumbersOnly(txtNumberSessions.Text);
+        }
+
+        private void txtNumberSessions_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)8)
+                e.Handled = true;
+        }
+
+        private void txtNumberSessions_Validated(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtNumberSessions.Text))
+            {
+                txtNumberSessions.Text = string.Format("{0:#,##}", FormatUtilities.NumbersOnly(txtNumberSessions.Text));
+            }
         }
 
         private void txtAvailableDays_TextChanged(object sender, EventArgs e)
         {
-            packageWorkingModel.AvailableDays = Convert.ToInt32(txtAvailableDays.Text);
+            packageWorkingModel.AvailableDays = (int)FormatUtilities.NumbersOnly(txtAvailableDays.Text);
+        }
+
+        private void txtAvailableDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)8)
+                e.Handled = true;
+        }
+
+        private void txtAvailableDays_Validated(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtAvailableDays.Text))
+            {
+                txtAvailableDays.Text = string.Format("{0:#,##}", FormatUtilities.NumbersOnly(txtAvailableDays.Text));
+            }
         }
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
-            packageWorkingModel.Price = Convert.ToDouble(txtPrice.Text);
+            packageWorkingModel.Price = FormatUtilities.NumbersOnly(txtPrice.Text);
+        }
+
+        private void txtPrice_Validated(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(txtPrice.Text))
+            {
+                txtPrice.Text = string.Format("$ {0:#,##0.00}", FormatUtilities.NumbersOnly(txtPrice.Text));
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -178,9 +214,9 @@ namespace Presentation.Forms.Register
                 packageWorkingModel.IdPackages = selectPackage.IdPackages;
 
                 txtName.Text = selectPackage.Name;
-                txtNumberSessions.Text = selectPackage.NumberSessions.ToString();
-                txtAvailableDays.Text = selectPackage.AvailableDays.ToString();
-                txtPrice.Text = selectPackage.Price.ToString();
+                txtNumberSessions.Text = string.Format("{0:#,##}", selectPackage.Name);
+                txtAvailableDays.Text = string.Format("{0:#,##}", selectPackage.AvailableDays);
+                txtPrice.Text = string.Format("$ {0:#,##0.00}", selectPackage.Price);
 
                 btnUpdate.Select();
             }

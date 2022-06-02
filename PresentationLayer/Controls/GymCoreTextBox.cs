@@ -54,8 +54,16 @@ namespace PresentationLayer.Controls
             }
             else if(NumbersOnly)
             {
-                if (!Information.IsNumeric(e.KeyChar) && e.KeyChar != Strings.ChrW(8))
-                    e.Handled = true;
+                if(e.KeyChar == (char)46)
+                {
+                    if (Text.Contains("."))
+                        e.Handled = true;
+                }
+                else
+                {
+                    if (!Information.IsNumeric(e.KeyChar) && e.KeyChar != (char)8)
+                        e.Handled = true;
+                }
             }
         }
     }

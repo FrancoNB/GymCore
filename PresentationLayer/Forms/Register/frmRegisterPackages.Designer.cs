@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms.Register
+﻿namespace PresentationLayer.Forms.Register
 {
     partial class frmRegisterPackages
     {
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnClose = new PresentationLayer.Controls.GymCoreButton();
@@ -50,15 +50,15 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtPrice = new PresentationLayer.Controls.GymCoreTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtAvailableDays = new PresentationLayer.Controls.GymCoreTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtNumberSessions = new PresentationLayer.Controls.GymCoreTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtPrice = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtAvailableDays = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtNumberSessions = new PresentationLayer.Controls.GymCoreTextBox();
             this.txtName = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -227,6 +227,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.txtSearch.Location = new System.Drawing.Point(61, 9);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NumbersOnly = false;
             this.txtSearch.Size = new System.Drawing.Size(383, 27);
             this.txtSearch.TabIndex = 20;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -248,34 +249,34 @@
             this.dgvPackagesList.AllowUserToDeleteRows = false;
             this.dgvPackagesList.AllowUserToResizeColumns = false;
             this.dgvPackagesList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvPackagesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvPackagesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPackagesList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPackagesList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
             this.dgvPackagesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPackagesList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvPackagesList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPackagesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPackagesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPackagesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPackagesList.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPackagesList.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPackagesList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPackagesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPackagesList.EnableHeadersVisualStyles = false;
             this.dgvPackagesList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -284,21 +285,21 @@
             this.dgvPackagesList.Name = "dgvPackagesList";
             this.dgvPackagesList.ReadOnly = true;
             this.dgvPackagesList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPackagesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPackagesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPackagesList.RowHeadersWidth = 20;
             this.dgvPackagesList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvPackagesList.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvPackagesList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPackagesList.RowTemplate.Height = 30;
             this.dgvPackagesList.RowTemplate.ReadOnly = true;
             this.dgvPackagesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -341,20 +342,6 @@
             this.label8.TabIndex = 31;
             this.label8.Text = "Precio";
             // 
-            // txtPrice
-            // 
-            this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrice.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtPrice.Location = new System.Drawing.Point(153, 129);
-            this.txtPrice.MaxLength = 11;
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(167, 27);
-            this.txtPrice.TabIndex = 3;
-            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -366,20 +353,6 @@
             this.label7.TabIndex = 29;
             this.label7.Text = "Tiempo de vigencia";
             // 
-            // txtAvailableDays
-            // 
-            this.txtAvailableDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtAvailableDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAvailableDays.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtAvailableDays.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtAvailableDays.Location = new System.Drawing.Point(153, 91);
-            this.txtAvailableDays.MaxLength = 11;
-            this.txtAvailableDays.Name = "txtAvailableDays";
-            this.txtAvailableDays.Size = new System.Drawing.Size(167, 27);
-            this.txtAvailableDays.TabIndex = 2;
-            this.txtAvailableDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAvailableDays.TextChanged += new System.EventHandler(this.txtAvailableDays_TextChanged);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -390,20 +363,6 @@
             this.label5.Size = new System.Drawing.Size(141, 19);
             this.label5.TabIndex = 27;
             this.label5.Text = "Numero de sesiones";
-            // 
-            // txtNumberSessions
-            // 
-            this.txtNumberSessions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtNumberSessions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNumberSessions.Font = new System.Drawing.Font("Calibri", 12F);
-            this.txtNumberSessions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtNumberSessions.Location = new System.Drawing.Point(153, 52);
-            this.txtNumberSessions.MaxLength = 11;
-            this.txtNumberSessions.Name = "txtNumberSessions";
-            this.txtNumberSessions.Size = new System.Drawing.Size(167, 27);
-            this.txtNumberSessions.TabIndex = 1;
-            this.txtNumberSessions.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtNumberSessions.TextChanged += new System.EventHandler(this.txtNumberSessions_TextChanged);
             // 
             // label1
             // 
@@ -456,6 +415,56 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "Dias";
             // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrice.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtPrice.Location = new System.Drawing.Point(153, 129);
+            this.txtPrice.MaxLength = 11;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.NumbersOnly = true;
+            this.txtPrice.Size = new System.Drawing.Size(167, 27);
+            this.txtPrice.TabIndex = 3;
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            this.txtPrice.Validated += new System.EventHandler(this.txtPrice_Validated);
+            // 
+            // txtAvailableDays
+            // 
+            this.txtAvailableDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtAvailableDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAvailableDays.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtAvailableDays.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtAvailableDays.Location = new System.Drawing.Point(153, 91);
+            this.txtAvailableDays.MaxLength = 11;
+            this.txtAvailableDays.Name = "txtAvailableDays";
+            this.txtAvailableDays.NumbersOnly = true;
+            this.txtAvailableDays.Size = new System.Drawing.Size(167, 27);
+            this.txtAvailableDays.TabIndex = 2;
+            this.txtAvailableDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAvailableDays.TextChanged += new System.EventHandler(this.txtAvailableDays_TextChanged);
+            this.txtAvailableDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAvailableDays_KeyPress);
+            this.txtAvailableDays.Validated += new System.EventHandler(this.txtAvailableDays_Validated);
+            // 
+            // txtNumberSessions
+            // 
+            this.txtNumberSessions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtNumberSessions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNumberSessions.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtNumberSessions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtNumberSessions.Location = new System.Drawing.Point(153, 52);
+            this.txtNumberSessions.MaxLength = 11;
+            this.txtNumberSessions.Name = "txtNumberSessions";
+            this.txtNumberSessions.NumbersOnly = true;
+            this.txtNumberSessions.Size = new System.Drawing.Size(167, 27);
+            this.txtNumberSessions.TabIndex = 1;
+            this.txtNumberSessions.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNumberSessions.TextChanged += new System.EventHandler(this.txtNumberSessions_TextChanged);
+            this.txtNumberSessions.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberSessions_KeyPress);
+            this.txtNumberSessions.Validated += new System.EventHandler(this.txtNumberSessions_Validated);
+            // 
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -465,6 +474,7 @@
             this.txtName.Location = new System.Drawing.Point(153, 14);
             this.txtName.MaxLength = 100;
             this.txtName.Name = "txtName";
+            this.txtName.NumbersOnly = false;
             this.txtName.Size = new System.Drawing.Size(403, 27);
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
