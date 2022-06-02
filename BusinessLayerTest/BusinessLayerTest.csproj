@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelsTests\ClientsModelTest.cs" />
-    <Compile Include="ModelsTests\CurrentAccountsModelTests.cs" />
+    <Compile Include="ModelsTests\CurrentAccountsModelTest.cs" />
     <Compile Include="ModelsTests\PackagesModelTest.cs" />
     <Compile Include="ModelsTests\RoutinesModelTest.cs" />
     <Compile Include="ModelsTests\UserModelTest.cs" />
