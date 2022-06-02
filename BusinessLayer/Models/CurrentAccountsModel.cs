@@ -22,12 +22,12 @@ namespace BusinessLayer.Models
         private int _idClients;
 
         public int IdCurrentAccounts { get { return _idCurrentAccounts; } set { _idCurrentAccounts = value; } }
-        public string TicketCode { get { return _ticketCode; } set { _ticketCode = value; } }
+        public string TicketCode { get { return _ticketCode; } set { _ticketCode = value.Trim(); } }
         public DateTime Date { get { return _date; } set { _date = value; } }
         public double Credit { get { return _credit; } set { _credit = value; } }
         public double Debit { get { return _debit; } set { _debit = value; } }
         public double Balance { get { return _balance; } set { _balance = value; } }
-        public string Detail { get { return _detail; } set { _detail = value; } }
+        public string Detail { get { return _detail; } set { _detail = value.Trim(); } }
         public int IdClients { get { return _idClients; } set { _idClients = value; } }
 
         private ICurrentAccountsRepository repository;
@@ -126,10 +126,10 @@ namespace BusinessLayer.Models
         private void ValidateUpdate()
         {
             if (IdCurrentAccounts < 1)
-                throw new ArgumentException("No se selecciono ninguna cuenta corriente...");
+                throw new ArgumentException("No se selecciono ninguna cuenta corriente... !");
 
             if (IdClients < 1)
-                throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente...");
+                throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente... !");
 
             if (string.IsNullOrWhiteSpace(TicketCode))
                 throw new ArgumentNullException("Se debe especificar el código de ticket... !");
@@ -141,7 +141,7 @@ namespace BusinessLayer.Models
         private void ValidateDelete()
         {
             if (IdCurrentAccounts < 1)
-                throw new ArgumentException("No se selecciono ninguna cuenta corriente para eliminar...");
+                throw new ArgumentException("No se selecciono ninguna cuenta corriente para eliminar... !");
         }
     }
 }
