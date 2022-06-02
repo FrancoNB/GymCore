@@ -47,7 +47,7 @@ namespace DataAccessLayer.Entities
         public int LateralDeltoidPoints { get => _lateralDeltoidPoints; set => _lateralDeltoidPoints = value; }
         public int AnteriorDeltoidPoints { get => _anteriorDeltoidPoints; set => _anteriorDeltoidPoints = value; }
         public int AdductorPoints { get => _adductorPoints; set => _adductorPoints = value; }
-        public int LumbarPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
+        public int LumbarsPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
         public int PectoralsPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
     }
 }

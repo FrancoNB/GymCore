@@ -23,11 +23,11 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.insert = "INSERT INTO Exercises (Name, Detail, QuadricepsPoints, HamstringPoints, CalvesPoints, ButtocksPoints, TrapeziusPoints, DorsalsPoints, LumbarsPoints,"
                            + " PectoralsPoints, AbdominalsPoints, ObliquesPoints, BicepsPoints, TricepsPoints, ForearmPoints, PosteriorDeltoidPoints, LateralDeltoidPoints,"
                            + " AnteriorDeltoidPoints, AdductorPoints) VALUES (@name, @detail, @quadricepsPoints, @hamstringPoints, @calvesPoints, @buttocksPoints,"
-                           + " @trapeziusPoints, @dorsalsPoints, @lumbarPoints, @pectoralsPoints, @abdominalsPoints, @obliquesPoints, @bicepsPoints, @tricepsPoints, @forearmPoints,"
+                           + " @trapeziusPoints, @dorsalsPoints, @lumbarsPoints, @pectoralsPoints, @abdominalsPoints, @obliquesPoints, @bicepsPoints, @tricepsPoints, @forearmPoints,"
                            + " @posteriorDeltoidPoints, @lateralDeltoidPoints, @anteriorDeltoidPoints, @adductorPoints)";
 
             this.update = "UPDATE Exercises SET Name = @name, Detail = @detail, QuadricepsPoints = @quadricepsPoints, HamstringPoints = @hamstringPoints, CalvesPoints = @calvesPoints, "
-                           + "ButtocksPoints = @buttocksPoints, TrapeziusPoints = @trapeziusPoints, DorsalsPoints = @dorsalsPoints, LumbarsPoints = @lumbarPoints, PectoralsPoints = @pectoralsPoints, "
+                           + "ButtocksPoints = @buttocksPoints, TrapeziusPoints = @trapeziusPoints, DorsalsPoints = @dorsalsPoints, LumbarsPoints = @lumbarsPoints, PectoralsPoints = @pectoralsPoints, "
                            + "AbdominalsPoints = @abdominalsPoints, ObliquesPoints =  @obliquesPoints, BicepsPoints = @bicepsPoints, TricepsPoints = @tricepsPoints, ForearmPoints = @forearmPoints, "
                            + "PosteriorDeltoidPoints = @posteriorDeltoidPoints, LateralDeltoidPoints = @lateralDeltoidPoints, AnteriorDeltoidPoints = @anteriorDeltoidPoints, "
                            + "AdductorPoints = @adductorPoints WHERE IdExercises = @idExercises"; 
@@ -51,7 +51,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@buttocksPoints", entity.ButtocksPoints),
                 new MySqlParameter("@trapeziusPoints", entity.TrapeziusPoints),
                 new MySqlParameter("@dorsalsPoints", entity.DorsalsPoints),
-                new MySqlParameter("@lumbarPoints", entity.LumbarPoints),
+                new MySqlParameter("@lumbarsPoints", entity.LumbarsPoints),
                 new MySqlParameter("@pectoralsPoints", entity.PectoralsPoints),
                 new MySqlParameter("@abdominalsPoints", entity.AbdominalsPoints),
                 new MySqlParameter("@obliquesPoints", entity.ObliquesPoints),
@@ -78,7 +78,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@buttocksPoints", entity.ButtocksPoints),
                 new MySqlParameter("@trapeziusPoints", entity.TrapeziusPoints),
                 new MySqlParameter("@dorsalsPoints", entity.DorsalsPoints),
-                new MySqlParameter("@lumbarPoints", entity.LumbarPoints),
+                new MySqlParameter("@lumbarsPoints", entity.LumbarsPoints),
                 new MySqlParameter("@pectoralsPoints", entity.PectoralsPoints),
                 new MySqlParameter("@abdominalsPoints", entity.AbdominalsPoints),
                 new MySqlParameter("@obliquesPoints", entity.ObliquesPoints),
@@ -131,7 +131,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         LateralDeltoidPoints = Convert.ToInt32(row["LateralDeltoidPoints"]),
                         AnteriorDeltoidPoints = Convert.ToInt32(row["AnteriorDeltoidPoints"]),
                         AdductorPoints = Convert.ToInt32(row["AdductorPoints"]),
-                        LumbarPoints = Convert.ToInt32(row["LumbarsPoints"]),
+                        LumbarsPoints = Convert.ToInt32(row["LumbarsPoints"]),
                         PectoralsPoints = Convert.ToInt32(row["PectoralsPoints"])
                     }); 
                 }

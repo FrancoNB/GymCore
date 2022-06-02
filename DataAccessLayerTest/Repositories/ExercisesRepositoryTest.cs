@@ -47,7 +47,7 @@ namespace DataAccessLayerTest.Repositories
                 LateralDeltoidPoints = 1,
                 AnteriorDeltoidPoints = 1,
                 AdductorPoints = 1,
-                LumbarPoints = 1,
+                LumbarsPoints = 1,
                 PectoralsPoints = 1
             };
         }
@@ -75,11 +75,31 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
+        public async Task Insert_InvalidTest_2()
+        {
+            entity.Detail = null;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
         public async Task Update_ValidTest() //Modificacion del detalle
         {
             await GetLastId_ValidTest();
 
             entity.Detail = "NewDetail";
+
+            Assert.AreEqual(1, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_1() 
+        {
+            await GetLastId_ValidTest();
+
+            entity.Detail = null;
 
             Assert.AreEqual(1, await repository.Update(entity));
         }
