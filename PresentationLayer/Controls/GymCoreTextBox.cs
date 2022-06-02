@@ -23,6 +23,7 @@ namespace PresentationLayer.Controls
             Font = new Font("Calibri", 12.0f);
             BorderStyle = BorderStyle.FixedSingle;
             ForeColor = _foreColor;
+            NumbersOnly = false;
         }
 
         protected override void OnEnabledChanged(EventArgs e)
