@@ -48,10 +48,10 @@ namespace BusinessLayer.Models
         public int BicepsPoints { get => _bicepsPoints; set => _bicepsPoints = value; }
         public int TricepsPoints { get => _tricepsPoints; set => _tricepsPoints = value; }
         public int ForeArmPoints { get => _forearmPoints; set => _forearmPoints = value; }
-        public int PosteriorDeltoidsPoints { get => _posteriorDeltoidPoints; set => _posteriorDeltoidPoints = value; }
+        public int PosteriorDeltoidPoints { get => _posteriorDeltoidPoints; set => _posteriorDeltoidPoints = value; }
         public int LateralDeltoidPoints { get => _lateralDeltoidPoints; set => _lateralDeltoidPoints = value; }
         public int AnteriorDeltoidPoints { get => _anteriorDeltoidPoints; set => _anteriorDeltoidPoints = value; }
-        public int AddcutorPoints { get => _adductorPoints; set => _adductorPoints = value; }
+        public int AdductorPoints { get => _adductorPoints; set => _adductorPoints = value; }
         public int LumbarPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
         public int PectoralPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
 
@@ -123,10 +123,10 @@ namespace BusinessLayer.Models
                     BicepsPoints = item.BicepsPoints,
                     TricepsPoints = item.TricepsPoints,
                     ForeArmPoints = item.ForeArmPoints,
-                    PosteriorDeltoidsPoints = item.PosteriorDeltoidPoints,
+                    PosteriorDeltoidPoints = item.PosteriorDeltoidPoints,
                     LateralDeltoidPoints = item.LateralDeltoidPoints,
                     AnteriorDeltoidPoints = item.AnteriorDeltoidPoints,
-                    AddcutorPoints = item.AdductorPoints,
+                    AdductorPoints = item.AdductorPoints,
                     LumbarPoints = item.LumbarPoints,
                     PectoralPoints = item.PectoralPoints,
                 });
@@ -152,10 +152,10 @@ namespace BusinessLayer.Models
                 BicepsPoints = this.BicepsPoints,
                 TricepsPoints = this.TricepsPoints,
                 ForeArmPoints = this.ForeArmPoints,
-                PosteriorDeltoidPoints = this.PosteriorDeltoidsPoints,
+                PosteriorDeltoidPoints = this.PosteriorDeltoidPoints,
                 LateralDeltoidPoints = this.LateralDeltoidPoints,
                 AnteriorDeltoidPoints = this.AnteriorDeltoidPoints,
-                AdductorPoints = this.AddcutorPoints,
+                AdductorPoints = this.AdductorPoints,
                 LumbarPoints = this.LumbarPoints,
                 PectoralPoints = this.PectoralPoints,
             };
@@ -201,7 +201,7 @@ namespace BusinessLayer.Models
             if (ForeArmPoints > 100 || ForeArmPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (PosteriorDeltoidsPoints > 100 || PosteriorDeltoidsPoints < 0)
+            if (PosteriorDeltoidPoints > 100 || PosteriorDeltoidPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (LateralDeltoidPoints > 100 || LateralDeltoidPoints < 0)
@@ -210,7 +210,7 @@ namespace BusinessLayer.Models
             if (AnteriorDeltoidPoints > 100 || AnteriorDeltoidPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (AddcutorPoints > 100 || AddcutorPoints < 0)
+            if (AdductorPoints > 100 || AdductorPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (LumbarPoints > 100 || LumbarPoints < 0)
@@ -263,7 +263,7 @@ namespace BusinessLayer.Models
             if (ForeArmPoints > 100 || ForeArmPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (PosteriorDeltoidsPoints > 100 || PosteriorDeltoidsPoints < 0)
+            if (PosteriorDeltoidPoints > 100 || PosteriorDeltoidPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (LateralDeltoidPoints > 100 || LateralDeltoidPoints < 0)
@@ -272,7 +272,7 @@ namespace BusinessLayer.Models
             if (AnteriorDeltoidPoints > 100 || AnteriorDeltoidPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (AddcutorPoints > 100 || AddcutorPoints < 0)
+            if (AdductorPoints > 100 || AdductorPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (LumbarPoints > 100 || LumbarPoints < 0)
