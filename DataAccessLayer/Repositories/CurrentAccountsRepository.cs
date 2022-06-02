@@ -20,10 +20,10 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public CurrentAccountsRepository()
         {
-            this.insert = "INSERT INTO CurrentAccounts (TicketCode, Date, Credit, Debit, Balance, Detail, IdClients) VALUES (@ticketCode, @date, @credit, @debit, @balance, @detail, @idClients)";
+            this.insert = "INSERT INTO CurrentAccounts (TicketCode, Date, Credit, Debit, Balance, Detail, Clients_idClients) VALUES (@ticketCode, @date, @credit, @debit, @balance, @detail, @idClients)";
 
             this.update = "UPDATE CurrentAccounts SET TicketCode = @ticketCode, Date = @date, Credit = @credit, Debit = @debit, Balance = @balance, Detail = @detail, "
-                        + "IdClients = @idClients WHERE IdCurrentAccounts = @idCurrentAccounts";
+                        + "Clients_idClients = @idClients WHERE IdCurrentAccounts = @idCurrentAccounts";
 
             this.delete = "DELETE FROM CurrentAccounts WHERE IdCurrentAccounts = @idCurrentAccounts";
 
