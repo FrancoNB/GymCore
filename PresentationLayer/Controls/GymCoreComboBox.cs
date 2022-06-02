@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Controls
+namespace PresentationLayer.Controls
 {
     public class GymCoreComboBox : ComboBox
     {
@@ -15,6 +15,8 @@ namespace Presentation.Controls
 
         public GymCoreComboBox() 
         {
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             BackColor = _backColor;
             Size = new Size() { Height = 406 };
             Font = new Font("Calibri", 12.0f);

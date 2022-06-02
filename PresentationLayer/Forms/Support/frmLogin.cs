@@ -1,5 +1,5 @@
 ﻿using BusinessLayer.Models;
-using Presentation.Utilities;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.Support
+namespace PresentationLayer.Forms.Support
 {
     public partial class frmLogin : Form
     {
@@ -35,6 +35,8 @@ namespace Presentation.Forms.Support
         private frmLogin()
         {
             InitializeComponent();
+
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             userModel = new UsersModel();
         }

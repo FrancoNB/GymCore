@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BusinessLayerTest
+namespace BusinessLayerTest.ModelsTests
 {
     [TestClass]
     public class UserModelTest
@@ -43,11 +43,23 @@ namespace BusinessLayerTest
         }
 
         [TestMethod()]
-        public async Task LogIn_InvalidTest()
+        public async Task LogIn_InvalidTest_1()
         {
             usersModel = new UsersModel(mockUsersRepository.Object)
             {
                 Username = "UserInvalid",
+                Password = "PasswordInvalid"
+            };
+
+            Assert.IsFalse((await usersModel.LogIn()).Result);
+        }
+
+        [TestMethod()]
+        public async Task LogIn_InvalidTest_2()
+        {
+            usersModel = new UsersModel(mockUsersRepository.Object)
+            {
+                Username = "UserValid",
                 Password = "PasswordInvalid"
             };
 
@@ -70,8 +82,7 @@ namespace BusinessLayerTest
                 Operation = Operation.Insert,
                 Username = "TestUser",
                 Password = "*****",
-                Type = "-",
-                State = "Habilitado"
+                Type = UsersModel.UsersTypes.Accountant,
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -85,8 +96,7 @@ namespace BusinessLayerTest
                 Operation = Operation.Insert,
                 Username = "",
                 Password = "*****",
-                Type = "-",
-                State = "Habilitado"
+                Type = UsersModel.UsersTypes.Manager,
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);
@@ -101,8 +111,7 @@ namespace BusinessLayerTest
                 IdUsers = 1,
                 Username = "UpdateTestUser",
                 Password = "*****",
-                Type = "-",
-                State = "Habilitado"
+                Type = UsersModel.UsersTypes.Trainer,
             };
 
             Assert.IsTrue((await usersModel.SaveChanges()).Result);
@@ -117,8 +126,7 @@ namespace BusinessLayerTest
                 IdUsers = 1,
                 Username = "UpdateTestUser",
                 Password = "",
-                Type = "-",
-                State = "Habilitado"
+                Type = UsersModel.UsersTypes.Accountant,
             };
 
             Assert.IsFalse((await usersModel.SaveChanges()).Result);

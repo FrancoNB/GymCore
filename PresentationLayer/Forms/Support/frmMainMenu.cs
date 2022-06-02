@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Cache;
-using Presentation.Forms.Support;
+using PresentationLayer.Forms.ConfigSystem;
+using PresentationLayer.Forms.Support;
+using PresentationLayer.Forms.Register;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Presentation
+namespace PresentationLayer
 {
     public partial class frmMainMenu : Form
     {
@@ -28,6 +30,8 @@ namespace Presentation
         private frmMainMenu()
         {
             InitializeComponent();
+
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             mstPPal.Renderer = new MenuStripRenderer();
         }
@@ -89,10 +93,20 @@ namespace Presentation
         {
             lblState.Text = "Sesión no iniciada";
 
-            if (frmLogin.GetInstance().ShowDialog() == DialogResult.Cancel)
+            if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
             lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            frmUsers.GetInstance().ShowDialog(this);
+        }
+
+        private void btnRegisterClients_Click(object sender, EventArgs e)
+        {
+            frmRegisterClients.GetInstance().ShowDialog(this);
         }
     }
 }
