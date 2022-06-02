@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public RoutinesRepository()
         {
-            this.insert = "INSERT INTO Routine (StartDate, EndDate, State, IdClients, IdWorksPlans) VALUES (@startDate, @endDate, @state, @idClients, @idWorksPlans)";
+            this.insert = "INSERT INTO Routine (StartDate, EndDate, State, Clients_idClients, WorkPlans_idWorkPlans) VALUES (@startDate, @endDate, @state, @idClients, @idWorksPlans)";
             this.update = "UPDATE Routine SET StartDate = @startDate, EndDate = @endDate, State = @state, IdClients = @idClients, IdWorksPlans = @idWorksPlans WHERE IdRoutine = @idRoutine";
             this.delete = "DELETE FROM Routne WHERE IdRoutine = @idRoutine";
             this.selectAll = "SELECT * FROM Routine";
@@ -77,8 +77,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                         StartDate = Convert.ToDateTime(row["StartDate"]),
                         EndDate = Convert.ToDateTime(row["EndDate"]),
                         State = row["State"].ToString(),
-                        IdClients = Convert.ToInt32(row["IdClients"]),
-                        IdWorkPlans = Convert.ToInt32(row["IdWorkPlans"])
+                        IdClients = Convert.ToInt32(row["Clients_idClients"]),
+                        IdWorkPlans = Convert.ToInt32(row["WorkPlans_idWorkPlans"])
                     });
                 }
                 return list;

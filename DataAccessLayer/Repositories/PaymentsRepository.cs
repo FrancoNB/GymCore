@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public PaymentsRepository()
         {
-            this.insert = "INSERT INTO Payments (TicketCode, Date, PaymentMethod, Amount, Observations, IdClients, IdCurrentAccounts) VALUES (@ticketCode, @date, @paymentMethod, "
+            this.insert = "INSERT INTO Payments (TicketCode, Date, PaymentMethod, Amount, Observations, Clients_IdClients, CurrentAccounts_IdCurrentAccounts) VALUES (@ticketCode, @date, @paymentMethod, "
                         + "@amount, @observations, @idClients, @idCurrentAccounts)";
             this.update = "UPDATE Payments SET TicketCode = @ticketCode, Date = @date, PaymentMethod = @paymentMethod, Amount = @amount, Observations = @observations, "
                         + "IdClients = @idClients, IdCurrentAccounts = @idCurrentAccounts WHERE IdPayments = @idPayments";
@@ -84,8 +84,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                         PaymentMethod = row["PaymentMethod"].ToString(),
                         Amount = Convert.ToDouble(row["Amount"]),
                         Observations = row["Observations"].ToString(),
-                        IdClients = Convert.ToInt32(row["IdClients"]),
-                        IdCurrentAccounts = Convert.ToInt32(row["IdCurrentAccounts"])
+                        IdClients = Convert.ToInt32(row["Clients_IdClients"]),
+                        IdCurrentAccounts = Convert.ToInt32(row["CurrentAccounts_IdCurrentAccounts"])
                     });
                 }
                 return list;

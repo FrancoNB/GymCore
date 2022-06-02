@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public AssistsRepository()
         {
-            this.insert = "INSERT INTO Assists (Date, IdClients, IdSubscriptions) VALUES (@date, @idClients, @idSubscriptions)";
+            this.insert = "INSERT INTO Assists (Date, Clients_idClients, Subscriptions_idSubscriptions) VALUES (@date, @idClients, @idSubscriptions)";
             this.update = "UPDATE Assists SET Date = @date, IdClients = @idClients, @IdSubscriptions = @idSubscriptions WHERE IdAssists = @idAssists";
             this.delete = "DELETE FROM Assists WHERE IdAssists = @idAssists";
             this.selectAll = "SELECT * FROM Assists";
@@ -70,8 +70,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                     {
                         IdAssists = Convert.ToInt32(row["IdAssists"]),
                         Date = Convert.ToDateTime(row["Date"]),
-                        IdClients = Convert.ToInt32(row["IdClients"]),
-                        IdSubscriptions = Convert.ToInt32(row["IdSubscriptions"])                 
+                        IdClients = Convert.ToInt32(row["Clients_idClients"]),
+                        IdSubscriptions = Convert.ToInt32(row["Subscriptions_idSubscriptions"])                 
                     });
                 }
                 return list;
