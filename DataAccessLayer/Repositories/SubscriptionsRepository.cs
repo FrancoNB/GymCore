@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repositories
         public SubscriptionsRepository()
         {
             this.insert = "INSERT INTO Subscriptions (TicketCode, StartDate, Package, Price, TotalSessions, UsedSessions, AvailableSessions, EndDate, ExpireDate, Observations, "
-                        + "State, ClientsIdClients, CurrentAccountsIdCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
+                        + "State, Clients_idClients, CurrentAccounts_idCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
                         + "@availabeSessions, @endDate, @expireDate, @observations, @state, @clientsIdClients, @currentAccountsIdcurrentAccounts)";
 
             this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
@@ -50,8 +50,8 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@clientsIdclients", entity.ClientsIdClients),
-                new MySqlParameter("@currentAccountsIdcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
+                new MySqlParameter("@Idclients", entity.ClientsIdClients),
+                new MySqlParameter("@Idcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
             };
             return await ExecuteNonQueryAsync(insert);
         }
