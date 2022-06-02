@@ -88,7 +88,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         Debit = Convert.ToDouble(row["Debit"]),
                         Balance = Convert.ToDouble(row["Balance"]),
                         Detail = row["Detail"].ToString(),
-                        IdClients = Convert.ToInt32(row["IdClients"])
+                        IdClients = Convert.ToInt32(row["Clients_idClients"])
                     });
                 }
                 return list;
