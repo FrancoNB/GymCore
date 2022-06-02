@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BusinessLayerTest
+namespace BusinessLayerTest.ModelsTests
 {
     [TestClass]
     public class UserModelTest

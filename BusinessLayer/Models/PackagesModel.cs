@@ -2,10 +2,7 @@
 using DataAccessLayer.Entities;
 using BusinessLayer.ValueObjects;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer.Support;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 
@@ -108,10 +105,10 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions >= 0)
+            if (NumberSessions < 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays >= 0)
+            if (AvailableDays < 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
 
             IdPackages = -1;
@@ -125,10 +122,10 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions >= 0)
+            if (NumberSessions < 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays >= 0)
+            if (AvailableDays < 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
 
         }

@@ -45,6 +45,7 @@
     <Compile Include="Cache\UserCache.cs" />
     <Compile Include="Models\PackagesModel.cs" />
     <Compile Include="Models\ClientsModel.cs" />
+    <Compile Include="Models\RoutinesModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\WorkPlansModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

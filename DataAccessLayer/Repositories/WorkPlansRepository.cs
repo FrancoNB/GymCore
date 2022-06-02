@@ -16,13 +16,15 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public WorkPlansRepository()
         {
             this.insert = "INSERT into WorkPlans (Name, Category) VALUES (@name, @category)";
             this.update = "UPDATE WorkPlans SET Name = @name, Category = @category WHERE IdWorkPlans = @idWorkPlans";
             this.delete = "DELETE FROM WorkPlans WHERE IdWorkPlans = @idWorkplans";
-            this.selectAll = "SELECT* FROM WorkPlans"; 
+            this.selectAll = "SELECT* FROM WorkPlans";
+            this.selectMaxId = "SELECT Max(IdWorkPlans) as lastId FROM WorkPlas";
         }
 
         public async Task<int> Insert(WorkPlans entity)
@@ -73,6 +75,17 @@ namespace DataAccessLayer.Repositories.Interfaces
                 return list;
             }
 
+        }
+
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
+            }
         }
     }
 }
