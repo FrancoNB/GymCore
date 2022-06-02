@@ -110,8 +110,8 @@ namespace DataAccessLayer.Repositories
                         ExpireDate = Convert.ToDateTime(row["ExpireDate"]),
                         Observations = row["Observations"].ToString(),
                         State = row["state"].ToString(),
-                        ClientsIdClients = Convert.ToInt32(row["Clients_idClients"]),
-                        CurrentAccountsIdCurrentAccounts = Convert.ToInt32(row["CurrentAccounts_idCurrentAccounts"])                     
+                        IdClients = Convert.ToInt32(row["Clients_idClients"]),
+                        IdCurrentAccounts = Convert.ToInt32(row["CurrentAccounts_idCurrentAccounts"])                     
                     });
                 }
                 return list;
