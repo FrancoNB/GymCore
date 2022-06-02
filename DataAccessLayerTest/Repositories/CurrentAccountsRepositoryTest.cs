@@ -21,6 +21,8 @@ namespace DataAccessLayerTest.Repositories
         public static void ClassInitialize(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
+
+
         }
 
         [TestInitialize]
