@@ -121,5 +121,10 @@ namespace PresentationLayer
         {
             frmRegisterPackages.GetInstance().ShowDialog(this);
         }
+
+        private void btnExercises_Click(object sender, EventArgs e)
+        {
+            frmRegisterExercises.GetInstance().ShowDialog(this);
+        }
     }
 }
