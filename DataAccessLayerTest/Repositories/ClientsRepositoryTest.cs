@@ -16,10 +16,16 @@ namespace DataAccessLayerTest
         private IClientsRepository repository;
         private Clients entity;
 
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            RepositoryConnection.BeginTransaction();
+        }
+
         [TestInitialize]
         public void TestInitialize()
         {
-            repository = new ClientsRepository();
+            repository = new ClientsRepository();           
         }
 
         [TestMethod]
@@ -37,16 +43,36 @@ namespace DataAccessLayerTest
                 Observations = "-"
             };
 
-            try
-            {
-                RepositoryConnection.BeginTransaction();
+            Assert.AreEqual(1, await repository.Insert(entity));
+        }
 
-                Assert.AreEqual(1, await repository.Insert(entity));
-            } 
-            finally
-            {
-                RepositoryConnection.RollBack();
-            }
+        [TestMethod]
+        public async Task GetLastId_ValidTest()
+        {
+            await Insert_InvalidTest();
+
+            entity.IdClients = await repository.GetLastId();
+
+            Assert.IsInstanceOfType(entity.IdClients, typeof(int));
+        }
+
+        [TestMethod]
+        public async Task Update_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            entity.Name = "Ricardo";
+            entity.Surname = "Lavolpe";
+
+            Assert.AreEqual(1, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Delete_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            Assert.AreEqual(1, await repository.Delete(entity.IdClients));
         }
 
         [TestMethod]
@@ -62,24 +88,54 @@ namespace DataAccessLayerTest
                 Observations = "-"
             };
 
-            try
-            {
-                RepositoryConnection.BeginTransaction();
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
-                var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+            Assert.AreEqual(1048, ex.Code);
+        }
 
-                Assert.AreEqual(1048, ex.Code);
-            }
-            finally
-            {
-                RepositoryConnection.RollBack();
-            }
+        [TestMethod]
+        public async Task Update_InvalidTest_1()
+        {
+            await GetLastId_ValidTest();
+
+            entity.IdClients = 0;
+
+            Assert.AreEqual(0, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_2()
+        {
+            await GetLastId_ValidTest();
+
+            entity.Name = null;
+            entity.Surname = "Lavolpe";
+            
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Delete_InvalidTest()
+        {
+            await GetLastId_ValidTest();
+
+            entity.IdClients = 0;
+
+            Assert.AreEqual(0, await repository.Delete(entity.IdClients));
         }
 
         [TestMethod]
         public async Task GetAll_Test()
         {
             CollectionAssert.AllItemsAreInstancesOfType((List<Clients>)await repository.GetAll(), typeof(Clients));
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            RepositoryConnection.RollBack();
         }
     }
 }
