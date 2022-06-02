@@ -49,7 +49,7 @@ namespace DataAccessLayerTest
         [TestMethod]
         public async Task GetLastId_ValidTest()
         {
-            await Insert_InvalidTest();
+            await Insert_ValidTest();
 
             entity.IdClients = await repository.GetLastId();
 
