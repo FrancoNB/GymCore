@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace BusinessLayerTest.ModelsTests
 {
     [TestClass]
-    public class CurrentAccountsModelTests
+    public class CurrentAccountsModelTest
     {
         private Mock<ICurrentAccountsRepository> mockCurrentAccountsRepository;
         private CurrentAccountsModel currentAccountsModel;
