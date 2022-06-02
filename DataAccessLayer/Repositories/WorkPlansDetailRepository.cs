@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public WorkPlansDetailRepository()
         {
-            this.insert = "INSERT into WorkPlanasDetail (Day, IdWorkPlans, IdWorks) VALUES (@day, @IdWorkPlans, @IdWorks)";
+            this.insert = "INSERT into WorkPlanasDetail (Day, WorkPlans_idWorkPlans, Works_idWorks) VALUES (@day, @IdWorkPlans, @IdWorks)";
             this.update = "UPDATE WorkPlansDetail SET Day = @day, WorkPlansIdWorkPlans = @workPlansIdWorkPlans, WorksIdWorks = @worksIdWorks WHERE IdWorkPlansDetail = @workPlansDetail";
             this.delete = "DELETE FROM WorkPlansDetail WHERE idWorkPlansDetail = @idWorkplansDetail";
             this.selectAll = "SELECT* FROM WorkPlansDetail";

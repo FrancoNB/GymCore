@@ -35,8 +35,8 @@ namespace DataAccessLayer.Entities
         public DateTime ExpireDate { get => _expireDate; set => _expireDate = value; }
         public string Observations { get => _observations; set => _observations = value;}
         public string State { get => _state; set => _state = value; }
-        public int ClientsIdClients { get => _clientsIdclients; set => _clientsIdclients = value; }
-        public int CurrentAccountsIdCurrentAccounts { get => _currentAccountsIdcurrentAccounts; set=> _currentAccountsIdcurrentAccounts = value; }
+        public int IdClients { get => _clientsIdclients; set => _clientsIdclients = value; }
+        public int IdCurrentAccounts { get => _currentAccountsIdcurrentAccounts; set=> _currentAccountsIdcurrentAccounts = value; }
 
 
     }
