@@ -5,8 +5,6 @@ using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayerTest.Repositories
@@ -17,18 +15,45 @@ namespace DataAccessLayerTest.Repositories
         private ICurrentAccountsRepository repository;
         private CurrentAccounts entity;
 
+        private static int idClient;
+
         [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        public static async Task ClassInitialize(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
 
+            IClientsRepository clientsRepository = new ClientsRepository();
 
+            await clientsRepository.Insert(new Clients
+            {
+                Name = "AuxClient",
+                Surname = "AuxClient",
+                Address = "-",
+                Phone = "-",
+                Locality = "-",
+                Mail = "-",
+                RegisterDate = DateTime.Now,
+                Observations = "-"
+            });
+
+            idClient = await clientsRepository.GetLastId();
         }
 
         [TestInitialize]
         public void TestInitialize()
         {
             repository = new CurrentAccountsRepository();
+
+            entity = new CurrentAccounts()
+            {
+                TicketCode = "TestTicket",
+                Date = DateTime.Now,
+                Credit = 1234,
+                Debit = 1234,
+                Balance = 1234,
+                Detail = "DetailTest",
+                IdClients = idClient
+            };
         }
 
         [TestMethod]
@@ -40,35 +65,27 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task Insert_ValidTest()
         {
-            entity = new CurrentAccounts()
-            {
-                TicketCode = "1234",
-                Date = DateTime.Now,
-                Credit = 1234,
-                Debit = 1234,
-                Balance = 1234,
-                Detail = "DetailTest",
-                IdClients = 1
-            };
-
             Assert.AreEqual(1, await repository.Insert(entity));
         }
 
         [TestMethod]
-        public async Task Insert_InvalidTest_1()
+        public async Task Insert_InvalidTest_1() //idCliente invalido
         {
-            entity = new CurrentAccounts()
-            {
-                TicketCode = "",
-                Date = DateTime.Now,
-                Credit = 1234,
-                Debit = 1234,
-                Balance = 1234,
-                Detail = "DetailTest",
-                IdClients = 1
-            };
+            entity.IdClients = 0;
 
-            Assert.AreEqual(0, await repository.Insert(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest_2() //Campo TicketCode nulo
+        {
+            entity.TicketCode = null;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1048, ex.Code);
         }
 
         [TestMethod]
@@ -79,74 +96,50 @@ namespace DataAccessLayerTest.Repositories
             entity.IdCurrentAccounts = await repository.GetLastId();
 
             Assert.IsInstanceOfType(entity.IdCurrentAccounts, typeof(int));
+            Assert.IsTrue(entity.IdCurrentAccounts > 0);
         }
 
         [TestMethod]
-        public async Task Update_ValidTest()
+        public async Task Update_ValidTest() //Modificacion del detalle
         {
             await GetLastId_ValidTest();
 
-            entity.IdCurrentAccounts = 1;
-            entity.TicketCode = "1234";
-            entity.Date = DateTime.Now;
-            entity.Credit = 1234;
-            entity.Debit = 1234;
-            entity.Balance = 1234;
-            entity.Detail = "DetailTest";
-            entity.IdClients = 1;
+            entity.Detail = "NewDetail";
+            entity.IdClients = idClient;
 
             Assert.AreEqual(1, await repository.Update(entity));
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_1()
+        public async Task Update_InvalidTest_1() //registro inexistente IdCurrentAccounts = 0
         {
-            await GetLastId_ValidTest();
-
-            entity.IdCurrentAccounts = -1;
-            entity.TicketCode = "1234";
-            entity.Date = DateTime.Now;
-            entity.Credit = 1234;
-            entity.Debit = 1234;
-            entity.Balance = 1234;
-            entity.Detail = "DetailTest";
-            entity.IdClients = 1;
+            entity.IdCurrentAccounts = 0;
 
             Assert.AreEqual(0, await repository.Update(entity));
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_2()
+        public async Task Update_InvalidTest_2() //idClients invalido
         {
             await GetLastId_ValidTest();
 
-            entity.IdCurrentAccounts = 1;
-            entity.TicketCode = "1234";
-            entity.Date = DateTime.Now;
-            entity.Credit = 1234;
-            entity.Debit = 1234;
-            entity.Balance = 1234;
-            entity.Detail = "DetailTest";
-            entity.IdClients = -1;
+            entity.IdClients = 0;
 
-            Assert.AreEqual(0, await repository.Update(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_3()
+        public async Task Update_InvalidTest_3() //Campo Detail nulo
         {
             await GetLastId_ValidTest();
 
-            entity.IdCurrentAccounts = 1;
-            entity.TicketCode = "";
-            entity.Date = DateTime.Now;
-            entity.Credit = 1234;
-            entity.Debit = 1234;
-            entity.Balance = 1234;
-            entity.Detail = "DetailTest";
-            entity.IdClients = 1;
+            entity.Detail = null;
 
-            Assert.AreEqual(0, await repository.Update(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1048, ex.Code);
         }
 
         [TestMethod]
@@ -158,13 +151,9 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
-        public async Task Delete_InvalidTest()
+        public async Task Delete_InvalidTest() //registro inexistente IdCurrentAccounts = 0
         {
-            await GetLastId_ValidTest();
-
-            entity.IdCurrentAccounts = 0;
-
-            Assert.AreEqual(0, await repository.Delete(entity.IdCurrentAccounts));
+            Assert.AreEqual(0, await repository.Delete(0));
         }
 
         [ClassCleanup]
