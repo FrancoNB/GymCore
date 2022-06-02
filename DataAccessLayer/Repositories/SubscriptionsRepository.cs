@@ -71,8 +71,8 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@idClients", entity.ClientsIdClients),
-                new MySqlParameter("@idCurrentAccounts", entity.CurrentAccountsIdCurrentAccounts)
+                new MySqlParameter("@idClients", entity.IdClients),
+                new MySqlParameter("@idCurrentAccounts", entity.IdCurrentAccounts),
                 new MySqlParameter("@idSubscriptions", entity.IdSubscriptions)
             };
             return await ExecuteNonQueryAsync(update);
