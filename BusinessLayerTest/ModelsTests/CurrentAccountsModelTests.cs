@@ -1,6 +1,6 @@
-﻿using DataAccessLayer.Entities;
+﻿using BusinessLayer.Models;
+using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
-using DataAccessLayer.Repositories.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -31,7 +31,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task GetAll_Test()
         {
-            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsModel.Object);
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object);
 
             CollectionAssert.AreEqual(new List<CurrentAccountsModel>(), (List<CurrentAccountsModel>)await currentAccountsModel.GetAll());
         }
@@ -39,9 +39,9 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod]
         public async Task SaveChanges_ValidInsertTest()
         {
-            currentAccountsModel = new CurrentAccounts(mockCurrentAccountsRepository.Object)
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
             {
-                Operation = BussinesLayer.ValueObjetcs.Operation.Insert(),
+                Operation = BusinessLayer.ValueObjects.Operation.Insert,
                 IdCurrentAccounts = 1,
                 IdClients = 1,
                 TicketCode = "1234",
@@ -52,9 +52,125 @@ namespace BusinessLayerTest.ModelsTests
                 Detail = "DetailTest"
             };
 
-            Assert.IsTrue(await currentAccountsModel.SaveChangesAsync());
+            Assert.IsTrue((await currentAccountsModel.SaveChanges()).Result);
         }
 
+        [TestMethod]
+        public async Task SaveChanges_InvalidInsertTest_1()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Insert,
+                IdCurrentAccounts = 1,
+                IdClients = 1,
+                TicketCode = "",
+                Debit = 1234,
+                Credit = 1234,
+                Balance = 1234,
+                Date = DateTime.UtcNow,
+                Detail = "DetailTest"
+            };
 
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_ValidUpdateTest()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdCurrentAccounts = 1,
+                IdClients = 1,
+                TicketCode = "1234",
+                Debit = 1234,
+                Credit = 1234,
+                Balance = 1234,
+                Date = DateTime.UtcNow,
+                Detail = "DetailTest"
+            };
+
+            Assert.IsTrue((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidUpdateTest_1()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdCurrentAccounts = -1,
+                IdClients = 1,
+                TicketCode = "1234",
+                Debit = 1234,
+                Credit = 1234,
+                Balance = 1234,
+                Date = DateTime.UtcNow,
+                Detail = "DetailTest"
+            };
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidUpdateTest_2()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdCurrentAccounts = 1,
+                IdClients = -1,
+                TicketCode = "1234",
+                Debit = 1234,
+                Credit = 1234,
+                Balance = 1234,
+                Date = DateTime.UtcNow,
+                Detail = "DetailTest"
+            };
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidUpdateTest_3()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdCurrentAccounts = -1,
+                IdClients = 1,
+                TicketCode = "",
+                Debit = 1234,
+                Credit = 1234,
+                Balance = 1234,
+                Date = DateTime.UtcNow,
+                Detail = "DetailTest"
+            };
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_ValidDeleteTest()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Delete,
+                IdCurrentAccounts = 1
+            };
+
+            Assert.IsTrue((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidDeleteTest()
+        {
+            currentAccountsModel = new CurrentAccountsModel(mockCurrentAccountsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Delete,
+            };
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
     }
 }
