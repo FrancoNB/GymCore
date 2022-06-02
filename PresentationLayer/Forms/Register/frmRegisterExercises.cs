@@ -205,7 +205,7 @@ namespace PresentationLayer.Forms.Register
                 txtAductors.TextChanged += txtAductors_TextChanged;
             }
 
-            exerciseWorkingModel.AddcutorPoints = (int)FormatUtilities.NumbersOnly(txtAductors.Text);
+            exerciseWorkingModel.AdductorPoints = (int)FormatUtilities.NumbersOnly(txtAductors.Text);
         }
 
         private void txtTrapezius_TextChanged(object sender, EventArgs e)
@@ -337,7 +337,7 @@ namespace PresentationLayer.Forms.Register
                 txtPosteriorDeltoid.TextChanged += txtPosteriorDeltoid_TextChanged;
             }
 
-            exerciseWorkingModel.PosteriorDeltoidsPoints = (int)FormatUtilities.NumbersOnly(txtPosteriorDeltoid.Text);
+            exerciseWorkingModel.PosteriorDeltoidPoints = (int)FormatUtilities.NumbersOnly(txtPosteriorDeltoid.Text);
         }
 
         private void txtLateralDeltoid_TextChanged(object sender, EventArgs e)
