@@ -84,8 +84,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                         PaymentMethod = row["PaymentMethod"].ToString(),
                         Amount = Convert.ToDouble(row["Amount"]),
                         Observations = row["Observations"].ToString(),
-                        IdClients = Convert.ToInt32(row["IdClients"]),
-                        IdCurrentAccounts = Convert.ToInt32(row["IdCurrentAccounts"])
+                        IdClients = Convert.ToInt32(row["Clients_IdClients"]),
+                        IdCurrentAccounts = Convert.ToInt32(row["CurrentAccounts_IdCurrentAccounts"])
                     });
                 }
                 return list;
