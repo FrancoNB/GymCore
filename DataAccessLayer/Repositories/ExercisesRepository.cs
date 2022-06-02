@@ -61,7 +61,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@posteriorDeltoidsPoints", entity.PosteriorDeltoidsPoints),
                 new MySqlParameter("@lateralDeltoidsPoints", entity.LateralDeltoidPoints),
                 new MySqlParameter("@anteriorDeltoidsPoints", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductorPoints", entity.AddcutorPoints),
+                new MySqlParameter("@adductorPoints", entity.AdductorPoints),
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -88,7 +88,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@posterior_deltoids_points", entity.PosteriorDeltoidsPoints),
                 new MySqlParameter("@lateral_deltoids_points", entity.LateralDeltoidPoints),
                 new MySqlParameter("@anterior_deltoids_points", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductor_points", entity.AddcutorPoints),
+                new MySqlParameter("@adductor_points", entity.AdductorPoints),
                 new MySqlParameter("@idExercices", entity.IdExercises)
             };
             return await ExecuteNonQueryAsync(update);
@@ -130,7 +130,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         PosteriorDeltoidsPoints = Convert.ToInt32(row["PosteriorDeltoidsPoints"]),
                         LateralDeltoidPoints = Convert.ToInt32(row["LateralDeltoidsPoints"]),
                         AnteriorDeltoidPoints = Convert.ToInt32(row["AnteriorDeltoidPoints"]),
-                        AddcutorPoints = Convert.ToInt32(row["AdductorPoints"]),
+                        AdductorPoints = Convert.ToInt32(row["AdductorPoints"]),
                         LumbarPoints = Convert.ToInt32(row["LumbarsPoints"]),
                         PectoralPoints = Convert.ToInt32(row["PectoralPoints"]),
                     }); 
