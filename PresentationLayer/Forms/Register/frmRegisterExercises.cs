@@ -405,7 +405,7 @@ namespace PresentationLayer.Forms.Register
                 txtName.Text = selectExercise.Name;
                 txtDetail.Text = selectExercise.Detail;
                 txtQuadriceps.Text = selectExercise.QuadricepsPoints.ToString();
-                txtHamstring.Text = selectExercise.CalvesPoints.ToString();
+                txtHamstring.Text = selectExercise.HamstringPoints.ToString();
                 txtCalves.Text = selectExercise.CalvesPoints.ToString();
                 txtButtocks.Text = selectExercise.ButtocksPoints.ToString();
                 txtTrapezius.Text = selectExercise.TrapeziusPoints.ToString();
