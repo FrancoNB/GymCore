@@ -127,7 +127,7 @@ namespace BusinessLayer.Models
                     LateralDeltoidPoints = item.LateralDeltoidPoints,
                     AnteriorDeltoidPoints = item.AnteriorDeltoidPoints,
                     AdductorPoints = item.AdductorPoints,
-                    LumbarPoints = item.LumbarPoints,
+                    LumbarPoints = item.LumbarsPoints,
                     PectoralPoints = item.PectoralsPoints,
                 });
             }
@@ -156,7 +156,7 @@ namespace BusinessLayer.Models
                 LateralDeltoidPoints = this.LateralDeltoidPoints,
                 AnteriorDeltoidPoints = this.AnteriorDeltoidPoints,
                 AdductorPoints = this.AdductorPoints,
-                LumbarPoints = this.LumbarPoints,
+                LumbarsPoints = this.LumbarPoints,
                 PectoralsPoints = this.PectoralPoints,
             };
         }
