@@ -113,9 +113,6 @@ namespace BusinessLayer.Models
 
         private void ValidateInsert()
         {
-            if (IdCurrentAccounts < 1)
-                throw new ArgumentException("");
-
             if (string.IsNullOrWhiteSpace(TicketCode))
                 throw new ArgumentNullException("Se debe especificar el código de ticket... !");
             
@@ -128,11 +125,11 @@ namespace BusinessLayer.Models
 
         private void ValidateUpdate()
         {
+            if (IdCurrentAccounts < 1)
+                throw new ArgumentException("No se selecciono ninguna cuenta corriente...");
+
             if (IdClients < 1)
                 throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente...");
-
-            if(IdCurrentAccounts < 1)
-                throw new ArgumentException("");
 
             if (string.IsNullOrWhiteSpace(TicketCode))
                 throw new ArgumentNullException("Se debe especificar el código de ticket... !");
