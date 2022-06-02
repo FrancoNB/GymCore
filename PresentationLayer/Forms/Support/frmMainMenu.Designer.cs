@@ -33,7 +33,7 @@
             this.lblState = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRegisterClients = new System.Windows.Forms.ToolStripMenuItem();
-            this.paquetesDeSuscripcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPackages = new System.Windows.Forms.ToolStripMenuItem();
             this.ejerciciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.suscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +83,7 @@
             this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnRegister.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnRegisterClients,
-            this.paquetesDeSuscripcionToolStripMenuItem,
+            this.btnPackages,
             this.ejerciciosToolStripMenuItem});
             this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnRegister.Name = "btnRegister";
@@ -99,13 +99,14 @@
             this.btnRegisterClients.Text = "Cliente";
             this.btnRegisterClients.Click += new System.EventHandler(this.btnRegisterClients_Click);
             // 
-            // paquetesDeSuscripcionToolStripMenuItem
+            // btnPackages
             // 
-            this.paquetesDeSuscripcionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.paquetesDeSuscripcionToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.paquetesDeSuscripcionToolStripMenuItem.Name = "paquetesDeSuscripcionToolStripMenuItem";
-            this.paquetesDeSuscripcionToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.paquetesDeSuscripcionToolStripMenuItem.Text = "Paquetes de Suscripcion";
+            this.btnPackages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnPackages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnPackages.Name = "btnPackages";
+            this.btnPackages.Size = new System.Drawing.Size(218, 22);
+            this.btnPackages.Text = "Paquetes de Suscripcion";
+            this.btnPackages.Click += new System.EventHandler(this.btnPackages_Click);
             // 
             // ejerciciosToolStripMenuItem
             // 
@@ -286,7 +287,7 @@
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.ToolStripMenuItem btnRegister;
         private System.Windows.Forms.ToolStripMenuItem btnRegisterClients;
-        private System.Windows.Forms.ToolStripMenuItem paquetesDeSuscripcionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnPackages;
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnManagement;
         private System.Windows.Forms.ToolStripMenuItem btnQuery;

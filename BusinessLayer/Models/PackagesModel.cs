@@ -17,11 +17,10 @@ namespace BusinessLayer.Models
         private double _price;
 
         public int IdPackages { get => _idPackages; set => _idPackages = value; }
-        public string Name { get => _name; set => _name = value; }
+        public string Name { get => _name; set => _name = value.Trim(); }
         public int NumberSessions { get => _numberSessions; set => _numberSessions = value; }
         public int AvailableDays { get => _availableDays; set => _availableDays = value; }
         public double Price { get => _price; set => _price = value; }
-
 
         private IPackagesRepository repository;
         public Operation Operation { get; set; }
@@ -105,11 +104,14 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions < 0)
+            if (NumberSessions <= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays < 0)
+            if (AvailableDays <= 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+
+            if (Price <= 0)
+                throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
 
             IdPackages = -1;
         }
@@ -122,11 +124,14 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions < 0)
+            if (NumberSessions <= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays < 0)
+            if (AvailableDays <= 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+
+            if (Price <= 0)
+                throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
 
         }
 
