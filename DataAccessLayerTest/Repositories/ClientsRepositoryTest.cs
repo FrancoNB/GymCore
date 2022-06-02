@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DataAccessLayerTest
+namespace DataAccessLayerTest.Repositories
 {
     [TestClass]
     public class ClientsRepositoryTest
@@ -25,24 +25,24 @@ namespace DataAccessLayerTest
         [TestInitialize]
         public void TestInitialize()
         {
-            repository = new ClientsRepository();           
+            repository = new ClientsRepository();
+
+            entity = new Clients()
+            {
+                Name = "TestNameClient",
+                Surname = "TestSurnameClient",
+                RegisterDate = DateTime.Now,
+                Locality = "TestLocality",
+                Address = "TestAddress",
+                Phone = "1234567891",
+                Mail = "test@test.com",
+                Observations = "-"
+            };
         }
 
         [TestMethod]
         public async Task Insert_ValidTest()
         {
-            entity = new Clients()
-            {
-                RegisterDate = DateTime.Now,
-                Name = "Walter",        
-                Surname = "Lopez",
-                Locality = "Jesus Maria",
-                Address = "Sarmiento 205",
-                Phone = "649151616161",
-                Mail = "asdadsada",
-                Observations = "-"
-            };
-
             Assert.AreEqual(1, await repository.Insert(entity));
         }
 
@@ -54,6 +54,7 @@ namespace DataAccessLayerTest
             entity.IdClients = await repository.GetLastId();
 
             Assert.IsInstanceOfType(entity.IdClients, typeof(int));
+            Assert.IsTrue(entity.IdClients > 0);
         }
 
         [TestMethod]
@@ -61,8 +62,8 @@ namespace DataAccessLayerTest
         {
             await GetLastId_ValidTest();
 
-            entity.Name = "Ricardo";
-            entity.Surname = "Lavolpe";
+            entity.Name = "NewName";
+            entity.Surname = "NewSurname";
 
             Assert.AreEqual(1, await repository.Update(entity));
         }
@@ -76,17 +77,9 @@ namespace DataAccessLayerTest
         }
 
         [TestMethod]
-        public async Task Insert_InvalidTest()
+        public async Task Insert_InvalidTest() //Campo Address nulo
         {
-            entity = new Clients()
-            {
-                RegisterDate = DateTime.Now,
-                Locality = "Jesus Maria",
-                Address = "Sarmiento 205",
-                Phone = "649151616161",
-                Mail = "asdadsada",
-                Observations = "-"
-            };
+            entity.Address = null;
 
             var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
@@ -94,7 +87,7 @@ namespace DataAccessLayerTest
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_1()
+        public async Task Update_InvalidTest_1() //Registro inexistente IdClients = 0
         {
             await GetLastId_ValidTest();
 
@@ -104,12 +97,12 @@ namespace DataAccessLayerTest
         }
 
         [TestMethod]
-        public async Task Update_InvalidTest_2()
+        public async Task Update_InvalidTest_2() //Campo Name nulo
         {
             await GetLastId_ValidTest();
 
             entity.Name = null;
-            entity.Surname = "Lavolpe";
+            entity.Surname = "NewSurname";
             
             var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
 
@@ -117,13 +110,9 @@ namespace DataAccessLayerTest
         }
 
         [TestMethod]
-        public async Task Delete_InvalidTest()
+        public async Task Delete_InvalidTest() //Registro inexistente IdClients = 0
         {
-            await GetLastId_ValidTest();
-
-            entity.IdClients = 0;
-
-            Assert.AreEqual(0, await repository.Delete(entity.IdClients));
+            Assert.AreEqual(0, await repository.Delete(0));
         }
 
         [TestMethod]
