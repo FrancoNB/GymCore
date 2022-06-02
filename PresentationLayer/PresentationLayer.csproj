@@ -73,6 +73,12 @@
     <Compile Include="Forms\Register\frmRegisterClients.Designer.cs">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Register\frmRegisterPackages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterPackages.Designer.cs">
+      <DependentUpon>frmRegisterPackages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Support\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\frmRegisterClients.resx">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\frmRegisterPackages.resx">
+      <DependentUpon>frmRegisterPackages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Support\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
