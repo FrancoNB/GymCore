@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\AssistsReppositoryTest.cs" />
     <Compile Include="Repositories\ClientsRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CurrentAccountsRepositoryTest.cs" />

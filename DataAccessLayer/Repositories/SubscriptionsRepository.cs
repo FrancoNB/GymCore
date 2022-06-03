@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repositories
 
             this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
                         + "UsedSessions = @used_sessions, AvailableSessions = @availabe_sessions, EndDate = @end_date,  ExpireDate = @expire_date, Observations = @observations, "
-                        + "State = @state, ClientsIdClients = @clients_idclients, CurrentAccountsIdCurrentAccounts = @idCurrentAccounts WHERE IdSubscriptions = @idSubscriptions";
+                        + "State = @state, Clients_IdClients = @idClients, CurrentAccounts_idCurrentAccounts = @idCurrentAccounts WHERE IdSubscriptions = @idSubscriptions";
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
