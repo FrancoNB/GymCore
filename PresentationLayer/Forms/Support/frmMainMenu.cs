@@ -6,6 +6,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
+using Presentation.Forms.Lists;
+using PresentationLayer.Utilities;
+using BusinessLayer.Models;
 
 namespace PresentationLayer
 {
@@ -84,7 +87,17 @@ namespace PresentationLayer
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
 
+            LoadCache();
             ShowLogin();
+        }
+
+        private async void LoadCache()
+        {
+            LoadNotification.Show("Iniciando sistema...");
+
+            PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
+
+            LoadNotification.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

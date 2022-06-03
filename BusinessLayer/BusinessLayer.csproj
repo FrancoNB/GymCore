@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\PackagesCache.cs" />
     <Compile Include="Cache\UserCache.cs" />
     <Compile Include="Models\CurrentAccountsModel.cs" />
     <Compile Include="Models\ExercisesModel.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Models\WorkPlansModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\ISubscribeable.cs" />
+    <Compile Include="Support\ISuscriber.cs" />
     <Compile Include="ValueObjects\Operation.cs" />
     <Compile Include="ValueObjects\AcctionResult.cs" />
   </ItemGroup>
