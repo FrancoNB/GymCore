@@ -24,7 +24,7 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.update = "UPDATE WorkPlans SET Name = @name, Category = @category WHERE IdWorkPlans = @idWorkPlans";
             this.delete = "DELETE FROM WorkPlans WHERE IdWorkPlans = @idWorkplans";
             this.selectAll = "SELECT* FROM WorkPlans";
-            this.selectMaxId = "SELECT Max(IdWorkPlans) as lastId FROM WorkPlas";
+            this.selectMaxId = "SELECT Max(IdWorkPlans) AS lastId FROM WorkPlans";
         }
 
         public async Task<int> Insert(WorkPlans entity)
