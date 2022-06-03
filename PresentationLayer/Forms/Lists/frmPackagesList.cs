@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Forms.Lists
 {
-    public partial class frmPackagesList : Form, IObserver
+    public partial class frmPackagesList : Form, ISuscriber<PackagesModel>
     {
         private static frmPackagesList instance;
 
@@ -101,7 +101,7 @@ namespace Presentation.Forms.Lists
             this.Close();
         }
 
-        public void Update(IObservable resource)
+        public void Update(ISubscribeable<PackagesModel> resource)
         {
             packagesList = PackagesCache.GetInstance().Resource;
 

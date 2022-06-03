@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BusinessLayer.Cache
 {
-    public class PackagesCache : IObservable
+    public class PackagesCache : ISubscribeable<PackagesModel>
     {
         private static PackagesCache instance;
 
@@ -25,7 +25,7 @@ namespace BusinessLayer.Cache
             return instance;
         }
 
-        private List<IObserver> _observersList;
+        private List<ISuscriber<PackagesModel>> _observersList;
 
         private IEnumerable<PackagesModel> _resource;
 
@@ -34,17 +34,17 @@ namespace BusinessLayer.Cache
         private PackagesCache()
         {
             _resource = new List<PackagesModel>();
-            _observersList = new List<IObserver>();
+            _observersList = new List<ISuscriber<PackagesModel>>();
         }
 
-        public void Attach(IObserver observer)
+        public void Attach(ISuscriber<PackagesModel> observer)
         {
             this._observersList.Add(observer);
 
             observer.Update(this);
         }
 
-        public void Detach(IObserver observer)
+        public void Detach(ISuscriber<PackagesModel> observer)
         {
             this._observersList.Remove(observer);
         }
