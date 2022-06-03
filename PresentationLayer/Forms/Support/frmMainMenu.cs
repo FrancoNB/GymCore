@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Cache;
+﻿using BusinessLayer.Support;
 using PresentationLayer.Forms.ConfigSystem;
 using PresentationLayer.Forms.Support;
 using PresentationLayer.Forms.Register;
@@ -96,6 +96,7 @@ namespace PresentationLayer
             LoadNotification.Show("Iniciando sistema...");
 
             PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
+            UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
 
             LoadNotification.Hide();
         }
@@ -117,7 +118,7 @@ namespace PresentationLayer
             if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
-            lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+            lblState.Text = "Usuario: " + LoginCache.Username + " - Tipo: " + LoginCache.Type;
         }
 
         private void btnUsers_Click(object sender, EventArgs e)

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.Cache
+namespace BusinessLayer.Support
 {
-    public static class UserCache
+    public static class LoginCache
     {
         public static int IdUsers { get; set; }
         public static string Type { get; set; } 

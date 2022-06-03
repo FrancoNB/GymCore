@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Cache;
+﻿using BusinessLayer.Support;
 using BusinessLayer.Models;
 using BusinessLayer.Support;
 using System;
@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Forms.Lists
 {
-    public partial class frmPackagesList : Form, ISuscriber<PackagesModel>
+    public partial class frmPackagesList : Form, ISubscriber<PackagesModel>
     {
         private static frmPackagesList instance;
 
