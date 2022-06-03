@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLayer.Models;
 using System.Windows.Forms;
 using PresentationLayer.Utilities;
 using BusinessLayer.ValueObjects;
+using BusinessLayer.Cache;
 
 namespace PresentationLayer.Forms.Register
 {
-    public partial class frmRegisterPackages : Form
+    public partial class frmRegisterPackages : Form, ISubscriber<PackagesModel>
     {
         private static frmRegisterPackages instance;
 
@@ -66,35 +62,24 @@ namespace PresentationLayer.Forms.Register
             btnClose.Enabled = true;
             btnCancel.Enabled = false;
 
-            LoadPackageList();
-
             btnNew.Select();
         }
 
-        private async void LoadPackageList()
+        private void LoadDgvPackagesList()
         {
-            LoadNotification.Show("Cargando listado de paquetes de suscripcion...");
+            IEnumerable<PackagesModel> packagesList = this.packagesList;
 
-            packagesList = await packageWorkingModel.GetAll();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                packagesList = packagesList.ToList().FindAll(package => package.Name.ToLower().Contains(txtSearch.Text.ToLower()));
 
-            LoadDgvPackagesList(packagesList);
-
-            LoadNotification.Hide();
-        }
-
-        private void LoadDgvPackagesList(IEnumerable<PackagesModel> packagesList)
-        {
             dgvPackagesList.Rows.Clear();
 
-            if (packagesList != null)
+            foreach (PackagesModel package in packagesList)
             {
-                foreach (PackagesModel package in packagesList)
-                {
-                    dgvPackagesList.Rows.Add(package.IdPackages, package.Name, string.Format("$ {0:#,##0.00}", package.Price));
-                }
-
-                ClearSelectionDgv();
+                dgvPackagesList.Rows.Add(package.IdPackages, package.Name, string.Format("$ {0:#,##0.00}", package.Price));
             }
+
+            ClearSelectionDgv();
         }
 
         private void SetControlsActiveState()
@@ -133,6 +118,8 @@ namespace PresentationLayer.Forms.Register
             dgvPackagesList.Columns["idPackage"].Visible = false;
 
             dgvPackagesList.Columns["Price"].Width = 100;
+
+            PackagesCache.GetInstance().Attach(this);
 
             SetControlsDefaultState();
         }
@@ -195,14 +182,7 @@ namespace PresentationLayer.Forms.Register
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                LoadDgvPackagesList(packagesList.ToList().FindAll(package => package.Name.ToLower().Contains(txtSearch.Text.ToLower())));
-            }
-            else
-            {
-                LoadDgvPackagesList(packagesList);
-            }
+            LoadDgvPackagesList();
         }
 
         private void dgvPackagesList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -214,7 +194,7 @@ namespace PresentationLayer.Forms.Register
                 packageWorkingModel.IdPackages = selectPackage.IdPackages;
 
                 txtName.Text = selectPackage.Name;
-                txtNumberSessions.Text = string.Format("{0:#,##}", selectPackage.Name);
+                txtNumberSessions.Text = string.Format("{0:#,##}", selectPackage.NumberSessions);
                 txtAvailableDays.Text = string.Format("{0:#,##}", selectPackage.AvailableDays);
                 txtPrice.Text = string.Format("$ {0:#,##0.00}", selectPackage.Price);
 
@@ -279,8 +259,6 @@ namespace PresentationLayer.Forms.Register
                     if (acctionResult.Result)
                     {
                         txtSearch.Clear();
-
-                        LoadPackageList();
 
                         MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -347,7 +325,16 @@ namespace PresentationLayer.Forms.Register
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            PackagesCache.GetInstance().Detach(this);
+
             this.Close();
+        }
+
+        public void Update(ISubscribeable<PackagesModel> resource)
+        {
+            packagesList = PackagesCache.GetInstance().Resource;
+
+            LoadDgvPackagesList();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Cache
 {
-    public static class UserCache
+    public static class LoginCache
     {
         public static int IdUsers { get; set; }
         public static string Type { get; set; } 

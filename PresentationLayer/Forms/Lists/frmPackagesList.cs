@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Models;
-using BusinessLayer.Support;
+using BusinessLayer.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Forms.Lists
 {
-    public partial class frmPackagesList : Form, ISuscriber<PackagesModel>
+    public partial class frmPackagesList : Form, ISubscriber<PackagesModel>
     {
         private static frmPackagesList instance;
 
