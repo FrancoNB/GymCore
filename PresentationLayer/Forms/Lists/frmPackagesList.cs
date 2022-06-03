@@ -55,7 +55,7 @@ namespace Presentation.Forms.Lists
 
             foreach (PackagesModel package in packagesList)
             {
-                dgvPackagesList.Rows.Add(package.IdPackages, package.Name, package.NumberSessions, package.AvailableDays, package.Price);
+                dgvPackagesList.Rows.Add(package.IdPackages, package.Name, package.NumberSessions, package.AvailableDays + " Dias", string.Format("$ {0:#,##0.00}", package.Price));
             }
 
             ClearSelectionDgv();
@@ -72,9 +72,13 @@ namespace Presentation.Forms.Lists
 
             dgvPackagesList.Columns["idPackage"].Visible = false;
 
-            dgvPackagesList.Columns["NumberSessions"].Width = 80;
-            dgvPackagesList.Columns["AvailableDays"].Width = 80;
-            dgvPackagesList.Columns["Price"].Width = 80;
+            dgvPackagesList.Columns["NumberSessions"].Width = 60;
+            dgvPackagesList.Columns["AvailableDays"].Width = 60;
+            dgvPackagesList.Columns["Price"].Width = 120;
+
+            dgvPackagesList.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvPackagesList.Columns["AvailableDays"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvPackagesList.Columns["NumberSessions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             txtSearch.Clear();
 
