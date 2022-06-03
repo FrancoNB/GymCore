@@ -23,7 +23,7 @@ namespace DataAccessLayer.Repositories.Interfaces
             this.insert = "INSERT INTO Payments (TicketCode, Date, PaymentMethod, Amount, Observations, Clients_IdClients, CurrentAccounts_IdCurrentAccounts) VALUES (@ticketCode, @date, @paymentMethod, "
                         + "@amount, @observations, @idClients, @idCurrentAccounts)";
             this.update = "UPDATE Payments SET TicketCode = @ticketCode, Date = @date, PaymentMethod = @paymentMethod, Amount = @amount, Observations = @observations, "
-                        + "IdClients = @idClients, IdCurrentAccounts = @idCurrentAccounts WHERE IdPayments = @idPayments";
+                        + "Clients_IdClients = @idClients, CurrentAccounts_IdCurrentAccounts = @idCurrentAccounts WHERE IdPayments = @idPayments";
             this.delete = "DELETE FROM Payments WHERE IdPayments = @idPayments";
             this.selectAll = "SELECT * FROM Payments";
             this.selectMaxId = "SELECT Max(IdPayments) as lastId FROM Payments";

@@ -1,10 +1,10 @@
-﻿namespace BusinessLayer.Support
+﻿namespace BusinessLayer.Cache
 {
     public interface ISubscribeable<T> where T : class
     {
-        void Attach(ISuscriber<T> observer);
+        void Attach(ISubscriber<T> observer);
 
-        void Detach(ISuscriber<T> observer);
+        void Detach(ISubscriber<T> observer);
 
         void Notify();
     }

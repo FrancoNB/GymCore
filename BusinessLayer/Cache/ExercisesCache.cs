@@ -1,15 +1,14 @@
 ﻿using BusinessLayer.Models;
-using BusinessLayer.Cache;
 using System.Collections.Generic;
 
 namespace BusinessLayer.Cache
 {
-    public class PackagesCache : Subscribeable<PackagesModel>
+    public class ExercisesCache : Subscribeable<ExercisesModel>
     {
-        private static PackagesCache instance;
+        private static ExercisesCache instance;
 
         private static readonly object _lock = new object();
-        public static PackagesCache GetInstance()
+        public static ExercisesCache GetInstance()
         {
             if (instance == null)
             {
@@ -17,18 +16,18 @@ namespace BusinessLayer.Cache
                 {
                     if (instance == null)
                     {
-                        instance = new PackagesCache();
-                    }  
+                        instance = new ExercisesCache();
+                    }
                 }
             }
 
             return instance;
         }
 
-        private PackagesCache()
+        private ExercisesCache()
         {
-            _resource = new List<PackagesModel>();
-            _subscriberLit = new List<ISubscriber<PackagesModel>>();
+            _resource = new List<ExercisesModel>();
+            _subscriberLit = new List<ISubscriber<ExercisesModel>>();
         }
     }
 }

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace BusinessLayer.Cache
 {
-    public class PackagesCache : Subscribeable<PackagesModel>
+    public class ClientsCache : Subscribeable<ClientsModel>
     {
-        private static PackagesCache instance;
+        private static ClientsCache instance;
 
         private static readonly object _lock = new object();
-        public static PackagesCache GetInstance()
+        public static ClientsCache GetInstance()
         {
             if (instance == null)
             {
@@ -17,18 +17,18 @@ namespace BusinessLayer.Cache
                 {
                     if (instance == null)
                     {
-                        instance = new PackagesCache();
-                    }  
+                        instance = new ClientsCache();
+                    }
                 }
             }
 
             return instance;
         }
 
-        private PackagesCache()
+        private ClientsCache()
         {
-            _resource = new List<PackagesModel>();
-            _subscriberLit = new List<ISubscriber<PackagesModel>>();
+            _resource = new List<ClientsModel>();
+            _subscriberLit = new List<ISubscriber<ClientsModel>>();
         }
     }
 }

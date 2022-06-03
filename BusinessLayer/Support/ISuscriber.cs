@@ -1,6 +1,6 @@
-﻿namespace BusinessLayer.Support
+﻿namespace BusinessLayer.Cache
 {
-    public interface ISuscriber<T> where T : class
+    public interface ISubscriber<T> where T : class
     {
         void Update(ISubscribeable<T> resource);
     }
