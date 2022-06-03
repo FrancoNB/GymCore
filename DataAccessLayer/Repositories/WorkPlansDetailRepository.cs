@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public WorkPlansDetailRepository()
         {
-            this.insert = "INSERT into WorkPlanasDetail (Day, IdWorkPlans, IdWorks) VALUES (@day, @IdWorkPlans, @IdWorks)";
+            this.insert = "INSERT into WorkPlanasDetail (Day, WorkPlans_idWorkPlans, Works_idWorks) VALUES (@day, @IdWorkPlans, @IdWorks)";
             this.update = "UPDATE WorkPlansDetail SET Day = @day, WorkPlansIdWorkPlans = @workPlansIdWorkPlans, WorksIdWorks = @worksIdWorks WHERE IdWorkPlansDetail = @workPlansDetail";
             this.delete = "DELETE FROM WorkPlansDetail WHERE idWorkPlansDetail = @idWorkplansDetail";
             this.selectAll = "SELECT* FROM WorkPlansDetail";
@@ -72,8 +72,8 @@ namespace DataAccessLayer.Repositories.Interfaces
                     list.Add(new WorkPlansDetail()
                     {
                         IdWorkPlansDetail = Convert.ToInt32(row["IdWorkPlansDetail"]),
-                        IdWorks = Convert.ToInt32(row["IdWork"]),
-                        IdWorkPlans = Convert.ToInt32(row["IdWorkPlans"]),
+                        IdWorks = Convert.ToInt32(row["Works_idWorks"]),
+                        IdWorkPlans = Convert.ToInt32(row["WorkPlans_idWorkPlans"]),
                         Day = Convert.ToInt32(row["Day"])
                     });
                 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
+using BusinessLayer.Cache;
 
 namespace BusinessLayer.Models
 {
@@ -39,26 +40,35 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Paquete de suscripción cargado correctamente... !");
+                        resultMsg = "Paquete de suscripción cargado correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Paquete de suscripción modificado correctamente... !");
+                        resultMsg = "Paquete de suscripción modificado correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdPackages);
-                        return new AcctionResult(true, "Paquete de suscripción eliminado correctamente... !");
+                        resultMsg = "Paquete de suscripción eliminado correctamente... !";
+                        break;
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
+
+                PackagesCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             }
             catch (Exception ex)
             {

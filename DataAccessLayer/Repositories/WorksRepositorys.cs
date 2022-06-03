@@ -19,7 +19,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public WorksRepositorys()
         {
-            this.insert = "INSERT into Works (Series, Duration, Repetitions, RestTime, Load, Intensity, IdExercises) VALUES (@series, @duration, @repetiotions, @restTimes, @load, "
+            this.insert = "INSERT into Works (Series, Duration, Repetitions, RestTime, Load, Intensity, Exercises_idExcercises) VALUES (@series, @duration, @repetiotions, @restTimes, @load, "
                         + "@intensity, @idExercises";
             this.update = "UPDATE Works SET Series = @series, Duration = @duration, Repetitions = @repetitions, RestTimes = @restTimes, Load = @load, Intensity = @intensity, "
                         + "IdExercices = @idExercises WHERE IdWorks = @idWorks";
@@ -87,7 +87,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                         RestTime = Convert.ToInt32(row["RestTimes"]),
                         Load = Convert.ToDouble(row["Load"]),
                         Intensity = Convert.ToInt32(row["Intensity"]),
-                        IdExercises = Convert.ToInt32(row["IdExcercises"])
+                        IdExercises = Convert.ToInt32(row["Exercises_idExcercises"])
                     });
                 }
                 return list;

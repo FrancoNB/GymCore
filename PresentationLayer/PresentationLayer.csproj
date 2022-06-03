@@ -68,11 +68,23 @@
     <Compile Include="Controls\GymCoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Lists\frmPackagesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lists\frmPackagesList.Designer.cs">
+      <DependentUpon>frmPackagesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.Designer.cs">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterExercises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterExercises.Designer.cs">
+      <DependentUpon>frmRegisterExercises.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Register\frmRegisterPackages.cs">
       <SubType>Form</SubType>
@@ -100,8 +112,14 @@
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lists\frmPackagesList.resx">
+      <DependentUpon>frmPackagesList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\frmRegisterClients.resx">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\frmRegisterExercises.resx">
+      <DependentUpon>frmRegisterExercises.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\frmRegisterPackages.resx">
       <DependentUpon>frmRegisterPackages.cs</DependentUpon>
