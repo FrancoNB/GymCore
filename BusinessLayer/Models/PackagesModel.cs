@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
-using BusinessLayer.Support;
+using BusinessLayer.Cache;
 
 namespace BusinessLayer.Models
 {

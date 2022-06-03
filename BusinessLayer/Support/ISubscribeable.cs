@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer.Support
+﻿namespace BusinessLayer.Cache
 {
     public interface ISubscribeable<T> where T : class
     {

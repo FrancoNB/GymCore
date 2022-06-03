@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Support;
+﻿using BusinessLayer.Cache;
 using PresentationLayer.Forms.ConfigSystem;
 using PresentationLayer.Forms.Support;
 using PresentationLayer.Forms.Register;
@@ -9,6 +9,7 @@ using System.Globalization;
 using Presentation.Forms.Lists;
 using PresentationLayer.Utilities;
 using BusinessLayer.Models;
+using BusinessLayer.Cache;
 
 namespace PresentationLayer
 {
@@ -97,6 +98,7 @@ namespace PresentationLayer
 
             PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
             UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
+            ClientsCache.GetInstance().Resource = await new ClientsModel().GetAll();
 
             LoadNotification.Hide();
         }
