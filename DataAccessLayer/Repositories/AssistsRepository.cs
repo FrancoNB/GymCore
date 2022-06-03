@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         public AssistsRepository()
         {
             this.insert = "INSERT INTO Assists (Date, Clients_idClients, Subscriptions_idSubscriptions) VALUES (@date, @idClients, @idSubscriptions)";
-            this.update = "UPDATE Assists SET Date = @date, IdClients = @idClients, @IdSubscriptions = @idSubscriptions WHERE IdAssists = @idAssists";
+            this.update = "UPDATE Assists SET Date = @date, Clients_idClients = @idClients, Subscriptions_idSubscriptions = @idSubscriptions WHERE IdAssists = @idAssists";
             this.delete = "DELETE FROM Assists WHERE IdAssists = @idAssists";
             this.selectAll = "SELECT * FROM Assists";
             this.selectMaxId = "SELECT Max(IdAssists) as lastId FROM Assists";
