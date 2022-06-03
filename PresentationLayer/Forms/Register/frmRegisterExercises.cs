@@ -1,19 +1,15 @@
-﻿using BusinessLayer.Models;
+﻿using BusinessLayer.Cache;
+using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
 using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Forms.Register
 {
-    public partial class frmRegisterExercises : Form
+    public partial class frmRegisterExercises : Form, ISubscriber<ExercisesModel>
     {
         private static frmRegisterExercises instance;
 
@@ -83,35 +79,24 @@ namespace PresentationLayer.Forms.Register
             btnClose.Enabled = true;
             btnCancel.Enabled = false;
 
-            LoadExercisesList();
-
             btnNew.Select();
         }
 
-        private async void LoadExercisesList()
+        private void LoadDgvExercisesList()
         {
-            LoadNotification.Show("Cargando listado de ejercicios...");
+            IEnumerable<ExercisesModel> exercisesList = this.exercisesList;
 
-            exercisesList = await exerciseWorkingModel.GetAll();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                exercisesList = exercisesList.ToList().FindAll(exercise => exercise.Name.ToLower().Contains(txtSearch.Text.ToLower()));
 
-            LoadDgvExercisesList(exercisesList);
-
-            LoadNotification.Hide();
-        }
-
-        private void LoadDgvExercisesList(IEnumerable<ExercisesModel> exercisesList)
-        {
             dgvExercisesList.Rows.Clear();
 
-            if (exercisesList != null)
+            foreach (ExercisesModel exercise in exercisesList)
             {
-                foreach (ExercisesModel exercise in exercisesList)
-                {
-                    dgvExercisesList.Rows.Add(exercise.IdExercises, exercise.Name);
-                }
-
-                ClearSelectionDgv();
+                dgvExercisesList.Rows.Add(exercise.IdExercises, exercise.Name);
             }
+
+            ClearSelectionDgv();
         }
 
         private void SetControlsActiveState()
@@ -147,6 +132,8 @@ namespace PresentationLayer.Forms.Register
             dgvExercisesList.Columns.Add("Name", "NOMBRE");
 
             dgvExercisesList.Columns["idExercise"].Visible = false;
+
+            ExercisesCache.GetInstance().Attach(this);
 
             SetControlsDefaultState();
         }
@@ -384,14 +371,7 @@ namespace PresentationLayer.Forms.Register
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                LoadDgvExercisesList(exercisesList.ToList().FindAll(exercise => exercise.Name.ToLower().Contains(txtSearch.Text.ToLower())));
-            }
-            else
-            {
-                LoadDgvExercisesList(exercisesList);
-            }
+            LoadDgvExercisesList();
         }
 
         private void dgvExercisesList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -484,8 +464,6 @@ namespace PresentationLayer.Forms.Register
                     {
                         txtSearch.Clear();
 
-                        LoadExercisesList();
-
                         MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         btnNew.Select();
@@ -551,7 +529,16 @@ namespace PresentationLayer.Forms.Register
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            ExercisesCache.GetInstance().Detach(this);
+
             this.Close();
+        }
+
+        public void Update(ISubscribeable<ExercisesModel> resource)
+        {
+            exercisesList = ExercisesCache.GetInstance().Resource;
+
+            LoadDgvExercisesList();
         }
     }
 }
