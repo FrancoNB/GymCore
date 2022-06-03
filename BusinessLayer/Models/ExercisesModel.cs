@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Cache;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -73,26 +72,35 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Ejercicio guardado correctamente...!");
-                    
+                        resultMsg = "Ejercicio guardado correctamente... !";
+                        break;
+
                     case Operation.Update:
-                        ValidateUpdate();  
+                        ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Ejercicio modificado correctamente...!");
-                    
+                        resultMsg = "Ejercicio modificado correctamente... !";
+                        break;
+
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdExercises);
-                        return new AcctionResult(true, "Ejercicio eliminado correctamente...!");
-                    
+                        resultMsg = "Ejercicio eliminado correctamente... !";
+                        break;
+
                     default:
-                        return new AcctionResult(false, "No se estableció la operacion a realizar...!");
+                        return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
+
+                ExercisesCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             }
             catch (Exception ex)
             {
