@@ -55,7 +55,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtPrice = new PresentationLayer.Controls.GymCoreTextBox();
             this.txtAvailableDays = new PresentationLayer.Controls.GymCoreTextBox();
             this.txtNumberSessions = new PresentationLayer.Controls.GymCoreTextBox();
@@ -378,7 +377,6 @@
             // pnlData
             // 
             this.pnlData.Controls.Add(this.label9);
-            this.pnlData.Controls.Add(this.label6);
             this.pnlData.Controls.Add(this.label8);
             this.pnlData.Controls.Add(this.txtPrice);
             this.pnlData.Controls.Add(this.label7);
@@ -403,17 +401,6 @@
             this.label9.Size = new System.Drawing.Size(38, 19);
             this.label9.TabIndex = 33;
             this.label9.Text = "Dias";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label6.Location = new System.Drawing.Point(326, 54);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 19);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Dias";
             // 
             // txtPrice
             // 
@@ -536,6 +523,5 @@
         private System.Windows.Forms.Panel pnlData;
         private PresentationLayer.Controls.GymCoreTextBox txtName;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
     }
 }

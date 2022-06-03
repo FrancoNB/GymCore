@@ -6,6 +6,10 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
+using Presentation.Forms.Lists;
+using PresentationLayer.Utilities;
+using BusinessLayer.Models;
+using BusinessLayer.Cache;
 
 namespace PresentationLayer
 {
@@ -84,7 +88,19 @@ namespace PresentationLayer
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
 
+            LoadCache();
             ShowLogin();
+        }
+
+        private async void LoadCache()
+        {
+            LoadNotification.Show("Iniciando sistema...");
+
+            PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
+            UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
+            ClientsCache.GetInstance().Resource = await new ClientsModel().GetAll();
+
+            LoadNotification.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -97,14 +113,14 @@ namespace PresentationLayer
             ShowLogin();
         }
 
-        private void ShowLogin()
+        public void ShowLogin()
         {
             lblState.Text = "Sesión no iniciada";
 
             if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
-            lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+            lblState.Text = "Usuario: " + LoginCache.Username + " - Tipo: " + LoginCache.Type;
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
