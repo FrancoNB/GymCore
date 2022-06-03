@@ -16,24 +16,27 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public ExercisesRepository()
         {
-            this.insert = "INSERT INTO Excercises (Name, Detail, QuadricepsPoints, HamstringPoints, CalvesPoints, ButtocksPoints, TrapeziusPoints, DorsalPoints, LumbarsPoints,"
-                           + " PectoralPoints, AbdominalPoints, ObliquesPoints, BicepsPoints, TricepsPoints, ForearmPoints, PosteriorDeltoidsPoints, LateralDeltoidsPoints,"
+            this.insert = "INSERT INTO Exercises (Name, Detail, QuadricepsPoints, HamstringPoints, CalvesPoints, ButtocksPoints, TrapeziusPoints, DorsalsPoints, LumbarsPoints,"
+                           + " PectoralsPoints, AbdominalsPoints, ObliquesPoints, BicepsPoints, TricepsPoints, ForearmPoints, PosteriorDeltoidPoints, LateralDeltoidPoints,"
                            + " AnteriorDeltoidPoints, AdductorPoints) VALUES (@name, @detail, @quadricepsPoints, @hamstringPoints, @calvesPoints, @buttocksPoints,"
-                           + " @trapeziusPoints, @dorsalPoints, @lumbarPoints, @pectoralPoints, @abdominalPoints, @obliquesPoints, @bicepsPoints, @tricepsPoints, @forearmPoints,"
-                           + " @posteriorDeltoidsPoints, @lateralDeltoidsPoints, @anteriorDeltoidsPoints, @adductorPoints)";
+                           + " @trapeziusPoints, @dorsalsPoints, @lumbarsPoints, @pectoralsPoints, @abdominalsPoints, @obliquesPoints, @bicepsPoints, @tricepsPoints, @forearmPoints,"
+                           + " @posteriorDeltoidPoints, @lateralDeltoidPoints, @anteriorDeltoidPoints, @adductorPoints)";
 
-            this.update = "UPDATE Excercises SET Name = @name, Detail = @detail, QuadricepsPoints = @quadricepsPoints, HamstringPoints = @hamstringPoints, CalvesPoints = @calvesPoints, "
-                           + "ButtocksPoints = @buttocksPoints, TrapeziusPoints = @trapeziusPoints, DorsalPoints = @dorsalPoints, LumbarsPoints = @lumbarPoints, PectoralPoints = @pectoralPoints, "
-                           + "AbdominalPoints = @abdominalPoints, ObliquesPoints =  @obliquesPoints, BicepsPoints = @bicepsPoints, TricepsPoints = @tricepsPoints, ForearmPoints = @forearmPoints, "
-                           + "PosteriorDeltoidsPoints = @posteriorDeltoidsPoints, LateralDeltoidsPoints = @lateralDeltoidsPoints, AnteriorDeltoidPoints = @anteriorDeltoidsPoints, "
-                           + "AdductorPoints = @adductorPoints) WHERE IdExercises = @idExercices"; 
+            this.update = "UPDATE Exercises SET Name = @name, Detail = @detail, QuadricepsPoints = @quadricepsPoints, HamstringPoints = @hamstringPoints, CalvesPoints = @calvesPoints, "
+                           + "ButtocksPoints = @buttocksPoints, TrapeziusPoints = @trapeziusPoints, DorsalsPoints = @dorsalsPoints, LumbarsPoints = @lumbarsPoints, PectoralsPoints = @pectoralsPoints, "
+                           + "AbdominalsPoints = @abdominalsPoints, ObliquesPoints =  @obliquesPoints, BicepsPoints = @bicepsPoints, TricepsPoints = @tricepsPoints, ForearmPoints = @forearmPoints, "
+                           + "PosteriorDeltoidPoints = @posteriorDeltoidPoints, LateralDeltoidPoints = @lateralDeltoidPoints, AnteriorDeltoidPoints = @anteriorDeltoidPoints, "
+                           + "AdductorPoints = @adductorPoints WHERE IdExercises = @idExercises"; 
 
             this.delete = "DELETE FROM Exercises WHERE IdExercises = @idExercises";
 
             this.selectAll = "SELECT * FROM Exercises";
+
+            this.selectMaxId = "SELECT Max(IdExercises) as lastId FROM Exercises";
         }
 
         public async Task<int> Insert(Exercises entity)
@@ -47,18 +50,18 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@calvesPoints", entity.CalvesPoints),
                 new MySqlParameter("@buttocksPoints", entity.ButtocksPoints),
                 new MySqlParameter("@trapeziusPoints", entity.TrapeziusPoints),
-                new MySqlParameter("@dorsalPoints", entity.DorsalPoints),
-                new MySqlParameter("@lumbarPoints", entity.LumbarPoints),
-                new MySqlParameter("@pectoraPoints", entity.PectoralPoints),
-                new MySqlParameter("@abdominalPoints", entity.AbdominalPoints),
+                new MySqlParameter("@dorsalsPoints", entity.DorsalsPoints),
+                new MySqlParameter("@lumbarsPoints", entity.LumbarsPoints),
+                new MySqlParameter("@pectoralsPoints", entity.PectoralsPoints),
+                new MySqlParameter("@abdominalsPoints", entity.AbdominalsPoints),
                 new MySqlParameter("@obliquesPoints", entity.ObliquesPoints),
                 new MySqlParameter("@bicepsPoints", entity.BicepsPoints),
                 new MySqlParameter("@tricepsPoints", entity.TricepsPoints),
                 new MySqlParameter("@forearmPoints", entity.ForeArmPoints),
-                new MySqlParameter("@posteriorDeltoidsPoints", entity.PosteriorDeltoidsPoints),
-                new MySqlParameter("@lateralDeltoidsPoints", entity.LateralDeltoidPoints),
-                new MySqlParameter("@anteriorDeltoidsPoints", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductorPoints", entity.AddcutorPoints),
+                new MySqlParameter("@posteriorDeltoidPoints", entity.PosteriorDeltoidPoints),
+                new MySqlParameter("@lateralDeltoidPoints", entity.LateralDeltoidPoints),
+                new MySqlParameter("@anteriorDeltoidPoints", entity.AnteriorDeltoidPoints),
+                new MySqlParameter("@adductorPoints", entity.AdductorPoints),
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -69,24 +72,24 @@ namespace DataAccessLayer.Repositories.Interfaces
             {
                 new MySqlParameter("@name", entity.Name),
                 new MySqlParameter("@detail", entity.Detail),
-                new MySqlParameter("@quadriceps_points", entity.QuadricepsPoints),
-                new MySqlParameter("@hamstring_points", entity.HamstringPoints),
-                new MySqlParameter("@calves_points", entity.CalvesPoints),
-                new MySqlParameter("@buttocks_points", entity.ButtocksPoints),
-                new MySqlParameter("@trapezius_points", entity.TrapeziusPoints),
-                new MySqlParameter("@dorsal_points", entity.DorsalPoints),
-                new MySqlParameter("@lumbar_points", entity.LumbarPoints),
-                new MySqlParameter("@pectoral_points", entity.PectoralPoints),
-                new MySqlParameter("@abdominal_points", entity.AbdominalPoints),
-                new MySqlParameter("@obliques_points", entity.ObliquesPoints),
-                new MySqlParameter("@biceps_points", entity.BicepsPoints),
-                new MySqlParameter("@triceps_points", entity.TricepsPoints),
-                new MySqlParameter("@forearm_points", entity.ForeArmPoints),
-                new MySqlParameter("@posterior_deltoids_points", entity.PosteriorDeltoidsPoints),
-                new MySqlParameter("@lateral_deltoids_points", entity.LateralDeltoidPoints),
-                new MySqlParameter("@anterior_deltoids_points", entity.AnteriorDeltoidPoints),
-                new MySqlParameter("@adductor_points", entity.AddcutorPoints),
-                new MySqlParameter("@idExercices", entity.IdExercises)
+                new MySqlParameter("@quadricepsPoints", entity.QuadricepsPoints),
+                new MySqlParameter("@hamstringPoints", entity.HamstringPoints),
+                new MySqlParameter("@calvesPoints", entity.CalvesPoints),
+                new MySqlParameter("@buttocksPoints", entity.ButtocksPoints),
+                new MySqlParameter("@trapeziusPoints", entity.TrapeziusPoints),
+                new MySqlParameter("@dorsalsPoints", entity.DorsalsPoints),
+                new MySqlParameter("@lumbarsPoints", entity.LumbarsPoints),
+                new MySqlParameter("@pectoralsPoints", entity.PectoralsPoints),
+                new MySqlParameter("@abdominalsPoints", entity.AbdominalsPoints),
+                new MySqlParameter("@obliquesPoints", entity.ObliquesPoints),
+                new MySqlParameter("@bicepsPoints", entity.BicepsPoints),
+                new MySqlParameter("@tricepsPoints", entity.TricepsPoints),
+                new MySqlParameter("@forearmPoints", entity.ForeArmPoints),
+                new MySqlParameter("@posteriorDeltoidPoints", entity.PosteriorDeltoidPoints),
+                new MySqlParameter("@lateralDeltoidPoints", entity.LateralDeltoidPoints),
+                new MySqlParameter("@anteriorDeltoidPoints", entity.AnteriorDeltoidPoints),
+                new MySqlParameter("@adductorPoints", entity.AdductorPoints),
+                new MySqlParameter("@idExercises", entity.IdExercises)
             };
             return await ExecuteNonQueryAsync(update);
         }
@@ -118,25 +121,32 @@ namespace DataAccessLayer.Repositories.Interfaces
                         CalvesPoints = Convert.ToInt32(row["CalvesPoints"]),
                         ButtocksPoints = Convert.ToInt32(row["ButtocksPoints"]),
                         TrapeziusPoints = Convert.ToInt32(row["TrapeziusPoints"]),
-                        DorsalPoints = Convert.ToInt32(row["DorsalPoints"]),
-                        AbdominalPoints = Convert.ToInt32(row["AbdominalPoints"]),
+                        DorsalsPoints = Convert.ToInt32(row["DorsalsPoints"]),
+                        AbdominalsPoints = Convert.ToInt32(row["AbdominalsPoints"]),
                         ObliquesPoints = Convert.ToInt32(row["ObliquesPoints"]),
                         BicepsPoints = Convert.ToInt32(row["BicepsPoints"]),
                         TricepsPoints = Convert.ToInt32(row["TricepsPoints"]),
                         ForeArmPoints = Convert.ToInt32(row["ForearmPoints"]),
-                        PosteriorDeltoidsPoints = Convert.ToInt32(row["PosteriorDeltoidsPoints"]),
-                        LateralDeltoidPoints = Convert.ToInt32(row["LateralDeltoidsPoints"]),
+                        PosteriorDeltoidPoints = Convert.ToInt32(row["PosteriorDeltoidPoints"]),
+                        LateralDeltoidPoints = Convert.ToInt32(row["LateralDeltoidPoints"]),
                         AnteriorDeltoidPoints = Convert.ToInt32(row["AnteriorDeltoidPoints"]),
-                        AddcutorPoints = Convert.ToInt32(row["AdductorPoints"]),
-                        LumbarPoints = Convert.ToInt32(row["LumbarsPoints"]),
-                        PectoralPoints = Convert.ToInt32(row["PectoralPoints"]),
+                        AdductorPoints = Convert.ToInt32(row["AdductorPoints"]),
+                        LumbarsPoints = Convert.ToInt32(row["LumbarsPoints"]),
+                        PectoralsPoints = Convert.ToInt32(row["PectoralsPoints"])
                     }); 
                 }
                 return list;
             }
         }
-
-
-
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Cache;
+﻿using BusinessLayer.Support;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -119,26 +119,35 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Usuario guardado correctamente... !");
+                        resultMsg = "Usuario guardado correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Usuario modificado correctamente... !");
+                        resultMsg = "Usuario modificado correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdUsers);
-                        return new AcctionResult(true, "Usuario eliminado correctamente... !");
+                        resultMsg = "Usuario eliminado correctamente... !";
+                        break;
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
-                }               
+                }
+
+                UsersCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             } 
             catch (Exception ex)
             {
@@ -161,9 +170,9 @@ namespace BusinessLayer.Models
                 {
                     await repository.UpdateLastConnection(DateTime.Now, user.IdUsers);
 
-                    UserCache.IdUsers = user.IdUsers;
-                    UserCache.Username = user.Username;
-                    UserCache.Type = user.Type;
+                    LoginCache.IdUsers = user.IdUsers;
+                    LoginCache.Username = user.Username;
+                    LoginCache.Type = user.Type;
 
                     return new AcctionResult(true);
                 }

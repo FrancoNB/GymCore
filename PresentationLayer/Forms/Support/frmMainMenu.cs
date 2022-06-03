@@ -1,10 +1,14 @@
-﻿using BusinessLayer.Cache;
+﻿using BusinessLayer.Support;
 using PresentationLayer.Forms.ConfigSystem;
 using PresentationLayer.Forms.Support;
 using PresentationLayer.Forms.Register;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Globalization;
+using Presentation.Forms.Lists;
+using PresentationLayer.Utilities;
+using BusinessLayer.Models;
 
 namespace PresentationLayer
 {
@@ -32,6 +36,13 @@ namespace PresentationLayer
             InitializeComponent();
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-AR");
+            CultureInfo.DefaultThreadCurrentCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.CurrencyGroupSeparator = ",";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberGroupSeparator = ",";
 
             mstPPal.Renderer = new MenuStripRenderer();
         }
@@ -76,7 +87,18 @@ namespace PresentationLayer
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
 
+            LoadCache();
             ShowLogin();
+        }
+
+        private async void LoadCache()
+        {
+            LoadNotification.Show("Iniciando sistema...");
+
+            PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
+            UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
+
+            LoadNotification.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -89,14 +111,14 @@ namespace PresentationLayer
             ShowLogin();
         }
 
-        private void ShowLogin()
+        public void ShowLogin()
         {
             lblState.Text = "Sesión no iniciada";
 
             if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
-            lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+            lblState.Text = "Usuario: " + LoginCache.Username + " - Tipo: " + LoginCache.Type;
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -107,6 +129,16 @@ namespace PresentationLayer
         private void btnRegisterClients_Click(object sender, EventArgs e)
         {
             frmRegisterClients.GetInstance().ShowDialog(this);
+        }
+
+        private void btnPackages_Click(object sender, EventArgs e)
+        {
+            frmRegisterPackages.GetInstance().ShowDialog(this);
+        }
+
+        private void btnExercises_Click(object sender, EventArgs e)
+        {
+            frmRegisterExercises.GetInstance().ShowDialog(this);
         }
     }
 }
