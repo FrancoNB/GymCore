@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BusinessLayer.Support
+namespace BusinessLayer.Cache
 {
     public abstract class Subscribeable<T> : ISubscribeable<T> where T : class
     {

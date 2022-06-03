@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.Support
+namespace BusinessLayer.Cache
 {
     public static class LoginCache
     {

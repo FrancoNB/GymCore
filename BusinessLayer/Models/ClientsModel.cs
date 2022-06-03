@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 using System.Text.RegularExpressions;
+using BusinessLayer.Cache;
 
 namespace BusinessLayer.Models
 {
@@ -66,26 +67,35 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Cliente guardado correctamente... !");
+                        resultMsg = "Cliente cargado correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Cliente modificado correctamente... !");
+                        resultMsg = "Cliente modificado correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdClients);
-                        return new AcctionResult(true, "Cliente eliminado correctamente... !");
+                        resultMsg = "Cliente eliminado correctamente... !";
+                        break;
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
+
+                ClientsCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             }
             catch (Exception ex)
             {

@@ -1,8 +1,8 @@
 ﻿using BusinessLayer.Models;
-using BusinessLayer.Support;
+using BusinessLayer.Cache;
 using System.Collections.Generic;
 
-namespace BusinessLayer.Support
+namespace BusinessLayer.Cache
 {
     public class PackagesCache : Subscribeable<PackagesModel>
     {

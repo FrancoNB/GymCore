@@ -1,19 +1,15 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Cache;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Cache
 {
-    public class UsersCache : Subscribeable<UsersModel>
+    public class ClientsCache : Subscribeable<ClientsModel>
     {
-        private static UsersCache instance;
+        private static ClientsCache instance;
 
         private static readonly object _lock = new object();
-        public static UsersCache GetInstance()
+        public static ClientsCache GetInstance()
         {
             if (instance == null)
             {
@@ -21,7 +17,7 @@ namespace BusinessLayer.Cache
                 {
                     if (instance == null)
                     {
-                        instance = new UsersCache();
+                        instance = new ClientsCache();
                     }
                 }
             }
@@ -29,10 +25,10 @@ namespace BusinessLayer.Cache
             return instance;
         }
 
-        private UsersCache()
+        private ClientsCache()
         {
-            _resource = new List<UsersModel>();
-            _subscriberLit = new List<ISubscriber<UsersModel>>();
+            _resource = new List<ClientsModel>();
+            _subscriberLit = new List<ISubscriber<ClientsModel>>();
         }
     }
 }

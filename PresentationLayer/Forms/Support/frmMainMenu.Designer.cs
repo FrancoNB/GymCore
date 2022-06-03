@@ -96,7 +96,7 @@
             this.btnRegisterClients.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnRegisterClients.Name = "btnRegisterClients";
             this.btnRegisterClients.Size = new System.Drawing.Size(218, 22);
-            this.btnRegisterClients.Text = "Cliente";
+            this.btnRegisterClients.Text = "Clientes";
             this.btnRegisterClients.Click += new System.EventHandler(this.btnRegisterClients_Click);
             // 
             // btnPackages

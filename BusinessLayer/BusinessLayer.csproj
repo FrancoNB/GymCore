@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\ClientsCache.cs" />
     <Compile Include="Cache\PackagesCache.cs" />
     <Compile Include="Cache\LoginCache.cs" />
     <Compile Include="Support\Subscribeable.cs" />
