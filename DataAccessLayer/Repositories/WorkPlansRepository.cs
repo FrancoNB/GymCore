@@ -20,11 +20,11 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public WorkPlansRepository()
         {
-            this.insert = "INSERT into WorkPlans (Name, Category) VALUES (@name, @category)";
+            this.insert = "INSERT INTO WorkPlans (Name, Category) VALUES (@name, @category)";
             this.update = "UPDATE WorkPlans SET Name = @name, Category = @category WHERE IdWorkPlans = @idWorkPlans";
             this.delete = "DELETE FROM WorkPlans WHERE IdWorkPlans = @idWorkplans";
-            this.selectAll = "SELECT* FROM WorkPlans";
-            this.selectMaxId = "SELECT Max(IdWorkPlans) as lastId FROM WorkPlas";
+            this.selectAll = "SELECT * FROM WorkPlans";
+            this.selectMaxId = "SELECT Max(IdWorkPlans) AS lastId FROM WorkPlans";
         }
 
         public async Task<int> Insert(WorkPlans entity)

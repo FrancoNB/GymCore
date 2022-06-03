@@ -63,6 +63,7 @@
     <Compile Include="Repositories\CurrentAccountsRepositoryTest.cs" />
     <Compile Include="Repositories\ExercisesRepositoryTest.cs" />
     <Compile Include="Repositories\PackagesRepositoryTest.cs" />
+    <Compile Include="Repositories\RoutinesRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
