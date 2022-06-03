@@ -16,13 +16,15 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public ClientsRepository()
         {
-            this.insert = "INSERT INTO Clients (RegisterDate, Name, Surname, Locality, Address, Phone, Mail, Observations, State) VALUES (@registerDate, @name, @surname, @locality, @address, @phone, @mail, @observations, @state)";
-            this.update = "UPDATE Clients SET RegisterDate = @registerDate, Name = @name, Surname = @surname, Locality = @locality, Address = @addres, Phone = @phone, Mail = @mail, State = @state WHERE IdClients = @idClients";
+            this.insert = "INSERT INTO Clients (RegisterDate, Name, Surname, Locality, Address, Phone, Mail, Observations) VALUES (@registerDate, @name, @surname, @locality, @address, @phone, @mail, @observations)";
+            this.update = "UPDATE Clients SET RegisterDate = @registerDate, Name = @name, Surname = @surname, Locality = @locality, Address = @address, Phone = @phone, Mail = @mail, Observations = @observations WHERE IdClients = @idClients ";
             this.delete = "DELETE FROM Clients WHERE IdClients = @idClients";
             this.selectAll = "SELECT * FROM Clients";
+            this.selectMaxId = "SELECT Max(IdClients) as lastId FROM Clients";
         }
 
         public async Task<int> Insert(Clients entity)
@@ -37,7 +39,6 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@phone", entity.Phone),
                 new MySqlParameter("@mail", entity.Mail),
                 new MySqlParameter("@observations", entity.Observations),
-                new MySqlParameter("@state", entity.State)
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -54,7 +55,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@phone", entity.Phone),
                 new MySqlParameter("@mail", entity.Mail),
                 new MySqlParameter("@observations", entity.Observations),
-                new MySqlParameter("@state", entity.State)
+                new MySqlParameter("@idClients", entity.IdClients)
             };
             return await ExecuteNonQueryAsync(update);
         }
@@ -78,19 +79,31 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Clients()
                     {
-                        IdClients = Convert.ToInt32(row["IdUsers"]),
+                        IdClients = Convert.ToInt32(row["IdClients"]),
                         RegisterDate = Convert.ToDateTime(row["RegisterDate"]),
+                        Name = row["Name"].ToString(),
                         Surname = row["Surname"].ToString(),
                         Locality = row["Locality"].ToString(),
                         Address = row["Address"].ToString(),
                         Phone = row["Phone"].ToString(),
                         Mail = row["Mail"].ToString(),
                         Observations = row["Observations"].ToString(),
-                        State = row["State"].ToString()
-                    });
+                    }) ;
                 }
                 return list;
             }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
+            }
+
         }
     }
 } 

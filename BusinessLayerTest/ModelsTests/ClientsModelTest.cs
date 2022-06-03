@@ -43,8 +43,8 @@ namespace BusinessLayerTest.ModelsTests
                 Surname = "TestClientSurname",
                 Locality = "TestClientLocality",
                 Address = "TestClientAddress",
-                Phone = "123456789",
-                Mail = "TestClientMail",
+                Phone = "1234567891",
+                Mail = "TestClientMail@Email.com",
                 Observations = "TestClientObservations"
             };
 
@@ -57,9 +57,13 @@ namespace BusinessLayerTest.ModelsTests
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestClient",
-                Surname = "",
-                Phone = "123456789"
+                Name = "",
+                Surname = "TestClientSurname",
+                Locality = "TestClientLocality",
+                Address = "TestClientAddress",
+                Phone = "123456789",
+                Mail = "TestClientMail@Email.com",
+                Observations = "TestClientObservations"
             };
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
@@ -71,12 +75,48 @@ namespace BusinessLayerTest.ModelsTests
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "",
+                Name = "TestClientName",
+                Surname = "",
+                Locality = "TestClientLocality",
+                Address = "TestClientAddress",
+                Phone = "123456789",
+                Mail = "TestClientMail@Email.com",
+                Observations = "TestClientObservations"
+            };
+
+            Assert.IsFalse((await clientsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidInsertTest_3()
+        {
+            clientsModel = new ClientsModel(mockClientsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Insert,
+                Name = "TestClientName",
                 Surname = "TestClientSurname",
                 Locality = "TestClientLocality",
                 Address = "TestClientAddress",
                 Phone = "123456789",
-                Mail = "TestMail",
+                Mail = "InvalidTestClientMail",
+                Observations = "TestClientObservations"
+            };
+
+            Assert.IsFalse((await clientsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidInsertTest_4()
+        {
+            clientsModel = new ClientsModel(mockClientsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Insert,
+                Name = "TestClientName",
+                Surname = "TestClientSurname",
+                Locality = "TestClientLocality",
+                Address = "TestClientAddress",
+                Phone = "InvalidClientPhoneNumber",
+                Mail = "TestClientMail@Email.com",
                 Observations = "TestClientObservations"
             };
 
@@ -94,8 +134,8 @@ namespace BusinessLayerTest.ModelsTests
                 Surname = "UpdateTestClientSurname",
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
-                Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Phone = "1234567891",
+                Mail = "UpdateTestClientMail@Email.com",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -114,7 +154,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail@Email.com",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -133,7 +173,7 @@ namespace BusinessLayerTest.ModelsTests
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail@Email.com",
                 Observations = "UpdateTestClientObservations"
             };
 
@@ -146,12 +186,51 @@ namespace BusinessLayerTest.ModelsTests
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
                 Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdClients = 1,
                 Name = "UpdateTestClientName",
                 Surname = "UpdateTestClientSurname",
                 Locality = "UpdateTestClientLocality",
                 Address = "UpdateTestClientAddress",
                 Phone = "123456789",
-                Mail = "UpdateTestMail",
+                Mail = "UpdateTestClientMail@Email.com",
+                Observations = "UpdateTestClientObservations"
+            };
+
+            Assert.IsFalse((await clientsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidUpdateTest_4()
+        {
+            clientsModel = new ClientsModel(mockClientsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdClients = 1,
+                Name = "UpdateTestClientName",
+                Surname = "UpdateTestClientSurname",
+                Locality = "UpdateTestClientLocality",
+                Address = "UpdateTestClientAddress",
+                Phone = "123456789",
+                Mail = "InvalidUpdateTestClientMail",
+                Observations = "UpdateTestClientObservations"
+            };
+
+            Assert.IsFalse((await clientsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidUpdateTest_5()
+        {
+            clientsModel = new ClientsModel(mockClientsRepository.Object)
+            {
+                Operation = BusinessLayer.ValueObjects.Operation.Update,
+                IdClients = 1,
+                Name = "UpdateTestClientName",
+                Surname = "UpdateTestClientSurname",
+                Locality = "UpdateTestClientLocality",
+                Address = "UpdateTestClientAddress",
+                Phone = "InvalidClientPhoneNumber",
+                Mail = "UpdateTestClientMail@Email.com",
                 Observations = "UpdateTestClientObservations"
             };
 
