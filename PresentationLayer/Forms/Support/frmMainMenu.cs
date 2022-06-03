@@ -97,7 +97,7 @@ namespace PresentationLayer
             ShowLogin();
         }
 
-        private void ShowLogin()
+        public void ShowLogin()
         {
             lblState.Text = "Sesión no iniciada";
 

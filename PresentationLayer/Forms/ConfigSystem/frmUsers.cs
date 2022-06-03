@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Models;
+﻿using BusinessLayer.Cache;
+using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
 using PresentationLayer.Utilities;
 using System;
@@ -297,11 +298,22 @@ namespace PresentationLayer.Forms.ConfigSystem
                 LoadNotification.Hide();
 
                 if (!acctionResult.Result)
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUsername.Select();
+                }   
                 else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SetControlsDefaultState();
-
-                MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);          
+                    
+                    if (userWorkingModel.Operation == Operation.Update && userWorkingModel.IdUsers == UserCache.IdUsers)
+                    {
+                        this.Hide();
+                        frmMainMenu.GetInstance().ShowLogin();
+                        this.Close();
+                    }
+                }
             }
         }
 
