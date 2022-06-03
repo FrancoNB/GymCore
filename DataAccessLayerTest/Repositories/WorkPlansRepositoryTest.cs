@@ -88,21 +88,25 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task Update_InvalidTest_2() //registro inexistente Name
         {
+            await GetLastId_ValidTest();
+
             entity.Name = null;
 
-            var ex = Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
-            Assert.AreEqual(1048, ex);
+            Assert.AreEqual(1048, ex.Code);
         }
 
         [TestMethod]
         public async Task Update_InvalidTest_3() //registro inexistente Category
         {
+            await GetLastId_ValidTest();
+
             entity.Category = null;
 
-            var ex = Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
-            Assert.AreEqual(1048, ex);
+            Assert.AreEqual(1048, ex.Code);
         }
 
         [TestMethod]
