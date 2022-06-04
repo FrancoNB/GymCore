@@ -13,7 +13,7 @@ namespace BusinessLayer.Models
     public class CurrentAccountsModel
     {
         private int _idCurrentAccounts;
-        private string _ticketCode;
+        private Tickets _ticketCode;
         private DateTime _date;
         private double _credit;
         private double _debit;
@@ -22,7 +22,7 @@ namespace BusinessLayer.Models
         private int _idClients;
 
         public int IdCurrentAccounts { get { return _idCurrentAccounts; } set { _idCurrentAccounts = value; } }
-        public string TicketCode { get { return _ticketCode; } set { _ticketCode = value.Trim(); } }
+        public Tickets TicketCode { get { return _ticketCode; } set { _ticketCode = value; } }
         public DateTime Date { get { return _date; } set { _date = value; } }
         public double Credit { get { return _credit; } set { _credit = value; } }
         public double Debit { get { return _debit; } set { _debit = value; } }
@@ -54,14 +54,20 @@ namespace BusinessLayer.Models
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
                         return new AcctionResult(true, "Cuenta Corriente guardada correctamente... !");
+
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
                         return new AcctionResult(true, "Cuenta Corriente actualizada correctamente... !");
+
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdCurrentAccounts);
                         return new AcctionResult(true, "Cuenta Corriente eliminada correctamente... !");
+
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
+
                     default:
                         return new AcctionResult(false, "No se establecio la operación a realizar... !");
                 }
@@ -70,6 +76,11 @@ namespace BusinessLayer.Models
             {
                 return new AcctionResult(false, ex.Message);
             }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            return await repository.GetLastId();
         }
 
         public async Task<IEnumerable<CurrentAccountsModel>> GetAll()
@@ -84,7 +95,7 @@ namespace BusinessLayer.Models
                 {
                     IdCurrentAccounts = item.IdCurrentAccounts,
                     Date = item.Date,
-                    TicketCode = item.TicketCode,
+                    //TicketCode = item.TicketCode,
                     Debit = item.Debit,
                     Credit = item.Credit,
                     Balance = item.Balance,
@@ -102,7 +113,7 @@ namespace BusinessLayer.Models
             {
                 IdCurrentAccounts = this.IdCurrentAccounts,
                 Date = this.Date,
-                TicketCode = this.TicketCode,
+                //TicketCode = this.TicketCode,
                 Debit = this.Debit,
                 Credit = this.Credit,
                 Balance = this.Balance,
@@ -113,8 +124,8 @@ namespace BusinessLayer.Models
 
         private void ValidateInsert()
         {
-            if (string.IsNullOrWhiteSpace(TicketCode))
-                throw new ArgumentNullException("Se debe especificar el código de ticket... !");
+            //if (string.IsNullOrWhiteSpace(TicketCode))
+            //    throw new ArgumentNullException("Se debe especificar el código de ticket... !");
             
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";
@@ -131,8 +142,8 @@ namespace BusinessLayer.Models
             if (IdClients < 1)
                 throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente... !");
 
-            if (string.IsNullOrWhiteSpace(TicketCode))
-                throw new ArgumentNullException("Se debe especificar el código de ticket... !");
+            //if (string.IsNullOrWhiteSpace(TicketCode))
+            //    throw new ArgumentNullException("Se debe especificar el código de ticket... !");
 
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";

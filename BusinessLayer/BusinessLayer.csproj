@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -46,6 +47,11 @@
     <Compile Include="Cache\ExercisesCache.cs" />
     <Compile Include="Cache\PackagesCache.cs" />
     <Compile Include="Cache\LoginCache.cs" />
+    <Compile Include="Cache\SubscriptionsCache.cs" />
+    <Compile Include="Mappers\SubscriptionsMapper.cs" />
+    <Compile Include="Models\SubscriptionsModel.cs" />
+    <Compile Include="Services\SubscriptionsInsert.cs" />
+    <Compile Include="Support\IStrategy.cs" />
     <Compile Include="Support\Subscribeable.cs" />
     <Compile Include="Cache\UsersCache.cs" />
     <Compile Include="Models\CurrentAccountsModel.cs" />
@@ -60,6 +66,7 @@
     <Compile Include="Support\ISuscriber.cs" />
     <Compile Include="ValueObjects\Operation.cs" />
     <Compile Include="ValueObjects\AcctionResult.cs" />
+    <Compile Include="ValueObjects\Tickets.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
@@ -67,9 +74,7 @@
       <Name>DataAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>

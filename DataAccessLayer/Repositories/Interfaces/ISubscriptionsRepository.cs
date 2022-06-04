@@ -9,6 +9,6 @@ namespace DataAccessLayer.InterfaceRepositories
 {
     public interface ISubscriptionsRepository : ICrudRepository<Subscriptions>
     {
-
+        Task<IEnumerable<Subscriptions>> GetByIdClient(int idClient);
     }
 }

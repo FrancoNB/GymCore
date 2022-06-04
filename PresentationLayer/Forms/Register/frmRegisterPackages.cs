@@ -330,9 +330,9 @@ namespace PresentationLayer.Forms.Register
             this.Close();
         }
 
-        public void Update(ISubscribeable<PackagesModel> resource)
+        public void Update(IEnumerable<PackagesModel> resource)
         {
-            packagesList = PackagesCache.GetInstance().Resource;
+            packagesList = resource;
 
             LoadDgvPackagesList();
         }

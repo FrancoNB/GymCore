@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.ValueObjects
+namespace BusinessLayer.Services
 {
-    public enum Operation
+    public class SubscriptionsInsert
     {
-        Insert,
-        Delete,
-        Update,
-        Invalidate
     }
 }

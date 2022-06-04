@@ -9,7 +9,7 @@ using System.Globalization;
 using Presentation.Forms.Lists;
 using PresentationLayer.Utilities;
 using BusinessLayer.Models;
-using BusinessLayer.Cache;
+using Presentation.Forms.Management;
 
 namespace PresentationLayer
 {
@@ -142,6 +142,14 @@ namespace PresentationLayer
         private void btnExercises_Click(object sender, EventArgs e)
         {
             frmRegisterExercises.GetInstance().ShowDialog(this);
+        }
+
+        private void btnSubscriptions_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+                frmManagementSubscriptions.GetInstance().ShowDialog(this);
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de suscripciones... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
