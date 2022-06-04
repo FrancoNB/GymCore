@@ -123,7 +123,7 @@
     <Compile Include="Repositories\Interfaces\ISubscriptionsRepository.cs" />
     <Compile Include="Repositories\WorkPlansDetailRepository.cs" />
     <Compile Include="Repositories\WorkPlansRepository.cs" />
-    <Compile Include="Repositories\WorksRepositorys.cs" />
+    <Compile Include="Repositories\WorksRepository.cs" />
     <Compile Include="Support\ICrudRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
