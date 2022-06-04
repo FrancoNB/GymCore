@@ -57,10 +57,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\AssistsReppositoryTest.cs" />
     <Compile Include="Repositories\ClientsRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CurrentAccountsRepositoryTest.cs" />
     <Compile Include="Repositories\ExercisesRepositoryTest.cs" />
+    <Compile Include="Repositories\PackagesRepositoryTest.cs" />
+    <Compile Include="Repositories\PaymentsRepositoryTest.cs" />
+    <Compile Include="Repositories\WorkPlansRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
