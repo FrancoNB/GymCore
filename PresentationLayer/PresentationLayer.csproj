@@ -68,6 +68,12 @@
     <Compile Include="Controls\GymCoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Lists\frmClientsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lists\frmClientsList.Designer.cs">
+      <DependentUpon>frmClientsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Lists\frmPackagesList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lists\frmClientsList.resx">
+      <DependentUpon>frmClientsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Lists\frmPackagesList.resx">
       <DependentUpon>frmPackagesList.cs</DependentUpon>
