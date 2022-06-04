@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public RoutinesRepository()
         {
-            this.insert = "INSERT INTO `Routine` (StartDate, EndDate, State, Clients_idClients, WorkPlans_idWorkPlans) VALUES (@startDate, @endDate, @state, @idClients, @idWorkPlans)";
+            this.insert = "INSERT INTO Routine (StartDate, EndDate, State, Clients_idClients, WorkPlans_idWorkPlans) VALUES (@startDate, @endDate, @state, @idClients, @idWorkPlans)";
             this.update = "UPDATE `Routine` SET StartDate = @startDate, EndDate = @endDate, State = @state, Clients_idClients = @idClients, WorkPlans_idWorkPlans = @idWorkPlans WHERE IdRoutine = @idRoutine";
             this.delete = "DELETE FROM `Routine` WHERE IdRoutine = @idRoutine";
             this.selectAll = "SELECT * FROM `Routine`";

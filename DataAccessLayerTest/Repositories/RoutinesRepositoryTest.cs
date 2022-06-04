@@ -49,7 +49,7 @@ namespace DataAccessLayerTest.Repositories
                 Category = "AuxCategory"
             });
 
-            idWorkPlans = await workPlansRepository.GetLastId();
+            idWorkPlans = await workPlansRepository.GetLastId(); 
         }
 
         [TestInitialize]
@@ -67,7 +67,7 @@ namespace DataAccessLayerTest.Repositories
             };
         }
 
-        //[TestMethod]
+        [TestMethod]
         public async Task GetAll_Test()
         {
             CollectionAssert.AllItemsAreInstancesOfType((List<Routines>)await repository.GetAll(), typeof(Routines));
@@ -87,7 +87,7 @@ namespace DataAccessLayerTest.Repositories
             Assert.AreEqual(1, await repository.Update(entity));
         }
 
-       // [TestMethod]
+        //[TestMethod]
         public async Task GetLastId_ValidTest()
         {
             await Insert_ValidTest();
