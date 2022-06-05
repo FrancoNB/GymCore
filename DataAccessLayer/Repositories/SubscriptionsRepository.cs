@@ -25,8 +25,8 @@ namespace DataAccessLayer.Repositories
                         + "State, Clients_idClients, CurrentAccounts_idCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
                         + "@availabeSessions, @endDate, @expireDate, @observations, @state, @idClients, @idCurrentAccounts)";
 
-            this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
-                        + "UsedSessions = @used_sessions, AvailableSessions = @availabe_sessions, EndDate = @end_date,  ExpireDate = @expire_date, Observations = @observations, "
+            this.update = "UPDATE Subscriptions SET TicketCode = @ticketCode, StartDate = @startDate, Package = @package, Price = @price, TotalSessions  = @totalSessions, "
+                        + "UsedSessions = @usedSessions, AvailableSessions = @availabeSessions, EndDate = @endDate,  ExpireDate = @expireDate, Observations = @observations, "
                         + "State = @state, Clients_IdClients = @idClients, CurrentAccounts_idCurrentAccounts = @idCurrentAccounts WHERE IdSubscriptions = @idSubscriptions";
 
             this.updateState = "UPDATE Subscriptions SET State = @state WHERE IdSubscriptions = @idSubscriptions";
