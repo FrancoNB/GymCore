@@ -6,12 +6,7 @@ using Presentation.Forms.Lists;
 using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentation.Forms.Management
@@ -214,7 +209,10 @@ namespace Presentation.Forms.Management
 
         private void txtAvailableDays_TextChanged(object sender, EventArgs e)
         {
-            txtExpireDate.Text = dtpStartDate.Value.AddDays(FormatUtilities.NumbersOnly(txtAvailableDays.Text)).ToString("dd/MM/yyyy");
+            if (!string.IsNullOrWhiteSpace(txtAvailableDays.Text))
+                txtExpireDate.Text = dtpStartDate.Value.AddDays(FormatUtilities.NumbersOnly(txtAvailableDays.Text)).ToString("dd/MM/yyyy");
+            else
+                txtExpireDate.Clear();
         }
 
         private void txtExpireDate_TextChanged(object sender, EventArgs e)
