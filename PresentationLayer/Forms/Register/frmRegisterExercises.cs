@@ -534,9 +534,9 @@ namespace PresentationLayer.Forms.Register
             this.Close();
         }
 
-        public void Update(ISubscribeable<ExercisesModel> resource)
+        public void Update(IEnumerable<ExercisesModel> resource)
         {
-            exercisesList = ExercisesCache.GetInstance().Resource;
+            exercisesList = resource;
 
             LoadDgvExercisesList();
         }

@@ -141,6 +141,9 @@ namespace BusinessLayer.Models
                         resultMsg = "Usuario eliminado correctamente... !";
                         break;
 
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
+
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }

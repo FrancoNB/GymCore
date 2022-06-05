@@ -10,6 +10,7 @@ namespace BusinessLayer.ValueObjects
     {
         Insert,
         Delete,
-        Update
+        Update,
+        Invalidate
     }
 }

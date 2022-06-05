@@ -53,6 +53,9 @@ namespace BusinessLayer.Models
                         await repository.Delete(IdWorkPlans);
                         return new AcctionResult(true, "Plan de trabajo eliminado correctamente... !");
 
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
+
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
