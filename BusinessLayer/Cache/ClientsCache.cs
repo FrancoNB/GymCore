@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Cache;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer.Cache
 {
@@ -29,6 +30,11 @@ namespace BusinessLayer.Cache
         {
             _resource = new List<ClientsModel>();
             _subscriberLit = new List<ISubscriber<ClientsModel>>();
+        }
+
+        public bool isEmpty()
+        {
+            return _resource.ToList().Count == 0;
         }
     }
 }

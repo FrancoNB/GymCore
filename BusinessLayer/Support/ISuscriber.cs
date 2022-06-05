@@ -1,7 +1,9 @@
-﻿namespace BusinessLayer.Cache
+﻿using System.Collections.Generic;
+
+namespace BusinessLayer.Cache
 {
     public interface ISubscriber<T> where T : class
     {
-        void Update(ISubscribeable<T> resource);
+        void Update(IEnumerable<T> resource);
     }
 }

@@ -319,9 +319,9 @@ namespace PresentationLayer.Forms.Register
             this.Close();
         }
 
-        public void Update(ISubscribeable<ClientsModel> resource)
+        public void Update(IEnumerable<ClientsModel> resource)
         {
-            clientsList = ClientsCache.GetInstance().Resource;
+            clientsList = resource;
 
             LoadDgvClientsList();
         }

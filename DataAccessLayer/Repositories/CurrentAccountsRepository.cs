@@ -20,14 +20,14 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public CurrentAccountsRepository()
         {
-            this.insert = "INSERT INTO CurrentAccounts (TicketCode, Date, Credit, Debit, Balance, Detail, Clients_idClients) VALUES (@ticketCode, @date, @credit, @debit, @balance, @detail, @idClients)";
+            this.insert = "INSERT INTO CurrentAccounts (TicketCode, Date, Credit, Debit, Detail, Clients_idClients) VALUES (@ticketCode, @date, @credit, @debit, @detail, @idClients)";
 
-            this.update = "UPDATE CurrentAccounts SET TicketCode = @ticketCode, Date = @date, Credit = @credit, Debit = @debit, Balance = @balance, Detail = @detail, "
+            this.update = "UPDATE CurrentAccounts SET TicketCode = @ticketCode, Date = @date, Credit = @credit, Debit = @debit, Detail = @detail, "
                         + "Clients_idClients = @idClients WHERE IdCurrentAccounts = @idCurrentAccounts";
 
             this.delete = "DELETE FROM CurrentAccounts WHERE IdCurrentAccounts = @idCurrentAccounts";
 
-            this.selectAll = "SELECT * FROM CurrentAccounts";
+            this.selectAll = "SELECT *, SUM(Credit - Debit) OVER (PARTITION BY Clients_idClients ORDER BY idCurrentAccounts) Balance FROM CurrentAccounts";
 
             this.selectMaxId = "SELECT Max(IdCurrentAccounts) as lastId FROM CurrentAccounts";
         }
@@ -39,7 +39,6 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("Date",entity.Date),
                 new MySqlParameter("Credit",entity.Credit),
                 new MySqlParameter("Debit",entity.Debit),
-                new MySqlParameter("Balance",entity.Balance),
                 new MySqlParameter("Detail",entity.Detail),
                 new MySqlParameter("IdClients",entity.IdClients)
             };
@@ -55,7 +54,6 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("Date",entity.Date),
                 new MySqlParameter("Credit",entity.Credit),
                 new MySqlParameter("Debit",entity.Debit),
-                new MySqlParameter("Balance",entity.Balance),
                 new MySqlParameter("Detail",entity.Detail),
                 new MySqlParameter("IdClients",entity.IdClients)
             };

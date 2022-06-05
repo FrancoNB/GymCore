@@ -9,7 +9,7 @@ using System.Globalization;
 using Presentation.Forms.Lists;
 using PresentationLayer.Utilities;
 using BusinessLayer.Models;
-using BusinessLayer.Cache;
+using Presentation.Forms.Management;
 
 namespace PresentationLayer
 {
@@ -100,6 +100,7 @@ namespace PresentationLayer
             UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
             ClientsCache.GetInstance().Resource = await new ClientsModel().GetAll();
             ExercisesCache.GetInstance().Resource = await new ExercisesModel().GetAll();
+            SubscriptionsCache.GetInstance().Resource = await new SubscriptionsModel().GetAll();
 
             LoadNotification.Hide();
         }
@@ -142,6 +143,14 @@ namespace PresentationLayer
         private void btnExercises_Click(object sender, EventArgs e)
         {
             frmRegisterExercises.GetInstance().ShowDialog(this);
+        }
+
+        private void btnSubscriptions_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+                frmManagementSubscriptions.GetInstance().ShowDialog(this);
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de suscripciones... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

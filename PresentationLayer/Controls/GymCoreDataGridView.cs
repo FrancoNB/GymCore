@@ -130,6 +130,13 @@ namespace PresentationLayer.Controls
             base.OnColumnAdded(e);
 
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            if (Rows.Count == 0)
+            {
+                ColumnHeadersVisible = false;
+                _defaultAutoSizeColumnMode = AutoSizeColumnsMode;
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
         }
     }
 }
