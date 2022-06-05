@@ -64,7 +64,7 @@ namespace DataAccessLayerTest.Repositories
 
             entity = new Subscriptions()
             {
-                TicketCode = 1,
+                TicketCode = "TicketCodeTest",
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now,
                 ExpireDate = DateTime.Now,
@@ -106,7 +106,7 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task Insert_InvalidTest_1()
         {
-            entity.TicketCode = -1;
+            entity.TicketCode = null;
 
             var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
@@ -138,7 +138,7 @@ namespace DataAccessLayerTest.Repositories
         {
             await GetLastId_ValidTest();
 
-            entity.TicketCode = -1;
+            entity.TicketCode = null;
 
             var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
 
