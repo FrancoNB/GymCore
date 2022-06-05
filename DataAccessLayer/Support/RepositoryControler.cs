@@ -11,32 +11,33 @@ namespace DataAccessLayer.Support
 
         protected async Task<int> ExecuteNonQueryAsync(string transaction)
         {
+            OpenConnection();
+
             try
             {
-                using (var connection = GetConnection())
+                using (var command = new MySqlCommand())
                 {
-                    connection.Open();
+                    command.Connection = GetConnection();
+                    command.CommandText = transaction;
+                    command.CommandType = CommandType.Text;
 
-                    using (var command = new MySqlCommand())
+                    foreach (MySqlParameter parameter in parameters)
                     {
-                        command.Connection = connection;
-                        command.CommandText = transaction;
-                        command.CommandType = CommandType.Text;
-
-                        foreach (MySqlParameter parameter in parameters)
-                        {
-                            command.Parameters.Add(parameter);
-                        }
-
-                        parameters.Clear();
-
-                        return await command.ExecuteNonQueryAsync();
+                        command.Parameters.Add(parameter);
                     }
+
+                    parameters.Clear();
+
+                    return await command.ExecuteNonQueryAsync();
                 }
             }
             catch (MySqlException ex)
             {
                 throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
+            }
+            finally
+            {
+                CloseConnection();
             }
         }
 
@@ -44,34 +45,31 @@ namespace DataAccessLayer.Support
         {
             try
             {
-                using (var connection = GetConnection())
+                OpenConnection();
+
+                using (var command = new MySqlCommand())
                 {
-                    connection.Open();
+                    command.Connection = GetConnection();
+                    command.CommandText = transaction;
+                    command.CommandType = CommandType.Text;
 
-                    using (var command = new MySqlCommand())
+                    if (parameters != null)
                     {
-                        command.Connection = connection;
-                        command.CommandText = transaction;
-                        command.CommandType = CommandType.Text;
-
-                        if (parameters != null)
+                        foreach (MySqlParameter parameter in parameters)
                         {
-                            foreach (MySqlParameter parameter in parameters)
-                            {
-                                command.Parameters.Add(parameter);
-                            }
-
-                            parameters.Clear();
+                            command.Parameters.Add(parameter);
                         }
 
-                        using (var reader = await command.ExecuteReaderAsync())
-                        {
-                            using (var table = new DataTable())
-                            {
-                                table.Load(reader);
+                        parameters.Clear();
+                    }
 
-                                return table;
-                            }
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        using (var table = new DataTable())
+                        {
+                            table.Load(reader);
+
+                            return table;
                         }
                     }
                 }
@@ -80,6 +78,10 @@ namespace DataAccessLayer.Support
             {
                 throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
             }  
+            finally
+            {
+                CloseConnection();
+            }
         }
     }
 }

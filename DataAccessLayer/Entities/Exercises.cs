@@ -37,19 +37,17 @@ namespace DataAccessLayer.Entities
         public int CalvesPoints { get => _calvesPoints; set => _calvesPoints = value; }
         public int ButtocksPoints { get => _buttocksPoints; set => _buttocksPoints = value; }
         public int TrapeziusPoints { get => _trapeziusPoints; set => _trapeziusPoints = value; }
-        public int DorsalPoints { get => _dorsalPoints; set => _dorsalPoints = value; }
-        public int AbdominalPoints { get => _abdominalPoints; set => _abdominalPoints = value; }
+        public int DorsalsPoints { get => _dorsalPoints; set => _dorsalPoints = value; }
+        public int AbdominalsPoints { get => _abdominalPoints; set => _abdominalPoints = value; }
         public int ObliquesPoints { get => _obliquesPoints; set => _obliquesPoints = value; }
         public int BicepsPoints { get => _bicepsPoints; set => _bicepsPoints = value; }
         public int TricepsPoints { get => _tricepsPoints; set => _tricepsPoints = value; }
         public int ForeArmPoints { get => _forearmPoints; set => _forearmPoints = value; }
-        public int PosteriorDeltoidsPoints { get => _posteriorDeltoidPoints; set => _posteriorDeltoidPoints = value; }
+        public int PosteriorDeltoidPoints { get => _posteriorDeltoidPoints; set => _posteriorDeltoidPoints = value; }
         public int LateralDeltoidPoints { get => _lateralDeltoidPoints; set => _lateralDeltoidPoints = value; }
         public int AnteriorDeltoidPoints { get => _anteriorDeltoidPoints; set => _anteriorDeltoidPoints = value; }
-        public int AddcutorPoints { get => _adductorPoints; set => _adductorPoints = value; }
-        public int LumbarPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
-        public int PectoralPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
-
-
+        public int AdductorPoints { get => _adductorPoints; set => _adductorPoints = value; }
+        public int LumbarsPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
+        public int PectoralsPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
     }
 }

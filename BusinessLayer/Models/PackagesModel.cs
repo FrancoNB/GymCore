@@ -2,12 +2,10 @@
 using DataAccessLayer.Entities;
 using BusinessLayer.ValueObjects;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer.Support;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
+using BusinessLayer.Cache;
 
 namespace BusinessLayer.Models
 {
@@ -20,11 +18,10 @@ namespace BusinessLayer.Models
         private double _price;
 
         public int IdPackages { get => _idPackages; set => _idPackages = value; }
-        public string Name { get => _name; set => _name = value; }
+        public string Name { get => _name; set => _name = value.Trim(); }
         public int NumberSessions { get => _numberSessions; set => _numberSessions = value; }
         public int AvailableDays { get => _availableDays; set => _availableDays = value; }
         public double Price { get => _price; set => _price = value; }
-
 
         private IPackagesRepository repository;
         public Operation Operation { get; set; }
@@ -43,26 +40,35 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
                         await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Paquete de suscripción cargado correctamente... !");
+                        resultMsg = "Paquete de suscripción cargado correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Paquete de suscripción modificado correctamente... !");
+                        resultMsg = "Paquete de suscripción modificado correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdPackages);
-                        return new AcctionResult(true, "Paquete de suscripción eliminado correctamente... !");
+                        resultMsg = "Paquete de suscripción eliminado correctamente... !";
+                        break;
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
+
+                PackagesCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             }
             catch (Exception ex)
             {
@@ -108,11 +114,14 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions >= 0)
+            if (NumberSessions <= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays >= 0)
+            if (AvailableDays <= 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+
+            if (Price <= 0)
+                throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
 
             IdPackages = -1;
         }
@@ -125,11 +134,14 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ArgumentException("Se debe especificar el nombre del paquete de suscripción... !");
 
-            if (NumberSessions >= 0)
+            if (NumberSessions <= 0)
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
-            if (AvailableDays >= 0)
+            if (AvailableDays <= 0)
                 throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+
+            if (Price <= 0)
+                throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
 
         }
 

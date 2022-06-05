@@ -1,14 +1,15 @@
-﻿using BusinessLayer.Models;
+﻿using BusinessLayer.Cache;
+using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
-using Presentation.Utilities;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.ConfigSystem
+namespace PresentationLayer.Forms.ConfigSystem
 {
-    public partial class frmUsers : Form
+    public partial class frmUsers : Form, ISubscriber<UsersModel>
     {
         private static frmUsers instance;
 
@@ -61,24 +62,16 @@ namespace Presentation.Forms.ConfigSystem
             btnClose.Enabled = true;
             btnCancel.Enabled = false;
 
-            LoadUserList();
-
             btnNew.Select();
         }
 
-        private async void LoadUserList()
+        private void LoadDgvUsersList()
         {
-            LoadNotification.Show("Cargando listado de usuarios...");
+            IEnumerable<UsersModel> usersList = this.usersList;
 
-            usersList = await userWorkingModel.GetAll();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                usersList = usersList.ToList().FindAll(user => user.Username.ToLower().Contains(txtSearch.Text.ToLower()));
 
-            LoadDgvUsersList(usersList);
-
-            LoadNotification.Hide();
-        }
-
-        private void LoadDgvUsersList(IEnumerable<UsersModel> usersList)
-        {
             dgvUsersList.Rows.Clear();
 
             if (usersList != null)
@@ -119,10 +112,12 @@ namespace Presentation.Forms.ConfigSystem
 
         private void frmUsers_Load(object sender, EventArgs e)
         {
+            cbxType.Items.Clear();
             cbxType.Items.Add("Administrador");
             cbxType.Items.Add("Entrenador");
             cbxType.Items.Add("Cajero");
 
+            dgvUsersList.Columns.Clear();
             dgvUsersList.Columns.Add("idUser", "ID USUARIO");
             dgvUsersList.Columns.Add("RegisterDate", "FEC. ALTA");
             dgvUsersList.Columns.Add("Username", "USUARIO");
@@ -132,6 +127,8 @@ namespace Presentation.Forms.ConfigSystem
 
             dgvUsersList.Columns["RegisterDate"].Width = 60;
             dgvUsersList.Columns["LastConnection"].Width = 115;
+
+            UsersCache.GetInstance().Attach(this);
 
             SetControlsDefaultState();        
         }
@@ -160,14 +157,7 @@ namespace Presentation.Forms.ConfigSystem
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                LoadDgvUsersList(usersList.ToList().FindAll(user => user.Username.ToLower().Contains(txtSearch.Text.ToLower())));
-            }
-            else
-            {
-                LoadDgvUsersList(usersList);
-            }
+            LoadDgvUsersList();
         }
 
         private void dgvUsersList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -243,12 +233,12 @@ namespace Presentation.Forms.ConfigSystem
 
                     if (acctionResult.Result)
                     {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         txtSearch.Clear();
-
-                        LoadUserList();
                     }
-
-                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     btnNew.Select();
                 }
@@ -296,11 +286,22 @@ namespace Presentation.Forms.ConfigSystem
                 LoadNotification.Hide();
 
                 if (!acctionResult.Result)
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUsername.Select();
+                }   
                 else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SetControlsDefaultState();
-
-                MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);          
+                    
+                    if (userWorkingModel.Operation == Operation.Update && userWorkingModel.IdUsers == LoginCache.IdUsers)
+                    {
+                        this.Hide();
+                        frmMainMenu.GetInstance().ShowLogin();
+                        this.Close();
+                    }
+                }
             }
         }
 
@@ -311,7 +312,16 @@ namespace Presentation.Forms.ConfigSystem
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            UsersCache.GetInstance().Detach(this);
+
             this.Close();
+        }
+
+        public void Update(ISubscribeable<UsersModel> resource)
+        {
+            usersList = UsersCache.GetInstance().Resource;
+
+            LoadDgvUsersList();
         }
     }
 }

@@ -15,20 +15,23 @@ namespace DataAccessLayer.Repositories
         private readonly string update;
         private readonly string delete;
         private readonly string selectAll;
+        private readonly string selectMaxId;
 
         public SubscriptionsRepository()
         {
             this.insert = "INSERT INTO Subscriptions (TicketCode, StartDate, Package, Price, TotalSessions, UsedSessions, AvailableSessions, EndDate, ExpireDate, Observations, "
-                        + "State, ClientsIdClients, CurrentAccountsIdCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
-                        + "@availabeSessions, @endDate, @expireDate, @observations, @state, @clientsIdClients, @currentAccountsIdcurrentAccounts)";
+                        + "State, Clients_idClients, CurrentAccounts_idCurrentAccounts) VALUES (@ticketCode, @startDate, @package, @price, @totalSessions, @usedSessions, "
+                        + "@availabeSessions, @endDate, @expireDate, @observations, @state, @idClients, @idCurrentAccounts)";
 
             this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
                         + "UsedSessions = @used_sessions, AvailableSessions = @availabe_sessions, EndDate = @end_date,  ExpireDate = @expire_date, Observations = @observations, "
-                        + "State = @state, ClientsIdClients = @clients_idclients, CurrentAccountsIdCurrentAccounts = @current_accounts_idcurrentaccounts WHERE IdSubscriptions = @idSubscriptions";
+                        + "State = @state, Clients_IdClients = @idClients, CurrentAccounts_idCurrentAccounts = @idCurrentAccounts WHERE IdSubscriptions = @idSubscriptions";
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
-            this.selectAll = "SELECT * FROM Subscriptions"; 
+            this.selectAll = "SELECT * FROM Subscriptions";
+
+            this.selectMaxId = "SELECT Max(IdSubscriptions) as lastId FROM Subscriptions";
 
         }
 
@@ -47,8 +50,8 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@clientsIdclients", entity.ClientsIdClients),
-                new MySqlParameter("@currentAccountsIdcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts)
+                new MySqlParameter("@idClients", entity.IdClients),
+                new MySqlParameter("@idCurrentAccounts", entity.IdCurrentAccounts)
             };
             return await ExecuteNonQueryAsync(insert);
         }
@@ -68,8 +71,8 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@expireDate", entity.ExpireDate),
                 new MySqlParameter("@observations", entity.Observations),
                 new MySqlParameter("@state", entity.State),
-                new MySqlParameter("@clientsIdclients", entity.ClientsIdClients),
-                new MySqlParameter("@currentAccountsIdcurrentaccounts", entity.CurrentAccountsIdCurrentAccounts),
+                new MySqlParameter("@idClients", entity.IdClients),
+                new MySqlParameter("@idCurrentAccounts", entity.IdCurrentAccounts),
                 new MySqlParameter("@idSubscriptions", entity.IdSubscriptions)
             };
             return await ExecuteNonQueryAsync(update);
@@ -107,11 +110,22 @@ namespace DataAccessLayer.Repositories
                         ExpireDate = Convert.ToDateTime(row["ExpireDate"]),
                         Observations = row["Observations"].ToString(),
                         State = row["state"].ToString(),
-                        ClientsIdClients = Convert.ToInt32(row["ClientsIdClients"]),
-                        CurrentAccountsIdCurrentAccounts = Convert.ToInt32(row["CurrentAccountsIdCurrentAccounts"])                     
+                        IdClients = Convert.ToInt32(row["Clients_idClients"]),
+                        IdCurrentAccounts = Convert.ToInt32(row["CurrentAccounts_idCurrentAccounts"])                     
                     });
                 }
                 return list;
+            }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            using (var table = await ExecuteReaderAsync(selectMaxId))
+            {
+                if (table.Rows.Count > 0)
+                    return Convert.ToInt32(table.Rows[0]["lastId"]);
+                else
+                    return 0;
             }
         }
     }

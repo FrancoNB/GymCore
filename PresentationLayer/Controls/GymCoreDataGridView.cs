@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Controls
+namespace PresentationLayer.Controls
 {
     public class GymCoreDataGridView : DataGridView
     {
-        private DataGridViewAutoSizeColumnsMode _defaultAutoSizeColumnMode = DataGridViewAutoSizeColumnsMode.Fill;
+        private DataGridViewAutoSizeColumnsMode _defaultAutoSizeColumnMode;
 
         public GymCoreDataGridView()
         {
@@ -88,13 +88,19 @@ namespace Presentation.Controls
             RowTemplate.ReadOnly = true;
             
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _defaultAutoSizeColumnMode = AutoSizeColumnsMode;
         }
 
         protected override void OnRowsRemoved(DataGridViewRowsRemovedEventArgs e)
         {
             base.OnRowsRemoved(e);
 
-            DgvHeader();
+            if (Rows.Count == 0)
+            {
+                ColumnHeadersVisible = false;
+                _defaultAutoSizeColumnMode = AutoSizeColumnsMode;
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
         }
 
         protected override void OnRowsAdded(DataGridViewRowsAddedEventArgs e)
@@ -124,18 +130,6 @@ namespace Presentation.Controls
             base.OnColumnAdded(e);
 
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            DgvHeader();
-        }
-
-        private void DgvHeader()
-        {
-            if(Rows.Count == 0)
-            {
-                ColumnHeadersVisible = false;
-                _defaultAutoSizeColumnMode = AutoSizeColumnsMode;
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            }
         }
     }
 }

@@ -12,5 +12,6 @@ namespace DataAccessLayer.InterfaceRepositories
         Task<int> Update(Entity entity);
         Task<int> Delete(int id);
         Task<IEnumerable<Entity>> GetAll();
+        Task<int> GetLastId();
     }
 }
