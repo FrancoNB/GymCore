@@ -48,6 +48,7 @@
     <Compile Include="Cache\PackagesCache.cs" />
     <Compile Include="Cache\LoginCache.cs" />
     <Compile Include="Cache\SubscriptionsCache.cs" />
+    <Compile Include="Mappers\ClientsMapper.cs" />
     <Compile Include="Mappers\CurrentAccountsMapper.cs" />
     <Compile Include="Mappers\SubscriptionsMapper.cs" />
     <Compile Include="Models\SubscriptionsModel.cs" />
