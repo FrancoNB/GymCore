@@ -3,6 +3,7 @@ using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,10 +15,14 @@ namespace DataAccessLayerTest.Repositories
         private IPackagesRepository repository;
         private Packages entity;
 
+        private static Random random;
+
         [ClassInitialize]
         public static void ClassInitializate(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
+
+            random = new Random();
         }
 
         [TestInitialize]
@@ -27,7 +32,7 @@ namespace DataAccessLayerTest.Repositories
 
             entity = new Packages()
             {
-                Name = "NameTest",
+                Name = "NameTest" + random.Next().ToString(),
                 NumberSessions = 1,
                 AvailableDays = 1,
                 Price = 1234
@@ -67,6 +72,16 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
+        public async Task Insert_InvalidTest_2()
+        {
+            Assert.AreEqual(1, await repository.Insert(entity));
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1062, ex.Code);
+        }
+
+        [TestMethod]
         public async Task Update_ValidTest()
         {
             await GetLastId_ValidTest();
@@ -79,8 +94,6 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task Update_InvalidTest_1()
         {
-            await GetLastId_ValidTest();
-
             entity.IdPackages = 0;
 
             Assert.AreEqual(0, await repository.Update(entity));

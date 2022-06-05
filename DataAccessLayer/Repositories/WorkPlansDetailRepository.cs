@@ -21,11 +21,11 @@ namespace DataAccessLayer.Repositories.Interfaces
 
         public WorkPlansDetailRepository()
         {
-            this.insert = "INSERT into WorkPlanasDetail (Day, WorkPlans_idWorkPlans, Works_idWorks) VALUES (@day, @IdWorkPlans, @IdWorks)";
-            this.update = "UPDATE WorkPlansDetail SET Day = @day, WorkPlansIdWorkPlans = @workPlansIdWorkPlans, WorksIdWorks = @worksIdWorks WHERE IdWorkPlansDetail = @workPlansDetail";
+            this.insert = "INSERT INTO WorkPlansDetail (Day, WorkPlans_idWorkPlans, Works_idWorks) VALUES (@day, @idWorkPlans, @idWorks)";
+            this.update = "UPDATE WorkPlansDetail SET Day = @day, WorkPlans_idWorkPlans = @idWorkPlans, Works_idWorks = @idWorks WHERE IdWorkPlansDetail = @idWorkPlansDetail";
             this.delete = "DELETE FROM WorkPlansDetail WHERE idWorkPlansDetail = @idWorkplansDetail";
-            this.selectAll = "SELECT* FROM WorkPlansDetail";
-            this.selectMaxId = "SELECT Max(IdWorkPlanDetail) as lastId FROM WorkPlanDetail";
+            this.selectAll = "SELECT * FROM WorkPlansDetail";
+            this.selectMaxId = "SELECT Max(IdWorkPlansDetail) AS lastId FROM WorkPlansDetail";
         }
 
         public async Task<int> Insert(WorkPlansDetail entity)
@@ -33,8 +33,8 @@ namespace DataAccessLayer.Repositories.Interfaces
             parameters = new List<MySqlParameter>
             {
                 new MySqlParameter("@day", entity.Day),
-                new MySqlParameter("@IdWorkPlans", entity.IdWorkPlans),
-                new MySqlParameter("IdWorks", entity.IdWorks)
+                new MySqlParameter("@idWorkPlans", entity.IdWorkPlans),
+                new MySqlParameter("@idWorks", entity.IdWorks)
 
             };
             return await ExecuteNonQueryAsync(insert);
@@ -45,8 +45,8 @@ namespace DataAccessLayer.Repositories.Interfaces
             parameters = new List<MySqlParameter>
             {
                new MySqlParameter("@day", entity.Day),
-               new MySqlParameter("@IdWorkPlans", entity.IdWorkPlans),
-               new MySqlParameter("IdWorks", entity.IdWorks),
+               new MySqlParameter("@idWorkPlans", entity.IdWorkPlans),
+               new MySqlParameter("@idWorks", entity.IdWorks),
                new MySqlParameter("@idWorkPlansDetail", entity.IdWorkPlansDetail)
             };
             return await ExecuteNonQueryAsync(update);

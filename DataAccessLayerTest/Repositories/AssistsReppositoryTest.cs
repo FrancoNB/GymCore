@@ -62,7 +62,7 @@ namespace DataAccessLayerTest.Repositories
             {
                 IdClients = idClient,
                 IdCurrentAccounts = idCurrentAccount,
-                TicketCode = 1,
+                TicketCode = "TestCode",
                 StartDate = DateTime.Now,
                 TotalSessions = 1,
                 UsedSessions = 1,

@@ -1,6 +1,5 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Models;
-using BusinessLayer.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,9 +100,9 @@ namespace Presentation.Forms.Lists
             this.Close();
         }
 
-        public void Update(ISubscribeable<PackagesModel> resource)
+        public void Update(IEnumerable<PackagesModel> resource)
         {
-            packagesList = PackagesCache.GetInstance().Resource;
+            packagesList = resource;
 
             LoadDgvPackagesList();
         }

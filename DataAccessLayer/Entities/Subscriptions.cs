@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
     public class Subscriptions
     {
         private int _idsubscriptions;
-        private int _ticketCode;
+        private string _ticketCode;
         private DateTime _startDate;
         private string _package;
         private double _price;
@@ -24,7 +24,7 @@ namespace DataAccessLayer.Entities
         private int _currentAccountsIdcurrentAccounts;
 
         public int IdSubscriptions { get => _idsubscriptions; set => _idsubscriptions = value; }
-        public int TicketCode { get => _ticketCode; set => _ticketCode = value; }
+        public string TicketCode { get => _ticketCode; set => _ticketCode = value; }
         public DateTime StartDate { get => _startDate; set => _startDate = value; }
         public string Package { get => _package; set => _package = value; }
         public double Price { get => _price; set => _price = value; }
