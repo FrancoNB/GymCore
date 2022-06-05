@@ -100,6 +100,7 @@ namespace PresentationLayer
             UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
             ClientsCache.GetInstance().Resource = await new ClientsModel().GetAll();
             ExercisesCache.GetInstance().Resource = await new ExercisesModel().GetAll();
+            SubscriptionsCache.GetInstance().Resource = await new SubscriptionsModel().GetAll();
 
             LoadNotification.Hide();
         }

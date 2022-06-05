@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Models;
+using BusinessLayer.Services.SubscriptionsStrategy;
 using BusinessLayer.ValueObjects;
 using Presentation.Forms.Lists;
 using PresentationLayer.Utilities;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Forms.Management
 {
-    public partial class frmManagementSubscriptions : Form, ISubscriber<PackagesModel>, ISubscriber<ClientsModel>
+    public partial class frmManagementSubscriptions : Form, ISubscriber<PackagesModel>, ISubscriber<ClientsModel>, ISubscriber<SubscriptionsModel>
     {
         private static frmManagementSubscriptions instance;
 
@@ -35,6 +36,7 @@ namespace Presentation.Forms.Management
         }
 
         private readonly SubscriptionsModel subscriptionWorkingModel;
+        private SubscriptionsService subscriptionsService;
 
         private IEnumerable<SubscriptionsModel> subscriptionsList;
 
@@ -71,6 +73,7 @@ namespace Presentation.Forms.Management
         {
             txtTicketCode.Clear();
             txtPackage.Clear();
+            txtExpireDate.Clear();
             txtObservations.Clear();
 
             dtpStartDate.MaxDate = DateTime.Now;
@@ -109,6 +112,12 @@ namespace Presentation.Forms.Management
 
             ControlsUtilities.EnabledContainerControls(pnlList);
             ControlsUtilities.DisableContainerControls(pnlData);
+
+            dtpStartDate.Enabled = false;
+
+            txtClient.Enabled = true;
+
+            ClearData();
         }
 
         private void SetControlsClientEmptyState()
@@ -122,6 +131,10 @@ namespace Presentation.Forms.Management
 
             ControlsUtilities.DisableContainerControls(pnlList);
             ControlsUtilities.DisableContainerControls(pnlData);
+
+            dtpStartDate.Enabled = false;
+
+            txtClient.Enabled = true;
         }
 
         private void SetControlsActiveState()
@@ -154,11 +167,42 @@ namespace Presentation.Forms.Management
             dgvSubcriptionsClientList.ClearSelection();
         }
 
+        private void LoadDgvSubcriptionsClientList()
+        {
+            dgvSubcriptionsClientList.Rows.Clear();
+
+            if (subscriptionWorkingModel.IdClients > 0)
+            {
+                var subscriptionsClientsList = subscriptionsList.ToList().FindAll(subscription => subscription.IdClients == subscriptionWorkingModel.IdClients && subscription.State == SubscriptionsModel.SubscriptionsStates.Active);
+
+                foreach (SubscriptionsModel subscription in subscriptionsClientsList)
+                {
+                    dgvSubcriptionsClientList.Rows.Add(subscription.IdSubscriptions, subscription.Package + " (" + subscription.AvailableSessions + " / " + subscription.TotalSessions + ")", subscription.StartDateString, subscription.ExpireDateString);
+                }
+            }
+
+            ClearSelectionDgv();
+        }
+
         private void frmManagementSubscriptions_Load(object sender, EventArgs e)
         {
+            dgvSubcriptionsClientList.Columns.Clear();
+            dgvSubcriptionsClientList.Columns.Add("idSubscription", "ID SUBSCRIPCION");
+            dgvSubcriptionsClientList.Columns.Add("Package", "PAQUETE");
+            dgvSubcriptionsClientList.Columns.Add("StartDate", "INICIO");
+            dgvSubcriptionsClientList.Columns.Add("ExpireDate", "VENCIMIENTO");
 
+            dgvSubcriptionsClientList.Columns["idSubscription"].Visible = false;
+
+            dgvSubcriptionsClientList.Columns["StartDate"].Width = 80;
+            dgvSubcriptionsClientList.Columns["ExpireDate"].Width = 80;
+
+            dgvSubcriptionsClientList.Columns["StartDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvSubcriptionsClientList.Columns["ExpireDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            
             ClientsCache.GetInstance().Attach(this);
             PackagesCache.GetInstance().Attach(this);
+            SubscriptionsCache.GetInstance().Attach(this);
             
             SetControlsDefaultState();
         }
@@ -175,7 +219,8 @@ namespace Presentation.Forms.Management
 
         private void txtExpireDate_TextChanged(object sender, EventArgs e)
         {
-            subscriptionWorkingModel.ExpireDate = Convert.ToDateTime(txtExpireDate.Text);
+            if(!string.IsNullOrWhiteSpace(txtExpireDate.Text))
+                subscriptionWorkingModel.ExpireDate = Convert.ToDateTime(txtExpireDate.Text);
         }
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
@@ -210,6 +255,8 @@ namespace Presentation.Forms.Management
                 txtClientMail.Text = selectedClient.Mail;
 
                 subscriptionWorkingModel.IdClients = selectedClient.IdClients;
+
+                LoadDgvSubcriptionsClientList();
 
                 SetControlsClientEnterState();
             }
@@ -287,17 +334,142 @@ namespace Presentation.Forms.Management
             }
         }
 
+        private void dgvSubcriptionsClientList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var selectedSubscription = subscriptionsList.ToList().Find(subscription => subscription.IdSubscriptions == Convert.ToInt32(dgvSubcriptionsClientList.CurrentRow.Cells["idSubscription"].Value));
+
+                subscriptionWorkingModel.IdSubscriptions = selectedSubscription.IdSubscriptions;
+                subscriptionWorkingModel.IdCurrentAccounts = selectedSubscription.IdCurrentAccounts;
+                
+                txtPackage.Text = selectedSubscription.Package;
+                txtTicketCode.Text = selectedSubscription.TicketCode.Value;
+                dtpStartDate.Value = selectedSubscription.StartDate;
+                txtObservations.Text = selectedSubscription.Observations;
+
+                btnInvalidate.Select();
+            }
+            else
+            {
+                ClearSelectionDgv();
+            }
+        }
+
+        private void dgvSubcriptionsClientList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dgvSubcriptionsClientList.HitTest(e.X, e.Y).Equals(DataGridView.HitTestInfo.Nowhere))
+                {
+                    ClearSelectionDgv();
+                }
+            }
+        }
+
         private void btnNew_Click(object sender, EventArgs e)
         {
-            subscriptionWorkingModel.Operation = Operation.Insert;
+            subscriptionsService = new SubscriptionsService(new SubscriptionsInsert());
 
+            SetControlsActiveState();
             ClearSelectionDgv();
 
             subscriptionWorkingModel.TicketCode = Tickets.Create("SUB", subscriptionWorkingModel.IdClients);
 
             txtTicketCode.Text = subscriptionWorkingModel.TicketCode.Value;
+        }
 
-            SetControlsActiveState();
+        private async void btnInvalidate_Click(object sender, EventArgs e)
+        {
+            if (dgvSubcriptionsClientList.CurrentCell != null)
+            {
+                DialogResult confirm = MessageBox.Show("Anular subscripcion ? \n\nAdvertencia: anulando una subscripcion el registro de cuenta corriente correspondiente a la misma sigue vigente.", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.OK)
+                {
+                    subscriptionsService = new SubscriptionsService(new SubscriptionsInvalidate());
+
+                    LoadNotification.Show("Anulando subscripcion...");
+
+                    var acctionResult = await subscriptionsService.SaveChanges(subscriptionWorkingModel);
+
+                    LoadNotification.Hide();
+
+                    if (acctionResult.Result)
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        btnNew.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar la subscripcion que deseas anular... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvSubcriptionsClientList.CurrentCell != null)
+            {
+                DialogResult confirm = MessageBox.Show("Eliminar subscripcion ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.OK)
+                {
+                    subscriptionsService = new SubscriptionsService(new SubscriptionsDelete());
+
+                    LoadNotification.Show("Eliminando subscripcion...");
+
+                    var acctionResult = await subscriptionsService.SaveChanges(subscriptionWorkingModel);
+
+                    LoadNotification.Hide();
+
+                    if (acctionResult.Result)
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        btnNew.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar la subscripcion que deseas eliminar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Guardar subscripcion ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question); ;
+
+            if (confirm == DialogResult.OK)
+            {
+                LoadNotification.Show("Guardando subscripcion...");
+
+                var acctionResult = await subscriptionsService.SaveChanges(subscriptionWorkingModel);
+
+                LoadNotification.Hide();
+
+                if (!acctionResult.Result)
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPackage.Select();
+                }
+                else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SetControlsClientEnterState();
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -342,29 +514,11 @@ namespace Presentation.Forms.Management
             }
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        public void Update(IEnumerable<SubscriptionsModel> resource)
         {
-            DialogResult confirm = MessageBox.Show("Guardar subscripcion ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question); ;
+            subscriptionsList = resource;
 
-            if (confirm == DialogResult.OK)
-            {
-                LoadNotification.Show("Guardando subscripcion...");
-
-                var acctionResult = await subscriptionWorkingModel.SaveChanges();
-
-                LoadNotification.Hide();
-
-                if (!acctionResult.Result)
-                {
-                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtPackage.Select();
-                }
-                else
-                {
-                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    SetControlsClientEnterState();
-                }
-            }
+            LoadDgvSubcriptionsClientList();
         }
     }
 }

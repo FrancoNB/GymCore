@@ -27,7 +27,7 @@ namespace DataAccessLayer.Repositories.Interfaces
 
             this.delete = "DELETE FROM CurrentAccounts WHERE IdCurrentAccounts = @idCurrentAccounts";
 
-            this.selectAll = "SELECT * FROM CurrentAccounts";
+            this.selectAll = "SELECT *, SUM(Credit - Debit) OVER (PARTITION BY Clients_idClients) Balance FROM CurrentAccounts";
 
             this.selectMaxId = "SELECT Max(IdCurrentAccounts) as lastId FROM CurrentAccounts";
         }

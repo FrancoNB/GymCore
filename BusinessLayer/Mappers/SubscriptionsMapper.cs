@@ -21,7 +21,7 @@ namespace BusinessLayer.Mappers
                 EndDate = model.EndDate,
                 ExpireDate = model.ExpireDate,
                 Observations = model.Observations,
-                State = model.State,
+                State = model.StateString,
                 IdClients = model.IdClients,
                 IdCurrentAccounts = model.IdCurrentAccounts
             };
@@ -42,7 +42,7 @@ namespace BusinessLayer.Mappers
                 EndDate = entity.EndDate,
                 ExpireDate = entity.ExpireDate,
                 Observations = entity.Observations,
-                State = entity.State,
+                StateString = entity.State,
                 IdClients = entity.IdClients,
                 IdCurrentAccounts = entity.IdCurrentAccounts
             };

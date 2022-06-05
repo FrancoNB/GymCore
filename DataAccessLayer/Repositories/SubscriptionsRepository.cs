@@ -13,6 +13,7 @@ namespace DataAccessLayer.Repositories
     {
         private readonly string insert;
         private readonly string update;
+        private readonly string updateState;
         private readonly string delete;
         private readonly string selectAll;
         private readonly string selectMaxId;
@@ -27,6 +28,8 @@ namespace DataAccessLayer.Repositories
             this.update = "UPDATE Subscriptions SET TicketCode = @ticket_code, StartDate = @start_date, Package = @package, Price = @price, TotalSessions  = @total_sessions, "
                         + "UsedSessions = @used_sessions, AvailableSessions = @availabe_sessions, EndDate = @end_date,  ExpireDate = @expire_date, Observations = @observations, "
                         + "State = @state, Clients_IdClients = @idClients, CurrentAccounts_idCurrentAccounts = @idCurrentAccounts WHERE IdSubscriptions = @idSubscriptions";
+
+            this.updateState = "UPDATE Subscriptions SET State = @state WHERE IdSubscriptions = @idSubscriptions";
 
             this.delete = "DELETE FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
@@ -79,6 +82,17 @@ namespace DataAccessLayer.Repositories
                 new MySqlParameter("@idSubscriptions", entity.IdSubscriptions)
             };
             return await ExecuteNonQueryAsync(update);
+        }
+
+        public async Task<int> UpdateState(int id, string state)
+        {
+            parameters = new List<MySqlParameter>
+            {
+                new MySqlParameter("@idSubscriptions", id),
+                new MySqlParameter("@state", state)
+            };
+
+            return await ExecuteNonQueryAsync(updateState);
         }
 
         public async Task<int> Delete(int id)

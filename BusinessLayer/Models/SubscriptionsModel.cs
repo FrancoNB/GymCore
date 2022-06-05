@@ -12,6 +12,15 @@ namespace BusinessLayer.Models
 {
     public class SubscriptionsModel
     {
+        public enum SubscriptionsStates
+        {
+            Active,
+            Canceled,
+            Finished,
+            Expired,
+            Null
+        }
+
         private int _idsubscriptions;
         private Tickets _ticketCode;
         private DateTime _startDate;
@@ -23,7 +32,7 @@ namespace BusinessLayer.Models
         private DateTime _endDate;
         private DateTime _expireDate;
         private string _observations;
-        private string _state;
+        private SubscriptionsStates _state;
         private int _idclients;
         private int _idcurrentAccounts;
 
@@ -95,9 +104,40 @@ namespace BusinessLayer.Models
             }
         }
         public string Observations { get => _observations; set => _observations = value; }
-        public string State { get => _state; set => _state = value; }
+        public SubscriptionsStates State { get => _state; set => _state = value; }
+        public string StateString
+        {
+            get
+            {
+                if (State == SubscriptionsStates.Active)
+                    return "Activa";
+                else if (State == SubscriptionsStates.Canceled)
+                    return "Anulada";
+                else if (State == SubscriptionsStates.Finished)
+                    return "Finalizada";
+                else if (State == SubscriptionsStates.Expired)
+                    return "Vencida";
+                else
+                    return "Indeterminado";
+            }
+
+            set
+            {
+                if (value == "Activa")
+                    State = SubscriptionsStates.Active;
+                else if (value == "Anulada")
+                    State = SubscriptionsStates.Canceled;
+                else if (value == "Finalizada")
+                    State = SubscriptionsStates.Finished;
+                else if (value == "Vencida")
+                    State = SubscriptionsStates.Expired;
+                else
+                    State = SubscriptionsStates.Null;
+            }
+        }
         public int IdClients { get => _idclients; set => _idclients = value; }
         public int IdCurrentAccounts { get => _idcurrentAccounts; set => _idcurrentAccounts = value; }
+
 
         private ISubscriptionsRepository repository;
         public Operation Operation { get; set; }
@@ -122,36 +162,14 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-
-                        RepositoryConnection.BeginTransaction();
-
-                        var currentAccountModel = new CurrentAccountsModel()
-                        {
-                            Operation = Operation.Insert,
-                            TicketCode = this.TicketCode,
-                            Date = DateTime.Now,
-                            Credit = 0,
-                            Debit = this.Price,
-                            Detail = "[" + DateTime.Now.ToString("dd/MM/yyyy HH:mm") + "] -> Paquete adquirido: " + this.Package + " {Sesiones: " + this.TotalSessions + " - Inicio: " + this.StartDateString + " - Vencimiento: " + this.ExpireDateString + "}",
-                            IdClients = this.IdClients
-                        };
-
-                        var action = await currentAccountModel.SaveChanges();
-
-                        if(!action.Result)
-                            return new AcctionResult(false, action.Message);
-
-                        IdCurrentAccounts = await currentAccountModel.GetLastId();
-
                         await repository.Insert(SubscriptionsMapper.Adapter(this));
-
                         resultMsg = "Subscripcion guardada correctamente... !";
-
                         break;
 
                     case Operation.Invalidate:
                         ValidateInvalidate();
-                        await repository.Update(SubscriptionsMapper.Adapter(this));
+                        State = SubscriptionsStates.Canceled;
+                        await repository.UpdateState(IdSubscriptions, StateString);
                         resultMsg = "Subscripcion anulada correctamente... !";
                         break;
 
@@ -195,8 +213,8 @@ namespace BusinessLayer.Models
             if (IdClients < 1)
                 throw new ArgumentException("Se debe especificar el cliente al que asignar la subscripcion... !");
 
-            if (TicketCode != null)
-                throw new ArgumentException("Se debe especificar un codigo para el comprobante... !");
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de subscripcion... !");
 
             if (StartDate == null)
                 throw new ArgumentException("Se debe especificar la fecha de inicio de la subscripcion... !");
@@ -212,7 +230,7 @@ namespace BusinessLayer.Models
 
             IdSubscriptions = -1;
             EndDate = DateTime.MinValue;
-            State = "Activo";
+            State = SubscriptionsStates.Active;
             UsedSessions = 0;
             AvailableSessions = TotalSessions;
         }

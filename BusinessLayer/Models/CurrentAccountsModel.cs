@@ -1,7 +1,9 @@
-﻿using BusinessLayer.ValueObjects;
+﻿using BusinessLayer.Mappers;
+using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories.Interfaces;
+using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,12 +54,12 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(CurrentAccountsMapper.Adapter(this));    
                         return new AcctionResult(true, "Cuenta Corriente guardada correctamente... !");
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(CurrentAccountsMapper.Adapter(this));
                         return new AcctionResult(true, "Cuenta Corriente actualizada correctamente... !");
 
                     case Operation.Delete:
@@ -85,52 +87,21 @@ namespace BusinessLayer.Models
 
         public async Task<IEnumerable<CurrentAccountsModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<CurrentAccountsModel>();
-
-            foreach (CurrentAccounts item in dataModel)
-            {
-                list.Add(new CurrentAccountsModel
-                {
-                    IdCurrentAccounts = item.IdCurrentAccounts,
-                    Date = item.Date,
-                    //TicketCode = item.TicketCode,
-                    Debit = item.Debit,
-                    Credit = item.Credit,
-                    Balance = item.Balance,
-                    Detail = item.Detail,
-                    IdClients = item.IdClients,
-                });
-            }
-
-            return list;
-        }
-
-        private CurrentAccounts GetDataEntity()
-        {
-            return new CurrentAccounts()
-            {
-                IdCurrentAccounts = this.IdCurrentAccounts,
-                Date = this.Date,
-                //TicketCode = this.TicketCode,
-                Debit = this.Debit,
-                Credit = this.Credit,
-                Balance = this.Balance,
-                Detail = this.Detail,
-                IdClients = this.IdClients,
-            };
+            return CurrentAccountsMapper.AdapterList(await repository.GetAll());
         }
 
         private void ValidateInsert()
         {
-            //if (string.IsNullOrWhiteSpace(TicketCode))
-            //    throw new ArgumentNullException("Se debe especificar el código de ticket... !");
-            
+            if (IdClients < 1)
+                throw new ArgumentException("No se selecciono ningún cliente para asignarle un registro de cuenta corriente... !");
+
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
+
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";
 
-            IdClients = -1;
+            IdCurrentAccounts = -1;
             Date = DateTime.Now;
         }
 
@@ -140,10 +111,10 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("No se selecciono ninguna cuenta corriente... !");
 
             if (IdClients < 1)
-                throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente... !");
+                throw new ArgumentException("No se selecciono ningún cliente para asignarle un registro de cuenta corriente... !");
 
-            //if (string.IsNullOrWhiteSpace(TicketCode))
-            //    throw new ArgumentNullException("Se debe especificar el código de ticket... !");
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
 
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";
