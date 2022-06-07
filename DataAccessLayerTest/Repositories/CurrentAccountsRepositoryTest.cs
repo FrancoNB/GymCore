@@ -50,7 +50,6 @@ namespace DataAccessLayerTest.Repositories
                 Date = DateTime.Now,
                 Credit = 1234,
                 Debit = 1234,
-                Balance = 1234,
                 Detail = "DetailTest",
                 IdClients = idClient
             };

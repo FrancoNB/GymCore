@@ -7,8 +7,7 @@ using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
-
-
+using BusinessLayer.Mappers;
 
 namespace BusinessLayer.Models
 {
@@ -48,12 +47,12 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(RoutinesMapper.Adapter(this));
                         return new AcctionResult(true, "Rutina cargada correctamente... !");
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(RoutinesMapper.Adapter(this));
                         return new AcctionResult(true, "Rutina modificada correctamente... !");
 
                     case Operation.Delete:
@@ -75,37 +74,9 @@ namespace BusinessLayer.Models
         }
         public async Task<IEnumerable<RoutinesModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<RoutinesModel>();
-
-            foreach (Routines item in dataModel)
-            {
-                list.Add(new RoutinesModel
-                {
-                    IdRoutines = item.IdRoutine,
-                    StartDate = item.StartDate,
-                    EndDate = item.EndDate,
-                    State = item.State,
-                    IdClients = item.IdClients,
-                    IdWorkPlans = item.IdWorkPlans,
-                });
-            }
-            return list;
+            return RoutinesMapper.AdapterList(await repository.GetAll());
         }
 
-        private Routines GetDataEntity()
-        {
-            return new Routines()
-            {
-                IdRoutine = this.IdRoutines,
-                StartDate = this.StartDate,
-                EndDate = this.EndDate,
-                State = this.State,
-                IdClients = this.IdClients,
-                IdWorkPlans = this.IdWorkPlans,
-            };
-        }
         private void ValidateInsert() {
 
             if (IdWorkPlans < 1)
