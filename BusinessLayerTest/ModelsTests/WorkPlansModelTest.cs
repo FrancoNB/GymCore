@@ -23,25 +23,25 @@ namespace BusinessLayerTest.ModelsTests
             mockWorkPlansRepository.Setup(x => x.Insert(It.IsAny<WorkPlans>())).Returns(Task.FromResult(1));
             mockWorkPlansRepository.Setup(x => x.Delete(It.Is<int>(id => id > 0))).Returns(Task.FromResult(1));
             mockWorkPlansRepository.Setup(x => x.Update(It.Is<WorkPlans>(client => client.IdWorkPlans > 0))).Returns(Task.FromResult(1));
+
+            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
+            {
+                IdWorkPlans = 1,
+                Name = "InserTestWorkPlanName",
+                Category = "InserTestWorkPlanCategory"
+            };
         }
 
         [TestMethod()]
         public async Task GetAll_Test()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object);
-
             CollectionAssert.AreEqual(new List<WorkPlansModel>(), (List<WorkPlansModel>)await workPlansModel.GetAll());
         }
 
         [TestMethod()]
         public async Task SaveChanges_ValidInsertTest()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "InserTestWorkPlanName",
-                Category = "InserTestWorkPlanCategory"
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
             Assert.IsTrue((await workPlansModel.SaveChanges()).Result);
         }
@@ -49,12 +49,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_1()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "",
-                Category = "InserTestWorkPlanCategory"
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            workPlansModel.Name = "";
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
@@ -62,12 +58,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_2()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "InserTestWorkPlanName",
-                Category = ""
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            workPlansModel.Category = "";
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
@@ -75,13 +67,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidUpdateTest()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdWorkPlans = 1,
-                Name = "InserTestWorkPlanName",
-                Category = "InserTestWorkPlanCategory"
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
             Assert.IsTrue((await workPlansModel.SaveChanges()).Result);
         }
@@ -89,13 +75,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_1()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdWorkPlans = 1,
-                Name = "",
-                Category = "InserTestWorkPlanCategory"
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            workPlansModel.Name = "";
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
@@ -103,13 +84,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_2()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdWorkPlans = 1,
-                Name = "InserTestWorkPlanName",
-                Category = ""
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            workPlansModel.Category = "";
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
@@ -117,13 +93,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_3()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdWorkPlans = -1,
-                Name = "InserTestWorkPlanName",
-                Category = "InserTestWorkPlanCategory"
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            workPlansModel.IdWorkPlans = 0;
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
@@ -131,11 +102,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidDeleteTest()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete,
-                IdWorkPlans = 1
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
 
             Assert.IsTrue((await workPlansModel.SaveChanges()).Result);
         }
@@ -143,10 +110,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidDeleteTest()
         {
-            workPlansModel = new WorkPlansModel(mockWorkPlansRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete
-            };
+            workPlansModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
+            workPlansModel.IdWorkPlans = 0;
 
             Assert.IsFalse((await workPlansModel.SaveChanges()).Result);
         }
