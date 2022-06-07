@@ -15,7 +15,7 @@ namespace DataAccessLayer.Entities
         private int _idClients;
         private int _idWorkPlans;
 
-        public int IdRoutine { get => _idRoutine; set => _idRoutine = value; }
+        public int IdRoutines { get => _idRoutine; set => _idRoutine = value; }
         public DateTime StartDate { get => _startDate; set => _startDate = value; }
         public DateTime EndDate { get => _endDate; set => _endDate = value; }
         public string State { get => _state; set => _state = value; }

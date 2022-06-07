@@ -52,7 +52,10 @@
     <Compile Include="Mappers\CurrentAccountsMapper.cs" />
     <Compile Include="Mappers\ExercisesMapper.cs" />
     <Compile Include="Mappers\PackagesMapper.cs" />
+    <Compile Include="Mappers\RoutinesMapper.cs" />
     <Compile Include="Mappers\SubscriptionsMapper.cs" />
+    <Compile Include="Mappers\UsersMapper.cs" />
+    <Compile Include="Mappers\WorkPlansMapper.cs" />
     <Compile Include="Models\SubscriptionsModel.cs" />
     <Compile Include="Services\SubscriptionsStrategy\SubscriptionsDelete.cs" />
     <Compile Include="Services\SubscriptionsStrategy\SubscriptionsInsert.cs" />
