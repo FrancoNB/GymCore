@@ -223,7 +223,7 @@ namespace PresentationLayer.Forms.Register
                 txtDorsals.TextChanged += txtDorsals_TextChanged;
             }
 
-            exerciseWorkingModel.DorsalPoints = (int)FormatUtilities.NumbersOnly(txtDorsals.Text);
+            exerciseWorkingModel.DorsalsPoints = (int)FormatUtilities.NumbersOnly(txtDorsals.Text);
         }
 
         private void txtLumbars_TextChanged(object sender, EventArgs e)
@@ -236,7 +236,7 @@ namespace PresentationLayer.Forms.Register
                 txtLumbars.TextChanged += txtLumbars_TextChanged;
             }
 
-            exerciseWorkingModel.LumbarPoints = (int)FormatUtilities.NumbersOnly(txtLumbars.Text);
+            exerciseWorkingModel.LumbarsPoints = (int)FormatUtilities.NumbersOnly(txtLumbars.Text);
         }
 
         private void txtButtocks_TextChanged(object sender, EventArgs e)
@@ -262,7 +262,7 @@ namespace PresentationLayer.Forms.Register
                 txtPectorals.TextChanged += txtPectorals_TextChanged;
             }
 
-            exerciseWorkingModel.PectoralPoints = (int)FormatUtilities.NumbersOnly(txtPectorals.Text);
+            exerciseWorkingModel.PectoralsPoints = (int)FormatUtilities.NumbersOnly(txtPectorals.Text);
         }
 
         private void txtAbdominals_TextChanged(object sender, EventArgs e)
@@ -275,7 +275,7 @@ namespace PresentationLayer.Forms.Register
                 txtAbdominals.TextChanged += txtAbdominals_TextChanged;
             }
 
-            exerciseWorkingModel.AbdominalPoints = (int)FormatUtilities.NumbersOnly(txtAbdominals.Text);
+            exerciseWorkingModel.AbdominalsPoints = (int)FormatUtilities.NumbersOnly(txtAbdominals.Text);
         }
 
         private void txtObliques_TextChanged(object sender, EventArgs e)
@@ -389,10 +389,10 @@ namespace PresentationLayer.Forms.Register
                 txtCalves.Text = selectExercise.CalvesPoints.ToString();
                 txtButtocks.Text = selectExercise.ButtocksPoints.ToString();
                 txtTrapezius.Text = selectExercise.TrapeziusPoints.ToString();
-                txtDorsals.Text = selectExercise.DorsalPoints.ToString();
-                txtLumbars.Text = selectExercise.LumbarPoints.ToString();
-                txtPectorals.Text = selectExercise.PectoralPoints.ToString();
-                txtAbdominals.Text = selectExercise.AbdominalPoints.ToString();
+                txtDorsals.Text = selectExercise.DorsalsPoints.ToString();
+                txtLumbars.Text = selectExercise.LumbarsPoints.ToString();
+                txtPectorals.Text = selectExercise.PectoralsPoints.ToString();
+                txtAbdominals.Text = selectExercise.AbdominalsPoints.ToString();
                 txtObliques.Text = selectExercise.ObliquesPoints.ToString();
                 txtBiceps.Text = selectExercise.BicepsPoints.ToString();
                 txtTriceps.Text = selectExercise.TricepsPoints.ToString();

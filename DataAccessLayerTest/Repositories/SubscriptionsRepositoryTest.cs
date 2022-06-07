@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
+using DataAccessLayer.Repositories;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,10 +13,10 @@ using System.Threading.Tasks;
 namespace DataAccessLayerTest.Repositories
 {
     [TestClass]
-    public class PaymentsRepositoryTest
+    public class SubscriptionsRepositoryTest
     {
-        private IPaymentsRepository repository;
-        private Payments entity;
+        private ISubscriptionsRepository repository;
+        private Subscriptions entity;
         private static int idClient;
         private static int idCurrentAccount;
 
@@ -49,46 +50,52 @@ namespace DataAccessLayerTest.Repositories
                 Date = DateTime.Now,
                 Credit = 1,
                 Debit = 1,
+                Balance = 1,
                 Detail = "AuxDetail"
             });
 
             idCurrentAccount = await currentAccountsRepository.GetLastId();
-
         }
-
+        
         [TestInitialize]
         public void TestInitialize()
         {
-            repository = new PaymentsRepository();
+            repository = new SubscriptionsRepository();
 
-            entity = new Payments()
+            entity = new Subscriptions()
             {
                 TicketCode = "TicketCodeTest",
-                Date = DateTime.Now,
-                Amount = 1.0,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                ExpireDate = DateTime.Now,
+                Package = "PackageTest",
+                Price = 1.0,
+                TotalSessions = 1, 
+                UsedSessions = 1,
+                AvailableSessions = 1, 
+                Observations = "ObservationsTest",
+                State = "StateTest",
                 IdClients = idClient,
                 IdCurrentAccounts = idCurrentAccount,
-                PaymentMethod = "PaymentMethodTest",
-                Observations = "ObservationsTest"
             };
         }
 
         [TestMethod]
         public async Task GetAll_Test()
         {
-            CollectionAssert.AllItemsAreInstancesOfType((List<Payments>)await repository.GetAll(), typeof(Payments));
+            CollectionAssert.AllItemsAreInstancesOfType((List<Subscriptions>)await repository.GetAll(), typeof(Subscriptions));
         }
-
 
         [TestMethod]
         public async Task GetLastId_ValidTest()
         {
             await Insert_ValidTest();
 
-            entity.IdPayments = await repository.GetLastId();
+            entity.IdSubscriptions = await repository.GetLastId();
 
-            Assert.IsInstanceOfType(entity.IdPayments, typeof(int));
+            Assert.IsInstanceOfType(entity.IdSubscriptions, typeof(int));
         }
+
 
         [TestMethod]
         public async Task Insert_ValidTest()
@@ -111,7 +118,7 @@ namespace DataAccessLayerTest.Repositories
         {
             await GetLastId_ValidTest();
 
-            entity.Amount = 4321.90;
+            entity.Price = 4321.90;
 
             Assert.AreEqual(1, await repository.Update(entity));
         }
@@ -121,7 +128,7 @@ namespace DataAccessLayerTest.Repositories
         {
             await GetLastId_ValidTest();
 
-            entity.IdPayments = 0;
+            entity.IdSubscriptions = 0;
 
             Assert.AreEqual(0, await repository.Update(entity));
         }
@@ -143,11 +150,11 @@ namespace DataAccessLayerTest.Repositories
         {
             await GetLastId_ValidTest();
 
-            Assert.AreEqual(1, await repository.Delete(entity.IdPayments));
+            Assert.AreEqual(1, await repository.Delete(entity.IdSubscriptions));
         }
 
         [TestMethod]
-        public async Task Delete_InvalidTest() //registro inexistente IdPayments = 0
+        public async Task Delete_InvalidTest() //registro inexistente IdSubscriptions = 0
         {
             Assert.AreEqual(0, await repository.Delete(0));
         }
