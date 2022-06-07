@@ -68,7 +68,7 @@
     <Compile Include="Repositories\UsersRepositoryTest.cs" />
     <Compile Include="Repositories\WorkPlansDetailRepositoryTest.cs" />
     <Compile Include="Repositories\WorkPlansRepositoryTest.cs" />
-    <Compile Include="Repositories\WorksRepositoryTest.cs" />
+    <Compile Include="Repositories\RoutinesRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
