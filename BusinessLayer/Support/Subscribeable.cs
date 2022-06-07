@@ -7,13 +7,13 @@ namespace BusinessLayer.Cache
         protected IEnumerable<T> _resource;
         protected List<ISubscriber<T>> _subscriberLit;
 
-        public IEnumerable<T> Resource { get => _resource; set { _resource = value; Notify(); } }
+        public IEnumerable<T> Resource { set { _resource = value; Notify(); } }
 
         public void Attach(ISubscriber<T> observer)
         {
             this._subscriberLit.Add(observer);
 
-            observer.Update(this);
+            observer.Update(_resource);
         }
 
         public void Detach(ISubscriber<T> observer)
@@ -25,7 +25,7 @@ namespace BusinessLayer.Cache
         {
             foreach (var observer in _subscriberLit)
             {
-                observer.Update(this);
+                observer.Update(_resource);
             }
         }
     }

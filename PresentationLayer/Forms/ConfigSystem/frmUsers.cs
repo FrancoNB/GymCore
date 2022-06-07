@@ -317,9 +317,9 @@ namespace PresentationLayer.Forms.ConfigSystem
             this.Close();
         }
 
-        public void Update(ISubscribeable<UsersModel> resource)
+        public void Update(IEnumerable<UsersModel> resource)
         {
-            usersList = UsersCache.GetInstance().Resource;
+            usersList = resource;
 
             LoadDgvUsersList();
         }

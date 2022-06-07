@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Models;
+using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,7 +45,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
                 IdCurrentAccounts = 1,
                 IdClients = 1,
-                TicketCode = "1234",
+                TicketCode = Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -63,7 +64,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Insert,
                 IdCurrentAccounts = 1,
                 IdClients = 1,
-                TicketCode = "",
+                TicketCode = null,
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -82,7 +83,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Update,
                 IdCurrentAccounts = 1,
                 IdClients = 1,
-                TicketCode = "1234",
+                TicketCode = Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -101,7 +102,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Update,
                 IdCurrentAccounts = -1,
                 IdClients = 1,
-                TicketCode = "1234",
+                TicketCode = Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -120,7 +121,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Update,
                 IdCurrentAccounts = 1,
                 IdClients = -1,
-                TicketCode = "1234",
+                TicketCode = Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -139,7 +140,7 @@ namespace BusinessLayerTest.ModelsTests
                 Operation = BusinessLayer.ValueObjects.Operation.Update,
                 IdCurrentAccounts = -1,
                 IdClients = 1,
-                TicketCode = "",
+                TicketCode = null,
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,

@@ -1,7 +1,9 @@
-﻿using BusinessLayer.ValueObjects;
+﻿using BusinessLayer.Mappers;
+using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories.Interfaces;
+using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace BusinessLayer.Models
     public class CurrentAccountsModel
     {
         private int _idCurrentAccounts;
-        private string _ticketCode;
+        private Tickets _ticketCode;
         private DateTime _date;
         private double _credit;
         private double _debit;
@@ -22,7 +24,7 @@ namespace BusinessLayer.Models
         private int _idClients;
 
         public int IdCurrentAccounts { get { return _idCurrentAccounts; } set { _idCurrentAccounts = value; } }
-        public string TicketCode { get { return _ticketCode; } set { _ticketCode = value.Trim(); } }
+        public Tickets TicketCode { get { return _ticketCode; } set { _ticketCode = value; } }
         public DateTime Date { get { return _date; } set { _date = value; } }
         public double Credit { get { return _credit; } set { _credit = value; } }
         public double Debit { get { return _debit; } set { _debit = value; } }
@@ -52,16 +54,22 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(CurrentAccountsMapper.Adapter(this));    
                         return new AcctionResult(true, "Cuenta Corriente guardada correctamente... !");
+
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(CurrentAccountsMapper.Adapter(this));
                         return new AcctionResult(true, "Cuenta Corriente actualizada correctamente... !");
+
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdCurrentAccounts);
                         return new AcctionResult(true, "Cuenta Corriente eliminada correctamente... !");
+
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
+
                     default:
                         return new AcctionResult(false, "No se establecio la operación a realizar... !");
                 }
@@ -72,54 +80,28 @@ namespace BusinessLayer.Models
             }
         }
 
-        public async Task<IEnumerable<CurrentAccountsModel>> GetAll()
+        public async Task<int> GetLastId()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<CurrentAccountsModel>();
-
-            foreach (CurrentAccounts item in dataModel)
-            {
-                list.Add(new CurrentAccountsModel
-                {
-                    IdCurrentAccounts = item.IdCurrentAccounts,
-                    Date = item.Date,
-                    TicketCode = item.TicketCode,
-                    Debit = item.Debit,
-                    Credit = item.Credit,
-                    Balance = item.Balance,
-                    Detail = item.Detail,
-                    IdClients = item.IdClients,
-                });
-            }
-
-            return list;
+            return await repository.GetLastId();
         }
 
-        private CurrentAccounts GetDataEntity()
+        public async Task<IEnumerable<CurrentAccountsModel>> GetAll()
         {
-            return new CurrentAccounts()
-            {
-                IdCurrentAccounts = this.IdCurrentAccounts,
-                Date = this.Date,
-                TicketCode = this.TicketCode,
-                Debit = this.Debit,
-                Credit = this.Credit,
-                Balance = this.Balance,
-                Detail = this.Detail,
-                IdClients = this.IdClients,
-            };
+            return CurrentAccountsMapper.AdapterList(await repository.GetAll());
         }
 
         private void ValidateInsert()
         {
-            if (string.IsNullOrWhiteSpace(TicketCode))
-                throw new ArgumentNullException("Se debe especificar el código de ticket... !");
-            
+            if (IdClients < 1)
+                throw new ArgumentException("No se selecciono ningún cliente para asignarle un registro de cuenta corriente... !");
+
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
+
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";
 
-            IdClients = -1;
+            IdCurrentAccounts = -1;
             Date = DateTime.Now;
         }
 
@@ -129,10 +111,10 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("No se selecciono ninguna cuenta corriente... !");
 
             if (IdClients < 1)
-                throw new ArgumentException("No se selecciono ningún cliente para asignarle una cuenta corriente... !");
+                throw new ArgumentException("No se selecciono ningún cliente para asignarle un registro de cuenta corriente... !");
 
-            if (string.IsNullOrWhiteSpace(TicketCode))
-                throw new ArgumentNullException("Se debe especificar el código de ticket... !");
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
 
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";

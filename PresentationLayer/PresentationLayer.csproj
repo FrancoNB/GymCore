@@ -80,6 +80,12 @@
     <Compile Include="Forms\Lists\frmPackagesList.Designer.cs">
       <DependentUpon>frmPackagesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Management\frmManagementSubscriptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\frmManagementSubscriptions.Designer.cs">
+      <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\frmManagementSubscriptions.resx">
+      <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Lists\frmClientsList.resx">
       <DependentUpon>frmClientsList.cs</DependentUpon>
@@ -163,7 +172,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Management\" />
     <Folder Include="Forms\Queries\" />
   </ItemGroup>
   <ItemGroup>

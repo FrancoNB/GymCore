@@ -36,7 +36,7 @@
             this.btnPackages = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExercises = new System.Windows.Forms.ToolStripMenuItem();
             this.btnManagement = new System.Windows.Forms.ToolStripMenuItem();
-            this.suscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSubscriptions = new System.Windows.Forms.ToolStripMenuItem();
             this.planesDeTrabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +121,7 @@
             // 
             this.btnManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
             this.btnManagement.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.suscripcionesToolStripMenuItem,
+            this.btnSubscriptions,
             this.planesDeTrabajoToolStripMenuItem,
             this.rutinasToolStripMenuItem,
             this.asistenciaToolStripMenuItem,
@@ -131,13 +131,14 @@
             this.btnManagement.Size = new System.Drawing.Size(64, 21);
             this.btnManagement.Text = "Manejo";
             // 
-            // suscripcionesToolStripMenuItem
+            // btnSubscriptions
             // 
-            this.suscripcionesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.suscripcionesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.suscripcionesToolStripMenuItem.Name = "suscripcionesToolStripMenuItem";
-            this.suscripcionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.suscripcionesToolStripMenuItem.Text = "Suscripciones";
+            this.btnSubscriptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnSubscriptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnSubscriptions.Name = "btnSubscriptions";
+            this.btnSubscriptions.Size = new System.Drawing.Size(180, 22);
+            this.btnSubscriptions.Text = "Suscripciones";
+            this.btnSubscriptions.Click += new System.EventHandler(this.btnSubscriptions_Click);
             // 
             // planesDeTrabajoToolStripMenuItem
             // 
@@ -295,7 +296,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnSystem;
         private System.Windows.Forms.ToolStripMenuItem btnEndSesion;
         private System.Windows.Forms.MenuStrip mstPPal;
-        private System.Windows.Forms.ToolStripMenuItem suscripcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnSubscriptions;
         private System.Windows.Forms.ToolStripMenuItem planesDeTrabajoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rutinasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asistenciaToolStripMenuItem;

@@ -9,5 +9,6 @@ namespace DataAccessLayer.InterfaceRepositories
 {
     public interface ICurrentAccountsRepository : ICrudRepository<CurrentAccounts>
     {
+
     }
 }

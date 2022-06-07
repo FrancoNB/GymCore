@@ -7,6 +7,7 @@ using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 using System.Text.RegularExpressions;
 using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 
 namespace BusinessLayer.Models
 {
@@ -73,13 +74,13 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(ClientsMapper.Adapter(this));
                         resultMsg = "Cliente cargado correctamente... !";
                         break;
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(ClientsMapper.Adapter(this));
                         resultMsg = "Cliente modificado correctamente... !";
                         break;
 
@@ -88,6 +89,9 @@ namespace BusinessLayer.Models
                         await repository.Delete(IdClients);
                         resultMsg = "Cliente eliminado correctamente... !";
                         break;
+
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
@@ -105,43 +109,7 @@ namespace BusinessLayer.Models
 
         public async Task<IEnumerable<ClientsModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<ClientsModel>();
-
-            foreach (Clients item in dataModel)
-            {
-                list.Add(new ClientsModel
-                {
-                    IdClients = item.IdClients,
-                    RegisterDate = item.RegisterDate,
-                    Name = item.Name,
-                    Surname = item.Surname,
-                    Locality = item.Locality,
-                    Address = item.Address,
-                    Phone = item.Phone,
-                    Mail = item.Mail,
-                    Observations = item.Observations
-                });
-            }
-
-            return list;
-        }
-
-        private Clients GetDataEntity()
-        {
-            return new Clients()
-            {
-                IdClients = this.IdClients,
-                RegisterDate = this.RegisterDate,
-                Name = this.Name,
-                Surname = this.Surname,
-                Locality = this.Locality,
-                Address = this.Address,
-                Phone = this.Phone,
-                Mail = this.Mail,
-                Observations = this.Observations
-            };
+            return ClientsMapper.AdapterList(await repository.GetAll());
         }
 
         private void ValidateInsert()
