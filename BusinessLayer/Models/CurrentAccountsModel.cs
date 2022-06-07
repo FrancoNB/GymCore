@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Mappers;
+﻿using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -69,29 +70,38 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(CurrentAccountsMapper.Adapter(this));    
-                        return new AcctionResult(true, "Cuenta Corriente guardada correctamente... !");
+                        await repository.Insert(CurrentAccountsMapper.Adapter(this));
+                        resultMsg = "Cuenta corriente cargada correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
                         await repository.Update(CurrentAccountsMapper.Adapter(this));
-                        return new AcctionResult(true, "Cuenta Corriente actualizada correctamente... !");
+                        resultMsg = "Cuenta corriente modificada correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
-                        await repository.Delete(IdCurrentAccounts);
-                        return new AcctionResult(true, "Cuenta Corriente eliminada correctamente... !");
+                        await repository.Delete(IdClients);
+                        resultMsg = "Cuenta corriente eliminada correctamente... !";
+                        break;
 
                     case Operation.Invalidate:
                         return new AcctionResult(false, "No se admite la operacion seleccionada... !");
 
                     default:
-                        return new AcctionResult(false, "No se establecio la operación a realizar... !");
+                        return new AcctionResult(false, "No se establecio la operacion a realizar... !");
                 }
+
+                CurrentAccountsCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             }
             catch (Exception ex)
             {

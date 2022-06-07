@@ -26,5 +26,10 @@ namespace PresentationLayer.Utilities
 
             return string.IsNullOrWhiteSpace(result) ? 0 : Convert.ToDouble(result);
         }
+
+        public static bool IsDate(string value)
+        {
+            return DateTime.TryParse(value, out _);
+        }
     }
 }

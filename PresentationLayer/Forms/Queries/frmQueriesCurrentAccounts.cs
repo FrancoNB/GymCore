@@ -1,14 +1,11 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Models;
 using PresentationLayer.Forms.Lists;
+using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Forms.Queries
@@ -35,6 +32,9 @@ namespace PresentationLayer.Forms.Queries
         private IEnumerable<ClientsModel> clientsList;
         private IEnumerable<CurrentAccountsModel> currentAccountsList;
 
+        private DateTime filterStartDate;
+        private DateTime filterEndDate;
+
         private int idClient;
 
         private frmQueriesCurrentAccounts()
@@ -50,6 +50,13 @@ namespace PresentationLayer.Forms.Queries
 
             txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
             txtBalance.BackColor = Color.FromArgb(12, 19, 46);
+
+            txtStartDate.Enabled = false;
+            txtEndDate.Enabled = false;
+            btnFilter.Enabled = false;
+
+            txtStartDate.Clear();
+            txtEndDate.Clear();
 
             txtClientMail.Clear();
             txtClientObservations.Clear();
@@ -72,32 +79,35 @@ namespace PresentationLayer.Forms.Queries
             {
                 var currentAccountClientList = currentAccountsList.ToList().FindAll(currentAccount => currentAccount.IdClients == idClient);
 
+                if (currentAccountClientList.ToList().Last().Balance > 0)
+                {
+                    txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
+                    txtBalance.BackColor = Color.FromArgb(33, 50, 16);
+                }
+                else if (currentAccountClientList.ToList().Last().Balance < 0)
+                {
+                    txtBalance.ForeColor = Color.FromArgb(225, 20, 6);
+                    txtBalance.BackColor = Color.FromArgb(57, 8, 1);
+                }
+                else
+                {
+                    txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
+                    txtBalance.BackColor = Color.FromArgb(12, 19, 46);
+                }
+
+                txtBalance.Text = string.Format("$ {0:#,##0.00}", currentAccountClientList.ToList().Last().Balance);
+
+                if (filterStartDate != DateTime.MinValue)
+                    currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date >= filterStartDate);
+
+                if (filterEndDate != DateTime.MinValue)
+                    currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date <= filterEndDate);
+
                 foreach (CurrentAccountsModel currentAccount in currentAccountClientList)
                 {
                     dgvCurrentAccountClientList.Rows.Add(currentAccount.IdClients, currentAccount.TicketCode.Value, currentAccount.DateString,
                                                          string.Format("$ {0:#,##0.00}", currentAccount.Credit), string.Format("$ {0:#,##0.00}", currentAccount.Debit),
-                                                         string.Format("$ {0:#,##0.00}", currentAccount.Balance), currentAccount.Detail);
-                
-                    if(currentAccount.Equals(currentAccountClientList.Last()))
-                    {
-                        if (currentAccount.Balance > 0)
-                        {
-                            txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
-                            txtBalance.BackColor = Color.FromArgb(33, 50, 16);
-                        } 
-                        else if(currentAccount.Balance < 0)
-                        {
-                            txtBalance.ForeColor = Color.FromArgb(225, 20, 6);
-                            txtBalance.BackColor = Color.FromArgb(57, 8, 1);
-                        }
-                        else
-                        {
-                            txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
-                            txtBalance.BackColor = Color.FromArgb(12, 19, 46); 
-                        }
-
-                        txtBalance.Text = string.Format("$ {0:#,##0.00}", currentAccount.Balance);
-                    }
+                                                         string.Format("$ {0:#,##0.00}", currentAccount.Balance), currentAccount.Detail);              
                 }
             }
 
@@ -157,6 +167,10 @@ namespace PresentationLayer.Forms.Queries
 
                 idClient = selectedClient.IdClients;
 
+                txtStartDate.Enabled = true;
+                txtEndDate.Enabled = true;
+                btnFilter.Enabled = true;
+
                 LoadDgvCurrentAccountClientList();
             }
             else
@@ -188,6 +202,69 @@ namespace PresentationLayer.Forms.Queries
                     e.Handled = true;
                 }
             }
+        }
+
+        private void txtStartDate_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtStartDate.Text))
+                return;
+
+            if (!FormatUtilities.IsDate(txtStartDate.Text))
+                return;
+
+            txtStartDate.Text = Convert.ToDateTime(txtStartDate.Text).ToString("dd/MM/yyyy");
+        }
+
+        private void txtEndDate_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEndDate.Text))
+                return;
+
+            if (!FormatUtilities.IsDate(txtEndDate.Text))
+                return;  
+            
+            txtEndDate.Text = Convert.ToDateTime(txtEndDate.Text).ToString("dd/MM/yyyy");
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtStartDate.Text))
+            {
+                if (FormatUtilities.IsDate(txtStartDate.Text))
+                    filterStartDate = Convert.ToDateTime(txtStartDate.Text);
+                else
+                {
+                    MessageBox.Show("El formato de la fecha desde no es correcto... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    
+                    txtStartDate.Select();
+                    txtStartDate.SelectionStart = 0;
+                    txtStartDate.SelectionLength = txtStartDate.TextLength;
+                   
+                    return;
+                }
+            }
+            else
+                filterStartDate = DateTime.MinValue;
+
+            if (!string.IsNullOrWhiteSpace(txtEndDate.Text))
+            {
+                if (FormatUtilities.IsDate(txtEndDate.Text))
+                    filterEndDate = Convert.ToDateTime(txtEndDate.Text);
+                else
+                {
+                    MessageBox.Show("El formato de la fecha hasta no es correcto... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    
+                    txtEndDate.Select();
+                    txtEndDate.SelectionStart = 0;
+                    txtEndDate.SelectionLength = txtStartDate.TextLength;
+                    
+                    return;
+                }
+            }
+            else
+                filterEndDate = DateTime.MinValue;
+
+            LoadDgvCurrentAccountClientList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
