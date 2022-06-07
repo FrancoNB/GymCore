@@ -21,9 +21,9 @@ namespace DataAccessLayer.Repositories.Interfaces
         {
             this.insert = "INSERT INTO Works (Series, Duration, Repetitions, RestTime, `Load`, Intensity, Exercises_idExercises) VALUES (@series, @duration, @repetitions, @restTime, @load, "
                         + "@intensity, @idExercises)";
-            this.update = "UPDATE Works SET Series = @series, Duration = @duration, Repetitions = @repetitions, RestTime = @restTime, Load = @load, Intensity = @intensity, "
+            this.update = "UPDATE Works SET Series = @series, Duration = @duration, Repetitions = @repetitions, RestTime = @restTime, `Load` = @load, Intensity = @intensity, "
                         + "Exercises_idExercises = @idExercises WHERE IdWorks = @idWorks";
-            this.delete = "DELETE FROM WorkPlans WHERE IdWorks = @idWorks";
+            this.delete = "DELETE FROM Works WHERE IdWorks = @idWorks";
 
             this.selectAll = "SELECT * FROM Works";
 
@@ -80,14 +80,14 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Works()
                     {
-                        IdWorks = Convert.ToInt32(row["IdWorkPlans"]),
+                        IdWorks = Convert.ToInt32(row["IdWorks"]),
                         Series = Convert.ToInt32(row["Series"]),
                         Duration = Convert.ToInt32(row["Duration"]),
                         Repetitions = Convert.ToInt32(row["Repetitions"]),
                         RestTime = Convert.ToInt32(row["RestTime"]),
                         Load = Convert.ToDouble(row["Load"]),
                         Intensity = Convert.ToInt32(row["Intensity"]),
-                        IdExercises = Convert.ToInt32(row["Exercises_idExcercises"])
+                        IdExercises = Convert.ToInt32(row["Exercises_idExercises"])
                     });
                 }
                 return list;
