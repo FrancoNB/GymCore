@@ -36,8 +36,8 @@ namespace BusinessLayerTest.ModelsTests
                 CalvesPoints = 1,
                 ButtocksPoints = 1,
                 TrapeziusPoints = 1,
-                DorsalPoints = 1,
-                AbdominalPoints = 1,
+                DorsalsPoints = 1,
+                AbdominalsPoints = 1,
                 ObliquesPoints = 1,
                 BicepsPoints = 1,
                 TricepsPoints = 1,
@@ -46,8 +46,8 @@ namespace BusinessLayerTest.ModelsTests
                 LateralDeltoidPoints = 1,
                 AnteriorDeltoidPoints = 1,
                 AdductorPoints = 1,
-                LumbarPoints = 1,
-                PectoralPoints = 1,
+                LumbarsPoints = 1,
+                PectoralsPoints = 1,
             };
 
         }
@@ -131,7 +131,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
-            exercisesModel.DorsalPoints = -1;
+            exercisesModel.DorsalsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -141,7 +141,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
-            exercisesModel.AbdominalPoints = -1;
+            exercisesModel.AbdominalsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -231,7 +231,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
-            exercisesModel.LumbarPoints = -1;
+            exercisesModel.LumbarsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -241,7 +241,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
-            exercisesModel.PectoralPoints = -1;
+            exercisesModel.PectoralsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -326,7 +326,7 @@ namespace BusinessLayerTest.ModelsTests
 
             exercisesModel.IdExercises = 1;
 
-            exercisesModel.DorsalPoints = 10;
+            exercisesModel.DorsalsPoints = 10;
 
             Assert.IsTrue((await exercisesModel.SaveChanges()).Result);
         }
@@ -338,7 +338,7 @@ namespace BusinessLayerTest.ModelsTests
 
             exercisesModel.IdExercises = 1;
 
-            exercisesModel.AbdominalPoints = 10;
+            exercisesModel.AbdominalsPoints = 10;
 
             Assert.IsTrue((await exercisesModel.SaveChanges()).Result);
         }
@@ -452,7 +452,7 @@ namespace BusinessLayerTest.ModelsTests
 
             exercisesModel.IdExercises = 1;
 
-            exercisesModel.LumbarPoints = 10;
+            exercisesModel.LumbarsPoints = 10;
 
             Assert.IsTrue((await exercisesModel.SaveChanges()).Result);
         }
@@ -465,7 +465,7 @@ namespace BusinessLayerTest.ModelsTests
 
             exercisesModel.IdExercises = 1;
 
-            exercisesModel.PectoralPoints = 10;
+            exercisesModel.PectoralsPoints = 10;
 
             Assert.IsTrue((await exercisesModel.SaveChanges()).Result);
         }
@@ -535,7 +535,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
-            exercisesModel.DorsalPoints = -1;
+            exercisesModel.DorsalsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -545,7 +545,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
-            exercisesModel.AbdominalPoints = -1;
+            exercisesModel.AbdominalsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -641,7 +641,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
-            exercisesModel.LumbarPoints = -1;
+            exercisesModel.LumbarsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
@@ -652,7 +652,7 @@ namespace BusinessLayerTest.ModelsTests
         {
             exercisesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
-            exercisesModel.PectoralPoints = -1;
+            exercisesModel.PectoralsPoints = -1;
 
             Assert.IsFalse((await exercisesModel.SaveChanges()).Result);
         }
