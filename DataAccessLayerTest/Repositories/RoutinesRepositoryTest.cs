@@ -122,7 +122,7 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task Update_InvalidTest_1()
         {
-            entity.IdRoutine = 0;
+            entity.IdRoutines = 0;
 
             Assert.AreEqual(0, await repository.Update(entity));
         }
@@ -168,7 +168,7 @@ namespace DataAccessLayerTest.Repositories
         {
             await GetLastId_ValidTest();
 
-            Assert.AreEqual(1, await repository.Delete(entity.IdRoutine));
+            Assert.AreEqual(1, await repository.Delete(entity.IdRoutines));
         }
 
         [TestMethod]
@@ -182,10 +182,10 @@ namespace DataAccessLayerTest.Repositories
         {
             await Insert_ValidTest();
 
-            entity.IdRoutine = await repository.GetLastId();
+            entity.IdRoutines = await repository.GetLastId();
 
-            Assert.IsInstanceOfType(entity.IdRoutine, typeof(int));
-            Assert.IsTrue(entity.IdRoutine > 0);
+            Assert.IsInstanceOfType(entity.IdRoutines, typeof(int));
+            Assert.IsTrue(entity.IdRoutines > 0);
         }
 
         [ClassCleanup]
