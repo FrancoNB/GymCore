@@ -79,7 +79,7 @@ namespace DataAccessLayerTest.Repositories
             Assert.AreEqual(1, await repository.Insert(entity));
         }
 
-       // [TestMethod]
+        [TestMethod]
         public async Task Update_ValidTest()
         {
             await GetLastId_ValidTest();
@@ -87,7 +87,7 @@ namespace DataAccessLayerTest.Repositories
             Assert.AreEqual(1, await repository.Update(entity));
         }
 
-        //[TestMethod]
+        [TestMethod]
         public async Task GetLastId_ValidTest()
         {
             await Insert_ValidTest();
