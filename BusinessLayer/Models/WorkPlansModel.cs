@@ -5,6 +5,7 @@ using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
+using BusinessLayer.Mappers;
 
 namespace BusinessLayer.Models
 {
@@ -40,18 +41,21 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(WorkPlansMapper.Adapter(this));
                         return new AcctionResult(true, "Plan de trabajo cargado correctamente... !");
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(WorkPlansMapper.Adapter(this));
                         return new AcctionResult(true, "Plan de trabajo modificado correctamente... !");
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdWorkPlans);
                         return new AcctionResult(true, "Plan de trabajo eliminado correctamente... !");
+
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
@@ -64,30 +68,7 @@ namespace BusinessLayer.Models
         }
         public async Task<IEnumerable<WorkPlansModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<WorkPlansModel>();
-
-            foreach (WorkPlans item in dataModel)
-            {
-                list.Add(new WorkPlansModel
-                {
-                    IdWorkPlans = item.IdWorkPlans,
-                    Name = item.Name,
-                    Category = item.Category,
-                });
-            }
-
-            return list;
-        }
-        private WorkPlans GetDataEntity()
-        {
-            return new WorkPlans()
-            {
-                IdWorkPlans = this.IdWorkPlans,
-                Name = this.Name,
-                Category = this.Category,
-            };
+            return WorkPlansMapper.AdapterList(await repository.GetAll());
         }
 
         private void ValidateInsert() 

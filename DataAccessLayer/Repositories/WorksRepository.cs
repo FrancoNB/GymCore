@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 
 namespace DataAccessLayer.Repositories.Interfaces
-{    public class WorksRepositorys : RepositoryControler, IWorksRepository
+{    public class WorksRepository : RepositoryControler, IWorksRepository
     {
         private readonly string insert;
         private readonly string update;
@@ -17,17 +17,17 @@ namespace DataAccessLayer.Repositories.Interfaces
         private readonly string selectAll;
         private readonly string selectMaxId;
 
-        public WorksRepositorys()
+        public WorksRepository()
         {
-            this.insert = "INSERT into Works (Series, Duration, Repetitions, RestTime, Load, Intensity, IdExercises) VALUES (@series, @duration, @repetiotions, @restTimes, @load, "
-                        + "@intensity, @idExercises";
-            this.update = "UPDATE Works SET Series = @series, Duration = @duration, Repetitions = @repetitions, RestTimes = @restTimes, Load = @load, Intensity = @intensity, "
-                        + "IdExercices = @idExercises WHERE IdWorks = @idWorks";
-            this.delete = "DELETE FROM WorkPlans WHERE IdWorks = @idWorks";
+            this.insert = "INSERT INTO Works (Series, Duration, Repetitions, RestTime, `Load`, Intensity, Exercises_idExercises) VALUES (@series, @duration, @repetitions, @restTime, @load, "
+                        + "@intensity, @idExercises)";
+            this.update = "UPDATE Works SET Series = @series, Duration = @duration, Repetitions = @repetitions, RestTime = @restTime, `Load` = @load, Intensity = @intensity, "
+                        + "Exercises_idExercises = @idExercises WHERE IdWorks = @idWorks";
+            this.delete = "DELETE FROM Works WHERE IdWorks = @idWorks";
 
-            this.selectAll = "SELECT* FROM Works";
+            this.selectAll = "SELECT * FROM Works";
 
-            this.selectMaxId = "SELECT Max(IdWorks) as lastId FROM Works";
+            this.selectMaxId = "SELECT Max(IdWorks) AS lastId FROM Works";
         }
 
         public async Task<int> Insert(Works entity)
@@ -37,7 +37,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@series", entity.Series),
                 new MySqlParameter("@duration", entity.Duration),
                 new MySqlParameter("@repetitions", entity.Repetitions),
-                new MySqlParameter("@restTimes", entity.RestTime),
+                new MySqlParameter("@restTime", entity.RestTime),
                 new MySqlParameter("@load", entity.Load),
                 new MySqlParameter("@intensity", entity.Intensity),
                 new MySqlParameter("@idExercises", entity.IdExercises)
@@ -52,7 +52,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 new MySqlParameter("@series", entity.Series),
                 new MySqlParameter("@duration", entity.Duration),
                 new MySqlParameter("@repetitions", entity.Repetitions),
-                new MySqlParameter("@restTimes", entity.RestTime),
+                new MySqlParameter("@restTime", entity.RestTime),
                 new MySqlParameter("@load", entity.Load),
                 new MySqlParameter("@intensity", entity.Intensity),
                 new MySqlParameter("@idExercises", entity.IdExercises),
@@ -80,14 +80,14 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Works()
                     {
-                        IdWorks = Convert.ToInt32(row["IdWorkPlans"]),
+                        IdWorks = Convert.ToInt32(row["IdWorks"]),
                         Series = Convert.ToInt32(row["Series"]),
                         Duration = Convert.ToInt32(row["Duration"]),
                         Repetitions = Convert.ToInt32(row["Repetitions"]),
-                        RestTime = Convert.ToInt32(row["RestTimes"]),
+                        RestTime = Convert.ToInt32(row["RestTime"]),
                         Load = Convert.ToDouble(row["Load"]),
                         Intensity = Convert.ToInt32(row["Intensity"]),
-                        IdExercises = Convert.ToInt32(row["IdExcercises"])
+                        IdExercises = Convert.ToInt32(row["Exercises_idExercises"])
                     });
                 }
                 return list;

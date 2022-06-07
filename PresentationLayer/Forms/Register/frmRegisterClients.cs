@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Models;
+﻿using BusinessLayer.Cache;
+using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
 using PresentationLayer.Utilities;
 using System;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Forms.Register
 {
-    public partial class frmRegisterClients : Form
+    public partial class frmRegisterClients : Form, ISubscriber<ClientsModel>
     {
         private static frmRegisterClients instance;
 
@@ -69,35 +70,24 @@ namespace PresentationLayer.Forms.Register
             btnClose.Enabled = true;
             btnCancel.Enabled = false;
 
-            LoadClientList();
-
             btnNew.Select();
         }
 
-        private async void LoadClientList()
+        private void LoadDgvClientsList()
         {
-            LoadNotification.Show("Cargando listado de clientes...");
+            IEnumerable<ClientsModel> clientsList = this.clientsList;
 
-            clientsList = await clientWorkingModel.GetAll();
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                clientsList = clientsList.ToList().FindAll(client => client.Name.ToLower().Contains(txtSearch.Text.ToLower()) || client.Surname.ToLower().Contains(txtSearch.Text.ToLower()));
 
-            LoadDgvClientsList(clientsList);
-
-            LoadNotification.Hide();
-        }
-
-        private void LoadDgvClientsList(IEnumerable<ClientsModel> clientsList)
-        {
             dgvClientsList.Rows.Clear();
 
-            if (clientsList != null)
+            foreach (ClientsModel client in clientsList)
             {
-                foreach (ClientsModel client in clientsList)
-                {
-                    dgvClientsList.Rows.Add(client.IdClients, client.RegisterDateString, client.Name + " " + client.Surname);
-                }
-
-                ClearSelectionDgv();
+                dgvClientsList.Rows.Add(client.IdClients, client.RegisterDateString, client.Name + " " + client.Surname);
             }
+
+            ClearSelectionDgv();
         }
 
         private void SetControlsActiveState()
@@ -135,6 +125,8 @@ namespace PresentationLayer.Forms.Register
             dgvClientsList.Columns["idClient"].Visible = false;
 
             dgvClientsList.Columns["RegisterDate"].Width = 80;
+
+            ClientsCache.GetInstance().Attach(this);
 
             SetControlsDefaultState();
         }
@@ -176,14 +168,7 @@ namespace PresentationLayer.Forms.Register
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                LoadDgvClientsList(clientsList.ToList().FindAll(client => client.Name.ToLower().Contains(txtSearch.Text.ToLower()) || client.Surname.ToLower().Contains(txtSearch.Text.ToLower())));
-            }
-            else
-            {
-                LoadDgvClientsList(clientsList);
-            }
+            LoadDgvClientsList();
         }
 
         private void dgvClientsList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -265,8 +250,6 @@ namespace PresentationLayer.Forms.Register
                     {
                         txtSearch.Clear();
 
-                        LoadClientList();
-
                         MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         btnNew.Select();
@@ -332,7 +315,15 @@ namespace PresentationLayer.Forms.Register
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            ClientsCache.GetInstance().Detach(this);
             this.Close();
+        }
+
+        public void Update(IEnumerable<ClientsModel> resource)
+        {
+            clientsList = resource;
+
+            LoadDgvClientsList();
         }
     }
 }

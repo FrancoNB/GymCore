@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -66,7 +67,7 @@ namespace BusinessLayer.Models
                     return "Indeterminado";
             }
 
-            private set
+            set
             {
                 if (value == "Administrador")
                     Type = UsersTypes.Manager;
@@ -119,26 +120,38 @@ namespace BusinessLayer.Models
         {
             try
             {
+                string resultMsg;
+
                 switch (Operation)
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
-                        return new AcctionResult(true, "Usuario guardado correctamente... !");
+                        await repository.Insert(UsersMapper.Adapter(this));
+                        resultMsg = "Usuario guardado correctamente... !";
+                        break;
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
-                        return new AcctionResult(true, "Usuario modificado correctamente... !");
+                        await repository.Update(UsersMapper.Adapter(this));
+                        resultMsg = "Usuario modificado correctamente... !";
+                        break;
 
                     case Operation.Delete:
                         ValidateDelete();
                         await repository.Delete(IdUsers);
-                        return new AcctionResult(true, "Usuario eliminado correctamente... !");
+                        resultMsg = "Usuario eliminado correctamente... !";
+                        break;
+
+                    case Operation.Invalidate:
+                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
-                }               
+                }
+
+                UsersCache.GetInstance().Resource = await GetAll();
+
+                return new AcctionResult(true, resultMsg);
             } 
             catch (Exception ex)
             {
@@ -161,9 +174,9 @@ namespace BusinessLayer.Models
                 {
                     await repository.UpdateLastConnection(DateTime.Now, user.IdUsers);
 
-                    UserCache.IdUsers = user.IdUsers;
-                    UserCache.Username = user.Username;
-                    UserCache.Type = user.Type;
+                    LoginCache.IdUsers = user.IdUsers;
+                    LoginCache.Username = user.Username;
+                    LoginCache.Type = user.Type;
 
                     return new AcctionResult(true);
                 }
@@ -177,39 +190,7 @@ namespace BusinessLayer.Models
         
         public async Task<IEnumerable<UsersModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<UsersModel>();
-            foreach (Users item in dataModel) 
-            {
-                if (item.Type != "Desarrollador")
-                {
-                    list.Add(new UsersModel
-                    {
-                        IdUsers = item.IdUsers,
-                        RegisterDate = item.RegisterDate,
-                        TypeString = item.Type,
-                        Username = item.Username,
-                        Password = item.Password,
-                        LastConnection = item.LastConnection
-                    });
-                }
-            }
-
-            return list;
-        }
-
-        private Users GetDataEntity()
-        {
-            return new Users()
-            {
-                IdUsers = this.IdUsers,
-                RegisterDate = this.RegisterDate,
-                Type = this.TypeString,
-                Username = this.Username,
-                Password = this.Password,
-                LastConnection = this.LastConnection
-            };
+            return UsersMapper.AdapterList(await repository.GetAll());
         }
 
         #region "VALIDATES"

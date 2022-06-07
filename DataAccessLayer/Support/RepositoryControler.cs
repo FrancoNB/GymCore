@@ -33,7 +33,7 @@ namespace DataAccessLayer.Support
             }
             catch (MySqlException ex)
             {
-                throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
+                throw new RepositoryException("[" + ex.Number + "] " + ex.Message + "\n\n" + ex.StackTrace, ex.Number);
             }
             finally
             {
@@ -76,7 +76,7 @@ namespace DataAccessLayer.Support
             } 
             catch(MySqlException ex)
             {
-                throw new RepositoryException(ex.Message + "\n\n" + ex.StackTrace, ex.Number);
+                throw new RepositoryException("[" + ex.Number + "] " + ex.Message + "\n\n" + ex.StackTrace, ex.Number);
             }  
             finally
             {

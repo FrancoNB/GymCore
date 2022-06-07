@@ -5,6 +5,11 @@ using PresentationLayer.Forms.Register;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Globalization;
+using PresentationLayer.Forms.Queries;
+using PresentationLayer.Utilities;
+using BusinessLayer.Models;
+using PresentationLayer.Forms.Management;
 
 namespace PresentationLayer
 {
@@ -32,6 +37,13 @@ namespace PresentationLayer
             InitializeComponent();
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("es-AR");
+            CultureInfo.DefaultThreadCurrentCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.CurrencyDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.CurrencyGroupSeparator = ",";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture.NumberFormat.NumberGroupSeparator = ",";
 
             mstPPal.Renderer = new MenuStripRenderer();
         }
@@ -76,7 +88,22 @@ namespace PresentationLayer
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
 
+            LoadCache();
             ShowLogin();
+        }
+
+        private async void LoadCache()
+        {
+            LoadNotification.Show("Iniciando sistema...");
+
+            PackagesCache.GetInstance().Resource = await new PackagesModel().GetAll();
+            UsersCache.GetInstance().Resource = await new UsersModel().GetAll();
+            ClientsCache.GetInstance().Resource = await new ClientsModel().GetAll();
+            ExercisesCache.GetInstance().Resource = await new ExercisesModel().GetAll();
+            SubscriptionsCache.GetInstance().Resource = await new SubscriptionsModel().GetAll();
+            CurrentAccountsCache.GetInstance().Resource = await new CurrentAccountsModel().GetAll();
+
+            LoadNotification.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -89,14 +116,14 @@ namespace PresentationLayer
             ShowLogin();
         }
 
-        private void ShowLogin()
+        public void ShowLogin()
         {
             lblState.Text = "Sesión no iniciada";
 
             if (frmLogin.GetInstance().ShowDialog(this) == DialogResult.Cancel)
                 Application.Exit();
 
-            lblState.Text = "Usuario: " + UserCache.Username + " - Tipo: " + UserCache.Type;
+            lblState.Text = "Usuario: " + LoginCache.Username + " - Tipo: " + LoginCache.Type;
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -107,6 +134,32 @@ namespace PresentationLayer
         private void btnRegisterClients_Click(object sender, EventArgs e)
         {
             frmRegisterClients.GetInstance().ShowDialog(this);
+        }
+
+        private void btnPackages_Click(object sender, EventArgs e)
+        {
+            frmRegisterPackages.GetInstance().ShowDialog(this);
+        }
+
+        private void btnExercises_Click(object sender, EventArgs e)
+        {
+            frmRegisterExercises.GetInstance().ShowDialog(this);
+        }
+
+        private void btnSubscriptions_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+                frmManagementSubscriptions.GetInstance().ShowDialog(this);
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de suscripciones... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void btnQueriesCurrentAccounts_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+                frmQueriesCurrentAccounts.GetInstance().ShowDialog(this);
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder a la consulta de cuentas corrientes... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);          
         }
     }
 }

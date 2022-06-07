@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DataAccessLayerTest
+namespace DataAccessLayerTest.Repositories
 {
     [TestClass]
     public class ClientsRepositoryTest
@@ -16,70 +16,115 @@ namespace DataAccessLayerTest
         private IClientsRepository repository;
         private Clients entity;
 
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            RepositoryConnection.BeginTransaction();
+        }
+
         [TestInitialize]
         public void TestInitialize()
         {
             repository = new ClientsRepository();
+
+            entity = new Clients()
+            {
+                Name = "TestNameClient",
+                Surname = "TestSurnameClient",
+                RegisterDate = DateTime.Now,
+                Locality = "TestLocality",
+                Address = "TestAddress",
+                Phone = "1234567891",
+                Mail = "test@test.com",
+                Observations = "-"
+            };
         }
 
         [TestMethod]
         public async Task Insert_ValidTest()
         {
-            entity = new Clients()
-            {
-                RegisterDate = DateTime.Now,
-                Name = "Walter",        
-                Surname = "Lopez",
-                Locality = "Jesus Maria",
-                Address = "Sarmiento 205",
-                Phone = "649151616161",
-                Mail = "asdadsada",
-                Observations = "-"
-            };
-
-            try
-            {
-                RepositoryConnection.BeginTransaction();
-
-                Assert.AreEqual(1, await repository.Insert(entity));
-            } 
-            finally
-            {
-                RepositoryConnection.RollBack();
-            }
+            Assert.AreEqual(1, await repository.Insert(entity));
         }
 
         [TestMethod]
-        public async Task Insert_InvalidTest()
+        public async Task GetLastId_ValidTest()
         {
-            entity = new Clients()
-            {
-                RegisterDate = DateTime.Now,
-                Locality = "Jesus Maria",
-                Address = "Sarmiento 205",
-                Phone = "649151616161",
-                Mail = "asdadsada",
-                Observations = "-"
-            };
+            await Insert_ValidTest();
 
-            try
-            {
-                RepositoryConnection.BeginTransaction();
+            entity.IdClients = await repository.GetLastId();
 
-                var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+            Assert.IsInstanceOfType(entity.IdClients, typeof(int));
+            Assert.IsTrue(entity.IdClients > 0);
+        }
 
-                Assert.AreEqual(1048, ex.Code);
-            }
-            finally
-            {
-                RepositoryConnection.RollBack();
-            }
+        [TestMethod]
+        public async Task Update_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            entity.Name = "NewName";
+            entity.Surname = "NewSurname";
+
+            Assert.AreEqual(1, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Delete_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            Assert.AreEqual(1, await repository.Delete(entity.IdClients));
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest() //Campo Address nulo
+        {
+            entity.Address = null;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_1() //Registro inexistente IdClients = 0
+        {
+            await GetLastId_ValidTest();
+
+            entity.IdClients = 0;
+
+            Assert.AreEqual(0, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_2() //Campo Name nulo
+        {
+            await GetLastId_ValidTest();
+
+            entity.Name = null;
+            entity.Surname = "NewSurname";
+            
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Delete_InvalidTest() //Registro inexistente IdClients = 0
+        {
+            Assert.AreEqual(0, await repository.Delete(0));
         }
 
         [TestMethod]
         public async Task GetAll_Test()
         {
             CollectionAssert.AllItemsAreInstancesOfType((List<Clients>)await repository.GetAll(), typeof(Clients));
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            RepositoryConnection.RollBack();
         }
     }
 }

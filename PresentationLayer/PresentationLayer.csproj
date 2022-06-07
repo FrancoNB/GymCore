@@ -36,6 +36,7 @@
     <ApplicationIcon>Icono.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,11 +68,47 @@
     <Compile Include="Controls\GymCoreTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Lists\frmClientsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lists\frmClientsList.Designer.cs">
+      <DependentUpon>frmClientsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Lists\frmPackagesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lists\frmPackagesList.Designer.cs">
+      <DependentUpon>frmPackagesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Management\frmManagementSubscriptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\frmManagementSubscriptions.Designer.cs">
+      <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Queries\frmQueriesCurrentAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Queries\frmQueriesCurrentAccounts.Designer.cs">
+      <DependentUpon>frmQueriesCurrentAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.Designer.cs">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterExercises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterExercises.Designer.cs">
+      <DependentUpon>frmRegisterExercises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterPackages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\frmRegisterPackages.Designer.cs">
+      <DependentUpon>frmRegisterPackages.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Support\frmLogin.cs">
       <SubType>Form</SubType>
@@ -88,12 +125,31 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ControlsUtilities.cs" />
+    <Compile Include="Utilities\FormatUtilities.cs" />
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\frmManagementSubscriptions.resx">
+      <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lists\frmClientsList.resx">
+      <DependentUpon>frmClientsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lists\frmPackagesList.resx">
+      <DependentUpon>frmPackagesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Queries\frmQueriesCurrentAccounts.resx">
+      <DependentUpon>frmQueriesCurrentAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\frmRegisterClients.resx">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\frmRegisterExercises.resx">
+      <DependentUpon>frmRegisterExercises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\frmRegisterPackages.resx">
+      <DependentUpon>frmRegisterPackages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Support\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -124,10 +180,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Management\" />
-    <Folder Include="Forms\Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
       <Project>{741afcd1-6e94-4b02-bb4f-c1161777cc31}</Project>

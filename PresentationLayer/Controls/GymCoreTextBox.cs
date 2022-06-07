@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Controls
@@ -15,6 +12,8 @@ namespace PresentationLayer.Controls
 
         private readonly Color _disableBackColor = Color.FromArgb(50, 50, 50);
 
+        public bool NumbersOnly { get; set; }
+
         public GymCoreTextBox()
         {
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -24,6 +23,7 @@ namespace PresentationLayer.Controls
             Font = new Font("Calibri", 12.0f);
             BorderStyle = BorderStyle.FixedSingle;
             ForeColor = _foreColor;
+            NumbersOnly = false;
         }
 
         protected override void OnEnabledChanged(EventArgs e)
@@ -51,6 +51,19 @@ namespace PresentationLayer.Controls
             {
                 e.Handled = true;
                 SendKeys.Send("{TAB}");
+            }
+            else if(NumbersOnly)
+            {
+                if(e.KeyChar == (char)46)
+                {
+                    if (Text.Contains("."))
+                        e.Handled = true;
+                }
+                else
+                {
+                    if (!Information.IsNumeric(e.KeyChar) && e.KeyChar != (char)8)
+                        e.Handled = true;
+                }
             }
         }
     }
