@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.InterfaceRepositories;
 using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 
 namespace BusinessLayer.Models
 {
@@ -46,13 +47,13 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(PackagesMapper.Adapter(this));
                         resultMsg = "Paquete de suscripción cargado correctamente... !";
                         break;
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(PackagesMapper.Adapter(this));
                         resultMsg = "Paquete de suscripción modificado correctamente... !";
                         break;
 
@@ -80,36 +81,8 @@ namespace BusinessLayer.Models
         }
 
         public async Task<IEnumerable<PackagesModel>> GetAll()
-        {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<PackagesModel>();
-
-            foreach (Packages item in dataModel)
-            {
-                list.Add(new PackagesModel
-                {
-                    IdPackages = item.IdPackages,
-                    Name = item.Name,
-                    NumberSessions = item.NumberSessions,
-                    AvailableDays = item.AvailableDays,
-                    Price = item.Price,
-                });
-            }
-
-            return list;
-        }
-
-        private Packages GetDataEntity()
-        {
-            return new Packages()
-            {
-                IdPackages = this.IdPackages,
-                Name = this.Name,
-                NumberSessions = this.NumberSessions,
-                AvailableDays = this.AvailableDays,
-                Price = this.Price,
-            };
+        { 
+            return PackagesMapper.AdapterList(await repository.GetAll());
         }
 
         private void ValidateInsert()

@@ -22,7 +22,7 @@ namespace BusinessLayerTest.ModelsTests
             mockRoutinesRepository.Setup(x => x.GetAll()).Returns(Task.FromResult<IEnumerable<Routines>>(new List<Routines>()));
             mockRoutinesRepository.Setup(x => x.Insert(It.IsAny<Routines>())).Returns(Task.FromResult(1));
             mockRoutinesRepository.Setup(x => x.Delete(It.Is<int>(id => id > 0))).Returns(Task.FromResult(1));
-            mockRoutinesRepository.Setup(x => x.Update(It.Is<Routines>(client => client.IdRoutine > 0))).Returns(Task.FromResult(1));
+            mockRoutinesRepository.Setup(x => x.Update(It.Is<Routines>(client => client.IdRoutines > 0))).Returns(Task.FromResult(1));
         }
 
         [TestMethod()]

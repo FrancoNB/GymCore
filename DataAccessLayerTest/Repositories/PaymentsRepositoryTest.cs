@@ -49,7 +49,6 @@ namespace DataAccessLayerTest.Repositories
                 Date = DateTime.Now,
                 Credit = 1,
                 Debit = 1,
-                Balance = 1,
                 Detail = "AuxDetail"
             });
 

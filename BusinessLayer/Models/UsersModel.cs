@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -66,7 +67,7 @@ namespace BusinessLayer.Models
                     return "Indeterminado";
             }
 
-            private set
+            set
             {
                 if (value == "Administrador")
                     Type = UsersTypes.Manager;
@@ -125,13 +126,13 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(UsersMapper.Adapter(this));
                         resultMsg = "Usuario guardado correctamente... !";
                         break;
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(UsersMapper.Adapter(this));
                         resultMsg = "Usuario modificado correctamente... !";
                         break;
 
@@ -189,39 +190,7 @@ namespace BusinessLayer.Models
         
         public async Task<IEnumerable<UsersModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<UsersModel>();
-            foreach (Users item in dataModel) 
-            {
-                if (item.Type != "Desarrollador")
-                {
-                    list.Add(new UsersModel
-                    {
-                        IdUsers = item.IdUsers,
-                        RegisterDate = item.RegisterDate,
-                        TypeString = item.Type,
-                        Username = item.Username,
-                        Password = item.Password,
-                        LastConnection = item.LastConnection
-                    });
-                }
-            }
-
-            return list;
-        }
-
-        private Users GetDataEntity()
-        {
-            return new Users()
-            {
-                IdUsers = this.IdUsers,
-                RegisterDate = this.RegisterDate,
-                Type = this.TypeString,
-                Username = this.Username,
-                Password = this.Password,
-                LastConnection = this.LastConnection
-            };
+            return UsersMapper.AdapterList(await repository.GetAll());
         }
 
         #region "VALIDATES"

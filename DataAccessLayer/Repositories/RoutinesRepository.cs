@@ -44,7 +44,7 @@ namespace DataAccessLayer.Repositories.Interfaces
         {
             parameters = new List<MySqlParameter>
             {
-                new MySqlParameter("@idRoutine",entity.IdRoutine),
+                new MySqlParameter("@idRoutine",entity.IdRoutines),
                 new MySqlParameter("@startDate", entity.StartDate),
                 new MySqlParameter("@endDate",entity.EndDate),
                 new MySqlParameter("@state",entity.State),
@@ -73,7 +73,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Routines()
                     {
-                        IdRoutine = Convert.ToInt32(row["IdRoutine"]),
+                        IdRoutines = Convert.ToInt32(row["IdRoutine"]),
                         StartDate = Convert.ToDateTime(row["StartDate"]),
                         EndDate = Convert.ToDateTime(row["EndDate"]),
                         State = row["State"].ToString(),
