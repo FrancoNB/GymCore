@@ -108,6 +108,26 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
+        public async Task Insert_InvalidTest_2()
+        {
+            entity.IdClients = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest_3()
+        {
+            entity.IdCurrentAccounts = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
         public async Task Update_ValidTest()
         {
             await GetLastId_ValidTest();

@@ -80,11 +80,101 @@ namespace DataAccessLayerTest.Repositories
         }
 
         [TestMethod]
+        public async Task Insert_InvalidTest_1()
+        {
+            entity.State = null;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest_2()
+        {
+            entity.IdClients = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest_3()
+        {
+            entity.IdWorkPlans = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
         public async Task Update_ValidTest()
         {
             await GetLastId_ValidTest();
 
+            entity.State = "UpdateStateTest";
+
             Assert.AreEqual(1, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_1()
+        {
+            entity.IdRoutine = 0;
+
+            Assert.AreEqual(0, await repository.Update(entity));
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_2()
+        {
+            await GetLastId_ValidTest();
+
+            entity.State = null;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_3()
+        {
+            await GetLastId_ValidTest();
+
+            entity.IdWorkPlans = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Update_InvalidTest_4()
+        {
+            await GetLastId_ValidTest();
+
+            entity.IdClients = 0;
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Update(entity));
+
+            Assert.AreEqual(1452, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Delete_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            Assert.AreEqual(1, await repository.Delete(entity.IdRoutine));
+        }
+
+        [TestMethod]
+        public async Task Delete_InvalidTest() //registro inexistente IdPayments = 0
+        {
+            Assert.AreEqual(0, await repository.Delete(0));
         }
 
         [TestMethod]
