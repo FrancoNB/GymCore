@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Cache;
+using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
@@ -41,8 +42,8 @@ namespace BusinessLayer.Models
         public int CalvesPoints { get => _calvesPoints; set => _calvesPoints = value; }
         public int ButtocksPoints { get => _buttocksPoints; set => _buttocksPoints = value; }
         public int TrapeziusPoints { get => _trapeziusPoints; set => _trapeziusPoints = value; }
-        public int DorsalPoints { get => _dorsalPoints; set => _dorsalPoints = value; }
-        public int AbdominalPoints { get => _abdominalPoints; set => _abdominalPoints = value; }
+        public int DorsalsPoints { get => _dorsalPoints; set => _dorsalPoints = value; }
+        public int AbdominalsPoints { get => _abdominalPoints; set => _abdominalPoints = value; }
         public int ObliquesPoints { get => _obliquesPoints; set => _obliquesPoints = value; }
         public int BicepsPoints { get => _bicepsPoints; set => _bicepsPoints = value; }
         public int TricepsPoints { get => _tricepsPoints; set => _tricepsPoints = value; }
@@ -51,8 +52,8 @@ namespace BusinessLayer.Models
         public int LateralDeltoidPoints { get => _lateralDeltoidPoints; set => _lateralDeltoidPoints = value; }
         public int AnteriorDeltoidPoints { get => _anteriorDeltoidPoints; set => _anteriorDeltoidPoints = value; }
         public int AdductorPoints { get => _adductorPoints; set => _adductorPoints = value; }
-        public int LumbarPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
-        public int PectoralPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
+        public int LumbarsPoints { get => _lumbarPoints; set => _lumbarPoints = value; }
+        public int PectoralsPoints { get => _pectoralPoints; set => _pectoralPoints = value; }
 
         private IExercisesRepository repository;
 
@@ -78,13 +79,13 @@ namespace BusinessLayer.Models
                 {
                     case Operation.Insert:
                         ValidateInsert();
-                        await repository.Insert(GetDataEntity());
+                        await repository.Insert(ExercisesMapper.Adapter(this));
                         resultMsg = "Ejercicio guardado correctamente... !";
                         break;
 
                     case Operation.Update:
                         ValidateUpdate();
-                        await repository.Update(GetDataEntity());
+                        await repository.Update(ExercisesMapper.Adapter(this));
                         resultMsg = "Ejercicio modificado correctamente... !";
                         break;
 
@@ -112,65 +113,9 @@ namespace BusinessLayer.Models
         }
         public async Task<IEnumerable<ExercisesModel>> GetAll()
         {
-            var dataModel = await repository.GetAll();
-
-            var list = new List<ExercisesModel>();
-            
-            foreach(Exercises item in dataModel)
-            {
-                list.Add(new ExercisesModel
-                {
-                    IdExercises = item.IdExercises,
-                    Name = item.Name,
-                    Detail = item.Detail,
-                    HamstringPoints = item.HamstringPoints,
-                    QuadricepsPoints = item.QuadricepsPoints,
-                    CalvesPoints = item.CalvesPoints,
-                    ButtocksPoints = item.ButtocksPoints,
-                    TrapeziusPoints = item.TrapeziusPoints,
-                    DorsalPoints = item.DorsalsPoints,
-                    AbdominalPoints = item.AbdominalsPoints,
-                    ObliquesPoints = item.ObliquesPoints,
-                    BicepsPoints = item.BicepsPoints,
-                    TricepsPoints = item.TricepsPoints,
-                    ForeArmPoints = item.ForeArmPoints,
-                    PosteriorDeltoidPoints = item.PosteriorDeltoidPoints,
-                    LateralDeltoidPoints = item.LateralDeltoidPoints,
-                    AnteriorDeltoidPoints = item.AnteriorDeltoidPoints,
-                    AdductorPoints = item.AdductorPoints,
-                    LumbarPoints = item.LumbarsPoints,
-                    PectoralPoints = item.PectoralsPoints,
-                });
-            }
-            return list;
+            return ExercisesMapper.AdapterList(await repository.GetAll());
         }
 
-        private Exercises GetDataEntity()
-        {
-            return new Exercises()
-            {
-                IdExercises = this.IdExercises,
-                Name = this.Name,
-                Detail = this.Detail,
-                HamstringPoints = this.HamstringPoints,
-                QuadricepsPoints = this.QuadricepsPoints,
-                CalvesPoints = this.CalvesPoints,
-                ButtocksPoints = this.ButtocksPoints,
-                TrapeziusPoints = this.TrapeziusPoints,
-                DorsalsPoints = this.DorsalPoints,
-                AbdominalsPoints = this.AbdominalPoints,
-                ObliquesPoints = this.ObliquesPoints,
-                BicepsPoints = this.BicepsPoints,
-                TricepsPoints = this.TricepsPoints,
-                ForeArmPoints = this.ForeArmPoints,
-                PosteriorDeltoidPoints = this.PosteriorDeltoidPoints,
-                LateralDeltoidPoints = this.LateralDeltoidPoints,
-                AnteriorDeltoidPoints = this.AnteriorDeltoidPoints,
-                AdductorPoints = this.AdductorPoints,
-                LumbarsPoints = this.LumbarPoints,
-                PectoralsPoints = this.PectoralPoints,
-            };
-        }
         private void ValidateInsert() {
         
             if (string.IsNullOrWhiteSpace(Name))
@@ -194,10 +139,10 @@ namespace BusinessLayer.Models
             if (TrapeziusPoints > 100 || TrapeziusPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (DorsalPoints > 100 || DorsalPoints < 0)
+            if (DorsalsPoints > 100 || DorsalsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (AbdominalPoints > 100 || AbdominalPoints < 0)
+            if (AbdominalsPoints > 100 || AbdominalsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (ObliquesPoints > 100 || ObliquesPoints < 0)
@@ -224,10 +169,10 @@ namespace BusinessLayer.Models
             if (AdductorPoints > 100 || AdductorPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (LumbarPoints > 100 || LumbarPoints < 0)
+            if (LumbarsPoints > 100 || LumbarsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (PectoralPoints > 100 || PectoralPoints < 0)
+            if (PectoralsPoints > 100 || PectoralsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
         }
         private void ValidateUpdate()
@@ -256,10 +201,10 @@ namespace BusinessLayer.Models
             if (TrapeziusPoints > 100 || TrapeziusPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (DorsalPoints > 100 || DorsalPoints < 0)
+            if (DorsalsPoints > 100 || DorsalsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (AbdominalPoints > 100 || AbdominalPoints < 0)
+            if (AbdominalsPoints > 100 || AbdominalsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
             if (ObliquesPoints > 100 || ObliquesPoints < 0)
@@ -286,10 +231,10 @@ namespace BusinessLayer.Models
             if (AdductorPoints > 100 || AdductorPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (LumbarPoints > 100 || LumbarPoints < 0)
+            if (LumbarsPoints > 100 || LumbarsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
 
-            if (PectoralPoints > 100 || PectoralPoints < 0)
+            if (PectoralsPoints > 100 || PectoralsPoints < 0)
                 throw new ArgumentException("El valor debe estar en un rango entre 0 y 100...!");
         }
         private void ValidateDelete()

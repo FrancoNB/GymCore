@@ -74,7 +74,7 @@ namespace DataAccessLayer.Repositories.Interfaces
                 {
                     list.Add(new Routines()
                     {
-                        IdRoutine = Convert.ToInt32(row["IdRoutine"]),
+                        IdRoutines = Convert.ToInt32(row["IdRoutine"]),
                         StartDate = Convert.ToDateTime(row["StartDate"]),
                         EndDate = Convert.ToDateTime(row["EndDate"]),
                         State = row["State"].ToString(),
