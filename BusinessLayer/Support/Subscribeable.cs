@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.Cache
 {
-    public abstract class Subscribeable<T> : ISubscribeable<T> where T : class
+    public abstract class Subscribeable<T> : ISubscribeable<T> where T : class, new()
     {
         protected IEnumerable<T> _resource;
         protected List<ISubscriber<T>> _subscriberLit;

@@ -44,7 +44,7 @@
             this.btnQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asistenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cuentasCorrientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnQueriesCurrentAccounts = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSystem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEndSesion = new System.Windows.Forms.ToolStripMenuItem();
@@ -178,7 +178,7 @@
             this.btnQuery.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
             this.asistenciasToolStripMenuItem,
-            this.cuentasCorrientesToolStripMenuItem});
+            this.btnQueriesCurrentAccounts});
             this.btnQuery.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(76, 21);
@@ -200,13 +200,14 @@
             this.asistenciasToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.asistenciasToolStripMenuItem.Text = "Asistencias";
             // 
-            // cuentasCorrientesToolStripMenuItem
+            // btnQueriesCurrentAccounts
             // 
-            this.cuentasCorrientesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.cuentasCorrientesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.cuentasCorrientesToolStripMenuItem.Name = "cuentasCorrientesToolStripMenuItem";
-            this.cuentasCorrientesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.cuentasCorrientesToolStripMenuItem.Text = "Cuentas Corrientes";
+            this.btnQueriesCurrentAccounts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnQueriesCurrentAccounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnQueriesCurrentAccounts.Name = "btnQueriesCurrentAccounts";
+            this.btnQueriesCurrentAccounts.Size = new System.Drawing.Size(186, 22);
+            this.btnQueriesCurrentAccounts.Text = "Cuentas Corrientes";
+            this.btnQueriesCurrentAccounts.Click += new System.EventHandler(this.btnQueriesCurrentAccounts_Click);
             // 
             // btnSystem
             // 
@@ -303,7 +304,7 @@
         private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asistenciasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cuentasCorrientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnQueriesCurrentAccounts;
         private System.Windows.Forms.ToolStripMenuItem btnUsers;
         private System.Windows.Forms.ToolStripMenuItem btnExit;
     }

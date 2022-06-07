@@ -2,14 +2,14 @@
 using BusinessLayer.Models;
 using BusinessLayer.Services.SubscriptionsStrategy;
 using BusinessLayer.ValueObjects;
-using Presentation.Forms.Lists;
+using PresentationLayer.Forms.Lists;
 using PresentationLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.Management
+namespace PresentationLayer.Forms.Management
 {
     public partial class frmManagementSubscriptions : Form, ISubscriber<PackagesModel>, ISubscriber<ClientsModel>, ISubscriber<SubscriptionsModel>
     {
@@ -189,8 +189,11 @@ namespace Presentation.Forms.Management
 
             dgvSubcriptionsClientList.Columns["idSubscription"].Visible = false;
 
-            dgvSubcriptionsClientList.Columns["StartDate"].Width = 80;
-            dgvSubcriptionsClientList.Columns["ExpireDate"].Width = 80;
+            dgvSubcriptionsClientList.Columns["StartDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvSubcriptionsClientList.Columns["ExpireDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            dgvSubcriptionsClientList.Columns["StartDate"].Width = 100;
+            dgvSubcriptionsClientList.Columns["ExpireDate"].Width = 100;
 
             dgvSubcriptionsClientList.Columns["StartDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvSubcriptionsClientList.Columns["ExpireDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -484,6 +487,7 @@ namespace Presentation.Forms.Management
         {
             ClientsCache.GetInstance().Detach(this);
             PackagesCache.GetInstance().Detach(this);
+            SubscriptionsCache.GetInstance().Detach(this);
 
             this.Close();
         }

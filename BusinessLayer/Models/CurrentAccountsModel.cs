@@ -26,6 +26,25 @@ namespace BusinessLayer.Models
         public int IdCurrentAccounts { get { return _idCurrentAccounts; } set { _idCurrentAccounts = value; } }
         public Tickets TicketCode { get { return _ticketCode; } set { _ticketCode = value; } }
         public DateTime Date { get { return _date; } set { _date = value; } }
+        public string DateString
+        {
+            get
+            {
+                if (Date == null)
+                {
+                    return string.Empty;
+                }
+                else if (Date == DateTime.MinValue)
+                {
+                    return "Desconocida";
+                }
+                else
+                {
+                    return Date.ToString("dd/MM/yyyy");
+                }
+
+            }
+        }
         public double Credit { get { return _credit; } set { _credit = value; } }
         public double Debit { get { return _debit; } set { _debit = value; } }
         public double Balance { get { return _balance; } set { _balance = value; } }

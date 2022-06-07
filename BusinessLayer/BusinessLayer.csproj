@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\ClientsCache.cs" />
+    <Compile Include="Cache\CurrentAccountsCache.cs" />
     <Compile Include="Cache\ExercisesCache.cs" />
     <Compile Include="Cache\PackagesCache.cs" />
     <Compile Include="Cache\LoginCache.cs" />

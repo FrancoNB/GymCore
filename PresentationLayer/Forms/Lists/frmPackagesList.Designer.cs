@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms.Lists
+﻿namespace PresentationLayer.Forms.Lists
 {
     partial class frmPackagesList
     {

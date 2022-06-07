@@ -86,6 +86,12 @@
     <Compile Include="Forms\Management\frmManagementSubscriptions.Designer.cs">
       <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Queries\frmQueriesCurrentAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Queries\frmQueriesCurrentAccounts.Designer.cs">
+      <DependentUpon>frmQueriesCurrentAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Register\frmRegisterClients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <EmbeddedResource Include="Forms\Lists\frmPackagesList.resx">
       <DependentUpon>frmPackagesList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Queries\frmQueriesCurrentAccounts.resx">
+      <DependentUpon>frmQueriesCurrentAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\frmRegisterClients.resx">
       <DependentUpon>frmRegisterClients.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,9 +180,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
       <Project>{741afcd1-6e94-4b02-bb4f-c1161777cc31}</Project>
