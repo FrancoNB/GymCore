@@ -51,23 +51,19 @@
             this.txtClientPhone = new PresentationLayer.Controls.GymCoreTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtClientResidence = new PresentationLayer.Controls.GymCoreTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancel = new PresentationLayer.Controls.GymCoreButton();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBalance = new PresentationLayer.Controls.GymCoreTextBox();
+            this.btnFilter = new PresentationLayer.Controls.GymCoreButton();
+            this.txtEndDate = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtStartDate = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentAccountClientList)).BeginInit();
             this.pnlClientSelection.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,9 +71,9 @@
             // 
             this.pnlList.Controls.Add(this.dgvCurrentAccountClientList);
             this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlList.Location = new System.Drawing.Point(0, 123);
+            this.pnlList.Location = new System.Drawing.Point(0, 78);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(1024, 335);
+            this.pnlList.Size = new System.Drawing.Size(1024, 431);
             this.pnlList.TabIndex = 48;
             // 
             // dgvCurrentAccountClientList
@@ -140,7 +136,7 @@
             this.dgvCurrentAccountClientList.RowTemplate.Height = 30;
             this.dgvCurrentAccountClientList.RowTemplate.ReadOnly = true;
             this.dgvCurrentAccountClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCurrentAccountClientList.Size = new System.Drawing.Size(1024, 335);
+            this.dgvCurrentAccountClientList.Size = new System.Drawing.Size(1024, 431);
             this.dgvCurrentAccountClientList.TabIndex = 19;
             // 
             // pnlClientSelection
@@ -154,7 +150,7 @@
             this.pnlClientSelection.Location = new System.Drawing.Point(0, 33);
             this.pnlClientSelection.Name = "pnlClientSelection";
             this.pnlClientSelection.Size = new System.Drawing.Size(1024, 45);
-            this.pnlClientSelection.TabIndex = 43;
+            this.pnlClientSelection.TabIndex = 0;
             // 
             // label7
             // 
@@ -259,7 +255,7 @@
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.txtClientResidence);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 507);
+            this.panel6.Location = new System.Drawing.Point(0, 558);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1024, 42);
             this.panel6.TabIndex = 47;
@@ -350,98 +346,50 @@
             this.txtClientResidence.Size = new System.Drawing.Size(247, 23);
             this.txtClientResidence.TabIndex = 35;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 549);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1024, 51);
-            this.panel2.TabIndex = 49;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnCancel.Location = new System.Drawing.Point(873, 10);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(140, 31);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "FILTRAR";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            this.panel3.Controls.Add(this.dateTimePicker1);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.dtpStartDate);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 78);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1024, 45);
-            this.panel3.TabIndex = 50;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.dateTimePicker1.Location = new System.Drawing.Point(444, 11);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(237, 23);
-            this.dateTimePicker1.TabIndex = 40;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label10.Location = new System.Drawing.Point(349, 14);
+            this.label10.Location = new System.Drawing.Point(426, 14);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 19);
+            this.label10.Size = new System.Drawing.Size(77, 19);
             this.label10.TabIndex = 39;
-            this.label10.Text = "Fecha Hasta";
-            // 
-            // dtpStartDate
-            // 
-            this.dtpStartDate.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.dtpStartDate.Location = new System.Drawing.Point(106, 11);
-            this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(237, 23);
-            this.dtpStartDate.TabIndex = 38;
+            this.label10.Text = "Fec. Hasta";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label9.Location = new System.Drawing.Point(8, 14);
+            this.label9.Location = new System.Drawing.Point(173, 14);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 19);
+            this.label9.Size = new System.Drawing.Size(80, 19);
             this.label9.TabIndex = 37;
-            this.label9.Text = "Fecha Desde";
+            this.label9.Text = "Fec. Desde";
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            this.panel7.Controls.Add(this.btnFilter);
             this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.txtEndDate);
             this.panel7.Controls.Add(this.txtBalance);
+            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.txtStartDate);
+            this.panel7.Controls.Add(this.label9);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 458);
+            this.panel7.Location = new System.Drawing.Point(0, 509);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1024, 49);
-            this.panel7.TabIndex = 51;
+            this.panel7.TabIndex = 1;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label8.Location = new System.Drawing.Point(734, 13);
+            this.label8.Location = new System.Drawing.Point(734, 14);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 19);
             this.label8.TabIndex = 38;
@@ -455,7 +403,7 @@
             this.txtBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBalance.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtBalance.Location = new System.Drawing.Point(784, 8);
+            this.txtBalance.Location = new System.Drawing.Point(784, 9);
             this.txtBalance.MaxLength = 255;
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.NumbersOnly = false;
@@ -464,6 +412,50 @@
             this.txtBalance.TabIndex = 37;
             this.txtBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // btnFilter
+            // 
+            this.btnFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnFilter.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnFilter.Location = new System.Drawing.Point(12, 9);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(140, 31);
+            this.btnFilter.TabIndex = 2;
+            this.btnFilter.Text = "FILTRAR";
+            this.btnFilter.UseVisualStyleBackColor = false;
+            // 
+            // txtEndDate
+            // 
+            this.txtEndDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtEndDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtEndDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEndDate.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtEndDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtEndDate.Location = new System.Drawing.Point(509, 12);
+            this.txtEndDate.MaxLength = 255;
+            this.txtEndDate.Name = "txtEndDate";
+            this.txtEndDate.NumbersOnly = false;
+            this.txtEndDate.Size = new System.Drawing.Size(161, 27);
+            this.txtEndDate.TabIndex = 1;
+            // 
+            // txtStartDate
+            // 
+            this.txtStartDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtStartDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtStartDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStartDate.Font = new System.Drawing.Font("Calibri", 12F);
+            this.txtStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtStartDate.Location = new System.Drawing.Point(259, 12);
+            this.txtStartDate.MaxLength = 255;
+            this.txtStartDate.Name = "txtStartDate";
+            this.txtStartDate.NumbersOnly = false;
+            this.txtStartDate.Size = new System.Drawing.Size(161, 27);
+            this.txtStartDate.TabIndex = 0;
+            // 
             // frmQueriesCurrentAccounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -471,12 +463,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(16)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(1024, 600);
             this.Controls.Add(this.pnlList);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.pnlClientSelection);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmQueriesCurrentAccounts";
             this.ShowInTaskbar = false;
@@ -490,9 +480,6 @@
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.ResumeLayout(false);
@@ -518,15 +505,13 @@
         private PresentationLayer.Controls.GymCoreTextBox txtClientPhone;
         private System.Windows.Forms.Label label6;
         private PresentationLayer.Controls.GymCoreTextBox txtClientResidence;
-        private System.Windows.Forms.Panel panel2;
-        private PresentationLayer.Controls.GymCoreButton btnCancel;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private PresentationLayer.Controls.GymCoreButton btnFilter;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label8;
         private Controls.GymCoreTextBox txtBalance;
+        private Controls.GymCoreTextBox txtEndDate;
+        private Controls.GymCoreTextBox txtStartDate;
     }
 }

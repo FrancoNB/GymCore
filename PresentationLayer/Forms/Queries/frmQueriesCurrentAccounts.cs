@@ -48,6 +48,9 @@ namespace PresentationLayer.Forms.Queries
         {
             dgvCurrentAccountClientList.Rows.Clear();
 
+            txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
+            txtBalance.BackColor = Color.FromArgb(12, 19, 46);
+
             txtClientMail.Clear();
             txtClientObservations.Clear();
             txtClientPhone.Clear();
@@ -76,7 +79,25 @@ namespace PresentationLayer.Forms.Queries
                                                          string.Format("$ {0:#,##0.00}", currentAccount.Balance), currentAccount.Detail);
                 
                     if(currentAccount.Equals(currentAccountClientList.Last()))
-                        txtBalance.Text = dgvCurrentAccountClientList.Rows[dgvCurrentAccountClientList.Rows.Count - 1].Cells["Balance"].Value.ToString();
+                    {
+                        if (currentAccount.Balance > 0)
+                        {
+                            txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
+                            txtBalance.BackColor = Color.FromArgb(33, 50, 16);
+                        } 
+                        else if(currentAccount.Balance < 0)
+                        {
+                            txtBalance.ForeColor = Color.FromArgb(225, 20, 6);
+                            txtBalance.BackColor = Color.FromArgb(57, 8, 1);
+                        }
+                        else
+                        {
+                            txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
+                            txtBalance.BackColor = Color.FromArgb(12, 19, 46); 
+                        }
+
+                        txtBalance.Text = string.Format("$ {0:#,##0.00}", currentAccount.Balance);
+                    }
                 }
             }
 
