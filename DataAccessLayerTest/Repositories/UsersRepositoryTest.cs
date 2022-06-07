@@ -17,10 +17,14 @@ namespace DataAccessLayerTest.Repositories
         private IUsersRepository repository;
         private Users entity;
 
+        private static Random random;
+
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
+
+            random = new Random();
         }
 
         [TestInitialize]
@@ -32,7 +36,7 @@ namespace DataAccessLayerTest.Repositories
             {
                 RegisterDate = DateTime.Now ,
                 Type = "TypeTest",
-                Username = "UsernameTest",
+                Username = "UsernameTest" + random.Next().ToString(),
                 Password = "PasswordTest",
                 LastConnection = DateTime.Now ,
             };
@@ -89,6 +93,16 @@ namespace DataAccessLayerTest.Repositories
             var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
 
             Assert.AreEqual(1048, ex.Code);
+        }
+
+        [TestMethod]
+        public async Task Insert_InvalidTest_4()
+        {
+            Assert.AreEqual(1, await repository.Insert(entity));
+
+            var ex = await Assert.ThrowsExceptionAsync<RepositoryException>(() => repository.Insert(entity));
+
+            Assert.AreEqual(1062, ex.Code);
         }
 
         [TestMethod]
