@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Presentation.Forms.Lists
+namespace PresentationLayer.Forms.Lists
 {
     public partial class frmClientsList : Form, ISubscriber<ClientsModel>
     {
