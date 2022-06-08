@@ -149,8 +149,6 @@ namespace PresentationLayer.Forms.Management
 
             txtClient.Enabled = false;
 
-            dtpStartDate.Enabled = true;
-
             txtPackage.Select();
         }
 

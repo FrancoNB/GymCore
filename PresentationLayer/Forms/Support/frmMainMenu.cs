@@ -10,6 +10,7 @@ using PresentationLayer.Forms.Queries;
 using PresentationLayer.Utilities;
 using BusinessLayer.Models;
 using PresentationLayer.Forms.Management;
+using Presentation.Forms.Management;
 
 namespace PresentationLayer
 {
@@ -102,6 +103,7 @@ namespace PresentationLayer
             ExercisesCache.GetInstance().Resource = await new ExercisesModel().GetAll();
             SubscriptionsCache.GetInstance().Resource = await new SubscriptionsModel().GetAll();
             CurrentAccountsCache.GetInstance().Resource = await new CurrentAccountsModel().GetAll();
+            PaymentsCache.GetInstance().Resource = await new PaymentsModel().GetAll();
 
             LoadNotification.Hide();
         }
@@ -160,6 +162,14 @@ namespace PresentationLayer
                 frmQueriesCurrentAccounts.GetInstance().ShowDialog(this);
             else
                 MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder a la consulta de cuentas corrientes... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);          
+        }
+
+        private void btnPayments_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+                frmManagementPayments.GetInstance().ShowDialog(this);
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de pagos... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
