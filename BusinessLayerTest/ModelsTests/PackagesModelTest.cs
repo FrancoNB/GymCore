@@ -23,27 +23,27 @@ namespace BusinessLayerTest.ModelsTests
             mockPackagesRepository.Setup(x => x.Insert(It.IsAny<Packages>())).Returns(Task.FromResult(1));
             mockPackagesRepository.Setup(x => x.Delete(It.Is<int>(id => id > 0))).Returns(Task.FromResult(1));
             mockPackagesRepository.Setup(x => x.Update(It.Is<Packages>(client => client.IdPackages > 0))).Returns(Task.FromResult(1));
+
+            packagesModel = new PackagesModel(mockPackagesRepository.Object)
+            {
+                IdPackages = 1,
+                Name = "TestPackageName",
+                NumberSessions = 1,
+                AvailableDays = 1,
+                Price = 1234
+            };
         }
 
         [TestMethod()]
         public async Task GetAll_Test()
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object);
-
             CollectionAssert.AreEqual(new List<PackagesModel>(), (List<PackagesModel>)await packagesModel.GetAll());
         }
 
         [TestMethod()]
         public async Task SaveChanges_ValidInsertTest()
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestPackageName",
-                NumberSessions = 1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
             Assert.IsTrue((await packagesModel.SaveChanges()).Result);
         }
@@ -51,14 +51,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_1()  //String "PackageName" inválido
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "",
-                NumberSessions = 1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            packagesModel.Name = "";
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -66,14 +60,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_2()  //Número "NumberSessions" inválido.
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestPackageName",
-                NumberSessions = -1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            packagesModel.NumberSessions = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -81,14 +69,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_3()  //Número "AvailableDays" inválido.
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestPackageName",
-                NumberSessions = 1,
-                AvailableDays = -1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            packagesModel.AvailableDays = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -96,15 +78,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidUpdateTest()  
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdPackages = 1,
-                Name = "TestPackageName",
-                NumberSessions = 1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
             Assert.IsTrue((await packagesModel.SaveChanges()).Result);
         }
@@ -112,15 +86,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_1()  //String "PackageName" inválido
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdPackages = 1,
-                Name = "",
-                NumberSessions = 1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            packagesModel.Name = "";
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -128,15 +95,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_2()  //Número "NumberSessions" inválido.
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdPackages = 1,
-                Name = "TestPackageName",
-                NumberSessions = -1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            packagesModel.NumberSessions = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -144,15 +104,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_3()  //Número "AvailableDays" inválido.
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdPackages = 1,
-                Name = "TestPackageName",
-                NumberSessions = 1,
-                AvailableDays = -1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            packagesModel.AvailableDays = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -160,15 +113,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_4()  //Número "idPackages" inválido.
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdPackages = -2,
-                Name = "TestPackageName",
-                NumberSessions = 1,
-                AvailableDays = 1,
-                Price = 1234
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            packagesModel.IdPackages = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
@@ -176,11 +122,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidDeleteTest()
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete,
-                IdPackages = 1,
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
 
             Assert.IsTrue((await packagesModel.SaveChanges()).Result);
         }
@@ -188,10 +130,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidDeleteTest()
         {
-            packagesModel = new PackagesModel(mockPackagesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete
-            };
+            packagesModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
+            packagesModel.IdPackages = 0;
 
             Assert.IsFalse((await packagesModel.SaveChanges()).Result);
         }
