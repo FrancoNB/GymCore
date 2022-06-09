@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services.Payments
 {
-    public class PaymentsInsertService : IServiceStrategy<PaymentsModel>
+    public class PaymentsUpdateService : IServiceStrategy<PaymentsModel>
     {
         private readonly CurrentAccountsModel currentAccountModel;
 
-        public PaymentsInsertService()
+        public PaymentsUpdateService()
         {
             this.currentAccountModel = new CurrentAccountsModel();
         }
 
         public async Task<AcctionResult> SaveChanges(PaymentsModel paymentModel)
         {
-            paymentModel.Operation = Operation.Insert;
+            paymentModel.Operation = Operation.Update;
 
-            currentAccountModel.Operation = Operation.Insert;
+            currentAccountModel.Operation = Operation.Update;
+            currentAccountModel.IdCurrentAccounts = paymentModel.IdCurrentAccounts;
             currentAccountModel.TicketCode = paymentModel.TicketCode;
             currentAccountModel.Date = DateTime.Now;
             currentAccountModel.Credit = paymentModel.Amount;
@@ -37,8 +38,6 @@ namespace BusinessLayer.Services.Payments
 
                 if (action.Result)
                 {
-                    paymentModel.IdCurrentAccounts = await currentAccountModel.GetLastId();
-
                     action = await paymentModel.SaveChanges();
 
                     if (action.Result)

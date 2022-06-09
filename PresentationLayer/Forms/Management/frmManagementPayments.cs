@@ -37,6 +37,8 @@ namespace Presentation.Forms.Management
             return instance;
         }
 
+        private string Operation;
+
         private readonly PaymentsModel paymentsWorkingModel;
         private Service<PaymentsModel> paymentService;
 
@@ -59,9 +61,6 @@ namespace Presentation.Forms.Management
             txtAmount.Clear();
             cbxPaymentMethod.SelectedItem = null;
             txtObservations.Clear();
-
-            dtpDate.MaxDate = DateTime.Now;
-            dtpDate.Value = dtpDate.MaxDate;
         }
 
         private void ClearClientData()
@@ -76,14 +75,14 @@ namespace Presentation.Forms.Management
 
         private void SetControlsDefaultState()
         {
+            txtClient.Clear();
+
             ClearData();
 
             ControlsUtilities.DisableContainerControls(pnlData);
             ControlsUtilities.DisableContainerControls(pnlList);
 
             txtClient.Enabled = true;
-
-            dtpDate.Enabled = false;
 
             btnNew.Enabled = false;
             btnDelete.Enabled = false;
@@ -107,8 +106,6 @@ namespace Presentation.Forms.Management
             ControlsUtilities.EnabledContainerControls(pnlList);
             ControlsUtilities.DisableContainerControls(pnlData);
 
-            dtpDate.Enabled = false;
-
             txtClient.Enabled = true;
 
             ClearData();
@@ -125,8 +122,6 @@ namespace Presentation.Forms.Management
 
             ControlsUtilities.DisableContainerControls(pnlList);
             ControlsUtilities.DisableContainerControls(pnlData);
-
-            dtpDate.Enabled = false;
 
             txtClient.Enabled = true;
         }
@@ -145,7 +140,6 @@ namespace Presentation.Forms.Management
             cbxPaymentMethod.Enabled = true;
             txtAmount.Enabled = true;
             txtObservations.Enabled = true;
-            dtpDate.Enabled = true;
 
             txtClient.Enabled = false;
 
@@ -170,7 +164,7 @@ namespace Presentation.Forms.Management
 
                 foreach (PaymentsModel payment in paymentsClientsList)
                 {
-                    dgvPaymentsClientList.Rows.Add(payment.IdPayments, payment.DateString, payment.PaymentMethodString, string.Format("{0:#,##}", payment.Amount));
+                    dgvPaymentsClientList.Rows.Add(payment.IdPayments, payment.DateString, payment.PaymentMethodString, string.Format("$ {0:#,##0.00}", payment.Amount));
                 }
             }
 
@@ -179,6 +173,13 @@ namespace Presentation.Forms.Management
 
         private void frmManagementPayments_Load(object sender, EventArgs e)
         {
+            cbxPaymentMethod.Items.Clear();
+            cbxPaymentMethod.Items.Add("Efectivo");
+            cbxPaymentMethod.Items.Add("Tarjeta de Credito");
+            cbxPaymentMethod.Items.Add("Tarjeta de Debito");
+            cbxPaymentMethod.Items.Add("Cheque");
+            cbxPaymentMethod.Items.Add("Otro");
+
             dgvPaymentsClientList.Columns.Clear();
             dgvPaymentsClientList.Columns.Add("idPayment", "ID PAGO");
             dgvPaymentsClientList.Columns.Add("Date", "FECHA");
@@ -202,14 +203,17 @@ namespace Presentation.Forms.Management
             SetControlsDefaultState();
         }
 
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
-        {
-            paymentsWorkingModel.Date = dtpDate.Value;
-        }
-
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
             paymentsWorkingModel.Amount = FormatUtilities.NumbersOnly(txtAmount.Text);
+        }
+
+        private void txtAmount_Validated(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtAmount.Text))
+            {
+                txtAmount.Text = string.Format("$ {0:#,##0.00}", FormatUtilities.NumbersOnly(txtAmount.Text));
+            }
         }
 
         private void txtObservations_TextChanged(object sender, EventArgs e)
@@ -271,9 +275,44 @@ namespace Presentation.Forms.Management
             }
         }
 
+        private void dgvPaymentsClientList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var selectedPayment = paymentsList.ToList().Find(payment => payment.IdPayments == Convert.ToInt32(dgvPaymentsClientList.CurrentRow.Cells["idPayment"].Value));
+
+                paymentsWorkingModel.IdPayments = selectedPayment.IdPayments;
+                paymentsWorkingModel.IdCurrentAccounts = selectedPayment.IdCurrentAccounts;
+                paymentsWorkingModel.TicketCode = selectedPayment.TicketCode;
+
+                txtTicketCode.Text = selectedPayment.TicketCode.Value;
+                cbxPaymentMethod.Text = selectedPayment.PaymentMethodString;
+                txtAmount.Text = string.Format("$ {0:#,##0.00}", selectedPayment.Amount);
+                txtObservations.Text = selectedPayment.Observations;
+
+                btnUpdate.Select();
+            }
+            else
+            {
+                ClearSelectionDgv();
+            }
+        }
+
+        private void dgvPaymentsClientList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (dgvPaymentsClientList.HitTest(e.X, e.Y).Equals(DataGridView.HitTestInfo.Nowhere))
+                {
+                    ClearSelectionDgv();
+                }
+            }
+        }
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             paymentService.SetStrategy(new PaymentsInsertService());
+            Operation = "New";
 
             SetControlsActiveState();
             ClearSelectionDgv();
@@ -283,10 +322,110 @@ namespace Presentation.Forms.Management
             txtTicketCode.Text = paymentsWorkingModel.TicketCode.Value;
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dgvPaymentsClientList.CurrentCell != null)
+            {
+                paymentService.SetStrategy(new PaymentsUpdateService());
+                Operation = "Update";
+
+                SetControlsActiveState();
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el pago que deseas modificar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvPaymentsClientList.CurrentCell != null)
+            {
+                DialogResult confirm = MessageBox.Show("Eliminar pago ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.OK)
+                {
+                    paymentService.SetStrategy(new PaymentsDeleteService());
+
+                    LoadNotification.Show("Eliminando pago...");
+
+                    var acctionResult = await paymentService.SaveChanges(paymentsWorkingModel);
+
+                    LoadNotification.Hide();
+
+                    if (acctionResult.Result)
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        btnNew.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar el pago que deseas eliminar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            string footMsg;
+            DialogResult confirm;
+
+            if (Operation == "New")
+            {
+                confirm = MessageBox.Show("Guardar pago ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Guardando pago...";
+            }
+            else if (Operation == "Update")
+            {
+                confirm = MessageBox.Show("Modificar pago ?", "Sistema de Alertas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                footMsg = "Modificando pago...";
+            }
+            else
+            {
+                MessageBox.Show("No se establecio la operacion a realizar... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (confirm == DialogResult.OK)
+            {
+                LoadNotification.Show(footMsg);
+
+                var acctionResult = await paymentService.SaveChanges(paymentsWorkingModel);
+
+                LoadNotification.Hide();
+
+                if (!acctionResult.Result)
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    cbxPaymentMethod.Select();
+                }
+                else
+                {
+                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    SetControlsClientEnterState();
+                    btnNew.Select();
+                }
+            }
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            SetControlsClientEnterState();
 
+            txtClient.Enabled = true;
+            txtClient.Select();
+            txtClient.SelectionStart = 0;
+            txtClient.SelectionLength = txtClient.TextLength;
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             ClientsCache.GetInstance().Detach(this);
@@ -309,7 +448,9 @@ namespace Presentation.Forms.Management
 
         public void Update(IEnumerable<PaymentsModel> resource)
         {
-            throw new NotImplementedException();
+            paymentsList = resource;
+
+            LoadDgvPaymentsClientListList();
         }
     }
 }

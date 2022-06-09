@@ -88,7 +88,7 @@ namespace BusinessLayer.Models
 
                     case Operation.Delete:
                         ValidateDelete();
-                        await repository.Delete(IdClients);
+                        await repository.Delete(IdCurrentAccounts);
                         resultMsg = "Cuenta corriente eliminada correctamente... !";
                         break;
 

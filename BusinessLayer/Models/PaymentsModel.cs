@@ -164,9 +164,6 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(PaymentMethodString))
                 throw new ArgumentException("Se debe especificar el metodo de pago... !");
 
-            if (Date == null)
-                throw new ArgumentException("Se debe especificar la fecha en la que se realizo el pago... !");
-
             if (Amount <= 0)
                 throw new ArgumentException("El monto del pago debe ser mayor a 0... !");
 
@@ -177,6 +174,7 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("Se debe especificar el registro de cuenta corriente asociado al pago... !");
 
             IdPayments = -1;
+            Date = DateTime.Now;
         }
 
         private void ValidateUpdate()
@@ -193,9 +191,6 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(PaymentMethodString))
                 throw new ArgumentException("Se debe especificar el metodo de pago... !");
 
-            if (Date == null)
-                throw new ArgumentException("Se debe especificar la fecha en la que se realizo el pago... !");
-
             if (Amount <= 0)
                 throw new ArgumentException("El monto del pago debe ser mayor a 0... !");
 
@@ -204,6 +199,8 @@ namespace BusinessLayer.Models
 
             if (IdCurrentAccounts < 1)
                 throw new ArgumentException("Se debe especificar el registro de cuenta corriente asociado al pago... !");
+
+            Date = DateTime.Now;
         }
 
         private void ValidateDelete()

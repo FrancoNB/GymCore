@@ -28,32 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvPaymentsClientList = new PresentationLayer.Controls.GymCoreDataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtClientMail = new PresentationLayer.Controls.GymCoreTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtClientPhone = new PresentationLayer.Controls.GymCoreTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtTicketCode = new PresentationLayer.Controls.GymCoreTextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtAmount = new PresentationLayer.Controls.GymCoreTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtObservations = new PresentationLayer.Controls.GymCoreTextBox();
-            this.txtClientResidence = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlData = new System.Windows.Forms.Panel();
             this.cbxPaymentMethod = new PresentationLayer.Controls.GymCoreComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtTicketCode = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtAmount = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtObservations = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnClose = new PresentationLayer.Controls.GymCoreButton();
@@ -69,8 +63,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtClient = new PresentationLayer.Controls.GymCoreTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtClientMail = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtClientPhone = new PresentationLayer.Controls.GymCoreTextBox();
+            this.txtClientResidence = new PresentationLayer.Controls.GymCoreTextBox();
             this.pnlList = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentsClientList)).BeginInit();
+            this.dgvPaymentsClientList = new PresentationLayer.Controls.GymCoreDataGridView();
             this.panel4.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,70 +75,8 @@
             this.pnlClientSelection.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentsClientList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvPaymentsClientList
-            // 
-            this.dgvPaymentsClientList.AllowUserToAddRows = false;
-            this.dgvPaymentsClientList.AllowUserToDeleteRows = false;
-            this.dgvPaymentsClientList.AllowUserToResizeColumns = false;
-            this.dgvPaymentsClientList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvPaymentsClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvPaymentsClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPaymentsClientList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
-            this.dgvPaymentsClientList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvPaymentsClientList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvPaymentsClientList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPaymentsClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvPaymentsClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPaymentsClientList.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPaymentsClientList.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dgvPaymentsClientList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPaymentsClientList.EnableHeadersVisualStyles = false;
-            this.dgvPaymentsClientList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.dgvPaymentsClientList.Location = new System.Drawing.Point(0, 35);
-            this.dgvPaymentsClientList.MultiSelect = false;
-            this.dgvPaymentsClientList.Name = "dgvPaymentsClientList";
-            this.dgvPaymentsClientList.ReadOnly = true;
-            this.dgvPaymentsClientList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPaymentsClientList.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            this.dgvPaymentsClientList.RowHeadersWidth = 20;
-            this.dgvPaymentsClientList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvPaymentsClientList.RowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.dgvPaymentsClientList.RowTemplate.Height = 30;
-            this.dgvPaymentsClientList.RowTemplate.ReadOnly = true;
-            this.dgvPaymentsClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPaymentsClientList.Size = new System.Drawing.Size(456, 394);
-            this.dgvPaymentsClientList.TabIndex = 19;
             // 
             // label9
             // 
@@ -178,20 +113,6 @@
             this.label2.TabIndex = 40;
             this.label2.Text = "Mail";
             // 
-            // txtClientMail
-            // 
-            this.txtClientMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtClientMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientMail.Enabled = false;
-            this.txtClientMail.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtClientMail.Location = new System.Drawing.Point(784, 10);
-            this.txtClientMail.MaxLength = 100;
-            this.txtClientMail.Name = "txtClientMail";
-            this.txtClientMail.NumbersOnly = false;
-            this.txtClientMail.Size = new System.Drawing.Size(230, 23);
-            this.txtClientMail.TabIndex = 39;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -202,20 +123,6 @@
             this.label1.Size = new System.Drawing.Size(53, 15);
             this.label1.TabIndex = 38;
             this.label1.Text = "Telefono";
-            // 
-            // txtClientPhone
-            // 
-            this.txtClientPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtClientPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientPhone.Enabled = false;
-            this.txtClientPhone.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtClientPhone.Location = new System.Drawing.Point(509, 10);
-            this.txtClientPhone.MaxLength = 100;
-            this.txtClientPhone.Name = "txtClientPhone";
-            this.txtClientPhone.NumbersOnly = false;
-            this.txtClientPhone.Size = new System.Drawing.Size(230, 23);
-            this.txtClientPhone.TabIndex = 37;
             // 
             // label6
             // 
@@ -239,6 +146,77 @@
             this.label13.TabIndex = 50;
             this.label13.Text = "Codigo de Op.";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(456, 35);
+            this.panel4.TabIndex = 17;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label17.Location = new System.Drawing.Point(7, 91);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(51, 19);
+            this.label17.TabIndex = 44;
+            this.label17.Text = "Monto";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label11.Location = new System.Drawing.Point(7, 130);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(105, 19);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "Observaciones";
+            // 
+            // pnlData
+            // 
+            this.pnlData.Controls.Add(this.cbxPaymentMethod);
+            this.pnlData.Controls.Add(this.label10);
+            this.pnlData.Controls.Add(this.label13);
+            this.pnlData.Controls.Add(this.txtTicketCode);
+            this.pnlData.Controls.Add(this.label17);
+            this.pnlData.Controls.Add(this.txtAmount);
+            this.pnlData.Controls.Add(this.label11);
+            this.pnlData.Controls.Add(this.txtObservations);
+            this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlData.Location = new System.Drawing.Point(456, 78);
+            this.pnlData.Name = "pnlData";
+            this.pnlData.Size = new System.Drawing.Size(568, 198);
+            this.pnlData.TabIndex = 44;
+            // 
+            // cbxPaymentMethod
+            // 
+            this.cbxPaymentMethod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.cbxPaymentMethod.Font = new System.Drawing.Font("Calibri", 12F);
+            this.cbxPaymentMethod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.cbxPaymentMethod.FormattingEnabled = true;
+            this.cbxPaymentMethod.Location = new System.Drawing.Point(127, 50);
+            this.cbxPaymentMethod.Name = "cbxPaymentMethod";
+            this.cbxPaymentMethod.Size = new System.Drawing.Size(428, 27);
+            this.cbxPaymentMethod.TabIndex = 0;
+            this.cbxPaymentMethod.TextChanged += new System.EventHandler(this.cbxPaymentMethod_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.label10.Location = new System.Drawing.Point(7, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(115, 19);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Metodo de Pago";
+            // 
             // txtTicketCode
             // 
             this.txtTicketCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -253,47 +231,6 @@
             this.txtTicketCode.Size = new System.Drawing.Size(211, 27);
             this.txtTicketCode.TabIndex = 0;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label8.Location = new System.Drawing.Point(7, 52);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 19);
-            this.label8.TabIndex = 48;
-            this.label8.Text = "Fecha";
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(456, 35);
-            this.panel4.TabIndex = 17;
-            // 
-            // dtpDate
-            // 
-            this.dtpDate.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.dtpDate.Location = new System.Drawing.Point(127, 49);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(237, 23);
-            this.dtpDate.TabIndex = 1;
-            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label17.Location = new System.Drawing.Point(7, 125);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(51, 19);
-            this.label17.TabIndex = 44;
-            this.label17.Text = "Monto";
-            // 
             // txtAmount
             // 
             this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -301,25 +238,15 @@
             this.txtAmount.Enabled = false;
             this.txtAmount.Font = new System.Drawing.Font("Calibri", 12F);
             this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtAmount.Location = new System.Drawing.Point(128, 123);
+            this.txtAmount.Location = new System.Drawing.Point(127, 89);
             this.txtAmount.MaxLength = 11;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.NumbersOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(167, 27);
-            this.txtAmount.TabIndex = 6;
+            this.txtAmount.TabIndex = 1;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label11.Location = new System.Drawing.Point(7, 164);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(105, 19);
-            this.label11.TabIndex = 37;
-            this.label11.Text = "Observaciones";
+            this.txtAmount.Validated += new System.EventHandler(this.txtAmount_Validated);
             // 
             // txtObservations
             // 
@@ -327,69 +254,14 @@
             this.txtObservations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservations.Font = new System.Drawing.Font("Calibri", 12F);
             this.txtObservations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtObservations.Location = new System.Drawing.Point(128, 162);
+            this.txtObservations.Location = new System.Drawing.Point(127, 128);
             this.txtObservations.MaxLength = 255;
             this.txtObservations.Multiline = true;
             this.txtObservations.Name = "txtObservations";
             this.txtObservations.NumbersOnly = false;
             this.txtObservations.Size = new System.Drawing.Size(428, 60);
-            this.txtObservations.TabIndex = 7;
+            this.txtObservations.TabIndex = 2;
             this.txtObservations.TextChanged += new System.EventHandler(this.txtObservations_TextChanged);
-            // 
-            // txtClientResidence
-            // 
-            this.txtClientResidence.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.txtClientResidence.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientResidence.Enabled = false;
-            this.txtClientResidence.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientResidence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.txtClientResidence.Location = new System.Drawing.Point(197, 10);
-            this.txtClientResidence.MaxLength = 100;
-            this.txtClientResidence.Name = "txtClientResidence";
-            this.txtClientResidence.NumbersOnly = false;
-            this.txtClientResidence.Size = new System.Drawing.Size(247, 23);
-            this.txtClientResidence.TabIndex = 35;
-            // 
-            // pnlData
-            // 
-            this.pnlData.Controls.Add(this.cbxPaymentMethod);
-            this.pnlData.Controls.Add(this.label10);
-            this.pnlData.Controls.Add(this.label13);
-            this.pnlData.Controls.Add(this.txtTicketCode);
-            this.pnlData.Controls.Add(this.label8);
-            this.pnlData.Controls.Add(this.dtpDate);
-            this.pnlData.Controls.Add(this.label17);
-            this.pnlData.Controls.Add(this.txtAmount);
-            this.pnlData.Controls.Add(this.label11);
-            this.pnlData.Controls.Add(this.txtObservations);
-            this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlData.Location = new System.Drawing.Point(456, 78);
-            this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(568, 236);
-            this.pnlData.TabIndex = 44;
-            // 
-            // cbxPaymentMethod
-            // 
-            this.cbxPaymentMethod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.cbxPaymentMethod.Font = new System.Drawing.Font("Calibri", 12F);
-            this.cbxPaymentMethod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.cbxPaymentMethod.FormattingEnabled = true;
-            this.cbxPaymentMethod.Location = new System.Drawing.Point(128, 84);
-            this.cbxPaymentMethod.Name = "cbxPaymentMethod";
-            this.cbxPaymentMethod.Size = new System.Drawing.Size(428, 27);
-            this.cbxPaymentMethod.TabIndex = 52;
-            this.cbxPaymentMethod.TextChanged += new System.EventHandler(this.cbxPaymentMethod_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.label10.Location = new System.Drawing.Point(7, 87);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 19);
-            this.label10.TabIndex = 51;
-            this.label10.Text = "Metodo de Pago";
             // 
             // panel1
             // 
@@ -472,6 +344,7 @@
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "MODIFICAR";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -486,6 +359,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "ELIMINAR";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnCancel
             // 
@@ -515,6 +389,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "GUARDAR";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // pnlClientSelection
             // 
@@ -598,6 +473,48 @@
             this.panel6.Size = new System.Drawing.Size(1024, 42);
             this.panel6.TabIndex = 47;
             // 
+            // txtClientMail
+            // 
+            this.txtClientMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtClientMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtClientMail.Enabled = false;
+            this.txtClientMail.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtClientMail.Location = new System.Drawing.Point(784, 10);
+            this.txtClientMail.MaxLength = 100;
+            this.txtClientMail.Name = "txtClientMail";
+            this.txtClientMail.NumbersOnly = false;
+            this.txtClientMail.Size = new System.Drawing.Size(230, 23);
+            this.txtClientMail.TabIndex = 39;
+            // 
+            // txtClientPhone
+            // 
+            this.txtClientPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtClientPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtClientPhone.Enabled = false;
+            this.txtClientPhone.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtClientPhone.Location = new System.Drawing.Point(509, 10);
+            this.txtClientPhone.MaxLength = 100;
+            this.txtClientPhone.Name = "txtClientPhone";
+            this.txtClientPhone.NumbersOnly = false;
+            this.txtClientPhone.Size = new System.Drawing.Size(230, 23);
+            this.txtClientPhone.TabIndex = 37;
+            // 
+            // txtClientResidence
+            // 
+            this.txtClientResidence.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.txtClientResidence.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtClientResidence.Enabled = false;
+            this.txtClientResidence.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientResidence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.txtClientResidence.Location = new System.Drawing.Point(197, 10);
+            this.txtClientResidence.MaxLength = 100;
+            this.txtClientResidence.Name = "txtClientResidence";
+            this.txtClientResidence.NumbersOnly = false;
+            this.txtClientResidence.Size = new System.Drawing.Size(247, 23);
+            this.txtClientResidence.TabIndex = 35;
+            // 
             // pnlList
             // 
             this.pnlList.Controls.Add(this.dgvPaymentsClientList);
@@ -607,6 +524,71 @@
             this.pnlList.Name = "pnlList";
             this.pnlList.Size = new System.Drawing.Size(456, 429);
             this.pnlList.TabIndex = 48;
+            // 
+            // dgvPaymentsClientList
+            // 
+            this.dgvPaymentsClientList.AllowUserToAddRows = false;
+            this.dgvPaymentsClientList.AllowUserToDeleteRows = false;
+            this.dgvPaymentsClientList.AllowUserToResizeColumns = false;
+            this.dgvPaymentsClientList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvPaymentsClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPaymentsClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPaymentsClientList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            this.dgvPaymentsClientList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPaymentsClientList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvPaymentsClientList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPaymentsClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPaymentsClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPaymentsClientList.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPaymentsClientList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvPaymentsClientList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPaymentsClientList.EnableHeadersVisualStyles = false;
+            this.dgvPaymentsClientList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.dgvPaymentsClientList.Location = new System.Drawing.Point(0, 35);
+            this.dgvPaymentsClientList.MultiSelect = false;
+            this.dgvPaymentsClientList.Name = "dgvPaymentsClientList";
+            this.dgvPaymentsClientList.ReadOnly = true;
+            this.dgvPaymentsClientList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPaymentsClientList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvPaymentsClientList.RowHeadersWidth = 20;
+            this.dgvPaymentsClientList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvPaymentsClientList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvPaymentsClientList.RowTemplate.Height = 30;
+            this.dgvPaymentsClientList.RowTemplate.ReadOnly = true;
+            this.dgvPaymentsClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPaymentsClientList.Size = new System.Drawing.Size(456, 394);
+            this.dgvPaymentsClientList.TabIndex = 19;
+            this.dgvPaymentsClientList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPaymentsClientList_CellClick);
+            this.dgvPaymentsClientList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvPaymentsClientList_MouseUp);
             // 
             // frmManagementPayments
             // 
@@ -626,7 +608,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManagementPayments";
             this.Load += new System.EventHandler(this.frmManagementPayments_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentsClientList)).EndInit();
             this.panel4.ResumeLayout(false);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -637,6 +618,7 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.pnlList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentsClientList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -653,9 +635,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label13;
         private PresentationLayer.Controls.GymCoreTextBox txtTicketCode;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label17;
         private PresentationLayer.Controls.GymCoreTextBox txtAmount;
         private System.Windows.Forms.Label label11;
