@@ -3,7 +3,6 @@ using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories;
-using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -179,7 +178,10 @@ namespace BusinessLayer.Models
                         break;
 
                     case Operation.Update:
-                        return new AcctionResult(false, "No se admite la operacion seleccionada... !");
+                        ValidateUpdate();
+                        await repository.Update(SubscriptionsMapper.Adapter(this));
+                        resultMsg = "Subscripcion modificada correctamente... !";
+                        break;
 
                     default:
                         return new AcctionResult(false, "No se establecio la operacion a realizar... !");
@@ -200,9 +202,9 @@ namespace BusinessLayer.Models
             return SubscriptionsMapper.AdapterList(await repository.GetAll());
         }
 
-        public async Task<IEnumerable<SubscriptionsModel>> GetByIdClient()
+        public async Task<SubscriptionsModel> GetById()
         {
-            return SubscriptionsMapper.AdapterList(await repository.GetByIdClient(IdClients));
+            return SubscriptionsMapper.Adapter(await repository.GetById(IdSubscriptions));
         }
 
         private void ValidateInsert()
@@ -233,6 +235,48 @@ namespace BusinessLayer.Models
             State = SubscriptionsStates.Active;
             UsedSessions = 0;
             AvailableSessions = TotalSessions;
+        }
+
+        private void ValidateUpdate()
+        {
+            if (IdSubscriptions < 1)
+                throw new ArgumentException("No se establecio la subscripcion que se desea modificar... !");
+
+            if (IdClients < 1)
+                throw new ArgumentException("Se debe especificar el cliente al que pertenece la subscripcion... !");
+
+            if (TicketCode == null)
+                throw new ArgumentException("Se debe especificar un codigo para el comprobante de subscripcion... !");
+
+            if (StartDate == null)
+                throw new ArgumentException("Se debe especificar la fecha de inicio de la subscripcion... !");
+
+            if (string.IsNullOrWhiteSpace(Package))
+                throw new ArgumentException("Se debe especificar el paquete de subcripcion que se desea aplicar... !");
+
+            if (TotalSessions < 1 || Price < 1 || ExpireDate == null)
+                throw new ArgumentException("El paquete de subscribcion ingresado no es valido... !");
+
+            if (string.IsNullOrWhiteSpace(Observations))
+                Observations = "-";
+
+            if (IdCurrentAccounts < 1)
+                throw new ArgumentException("Se debe especificar el registro de cuenta corriente asociado a la suscripcion... !");
+
+            if (EndDate == null)
+                EndDate = DateTime.MinValue;
+
+            if (UsedSessions < 0)
+                throw new ArgumentException("El numero de clases consumidas no puede ser un numero negativo... !");
+
+            if (AvailableSessions < 0)
+                throw new ArgumentException("El numero de clases restantes no puede ser un numero negativo... !");
+
+            if (AvailableSessions + UsedSessions != TotalSessions)
+                throw new ArgumentException("El numero de clases restantes sumado al numero de clases consumidas debe ser igual al total de clases que ofrece el paquete... !");
+
+            if (State == SubscriptionsStates.Null)
+                throw new ArgumentException("Se debe especificar el estado de la subscripcion... !");
         }
 
         private void ValidateInvalidate()

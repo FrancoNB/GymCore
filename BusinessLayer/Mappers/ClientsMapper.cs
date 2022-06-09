@@ -12,6 +12,8 @@ namespace BusinessLayer.Mappers
     {
         public static Clients Adapter(ClientsModel model)
         {
+            if (model == null) return null;
+
             return new Clients
             {
                 IdClients = model.IdClients,
@@ -28,6 +30,8 @@ namespace BusinessLayer.Mappers
 
         public static ClientsModel Adapter(Clients entity)
         {
+            if (entity == null) return null;
+
             return new ClientsModel
             {
                 IdClients = entity.IdClients,

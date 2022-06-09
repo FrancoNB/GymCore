@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\AssistsCache.cs" />
     <Compile Include="Cache\ClientsCache.cs" />
     <Compile Include="Cache\CurrentAccountsCache.cs" />
     <Compile Include="Cache\ExercisesCache.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Cache\LoginCache.cs" />
     <Compile Include="Cache\PaymentsCache.cs" />
     <Compile Include="Cache\SubscriptionsCache.cs" />
+    <Compile Include="Mappers\AssistsMapper.cs" />
     <Compile Include="Mappers\ClientsMapper.cs" />
     <Compile Include="Mappers\CurrentAccountsMapper.cs" />
     <Compile Include="Mappers\ExercisesMapper.cs" />
@@ -59,15 +61,18 @@
     <Compile Include="Mappers\SubscriptionsMapper.cs" />
     <Compile Include="Mappers\UsersMapper.cs" />
     <Compile Include="Mappers\WorkPlansMapper.cs" />
+    <Compile Include="Models\AssistsModel.cs" />
     <Compile Include="Models\PaymentsModel.cs" />
     <Compile Include="Models\SubscriptionsModel.cs" />
+    <Compile Include="Services\Assists\AssistDeleteService.cs" />
+    <Compile Include="Services\Assists\AssistsAddService.cs" />
     <Compile Include="Services\Payments\PaymentsDeleteService.cs" />
     <Compile Include="Services\Payments\PaymentsUpdateService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\Payments\PaymentsInsertService.cs" />
-    <Compile Include="Services\SubscriptionsStrategy\SubscriptionsDeleteService.cs" />
-    <Compile Include="Services\SubscriptionsStrategy\SubscriptionsInsertService.cs" />
-    <Compile Include="Services\SubscriptionsStrategy\SubscriptionsInvalidateService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsDeleteService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsInsertService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsInvalidateService.cs" />
     <Compile Include="Support\IServiceStrategy.cs" />
     <Compile Include="Support\Subscribeable.cs" />
     <Compile Include="Cache\UsersCache.cs" />

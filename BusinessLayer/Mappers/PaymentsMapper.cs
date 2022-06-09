@@ -13,6 +13,8 @@ namespace BusinessLayer.Mappers
     {
         public static Payments Adapter(PaymentsModel model)
         {
+            if (model == null) return null;
+
             return new Payments
             {
                 IdPayments = model.IdPayments,
@@ -28,6 +30,8 @@ namespace BusinessLayer.Mappers
 
         public static PaymentsModel Adapter(Payments entity)
         {
+            if (entity == null) return null;
+
             return new PaymentsModel
             {
                 IdPayments = entity.IdPayments,
@@ -64,6 +68,5 @@ namespace BusinessLayer.Mappers
 
             return models;
         }
-
     }
 }

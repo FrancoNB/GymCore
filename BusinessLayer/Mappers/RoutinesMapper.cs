@@ -8,6 +8,8 @@ namespace BusinessLayer.Mappers
     {
         public static Routines Adapter(RoutinesModel model)
         {
+            if (model == null) return null;
+
             return new Routines
             {
                 IdRoutines = model.IdRoutines,
@@ -21,6 +23,8 @@ namespace BusinessLayer.Mappers
 
         public static RoutinesModel Adapter(Routines entity)
         {
+            if (entity == null) return null;
+
             return new RoutinesModel
             {
                 IdRoutines = entity.IdRoutines,

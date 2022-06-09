@@ -12,6 +12,8 @@ namespace BusinessLayer.Mappers
     {
         public static WorkPlans Adapter(WorkPlansModel model)
         {
+            if (model == null) return null;
+
             return new WorkPlans
             {
                 IdWorkPlans = model.IdWorkPlans,
@@ -22,6 +24,8 @@ namespace BusinessLayer.Mappers
 
         public static WorkPlansModel Adapter(WorkPlans entity)
         {
+            if (entity == null) return null;
+
             return new WorkPlansModel
             {
                 IdWorkPlans = entity.IdWorkPlans,

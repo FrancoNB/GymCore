@@ -12,6 +12,8 @@ namespace BusinessLayer.Mappers
     {
         public static Exercises Adapter(ExercisesModel model)
         {
+            if (model == null) return null;
+
             return new Exercises
             {
                 IdExercises = model.IdExercises,
@@ -39,6 +41,8 @@ namespace BusinessLayer.Mappers
 
         public static ExercisesModel Adapter(Exercises entity)
         {
+            if (entity == null) return null;
+
             return new ExercisesModel
             {
                 IdExercises = entity.IdExercises,

@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,12 +41,6 @@
             this.txtClientPhone = new PresentationLayer.Controls.GymCoreTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtClientResidence = new PresentationLayer.Controls.GymCoreTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnNew = new PresentationLayer.Controls.GymCoreButton();
-            this.btnUpdate = new PresentationLayer.Controls.GymCoreButton();
-            this.btnDelete = new PresentationLayer.Controls.GymCoreButton();
-            this.btnCancel = new PresentationLayer.Controls.GymCoreButton();
-            this.btnSave = new PresentationLayer.Controls.GymCoreButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnClose = new PresentationLayer.Controls.GymCoreButton();
@@ -50,10 +49,18 @@
             this.txtClientObservations = new PresentationLayer.Controls.GymCoreTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClient = new PresentationLayer.Controls.GymCoreTextBox();
+            this.pnlList = new System.Windows.Forms.Panel();
+            this.dgvAssistsClientList = new PresentationLayer.Controls.GymCoreDataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnDelete = new PresentationLayer.Controls.GymCoreButton();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.btnAdd = new PresentationLayer.Controls.GymCoreButton();
             this.panel6.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlClientSelection.SuspendLayout();
+            this.pnlList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssistsClientList)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel6
@@ -67,7 +74,7 @@
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.txtClientResidence);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 507);
+            this.panel6.Location = new System.Drawing.Point(0, 558);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1024, 42);
             this.panel6.TabIndex = 49;
@@ -158,90 +165,6 @@
             this.txtClientResidence.Size = new System.Drawing.Size(247, 23);
             this.txtClientResidence.TabIndex = 35;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.panel2.Controls.Add(this.btnNew);
-            this.panel2.Controls.Add(this.btnUpdate);
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 549);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1024, 51);
-            this.panel2.TabIndex = 48;
-            // 
-            // btnNew
-            // 
-            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnNew.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNew.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnNew.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnNew.Location = new System.Drawing.Point(12, 10);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(140, 31);
-            this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "NUEVO";
-            this.btnNew.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnUpdate.Location = new System.Drawing.Point(158, 10);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(140, 31);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "MODIFICAR";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnDelete.Location = new System.Drawing.Point(304, 10);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(140, 31);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "ELIMINAR";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnCancel.Location = new System.Drawing.Point(873, 10);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(140, 31);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "CANCELAR";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.btnSave.Location = new System.Drawing.Point(727, 10);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(140, 31);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "GUARDAR";
-            this.btnSave.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
@@ -279,6 +202,7 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pnlClientSelection
             // 
@@ -343,6 +267,135 @@
             this.txtClient.NumbersOnly = false;
             this.txtClient.Size = new System.Drawing.Size(375, 27);
             this.txtClient.TabIndex = 0;
+            this.txtClient.TextChanged += new System.EventHandler(this.txtClient_TextChanged);
+            this.txtClient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClient_KeyDown);
+            // 
+            // pnlList
+            // 
+            this.pnlList.Controls.Add(this.dgvAssistsClientList);
+            this.pnlList.Controls.Add(this.panel4);
+            this.pnlList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlList.Location = new System.Drawing.Point(0, 78);
+            this.pnlList.Name = "pnlList";
+            this.pnlList.Size = new System.Drawing.Size(1024, 480);
+            this.pnlList.TabIndex = 52;
+            // 
+            // dgvAssistsClientList
+            // 
+            this.dgvAssistsClientList.AllowUserToAddRows = false;
+            this.dgvAssistsClientList.AllowUserToDeleteRows = false;
+            this.dgvAssistsClientList.AllowUserToResizeColumns = false;
+            this.dgvAssistsClientList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvAssistsClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAssistsClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAssistsClientList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            this.dgvAssistsClientList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAssistsClientList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvAssistsClientList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAssistsClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAssistsClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAssistsClientList.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAssistsClientList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvAssistsClientList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAssistsClientList.EnableHeadersVisualStyles = false;
+            this.dgvAssistsClientList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.dgvAssistsClientList.Location = new System.Drawing.Point(0, 49);
+            this.dgvAssistsClientList.MultiSelect = false;
+            this.dgvAssistsClientList.Name = "dgvAssistsClientList";
+            this.dgvAssistsClientList.ReadOnly = true;
+            this.dgvAssistsClientList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAssistsClientList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAssistsClientList.RowHeadersWidth = 20;
+            this.dgvAssistsClientList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(6)))), ((int)(((byte)(13)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvAssistsClientList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAssistsClientList.RowTemplate.Height = 30;
+            this.dgvAssistsClientList.RowTemplate.ReadOnly = true;
+            this.dgvAssistsClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAssistsClientList.Size = new System.Drawing.Size(1024, 431);
+            this.dgvAssistsClientList.TabIndex = 19;
+            this.dgvAssistsClientList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssistsClientList_CellClick);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(11)))), ((int)(((byte)(18)))));
+            this.panel4.Controls.Add(this.btnDelete);
+            this.panel4.Controls.Add(this.dtpDate);
+            this.panel4.Controls.Add(this.btnAdd);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1024, 49);
+            this.panel4.TabIndex = 17;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnDelete.Location = new System.Drawing.Point(12, 9);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(140, 31);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "ELIMINAR";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.CustomFormat = "dd / MM / yyyy";
+            this.dtpDate.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(719, 9);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(149, 31);
+            this.dtpDate.TabIndex = 2;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnAdd.Location = new System.Drawing.Point(874, 9);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(140, 31);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "AGREGAR";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // frmManagementAssists
             // 
@@ -350,20 +403,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(16)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.pnlList);
             this.Controls.Add(this.pnlClientSelection);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmManagementAssists";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmManagementAssists";
+            this.Load += new System.EventHandler(this.frmManagementAssists_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.pnlClientSelection.ResumeLayout(false);
             this.pnlClientSelection.PerformLayout();
+            this.pnlList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssistsClientList)).EndInit();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -378,12 +435,6 @@
         private PresentationLayer.Controls.GymCoreTextBox txtClientPhone;
         private System.Windows.Forms.Label label6;
         private PresentationLayer.Controls.GymCoreTextBox txtClientResidence;
-        private System.Windows.Forms.Panel panel2;
-        private PresentationLayer.Controls.GymCoreButton btnNew;
-        private PresentationLayer.Controls.GymCoreButton btnUpdate;
-        private PresentationLayer.Controls.GymCoreButton btnDelete;
-        private PresentationLayer.Controls.GymCoreButton btnCancel;
-        private PresentationLayer.Controls.GymCoreButton btnSave;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private PresentationLayer.Controls.GymCoreButton btnClose;
@@ -392,5 +443,11 @@
         private PresentationLayer.Controls.GymCoreTextBox txtClientObservations;
         private System.Windows.Forms.Label label4;
         private PresentationLayer.Controls.GymCoreTextBox txtClient;
+        private System.Windows.Forms.Panel pnlList;
+        private PresentationLayer.Controls.GymCoreDataGridView dgvAssistsClientList;
+        private System.Windows.Forms.Panel panel4;
+        private PresentationLayer.Controls.GymCoreButton btnDelete;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private PresentationLayer.Controls.GymCoreButton btnAdd;
     }
 }
