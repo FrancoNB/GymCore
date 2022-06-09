@@ -1,5 +1,8 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
+using DataAccessLayer.Entities;
+using DataAccessLayer.InterfaceRepositories;
+using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,10 +16,28 @@ namespace IntegrationTest
     {
         private CurrentAccountsModel currentAccounts;
 
+        private static int idClient;
+
         [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        public static async Task ClassInitialize(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
+
+            IClientsRepository clientsRepository = new ClientsRepository();
+
+            await clientsRepository.Insert(new Clients
+            {
+                Name = "AuxClient",
+                Surname = "AuxClient",
+                Address = "-",
+                Phone = "-",
+                Locality = "-",
+                Mail = "-",
+                RegisterDate = DateTime.Now,
+                Observations = "-"
+            });
+
+            idClient = await clientsRepository.GetLastId();
         }
 
         [TestInitialize]
@@ -24,7 +45,7 @@ namespace IntegrationTest
         {
             currentAccounts = new CurrentAccountsModel()
             {
-                IdClients = 1,
+                IdClients = idClient,
                 TicketCode = Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,

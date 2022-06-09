@@ -1,5 +1,8 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.ValueObjects;
+using DataAccessLayer.Entities;
+using DataAccessLayer.InterfaceRepositories;
+using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,19 +16,49 @@ namespace IntegrationTest
     {
         private RoutinesModel routines;
 
+        private static int idClient;
+        private static int idWorkPlans;
+
         [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        public static async Task ClassInitialize(TestContext context)
         {
             RepositoryConnection.BeginTransaction();
+
+            IClientsRepository clientsRepository = new ClientsRepository();
+
+            await clientsRepository.Insert(new Clients
+            {
+                Name = "AuxClient",
+                Surname = "AuxClient",
+                Address = "AuxAddress",
+                Phone = "AuxPhone",
+                Locality = "AuxLocality",
+                Mail = "AuxMail",
+                RegisterDate = DateTime.Now,
+                Observations = "AuxObservations"
+            });
+
+            idClient = await clientsRepository.GetLastId();
+
+            IWorkPlansRepository workPlansRepository = new WorkPlansRepository();
+
+            await workPlansRepository.Insert(new WorkPlans
+            {
+                Name = "AuxName",
+                Category = "AuxCategory"
+            });
+
+            idWorkPlans = await workPlansRepository.GetLastId();
         }
+    
 
         [TestInitialize]
         public void TestInitialize()
         {
             routines = new RoutinesModel()
             {
-                IdWorkPlans = 1,
-                IdClients = 1,
+                IdWorkPlans = idWorkPlans,
+                IdClients = idClient,
                 State = "Habilitado",
                 StartDate = System.DateTime.Today,
                 EndDate = System.DateTime.Today
