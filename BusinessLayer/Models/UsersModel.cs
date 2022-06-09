@@ -193,6 +193,11 @@ namespace BusinessLayer.Models
             return UsersMapper.AdapterList(await repository.GetAll());
         }
 
+        public async Task<int> GetLastId()
+        {
+            return await repository.GetLastId();
+        }
+
         #region "VALIDATES"
         private void ValidateLogin()
         {

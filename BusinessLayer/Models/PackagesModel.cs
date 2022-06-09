@@ -85,6 +85,11 @@ namespace BusinessLayer.Models
             return PackagesMapper.AdapterList(await repository.GetAll());
         }
 
+        public async Task<int> GetLastId()
+        {
+            return await repository.GetLastId();
+        }
+
         private void ValidateInsert()
         {
             if (string.IsNullOrWhiteSpace(Name))
