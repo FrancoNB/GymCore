@@ -93,9 +93,11 @@ namespace IntegrationTest
 
             subscriptions.Operation = Operation.Update;
 
+            subscriptions.EndDate = DateTime.Now;
+
             AcctionResult acctionResult = await subscriptions.SaveChanges();
 
-            Assert.IsFalse(acctionResult.Result);
+            Assert.IsTrue(acctionResult.Result);
         }
 
         [TestMethod]
@@ -138,14 +140,6 @@ namespace IntegrationTest
             subscriptions.IdSubscriptions = await subscriptions.GetLastId();
 
             Assert.IsTrue(subscriptions.IdSubscriptions > 0);
-        }
-
-        [TestMethod]
-        public async Task GetByIdClient_ValidTest()
-        {
-            await Insert_ValidTest();
-
-            Assert.IsTrue((await subscriptions.GetByIdClient()).ToList().Count > 0);
         }
 
         [ClassCleanup]

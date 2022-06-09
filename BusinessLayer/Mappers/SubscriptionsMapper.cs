@@ -8,6 +8,8 @@ namespace BusinessLayer.Mappers
     {
         public static Subscriptions Adapter(SubscriptionsModel model)
         {
+            if (model == null) return null;
+
             return new Subscriptions
             {
                 IdSubscriptions = model.IdSubscriptions,
@@ -29,6 +31,8 @@ namespace BusinessLayer.Mappers
 
         public static SubscriptionsModel Adapter(Subscriptions entity)
         {
+            if (entity == null) return null;
+
             return new SubscriptionsModel
             {
                 IdSubscriptions = entity.IdSubscriptions,

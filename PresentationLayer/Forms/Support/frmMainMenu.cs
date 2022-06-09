@@ -104,18 +104,21 @@ namespace PresentationLayer
             SubscriptionsCache.GetInstance().Resource = await new SubscriptionsModel().GetAll();
             CurrentAccountsCache.GetInstance().Resource = await new CurrentAccountsModel().GetAll();
             PaymentsCache.GetInstance().Resource = await new PaymentsModel().GetAll();
+            AssistsCache.GetInstance().Resource = await new AssistsModel().GetAll();
 
             LoadNotification.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (MessageBox.Show("Seguro que deseas salir del programa ?", "Sistema de Alertas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void btnEndSesion_Click(object sender, EventArgs e)
         {
-            ShowLogin();
+            if (MessageBox.Show("Seguro que deseas cerrar cesion ?", "Sistema de Alertas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                ShowLogin();
         }
 
         public void ShowLogin()
@@ -151,7 +154,12 @@ namespace PresentationLayer
         private void btnSubscriptions_Click(object sender, EventArgs e)
         {
             if (!ClientsCache.GetInstance().isEmpty())
-                frmManagementSubscriptions.GetInstance().ShowDialog(this);
+            {
+                if (!PackagesCache.GetInstance().isEmpty())
+                    frmManagementSubscriptions.GetInstance().ShowDialog(this);
+                else
+                    MessageBox.Show("No hay ningun paquete de subscripcion cargado en el sistema, no puedes acceder al manejo de suscripciones... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             else
                 MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de suscripciones... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
@@ -170,6 +178,19 @@ namespace PresentationLayer
                 frmManagementPayments.GetInstance().ShowDialog(this);
             else
                 MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de pagos... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void btnManagentAssits_Click(object sender, EventArgs e)
+        {
+            if (!ClientsCache.GetInstance().isEmpty())
+            {
+                if (!SubscriptionsCache.GetInstance().isEmpty())
+                    frmManagementAssists.GetInstance().ShowDialog(this);
+                else
+                    MessageBox.Show("No hay ninguna subscripcion cargada en el sistema, no puedes acceder al manejo de asistencias... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+                MessageBox.Show("No hay ningun cliente cargado en el sistema, no puedes acceder al manejo de asistencias... !", "Servicio de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
