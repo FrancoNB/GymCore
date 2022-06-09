@@ -19,8 +19,7 @@ git clone https://github.com/FrancoNB/GymCore.git
 
 ### **Documentación del proyecto 📋**
 * [Plan de Manejo de las Configuraciones y Especificación de los Requerimientos](https://docs.google.com/document/d/1gNIYFkrgnq-DQjq8rlAhcr1HoIXEehbKwcM8DGF94Ko/edit)
-* [Diseño, Implementación y Pruebas](https://docs.google.com/document/d/1Z16p-0CE1r70qDDYMkdoxMA5Bb5o4zDiBhEa3I1IsSs/edit)
-* [Documento de Arquitectura](https://docs.google.com/document/d/1XpX3T5TwiWNzS7dE7UjDC_5KEQve_HCsSVZCsgudXFQ/edit)
+* [Documento de Arquitectura, Diseño, Implementación y Pruebas](https://docs.google.com/document/d/1XpX3T5TwiWNzS7dE7UjDC_5KEQve_HCsSVZCsgudXFQ/edit)
 
 
 ### **Construido con 🛠️**
