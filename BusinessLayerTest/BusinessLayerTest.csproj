@@ -68,6 +68,7 @@
     <Compile Include="ModelsTests\ExercisesModelTest.cs" />
     <Compile Include="ModelsTests\PackagesModelTest.cs" />
     <Compile Include="ModelsTests\RoutinesModelTest.cs" />
+    <Compile Include="ModelsTests\SubscriptionsModelTest.cs" />
     <Compile Include="ModelsTests\UserModelTest.cs" />
     <Compile Include="ModelsTests\WorkPlansModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
