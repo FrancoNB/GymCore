@@ -1,4 +1,4 @@
-# *GymCore*
+# *GymCore* 💪🏼🏋🏻‍♂️
 Trabajo práctico final de la materia Ingeniería de Software de la Facultad de Ciencias Exactas, Físicas y Naturales de la Universidad Nacional de Córdoba. 
 
 Año: 2022
