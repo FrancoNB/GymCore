@@ -70,7 +70,9 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task GetAll_Test()
         {
-            CollectionAssert.AllItemsAreInstancesOfType((List<Routines>)await repository.GetAll(), typeof(Routines));
+            await Insert_ValidTest();
+
+            Assert.IsTrue((await repository.GetAll()).ToList().Count > 0);
         }
 
         [TestMethod]

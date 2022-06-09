@@ -55,7 +55,9 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task GetAll_Test()
         {
-            CollectionAssert.AllItemsAreInstancesOfType((List<Exercises>)await repository.GetAll(), typeof(Exercises));
+            await Insert_ValidTest();
+
+            Assert.IsTrue((await repository.GetAll()).ToList().Count > 0);
         }
 
         [TestMethod]
