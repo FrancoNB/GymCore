@@ -46,7 +46,19 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task GetAll_Test()
         {
-            CollectionAssert.AllItemsAreInstancesOfType((List<Users>)await repository.GetAll(), typeof(Users));
+            await Insert_ValidTest();
+
+            Assert.IsTrue((await repository.GetAll()).ToList().Count > 0);
+        }
+
+        [TestMethod]
+        public async Task GetUser_Test()
+        {
+            await GetLastId_ValidTest();
+
+            Users user = await repository.GetUser(entity.Username, entity.Password);
+
+            Assert.IsTrue(user.IdUsers == entity.IdUsers);
         }
 
         [TestMethod]
@@ -163,6 +175,20 @@ namespace DataAccessLayerTest.Repositories
             entity.IdUsers = 0;
 
             Assert.AreEqual(0, await repository.Delete(entity.IdUsers));
+        }
+
+        [TestMethod]
+        public async Task UpdateLastConnection_ValidTest()
+        {
+            await GetLastId_ValidTest();
+
+            Assert.AreEqual(1, await repository.UpdateLastConnection(DateTime.Now.AddHours(5), entity.IdUsers));
+        }
+
+        [TestMethod]
+        public async Task UpdateLastConnection_InvalidTest()
+        {
+            Assert.AreEqual(0, await repository.UpdateLastConnection(DateTime.Now.AddHours(5), 0));
         }
 
         [ClassCleanup]

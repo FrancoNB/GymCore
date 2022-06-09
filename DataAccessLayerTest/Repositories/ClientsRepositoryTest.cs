@@ -4,8 +4,7 @@ using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DataAccessLayerTest.Repositories
@@ -118,7 +117,9 @@ namespace DataAccessLayerTest.Repositories
         [TestMethod]
         public async Task GetAll_Test()
         {
-            CollectionAssert.AllItemsAreInstancesOfType((List<Clients>)await repository.GetAll(), typeof(Clients));
+            await Insert_ValidTest();
+
+            Assert.IsTrue((await repository.GetAll()).ToList().Count > 0);
         }
 
         [ClassCleanup]

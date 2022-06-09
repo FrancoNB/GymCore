@@ -1,13 +1,10 @@
 ﻿using BusinessLayer.Models;
-using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayerTest.ModelsTests
@@ -32,7 +29,7 @@ namespace BusinessLayerTest.ModelsTests
             {
                 IdCurrentAccounts = 1,
                 IdClients = 1,
-                TicketCode = Tickets.Create("SUB", 1),
+                TicketCode = BusinessLayer.ValueObjects.Tickets.Create("SUB", 1),
                 Debit = 1234,
                 Credit = 1234,
                 Balance = 1234,
@@ -121,6 +118,14 @@ namespace BusinessLayerTest.ModelsTests
         {
             currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
             currentAccountsModel.IdCurrentAccounts = 0; 
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidOperationTest()
+        {
+            currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Invalidate;
 
             Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
         }
