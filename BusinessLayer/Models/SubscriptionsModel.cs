@@ -168,7 +168,6 @@ namespace BusinessLayer.Models
 
                     case Operation.Invalidate:
                         ValidateInvalidate();
-                        State = SubscriptionsStates.Canceled;
                         await repository.UpdateState(IdSubscriptions, StateString);
                         resultMsg = "Subscripcion anulada correctamente... !";
                         break;
@@ -192,8 +191,6 @@ namespace BusinessLayer.Models
             }
             catch (Exception ex)
             {
-                RepositoryConnection.RollBack();
-
                 return new AcctionResult(false, ex.Message);
             }
         }
@@ -228,6 +225,9 @@ namespace BusinessLayer.Models
             if (string.IsNullOrWhiteSpace(Observations))
                 Observations = "-";
 
+            if (IdCurrentAccounts < 1)
+                throw new ArgumentException("Se debe especificar el registro de cuenta corriente asociado a la suscripcion... !");
+
             IdSubscriptions = -1;
             EndDate = DateTime.MinValue;
             State = SubscriptionsStates.Active;
@@ -239,6 +239,8 @@ namespace BusinessLayer.Models
         {
             if (IdSubscriptions < 1)
                 throw new ArgumentException("No se selecciono ninguna subscripcion para anular... !");
+
+            State = SubscriptionsStates.Canceled;
         }
 
         private void ValidateDelete()

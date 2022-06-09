@@ -80,6 +80,12 @@
     <Compile Include="Forms\Lists\frmPackagesList.Designer.cs">
       <DependentUpon>frmPackagesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Management\frmManagementPayments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Management\frmManagementPayments.Designer.cs">
+      <DependentUpon>frmManagementPayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Management\frmManagementSubscriptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     <Compile Include="Utilities\LoadNotification.cs" />
     <EmbeddedResource Include="Forms\ConfigSystem\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Management\frmManagementPayments.resx">
+      <DependentUpon>frmManagementPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Management\frmManagementSubscriptions.resx">
       <DependentUpon>frmManagementSubscriptions.cs</DependentUpon>

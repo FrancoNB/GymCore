@@ -152,8 +152,7 @@ namespace PresentationLayer.Forms.Queries
             ClientsCache.GetInstance().Attach(this);
             CurrentAccountsCache.GetInstance().Attach(this);
 
-            ClearClientData();
-
+            txtClient.Clear();
             txtClient.Select();
         }
 

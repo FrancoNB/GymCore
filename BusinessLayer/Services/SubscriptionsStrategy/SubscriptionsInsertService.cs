@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services.SubscriptionsStrategy;
+using BusinessLayer.Support;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Support;
 using System;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services.SubscriptionsStrategy
 {
-    public class SubscriptionsInsert : ISubscriptionsStrategy
+    public class SubscriptionsInsertService : IServiceStrategy<SubscriptionsModel>
     {
         private readonly CurrentAccountsModel currentAccountModel;
 
-        public SubscriptionsInsert()
+        public SubscriptionsInsertService()
         {
             this.currentAccountModel = new CurrentAccountsModel();
         }
