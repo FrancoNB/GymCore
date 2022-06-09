@@ -24,8 +24,8 @@ git clone https://github.com/FrancoNB/GymCore.git
 ### **Construido con 🛠️**
 [VisualStudio-2022](https://visualstudio.microsoft.com/es/vs/) - IDE de desarrollo.  
 [C#](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) - Lenguaje de programación.  
-[.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) - Framework de desarrollo. 
-[MySQL 8.0](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/) - Base de datos.
+[.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) - Framework de desarrollo.  
+[MySQL 8.0](https://dev.mysql.com/doc/relnotes/mysql/8.0/en/) - Base de datos.  
 
 ### **Autores✒️**
 * **BOTTINI, Franco Nicolás**
