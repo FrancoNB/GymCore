@@ -51,3 +51,6 @@ jobs:
       
     - name: Run Bussines Layer Tests
       run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
+
+    - name: Run Integrations Tests
+      run: vstest.console.exe .\IntegrationTest\bin\Release\IntegrationTest.dll
