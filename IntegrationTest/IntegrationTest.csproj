@@ -49,8 +49,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientsIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\PackagesIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\ClientsIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\CurrentAccountsIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\ExercisesIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\RoutinesIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\SubscriptionsIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\WorkPlansIntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IntegrationTests\UsersIntegrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

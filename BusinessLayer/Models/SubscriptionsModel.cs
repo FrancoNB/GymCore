@@ -202,6 +202,12 @@ namespace BusinessLayer.Models
             return SubscriptionsMapper.AdapterList(await repository.GetAll());
         }
 
+        public async Task<int> GetLastId()
+        {
+            return await repository.GetLastId();
+        }
+
+        public async Task<IEnumerable<SubscriptionsModel>> GetByIdClient()
         public async Task<SubscriptionsModel> GetById()
         {
             return SubscriptionsMapper.Adapter(await repository.GetById(IdSubscriptions));
