@@ -23,22 +23,10 @@ namespace BusinessLayerTest.ModelsTests
             mockClientsRepository.Setup(x => x.Insert(It.IsAny<Clients>())).Returns(Task.FromResult(1));
             mockClientsRepository.Setup(x => x.Delete(It.Is<int>(id => id > 0))).Returns(Task.FromResult(1));
             mockClientsRepository.Setup(x => x.Update(It.Is<Clients>(client => client.IdClients > 0))).Returns(Task.FromResult(1));
-        }
 
-        [TestMethod()]
-        public async Task GetAll_Test()
-        {
-            clientsModel = new ClientsModel(mockClientsRepository.Object);
-
-            CollectionAssert.AreEqual(new List<ClientsModel>(), (List<ClientsModel>)await clientsModel.GetAll());
-        }
-
-        [TestMethod()]
-        public async Task SaveChanges_ValidInsertTest()
-        {
             clientsModel = new ClientsModel(mockClientsRepository.Object)
             {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
+                IdClients = 1,
                 Name = "TestClientName",
                 Surname = "TestClientSurname",
                 Locality = "TestClientLocality",
@@ -47,6 +35,18 @@ namespace BusinessLayerTest.ModelsTests
                 Mail = "TestClientMail@Email.com",
                 Observations = "TestClientObservations"
             };
+        }
+
+        [TestMethod()]
+        public async Task GetAll_Test()
+        {
+            CollectionAssert.AreEqual(new List<ClientsModel>(), (List<ClientsModel>)await clientsModel.GetAll());
+        }
+
+        [TestMethod()]
+        public async Task SaveChanges_ValidInsertTest()
+        {
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
             Assert.IsTrue((await clientsModel.SaveChanges()).Result);
         }
@@ -54,17 +54,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_1()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "",
-                Surname = "TestClientSurname",
-                Locality = "TestClientLocality",
-                Address = "TestClientAddress",
-                Phone = "123456789",
-                Mail = "TestClientMail@Email.com",
-                Observations = "TestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            clientsModel.Name = "";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -72,17 +63,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_2()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestClientName",
-                Surname = "",
-                Locality = "TestClientLocality",
-                Address = "TestClientAddress",
-                Phone = "123456789",
-                Mail = "TestClientMail@Email.com",
-                Observations = "TestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            clientsModel.Surname = "";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -90,17 +72,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_3()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestClientName",
-                Surname = "TestClientSurname",
-                Locality = "TestClientLocality",
-                Address = "TestClientAddress",
-                Phone = "123456789",
-                Mail = "InvalidTestClientMail",
-                Observations = "TestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            clientsModel.Mail = "InvalidMailTest";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -108,17 +81,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_4()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                Name = "TestClientName",
-                Surname = "TestClientSurname",
-                Locality = "TestClientLocality",
-                Address = "TestClientAddress",
-                Phone = "InvalidClientPhoneNumber",
-                Mail = "TestClientMail@Email.com",
-                Observations = "TestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            clientsModel.Phone = "InvalidPhoneNumberTest";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -126,18 +90,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidUpdateTest()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "UpdateTestClientName",
-                Surname = "UpdateTestClientSurname",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "1234567891",
-                Mail = "UpdateTestClientMail@Email.com",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
             Assert.IsTrue((await clientsModel.SaveChanges()).Result);
         }
@@ -145,18 +98,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_1()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "",
-                Surname = "UpdateTestClientSurname",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "123456789",
-                Mail = "UpdateTestClientMail@Email.com",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            clientsModel.Name = "";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -164,18 +107,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_2()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "UpdateTestClientNname",
-                Surname = "",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "123456789",
-                Mail = "UpdateTestClientMail@Email.com",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            clientsModel.Surname = "";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -183,18 +116,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_3()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "UpdateTestClientName",
-                Surname = "UpdateTestClientSurname",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "123456789",
-                Mail = "UpdateTestClientMail@Email.com",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            clientsModel.Mail = "InvalidMailTest";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -202,18 +125,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_4()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "UpdateTestClientName",
-                Surname = "UpdateTestClientSurname",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "123456789",
-                Mail = "InvalidUpdateTestClientMail",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            clientsModel.Phone = "InvalidPhoneNumberTest";
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -221,18 +134,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_5()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdClients = 1,
-                Name = "UpdateTestClientName",
-                Surname = "UpdateTestClientSurname",
-                Locality = "UpdateTestClientLocality",
-                Address = "UpdateTestClientAddress",
-                Phone = "InvalidClientPhoneNumber",
-                Mail = "UpdateTestClientMail@Email.com",
-                Observations = "UpdateTestClientObservations"
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            clientsModel.IdClients = 0;
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
@@ -240,11 +143,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidDeleteTest()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete,
-                IdClients = 1
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
 
             Assert.IsTrue((await clientsModel.SaveChanges()).Result);
         }
@@ -252,13 +151,10 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidDeleteTest()
         {
-            clientsModel = new ClientsModel(mockClientsRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete
-            };
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
+            clientsModel.IdClients = 0;
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
-
     }
 }

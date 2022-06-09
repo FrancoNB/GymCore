@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Models;
+using BusinessLayer.Support;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Support;
 using System;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services.SubscriptionsStrategy
 {
-    public class SubscriptionsDelete : ISubscriptionsStrategy
+    public class SubscriptionsDeleteService : IServiceStrategy<SubscriptionsModel>
     {
         private readonly CurrentAccountsModel currentAccountModel;
 
-        public SubscriptionsDelete()
+        public SubscriptionsDeleteService()
         {
             this.currentAccountModel = new CurrentAccountsModel();
         }
@@ -30,7 +31,7 @@ namespace BusinessLayer.Services.SubscriptionsStrategy
 
                 if (action.Result)
                 {
-                    await currentAccountModel.SaveChanges();
+                    action = await currentAccountModel.SaveChanges();
 
                     if (action.Result)
                     {

@@ -40,7 +40,7 @@
             this.planesDeTrabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPayments = new System.Windows.Forms.ToolStripMenuItem();
             this.btnQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asistenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,7 +125,7 @@
             this.planesDeTrabajoToolStripMenuItem,
             this.rutinasToolStripMenuItem,
             this.asistenciaToolStripMenuItem,
-            this.pagosToolStripMenuItem});
+            this.btnPayments});
             this.btnManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
             this.btnManagement.Name = "btnManagement";
             this.btnManagement.Size = new System.Drawing.Size(64, 21);
@@ -164,13 +164,14 @@
             this.asistenciaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.asistenciaToolStripMenuItem.Text = "Asistencia";
             // 
-            // pagosToolStripMenuItem
+            // btnPayments
             // 
-            this.pagosToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
-            this.pagosToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
-            this.pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
-            this.pagosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pagosToolStripMenuItem.Text = "Pagos";
+            this.btnPayments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(19)))), ((int)(((byte)(46)))));
+            this.btnPayments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(166)))), ((int)(((byte)(145)))));
+            this.btnPayments.Name = "btnPayments";
+            this.btnPayments.Size = new System.Drawing.Size(180, 22);
+            this.btnPayments.Text = "Pagos";
+            this.btnPayments.Click += new System.EventHandler(this.btnPayments_Click);
             // 
             // btnQuery
             // 
@@ -301,7 +302,7 @@
         private System.Windows.Forms.ToolStripMenuItem planesDeTrabajoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rutinasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asistenciaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pagosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnPayments;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asistenciasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnQueriesCurrentAccounts;

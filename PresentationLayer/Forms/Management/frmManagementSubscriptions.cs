@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Models;
+using BusinessLayer.Services;
 using BusinessLayer.Services.SubscriptionsStrategy;
 using BusinessLayer.ValueObjects;
 using PresentationLayer.Forms.Lists;
@@ -31,7 +32,7 @@ namespace PresentationLayer.Forms.Management
         }
 
         private readonly SubscriptionsModel subscriptionWorkingModel;
-        private SubscriptionsService subscriptionsService;
+        private readonly Service<SubscriptionsModel> subscriptionsService;
 
         private IEnumerable<SubscriptionsModel> subscriptionsList;
 
@@ -45,6 +46,7 @@ namespace PresentationLayer.Forms.Management
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             subscriptionWorkingModel = new SubscriptionsModel();
+            subscriptionsService = new Service<SubscriptionsModel>();
         }
 
         private void ClearClientData()
@@ -77,6 +79,8 @@ namespace PresentationLayer.Forms.Management
 
         private void SetControlsDefaultState()
         {
+            txtClient.Clear();
+
             ClearData();
 
             ControlsUtilities.DisableContainerControls(pnlData);
@@ -148,8 +152,6 @@ namespace PresentationLayer.Forms.Management
             dtpStartDate.Enabled = true;
 
             txtClient.Enabled = false;
-
-            dtpStartDate.Enabled = true;
 
             txtPackage.Select();
         }
@@ -343,7 +345,8 @@ namespace PresentationLayer.Forms.Management
 
                 subscriptionWorkingModel.IdSubscriptions = selectedSubscription.IdSubscriptions;
                 subscriptionWorkingModel.IdCurrentAccounts = selectedSubscription.IdCurrentAccounts;
-                
+                subscriptionWorkingModel.TicketCode = selectedSubscription.TicketCode;
+
                 txtPackage.Text = selectedSubscription.Package;
                 txtTicketCode.Text = selectedSubscription.TicketCode.Value;
                 dtpStartDate.Value = selectedSubscription.StartDate;
@@ -370,7 +373,7 @@ namespace PresentationLayer.Forms.Management
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            subscriptionsService = new SubscriptionsService(new SubscriptionsInsert());
+            subscriptionsService.SetStrategy(new SubscriptionsInsertService());
 
             SetControlsActiveState();
             ClearSelectionDgv();
@@ -388,7 +391,7 @@ namespace PresentationLayer.Forms.Management
 
                 if (confirm == DialogResult.OK)
                 {
-                    subscriptionsService = new SubscriptionsService(new SubscriptionsInvalidate());
+                    subscriptionsService.SetStrategy(new SubscriptionsInvalidateService());
 
                     LoadNotification.Show("Anulando subscripcion...");
 
@@ -422,7 +425,7 @@ namespace PresentationLayer.Forms.Management
 
                 if (confirm == DialogResult.OK)
                 {
-                    subscriptionsService = new SubscriptionsService(new SubscriptionsDelete());
+                    subscriptionsService.SetStrategy(new SubscriptionsDeleteService());
 
                     LoadNotification.Show("Eliminando subscripcion...");
 
@@ -469,6 +472,7 @@ namespace PresentationLayer.Forms.Management
                 {
                     MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SetControlsClientEnterState();
+                    btnNew.Select();
                 }
             }
         }

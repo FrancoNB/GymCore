@@ -23,28 +23,28 @@ namespace BusinessLayerTest.ModelsTests
             mockRoutinesRepository.Setup(x => x.Insert(It.IsAny<Routines>())).Returns(Task.FromResult(1));
             mockRoutinesRepository.Setup(x => x.Delete(It.Is<int>(id => id > 0))).Returns(Task.FromResult(1));
             mockRoutinesRepository.Setup(x => x.Update(It.Is<Routines>(client => client.IdRoutines > 0))).Returns(Task.FromResult(1));
+
+            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
+            {
+                IdRoutines = 1,
+                IdWorkPlans = 1,
+                IdClients = 1,
+                State = "Habilitado",
+                StartDate = System.DateTime.Today,
+                EndDate = System.DateTime.Today
+            };
         }
 
         [TestMethod()]
         public async Task GetAll_Test()
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object);
-
             CollectionAssert.AreEqual(new List<RoutinesModel>(), (List<RoutinesModel>)await routinesModel.GetAll());
         }
 
         [TestMethod()]
         public async Task SaveChanges_ValidInsertTest()
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = 1,
-                IdClients = 1, 
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
 
             Assert.IsTrue((await routinesModel.SaveChanges()).Result);
         }
@@ -52,15 +52,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_1()   //IdWorkPlans inválido
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = -1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            routinesModel.IdWorkPlans = 0;
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -68,15 +61,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_2()   //IdClients inválido
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = 1,
-                IdClients = -1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            routinesModel.IdClients = 0;
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -84,15 +70,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidInsertTest_3()   //State inválido
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Insert,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            routinesModel.State = "";
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -100,16 +79,7 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidUpdateTest()
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = 1,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
 
             Assert.IsTrue((await routinesModel.SaveChanges()).Result);
         }
@@ -117,16 +87,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_1()   //idRoutines inválida
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = -1,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            routinesModel.IdRoutines = 0;                                   
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -134,16 +96,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_2()   //idWorkPlans inválida
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = 1,
-                IdWorkPlans = -1,
-                IdClients = 1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            routinesModel.IdWorkPlans = 0;
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -151,16 +105,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_3()   //idClients inválida
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = 1,
-                IdWorkPlans = 1,
-                IdClients = -1,
-                State = "Habilitado",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            routinesModel.IdClients = 0;
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -168,16 +114,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidUpdateTest_4()   //State inválido
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Update,
-                IdRoutines = 1,
-                IdWorkPlans = 1,
-                IdClients = 1,
-                State = "",
-                StartDate = System.DateTime.Today,
-                EndDate = System.DateTime.Today
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            routinesModel.State = "";
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
@@ -185,11 +123,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_ValidDeleteTest()
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete,
-                IdRoutines = 1
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
+
 
             Assert.IsTrue((await routinesModel.SaveChanges()).Result);
         }
@@ -197,10 +132,8 @@ namespace BusinessLayerTest.ModelsTests
         [TestMethod()]
         public async Task SaveChanges_InvalidDeleteTest()
         {
-            routinesModel = new RoutinesModel(mockRoutinesRepository.Object)
-            {
-                Operation = BusinessLayer.ValueObjects.Operation.Delete
-            };
+            routinesModel.Operation = BusinessLayer.ValueObjects.Operation.Delete;
+            routinesModel.IdRoutines = 0;
 
             Assert.IsFalse((await routinesModel.SaveChanges()).Result);
         }
