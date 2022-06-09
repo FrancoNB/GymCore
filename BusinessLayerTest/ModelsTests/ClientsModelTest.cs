@@ -156,5 +156,13 @@ namespace BusinessLayerTest.ModelsTests
 
             Assert.IsFalse((await clientsModel.SaveChanges()).Result);
         }
+
+        [TestMethod()]
+        public async Task SaveChanges_InvalidOperationTest()
+        {
+            clientsModel.Operation = BusinessLayer.ValueObjects.Operation.Invalidate;
+
+            Assert.IsFalse((await clientsModel.SaveChanges()).Result);
+        }
     }
 }
