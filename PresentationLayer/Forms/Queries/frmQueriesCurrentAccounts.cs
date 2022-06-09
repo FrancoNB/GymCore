@@ -79,35 +79,38 @@ namespace PresentationLayer.Forms.Queries
             {
                 var currentAccountClientList = currentAccountsList.ToList().FindAll(currentAccount => currentAccount.IdClients == idClient);
 
-                if (currentAccountClientList.ToList().Last().Balance > 0)
+                if(currentAccountClientList.Count > 0)
                 {
-                    txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
-                    txtBalance.BackColor = Color.FromArgb(33, 50, 16);
-                }
-                else if (currentAccountClientList.ToList().Last().Balance < 0)
-                {
-                    txtBalance.ForeColor = Color.FromArgb(225, 20, 6);
-                    txtBalance.BackColor = Color.FromArgb(57, 8, 1);
-                }
-                else
-                {
-                    txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
-                    txtBalance.BackColor = Color.FromArgb(12, 19, 46);
-                }
+                    if (currentAccountClientList.ToList().Last().Balance > 0)
+                    {
+                        txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
+                        txtBalance.BackColor = Color.FromArgb(33, 50, 16);
+                    }
+                    else if (currentAccountClientList.ToList().Last().Balance < 0)
+                    {
+                        txtBalance.ForeColor = Color.FromArgb(225, 20, 6);
+                        txtBalance.BackColor = Color.FromArgb(57, 8, 1);
+                    }
+                    else
+                    {
+                        txtBalance.ForeColor = Color.FromArgb(139, 166, 145);
+                        txtBalance.BackColor = Color.FromArgb(12, 19, 46);
+                    }
 
-                txtBalance.Text = string.Format("$ {0:#,##0.00}", currentAccountClientList.ToList().Last().Balance);
+                    txtBalance.Text = string.Format("$ {0:#,##0.00}", currentAccountClientList.ToList().Last().Balance);
 
-                if (filterStartDate != DateTime.MinValue)
-                    currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date >= filterStartDate);
+                    if (filterStartDate != DateTime.MinValue)
+                        currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date >= filterStartDate);
 
-                if (filterEndDate != DateTime.MinValue)
-                    currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date <= filterEndDate);
+                    if (filterEndDate != DateTime.MinValue)
+                        currentAccountClientList = currentAccountClientList.ToList().FindAll(currentAccount => currentAccount.Date <= filterEndDate);
 
-                foreach (CurrentAccountsModel currentAccount in currentAccountClientList)
-                {
-                    dgvCurrentAccountClientList.Rows.Add(currentAccount.IdClients, currentAccount.TicketCode.Value, currentAccount.DateString,
-                                                         string.Format("$ {0:#,##0.00}", currentAccount.Credit), string.Format("$ {0:#,##0.00}", currentAccount.Debit),
-                                                         string.Format("$ {0:#,##0.00}", currentAccount.Balance), currentAccount.Detail);              
+                    foreach (CurrentAccountsModel currentAccount in currentAccountClientList)
+                    {
+                        dgvCurrentAccountClientList.Rows.Add(currentAccount.IdClients, currentAccount.TicketCode.Value, currentAccount.DateString,
+                                                             string.Format("$ {0:#,##0.00}", currentAccount.Credit), string.Format("$ {0:#,##0.00}", currentAccount.Debit),
+                                                             string.Format("$ {0:#,##0.00}", currentAccount.Balance), currentAccount.Detail);
+                    }
                 }
             }
 
