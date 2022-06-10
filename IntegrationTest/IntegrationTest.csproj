@@ -49,10 +49,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTests\AssistsIntegrationTest.cs" />
     <Compile Include="IntegrationTests\PackagesIntegrationTest.cs" />
     <Compile Include="IntegrationTests\ClientsIntegrationTest.cs" />
     <Compile Include="IntegrationTests\CurrentAccountsIntegrationTest.cs" />
     <Compile Include="IntegrationTests\ExercisesIntegrationTest.cs" />
+    <Compile Include="IntegrationTests\PaymentsIntegrationTest.cs" />
     <Compile Include="IntegrationTests\RoutinesIntegrationTest.cs" />
     <Compile Include="IntegrationTests\SubscriptionsIntegrationTest.cs" />
     <Compile Include="IntegrationTests\WorkPlansIntegrationTest.cs" />
