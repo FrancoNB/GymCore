@@ -58,6 +58,9 @@ namespace PresentationLayer.Controls
                 {
                     if (Text.Contains("."))
                         e.Handled = true;
+
+                    if (Text.Length < 1)
+                        e.Handled = true;
                 }
                 else
                 {

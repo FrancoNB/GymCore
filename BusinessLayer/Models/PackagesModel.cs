@@ -99,7 +99,7 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
             if (AvailableDays <= 0)
-                throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+                throw new ArgumentException("El numero de dias de vigencia debe ser mayor a 0... !");
 
             if (Price <= 0)
                 throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
@@ -119,7 +119,7 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("El numero de sesiones debe ser mayor a 0... !");
 
             if (AvailableDays <= 0)
-                throw new ArgumentException("El numero de dias debe ser mayor a 0... !");
+                throw new ArgumentException("El numero de dias de vigencia debe ser mayor a 0... !");
 
             if (Price <= 0)
                 throw new ArgumentException("El precio debe ser mayor a $ 0.00... !");
