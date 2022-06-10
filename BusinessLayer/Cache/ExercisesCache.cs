@@ -27,7 +27,7 @@ namespace BusinessLayer.Cache
         private ExercisesCache()
         {
             _resource = new List<ExercisesModel>();
-            _subscriberLit = new List<ISubscriber<ExercisesModel>>();
+            _subscriberList = new List<ISubscriber<ExercisesModel>>();
         }
     }
 }

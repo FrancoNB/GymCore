@@ -155,10 +155,15 @@ namespace BusinessLayer.Models
             } 
             catch (Exception ex)
             {
-                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1062)
-                    return new AcctionResult(false, "El nombre de usuario " + Username + " no esta disponible... !");
-                else
-                    return new AcctionResult(false, ex.Message);
+                if (ex is RepositoryException repositoryEx)
+                {
+                    if(repositoryEx.Code == 1062)
+                        return new AcctionResult(false, "El nombre de usuario " + Username + " no esta disponible... !");
+                    else if(repositoryEx.Code == 1451)
+                        return new AcctionResult(false, "El usuario que intentas eliminar se encuntra asociado a otros datos, por lo tanto, no es posible eliminarlo... !");
+                }
+
+                return new AcctionResult(false, ex.Message);
             }
         }
 

@@ -17,9 +17,9 @@ namespace BusinessLayer.Services
             this.strategy = strategy;
         }
 
-        public async Task<AcctionResult> SaveChanges(Model subscriptionModel)
+        public async Task<AcctionResult> SaveChanges(Model model)
         {
-            return await strategy.SaveChanges(subscriptionModel);
+            return await strategy.SaveChanges(model);
         }
     }
 }

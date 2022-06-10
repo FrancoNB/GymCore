@@ -69,7 +69,7 @@ namespace PresentationLayer.Forms.Lists
             dgvClientsList.Columns.Add("Name", "NOMBRE Y APELLIDO");
             dgvClientsList.Columns.Add("Locality", "LOCALIDAD");
             dgvClientsList.Columns.Add("Address", "DIRECCION");
-            dgvClientsList.Columns.Add("Phone", "PHONE");
+            dgvClientsList.Columns.Add("Phone", "TELEFONO");
             dgvClientsList.Columns.Add("Mail", "MAIL");
             dgvClientsList.Columns.Add("Observations", "OBSERVACIONES");
 

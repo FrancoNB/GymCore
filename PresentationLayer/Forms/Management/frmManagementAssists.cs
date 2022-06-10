@@ -252,7 +252,7 @@ namespace Presentation.Forms.Management
 
                 if (confirm == DialogResult.OK)
                 {
-                    assistService.SetStrategy(new AssistDeleteService());
+                    assistService.SetStrategy(new AssistsDeleteService());
 
                     LoadNotification.Show("Eliminando asistencia...");
 

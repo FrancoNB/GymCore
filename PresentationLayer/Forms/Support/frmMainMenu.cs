@@ -117,7 +117,7 @@ namespace PresentationLayer
 
         private void btnEndSesion_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Seguro que deseas cerrar cesion ?", "Sistema de Alertas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Seguro que deseas cerrar sesión ?", "Sistema de Alertas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 ShowLogin();
         }
 

@@ -28,7 +28,7 @@ namespace BusinessLayer.Cache
         private SubscriptionsCache()
         {
             _resource = new List<SubscriptionsModel>();
-            _subscriberLit = new List<ISubscriber<SubscriptionsModel>>();
+            _subscriberList = new List<ISubscriber<SubscriptionsModel>>();
         }
 
         public bool isEmpty()

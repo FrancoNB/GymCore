@@ -64,7 +64,7 @@
     <Compile Include="Models\AssistsModel.cs" />
     <Compile Include="Models\PaymentsModel.cs" />
     <Compile Include="Models\SubscriptionsModel.cs" />
-    <Compile Include="Services\Assists\AssistDeleteService.cs" />
+    <Compile Include="Services\Assists\AssistsDeleteService.cs" />
     <Compile Include="Services\Assists\AssistsAddService.cs" />
     <Compile Include="Services\Payments\PaymentsDeleteService.cs" />
     <Compile Include="Services\Payments\PaymentsUpdateService.cs" />

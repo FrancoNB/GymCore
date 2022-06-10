@@ -32,7 +32,7 @@ namespace BusinessLayer.Cache
         private UsersCache()
         {
             _resource = new List<UsersModel>();
-            _subscriberLit = new List<ISubscriber<UsersModel>>();
+            _subscriberList = new List<ISubscriber<UsersModel>>();
         }
     }
 }
