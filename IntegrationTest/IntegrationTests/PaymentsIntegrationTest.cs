@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 namespace IntegrationTest
 {
     [TestClass]
-    public class SubscriptionsIntegrationTest
+    public class PaymentsIntegrationTest
     {
-        private SubscriptionsModel subscriptions;
+        private PaymentsModel payments;
+
         private static int idClient;
         private static int idCurrentAccount;
+
 
         [ClassInitialize]
         public static async Task ClassInitialize(TestContext context)
@@ -29,12 +31,12 @@ namespace IntegrationTest
             {
                 Name = "AuxClient",
                 Surname = "AuxClient",
-                Address = "AuxAddres",
-                Phone = "AuxPhone",
-                Locality = "AuxLocality",
-                Mail = "AuxMail",
+                Address = "-",
+                Phone = "-",
+                Locality = "-",
+                Mail = "-",
                 RegisterDate = DateTime.Now,
-                Observations = "AuxObservations"
+                Observations = "-"
             });
 
             idClient = await clientsRepository.GetLastId();
@@ -48,7 +50,6 @@ namespace IntegrationTest
                 Date = DateTime.Now,
                 Credit = 1,
                 Debit = 1,
-                Balance = 1,
                 Detail = "AuxDetail"
             });
 
@@ -58,30 +59,24 @@ namespace IntegrationTest
         [TestInitialize]
         public void TestInitialize()
         {
-            subscriptions = new SubscriptionsModel()
+            payments = new PaymentsModel()
             {
-                TicketCode = Tickets.Create("Test", 1),
-                StartDate = DateTime.Now,
-                Package = "TestPackage",
-                Price = 1234,
-                TotalSessions = 5,
-                UsedSessions = 1,
-                AvailableSessions = 4,
-                EndDate = DateTime.Now,
-                ExpireDate = DateTime.Now,
-                Observations = "ObservationTest",
-                State = SubscriptionsModel.SubscriptionsStates.Active,
                 IdClients = idClient,
-                IdCurrentAccounts = idCurrentAccount
+                IdCurrentAccounts = idCurrentAccount,
+                TicketCode = Tickets.Create("SUB", 1),
+                Date = DateTime.Now,
+                PaymentMethod = PaymentsModel.PaymentMethods.CreditCard,
+                Amount = 123,
+                Observations = "ObservationsTest"
             };
         }
 
         [TestMethod]
         public async Task Insert_ValidTest()
         {
-            subscriptions.Operation = Operation.Insert;
+            payments.Operation = Operation.Insert;
 
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
+            AcctionResult acctionResult = await payments.SaveChanges();
 
             Assert.IsTrue(acctionResult.Result);
         }
@@ -91,23 +86,9 @@ namespace IntegrationTest
         {
             await GetLastId_ValidTest();
 
-            subscriptions.Operation = Operation.Update;
+            payments.Operation = Operation.Update;
 
-            subscriptions.EndDate = DateTime.Now;
-
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
-
-            Assert.IsTrue(acctionResult.Result);
-        }
-
-        [TestMethod]
-        public async Task Invalidate_ValidTest()
-        {
-            await GetLastId_ValidTest();
-
-            subscriptions.Operation = Operation.Invalidate;
-
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
+            AcctionResult acctionResult = await payments.SaveChanges();
 
             Assert.IsTrue(acctionResult.Result);
         }
@@ -117,9 +98,9 @@ namespace IntegrationTest
         {
             await GetLastId_ValidTest();
 
-            subscriptions.Operation = Operation.Delete;
+            payments.Operation = Operation.Delete;
 
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
+            AcctionResult acctionResult = await payments.SaveChanges();
 
             Assert.IsTrue(acctionResult.Result);
         }
@@ -129,7 +110,7 @@ namespace IntegrationTest
         {
             await Insert_ValidTest();
 
-            Assert.IsTrue((await subscriptions.GetAll()).ToList().Count > 0);
+            Assert.IsTrue((await payments.GetAll()).ToList().Count > 0);
         }
 
         [TestMethod]
@@ -137,9 +118,9 @@ namespace IntegrationTest
         {
             await Insert_ValidTest();
 
-            subscriptions.IdSubscriptions = await subscriptions.GetLastId();
+            payments.IdPayments = await payments.GetLastId();
 
-            Assert.IsTrue(subscriptions.IdSubscriptions > 0);
+            Assert.IsTrue(payments.IdPayments > 0);
         }
 
         [ClassCleanup]

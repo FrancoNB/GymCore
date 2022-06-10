@@ -2,6 +2,7 @@
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
+using DataAccessLayer.Repositories;
 using DataAccessLayer.Repositories.Interfaces;
 using DataAccessLayer.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,11 +13,13 @@ using System.Threading.Tasks;
 namespace IntegrationTest
 {
     [TestClass]
-    public class SubscriptionsIntegrationTest
+    public class AssistsIntegrationTest
     {
-        private SubscriptionsModel subscriptions;
+        private AssistsModel assists;
+
         private static int idClient;
         private static int idCurrentAccount;
+        private static int idSubscription;
 
         [ClassInitialize]
         public static async Task ClassInitialize(TestContext context)
@@ -29,12 +32,12 @@ namespace IntegrationTest
             {
                 Name = "AuxClient",
                 Surname = "AuxClient",
-                Address = "AuxAddres",
-                Phone = "AuxPhone",
-                Locality = "AuxLocality",
-                Mail = "AuxMail",
+                Address = "-",
+                Phone = "-",
+                Locality = "-",
+                Mail = "-",
                 RegisterDate = DateTime.Now,
-                Observations = "AuxObservations"
+                Observations = "-"
             });
 
             idClient = await clientsRepository.GetLastId();
@@ -48,40 +51,50 @@ namespace IntegrationTest
                 Date = DateTime.Now,
                 Credit = 1,
                 Debit = 1,
-                Balance = 1,
                 Detail = "AuxDetail"
             });
 
             idCurrentAccount = await currentAccountsRepository.GetLastId();
+
+            ISubscriptionsRepository subscriptionsRepository = new SubscriptionsRepository();
+
+            await subscriptionsRepository.Insert(new Subscriptions
+            {
+                IdClients = idClient,
+                IdCurrentAccounts = idCurrentAccount,
+                TicketCode = "TestCode",
+                StartDate = DateTime.Now,
+                TotalSessions = 1,
+                UsedSessions = 1,
+                AvailableSessions = 1,
+                Package = "AuxPrice",
+                Price = 1,
+                EndDate = DateTime.Now,
+                ExpireDate = DateTime.Now,
+                Observations = "AuxObservation",
+                State = "AuxState"
+            });
+
+            idSubscription = await subscriptionsRepository.GetLastId();
         }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            subscriptions = new SubscriptionsModel()
+            assists = new AssistsModel()
             {
-                TicketCode = Tickets.Create("Test", 1),
-                StartDate = DateTime.Now,
-                Package = "TestPackage",
-                Price = 1234,
-                TotalSessions = 5,
-                UsedSessions = 1,
-                AvailableSessions = 4,
-                EndDate = DateTime.Now,
-                ExpireDate = DateTime.Now,
-                Observations = "ObservationTest",
-                State = SubscriptionsModel.SubscriptionsStates.Active,
                 IdClients = idClient,
-                IdCurrentAccounts = idCurrentAccount
+                IdSubscriptions = idSubscription,
+                Date = DateTime.Now           
             };
         }
 
         [TestMethod]
         public async Task Insert_ValidTest()
         {
-            subscriptions.Operation = Operation.Insert;
+            assists.Operation = Operation.Insert;
 
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
+            AcctionResult acctionResult = await assists.SaveChanges();
 
             Assert.IsTrue(acctionResult.Result);
         }
@@ -91,25 +104,11 @@ namespace IntegrationTest
         {
             await GetLastId_ValidTest();
 
-            subscriptions.Operation = Operation.Update;
+            assists.Operation = Operation.Update;
 
-            subscriptions.EndDate = DateTime.Now;
+            AcctionResult acctionResult = await assists.SaveChanges();
 
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
-
-            Assert.IsTrue(acctionResult.Result);
-        }
-
-        [TestMethod]
-        public async Task Invalidate_ValidTest()
-        {
-            await GetLastId_ValidTest();
-
-            subscriptions.Operation = Operation.Invalidate;
-
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
-
-            Assert.IsTrue(acctionResult.Result);
+            Assert.IsFalse(acctionResult.Result);
         }
 
         [TestMethod]
@@ -117,9 +116,9 @@ namespace IntegrationTest
         {
             await GetLastId_ValidTest();
 
-            subscriptions.Operation = Operation.Delete;
+            assists.Operation = Operation.Delete;
 
-            AcctionResult acctionResult = await subscriptions.SaveChanges();
+            AcctionResult acctionResult = await assists.SaveChanges();
 
             Assert.IsTrue(acctionResult.Result);
         }
@@ -129,7 +128,7 @@ namespace IntegrationTest
         {
             await Insert_ValidTest();
 
-            Assert.IsTrue((await subscriptions.GetAll()).ToList().Count > 0);
+            Assert.IsTrue((await assists.GetAll()).ToList().Count > 0);
         }
 
         [TestMethod]
@@ -137,9 +136,9 @@ namespace IntegrationTest
         {
             await Insert_ValidTest();
 
-            subscriptions.IdSubscriptions = await subscriptions.GetLastId();
+            assists.IdAssists = await assists.GetLastId();
 
-            Assert.IsTrue(subscriptions.IdSubscriptions > 0);
+            Assert.IsTrue(assists.IdAssists > 0);
         }
 
         [ClassCleanup]
