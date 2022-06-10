@@ -29,7 +29,7 @@ namespace BusinessLayer.Cache
         private PackagesCache()
         {
             _resource = new List<PackagesModel>();
-            _subscriberLit = new List<ISubscriber<PackagesModel>>();
+            _subscriberList = new List<ISubscriber<PackagesModel>>();
         }
 
         public bool isEmpty()

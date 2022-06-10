@@ -3,6 +3,7 @@ using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories.Interfaces;
+using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -144,6 +145,9 @@ namespace BusinessLayer.Models
             }
             catch (Exception ex)
             {
+                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1451)
+                    return new AcctionResult(false, "El pago que intentas eliminar se encuntra asociado a otros datos, por lo tanto, no es posible eliminarlo... !");
+
                 return new AcctionResult(false, ex.Message);
             }
         }

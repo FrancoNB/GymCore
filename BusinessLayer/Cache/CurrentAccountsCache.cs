@@ -27,7 +27,7 @@ namespace BusinessLayer.Cache
         private CurrentAccountsCache()
         {
             _resource = new List<CurrentAccountsModel>();
-            _subscriberLit = new List<ISubscriber<CurrentAccountsModel>>();
+            _subscriberList = new List<ISubscriber<CurrentAccountsModel>>();
         }
     }
 }

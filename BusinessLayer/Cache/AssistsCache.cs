@@ -28,7 +28,7 @@ namespace BusinessLayer.Cache
         private AssistsCache()
         {
             _resource = new List<AssistsModel>();
-            _subscriberLit = new List<ISubscriber<AssistsModel>>();
+            _subscriberList = new List<ISubscriber<AssistsModel>>();
         }
     }
 }

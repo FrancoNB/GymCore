@@ -6,6 +6,7 @@ using DataAccessLayer.InterfaceRepositories;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using BusinessLayer.Mappers;
+using DataAccessLayer.Support;
 
 namespace BusinessLayer.Models
 {
@@ -63,6 +64,9 @@ namespace BusinessLayer.Models
             }
             catch (Exception ex)
             {
+                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1451)
+                    return new AcctionResult(false, "El plan de trabajo que intentas eliminar se encuntra asociado a otros datos, por lo tanto, no es posible eliminarlo... !");
+
                 return new AcctionResult(false, ex.Message);
             }
         }

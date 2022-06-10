@@ -8,6 +8,7 @@ using DataAccessLayer.InterfaceRepositories;
 using BusinessLayer.ValueObjects;
 using DataAccessLayer.Entities;
 using BusinessLayer.Mappers;
+using DataAccessLayer.Support;
 
 namespace BusinessLayer.Models
 {
@@ -69,6 +70,9 @@ namespace BusinessLayer.Models
             }
             catch (Exception ex)
             {
+                if (ex is RepositoryException repositoryEx && repositoryEx.Code == 1451)
+                    return new AcctionResult(false, "La rutina que intentas eliminar se encuntra asociada a otros datos, por lo tanto, no es posible eliminarla... !");
+
                 return new AcctionResult(false, ex.Message);
             }
         }

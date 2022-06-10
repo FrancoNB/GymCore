@@ -27,7 +27,7 @@ namespace BusinessLayer.Cache
         private PaymentsCache()
         {
             _resource = new List<PaymentsModel>();
-            _subscriberLit = new List<ISubscriber<PaymentsModel>>();
+            _subscriberList = new List<ISubscriber<PaymentsModel>>();
         }
     }
 }

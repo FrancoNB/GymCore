@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services.Assists
 {
-    public class AssistDeleteService : IServiceStrategy<AssistsModel>
+    public class AssistsDeleteService : IServiceStrategy<AssistsModel>
     {
         private SubscriptionsModel subscriptionModel;
 
-        public AssistDeleteService()
+        public AssistsDeleteService()
         {
             this.subscriptionModel = new SubscriptionsModel();
         }
