@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelsTests\AssistsModelTest.cs" />
     <Compile Include="ModelsTests\ClientsModelTest.cs" />
     <Compile Include="ModelsTests\CurrentAccountsModelTest.cs" />
     <Compile Include="ModelsTests\ExercisesModelTest.cs" />
