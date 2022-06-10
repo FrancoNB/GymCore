@@ -1,14 +1,10 @@
 ﻿using BusinessLayer.Cache;
 using BusinessLayer.Mappers;
 using BusinessLayer.ValueObjects;
-using DataAccessLayer.Entities;
 using DataAccessLayer.InterfaceRepositories;
 using DataAccessLayer.Repositories.Interfaces;
-using DataAccessLayer.Support;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Models
@@ -127,6 +123,12 @@ namespace BusinessLayer.Models
             if (TicketCode == null)
                 throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
 
+            if (Credit < 0)
+                throw new ArgumentException("El valor del credito debe ser mayor o igual que $ 0.00... !");
+
+            if (Debit < 0)
+                throw new ArgumentException("El valor del debito debe ser mayor o igual que $ 0.00... !");
+
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";
 
@@ -144,6 +146,12 @@ namespace BusinessLayer.Models
 
             if (TicketCode == null)
                 throw new ArgumentException("Se debe especificar un codigo para el comprobante de la cuenta corriente... !");
+
+            if (Credit < 0)
+                throw new ArgumentException("El valor del credito debe ser mayor o igual que $ 0.00... !");
+
+            if (Debit < 0)
+                throw new ArgumentException("El valor del debito debe ser mayor o igual que $ 0.00... !");
 
             if (string.IsNullOrEmpty(Detail))
                 Detail = "-";

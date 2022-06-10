@@ -90,7 +90,7 @@ namespace BusinessLayer.Models
                     PaymentMethod = PaymentMethods.Null;
             }
         }
-        public string Observations { get => _observations; set => _observations = value; }
+        public string Observations { get => _observations; set => _observations = value.Trim(); }
 
         private IPaymentsRepository repository;
         public Operation Operation { get; set; }
@@ -165,7 +165,7 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("Se debe especificar el metodo de pago... !");
 
             if (Amount <= 0)
-                throw new ArgumentException("El monto del pago debe ser mayor a 0... !");
+                throw new ArgumentException("El monto del pago debe ser mayor a $ 0.00... !");
 
             if (string.IsNullOrWhiteSpace(Observations))
                 Observations = "-";
@@ -192,7 +192,7 @@ namespace BusinessLayer.Models
                 throw new ArgumentException("Se debe especificar el metodo de pago... !");
 
             if (Amount <= 0)
-                throw new ArgumentException("El monto del pago debe ser mayor a 0... !");
+                throw new ArgumentException("El monto del pago debe ser mayor a $ 0.00... !");
 
             if (string.IsNullOrWhiteSpace(Observations))
                 Observations = "-";

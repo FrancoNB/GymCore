@@ -83,7 +83,7 @@ namespace PresentationLayer.Forms.Queries
                 {
                     if (currentAccountClientList.ToList().Last().Balance > 0)
                     {
-                        txtBalance.ForeColor = Color.FromArgb(115, 160, 42);
+                        txtBalance.ForeColor = Color.FromArgb(100, 255, 30);
                         txtBalance.BackColor = Color.FromArgb(33, 50, 16);
                     }
                     else if (currentAccountClientList.ToList().Last().Balance < 0)
