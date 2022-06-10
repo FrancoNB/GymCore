@@ -157,6 +157,11 @@ namespace BusinessLayer.Models
             return PaymentsMapper.AdapterList(await repository.GetAll());
         }
 
+        public async Task<int> GetLastId()
+        {
+            return await repository.GetLastId();
+        }
+
         private void ValidateInsert()
         {
             if (IdClients < 1)
