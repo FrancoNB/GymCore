@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace BusinessLayer.Cache
 {
-    public class ClientsCache : Subscribeable<ClientsModel>
+    public class AssistsCache : Subscribeable<AssistsModel>
     {
-        private static ClientsCache instance;
+        private static AssistsCache instance;
 
         private static readonly object _lock = new object();
-        public static ClientsCache GetInstance()
+        public static AssistsCache GetInstance()
         {
             if (instance == null)
             {
@@ -17,7 +17,7 @@ namespace BusinessLayer.Cache
                 {
                     if (instance == null)
                     {
-                        instance = new ClientsCache();
+                        instance = new AssistsCache();
                     }
                 }
             }
@@ -25,15 +25,10 @@ namespace BusinessLayer.Cache
             return instance;
         }
 
-        private ClientsCache()
+        private AssistsCache()
         {
-            _resource = new List<ClientsModel>();
-            _subscriberLit = new List<ISubscriber<ClientsModel>>();
-        }
-
-        public bool isEmpty()
-        {
-            return _resource.ToList().Count == 0;
+            _resource = new List<AssistsModel>();
+            _subscriberLit = new List<ISubscriber<AssistsModel>>();
         }
     }
 }

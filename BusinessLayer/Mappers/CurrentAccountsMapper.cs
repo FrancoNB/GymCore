@@ -13,6 +13,8 @@ namespace BusinessLayer.Mappers
     {
         public static CurrentAccounts Adapter(CurrentAccountsModel model)
         {
+            if (model == null) return null;
+
             return new CurrentAccounts
             {
                 IdCurrentAccounts = model.IdCurrentAccounts,
@@ -28,6 +30,8 @@ namespace BusinessLayer.Mappers
 
         public static CurrentAccountsModel Adapter(CurrentAccounts entity)
         {
+            if (entity == null) return null;
+
             return new CurrentAccountsModel
             {
                 IdCurrentAccounts = entity.IdCurrentAccounts,

@@ -374,6 +374,108 @@ namespace PresentationLayer.Forms.Register
             LoadDgvExercisesList();
         }
 
+        private void txtQuadriceps_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtHamstring_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtCalves_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtAductors_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtTrapezius_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtDorsals_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtLumbars_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtButtocks_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtPectorals_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtAbdominals_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtObliques_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtBiceps_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtTriceps_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtForeArm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtPosteriorDeltoid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtLateralDeltoid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
+        private void txtAnteriorDeltoid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)46)
+                e.Handled = true;
+        }
+
         private void dgvExercisesList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)

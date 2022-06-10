@@ -8,6 +8,8 @@ namespace BusinessLayer.Mappers
     {
         public static Packages Adapter(PackagesModel model)
         {
+            if (model == null) return null;
+
             return new Packages
             {
                 IdPackages = model.IdPackages,
@@ -20,6 +22,8 @@ namespace BusinessLayer.Mappers
 
         public static PackagesModel Adapter(Packages entity)
         {
+            if (entity == null) return null;
+
             return new PackagesModel
             {
                 IdPackages = entity.IdPackages,

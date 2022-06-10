@@ -470,7 +470,7 @@ namespace PresentationLayer.Forms.Management
                 }
                 else
                 {
-                    MessageBox.Show(acctionResult.Message, "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Susbscripcion guardada correctamente... !", "Sistema de Alertas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SetControlsClientEnterState();
                     btnNew.Select();
                 }

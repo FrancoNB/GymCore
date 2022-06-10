@@ -9,7 +9,7 @@ namespace DataAccessLayer.InterfaceRepositories
 {
     public interface ISubscriptionsRepository : ICrudRepository<Subscriptions>
     {
-        Task<IEnumerable<Subscriptions>> GetByIdClient(int idClient);
+        Task<Subscriptions> GetById(int id);
         Task<int> UpdateState(int id, string state);
     }
 }

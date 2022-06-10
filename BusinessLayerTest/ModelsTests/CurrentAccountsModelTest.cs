@@ -71,6 +71,24 @@ namespace BusinessLayerTest.ModelsTests
         }
 
         [TestMethod]
+        public async Task SaveChanges_InvalidInsertTest_3()
+        {
+            currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            currentAccountsModel.Credit = -1;
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidInsertTest_4()
+        {
+            currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Insert;
+            currentAccountsModel.Debit = -1;
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
         public async Task SaveChanges_ValidUpdateTest()
         {
             currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
@@ -101,6 +119,24 @@ namespace BusinessLayerTest.ModelsTests
         {
             currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
             currentAccountsModel.TicketCode = null;
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidUpdateTest_4()
+        {
+            currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            currentAccountsModel.Credit = -1;
+
+            Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
+        }
+
+        [TestMethod]
+        public async Task SaveChanges_InvalidUpdateTest_5()
+        {
+            currentAccountsModel.Operation = BusinessLayer.ValueObjects.Operation.Update;
+            currentAccountsModel.Debit = -1;
 
             Assert.IsFalse((await currentAccountsModel.SaveChanges()).Result);
         }

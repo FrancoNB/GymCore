@@ -8,6 +8,8 @@ namespace BusinessLayer.Mappers
     {
         public static Users Adapter(UsersModel model)
         {
+            if (model == null) return null;
+
             return new Users
             {
                 IdUsers = model.IdUsers,
@@ -21,6 +23,8 @@ namespace BusinessLayer.Mappers
 
         public static UsersModel Adapter(Users entity)
         {
+            if (entity == null) return null;
+
             return new UsersModel
             {
                 IdUsers = entity.IdUsers,

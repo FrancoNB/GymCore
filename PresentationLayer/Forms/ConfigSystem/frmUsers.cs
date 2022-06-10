@@ -31,7 +31,7 @@ namespace PresentationLayer.Forms.ConfigSystem
         private readonly UsersModel userWorkingModel;
         private IEnumerable<UsersModel> usersList;
 
-        public frmUsers()
+        private frmUsers()
         {
             InitializeComponent();
 
@@ -46,6 +46,7 @@ namespace PresentationLayer.Forms.ConfigSystem
             txtUsername.Clear();
             txtRepeatPassword.Clear();
             cbxType.SelectedItem = null;
+            cbxType.Text = string.Empty;
         }
 
         private void SetControlsDefaultState()

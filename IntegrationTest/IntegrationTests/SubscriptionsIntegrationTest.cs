@@ -93,9 +93,11 @@ namespace IntegrationTest
 
             subscriptions.Operation = Operation.Update;
 
+            subscriptions.EndDate = DateTime.Now;
+
             AcctionResult acctionResult = await subscriptions.SaveChanges();
 
-            Assert.IsFalse(acctionResult.Result);
+            Assert.IsTrue(acctionResult.Result);
         }
 
         [TestMethod]

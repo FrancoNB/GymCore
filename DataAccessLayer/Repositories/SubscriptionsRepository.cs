@@ -17,7 +17,7 @@ namespace DataAccessLayer.Repositories
         private readonly string delete;
         private readonly string selectAll;
         private readonly string selectMaxId;
-        private readonly string selectByIdClient;
+        private readonly string selectById;
 
         public SubscriptionsRepository()
         {
@@ -37,7 +37,7 @@ namespace DataAccessLayer.Repositories
 
             this.selectMaxId = "SELECT Max(IdSubscriptions) as lastId FROM Subscriptions";
 
-            this.selectByIdClient = "SELECT * FROM Subscriptions WHERE Clients_IdClients = @idClients";
+            this.selectById = "SELECT * FROM Subscriptions WHERE IdSubscriptions = @idSubscriptions";
 
         }
 
@@ -110,16 +110,6 @@ namespace DataAccessLayer.Repositories
             return await ExecuteSelect(selectAll);
         }
 
-        public async Task<IEnumerable<Subscriptions>> GetByIdClient(int idClient)
-        {
-            parameters = new List<MySqlParameter>
-            {
-                new MySqlParameter("@idClients", idClient)
-            };
-
-            return await ExecuteSelect(selectByIdClient);
-        }
-
         private async Task<IEnumerable<Subscriptions>> ExecuteSelect(string query)
         {
             using (var table = await ExecuteReaderAsync(query))
@@ -158,6 +148,40 @@ namespace DataAccessLayer.Repositories
                     return Convert.ToInt32(table.Rows[0]["lastId"]);
                 else
                     return 0;
+            }
+        }
+
+        public async Task<Subscriptions> GetById(int id)
+        {
+            parameters = new List<MySqlParameter>
+            {
+                new MySqlParameter("@idSubscriptions", id),
+            };
+
+            using (var table = await ExecuteReaderAsync(selectById))
+            {
+                if (table.Rows.Count > 0)
+                {
+                    return new Subscriptions
+                    {
+                        IdSubscriptions = Convert.ToInt32(table.Rows[0]["IdSubscriptions"]),
+                        TicketCode = table.Rows[0]["TicketCode"].ToString(),
+                        StartDate = Convert.ToDateTime(table.Rows[0]["StartDate"]),
+                        Package = table.Rows[0]["Package"].ToString(),
+                        Price = Convert.ToDouble(table.Rows[0]["Price"]),
+                        TotalSessions = Convert.ToInt32(table.Rows[0]["TotalSessions"]),
+                        UsedSessions = Convert.ToInt32(table.Rows[0]["UsedSessions"]),
+                        AvailableSessions = Convert.ToInt32(table.Rows[0]["AvailableSessions"]),
+                        EndDate = Convert.ToDateTime(table.Rows[0]["EndDate"]),
+                        ExpireDate = Convert.ToDateTime(table.Rows[0]["ExpireDate"]),
+                        Observations = table.Rows[0]["Observations"].ToString(),
+                        State = table.Rows[0]["state"].ToString(),
+                        IdClients = Convert.ToInt32(table.Rows[0]["Clients_idClients"]),
+                        IdCurrentAccounts = Convert.ToInt32(table.Rows[0]["CurrentAccounts_idCurrentAccounts"])
+                    };
+                }
+                else
+                    return null;
             }
         }
     }
