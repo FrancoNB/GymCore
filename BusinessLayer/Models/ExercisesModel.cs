@@ -35,8 +35,8 @@ namespace BusinessLayer.Models
         private int _pectoralPoints;
 
         public int IdExercises { get => _idExercises; set => _idExercises = value; }
-        public string Name { get => _name; set => _name = value; }
-        public string Detail { get => _detail; set => _detail = value; }
+        public string Name { get => _name; set => _name = value.Trim(); }
+        public string Detail { get => _detail; set => _detail = value.Trim(); }
         public int HamstringPoints { get => _hamstringPoints; set => _hamstringPoints = value; }
         public int QuadricepsPoints { get => _quadricepsPoints; set => _quadricepsPoints = value; }
         public int CalvesPoints { get => _calvesPoints; set => _calvesPoints = value; }

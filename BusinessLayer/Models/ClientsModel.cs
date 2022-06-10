@@ -134,7 +134,7 @@ namespace BusinessLayer.Models
                 Phone = "-";
             else
             {
-                if (!IsPhoneNumber(Phone))
+                if (!IsPhoneNumber(Phone) && Phone != "-")
                     throw new ArgumentException("El numero de telefono especificado no es valido... !");
             }
 
@@ -142,7 +142,7 @@ namespace BusinessLayer.Models
                 Mail = "-";
             else
             {
-                if (!IsValidEmail(Mail))
+                if (!IsValidEmail(Mail) && Mail != "-")
                     throw new ArgumentException("El mail especificado no es valido... !");
             }
 
@@ -174,7 +174,7 @@ namespace BusinessLayer.Models
                 Phone = "-";
             else
             {
-                if (!IsPhoneNumber(Phone))
+                if (!IsPhoneNumber(Phone) && Phone != "-")
                     throw new ArgumentException("El numero de telefono especificado no es valido... !");
             }
 
@@ -182,7 +182,7 @@ namespace BusinessLayer.Models
                 Mail = "-";
             else
             {
-                if (!IsValidEmail(Mail))
+                if (!IsValidEmail(Mail) && Mail != "-")
                     throw new ArgumentException("El mail especificado no es valido... !");
             }
 
