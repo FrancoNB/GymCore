@@ -136,7 +136,7 @@ namespace PresentationLayer.Forms.Register
 
         private void txtNumberSessions_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)8)
+            if (e.KeyChar == (char)46)
                 e.Handled = true;
         }
 
@@ -155,7 +155,7 @@ namespace PresentationLayer.Forms.Register
 
         private void txtAvailableDays_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)8)
+            if (e.KeyChar == (char)46)
                 e.Handled = true;
         }
 
