@@ -1,15 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace DataAccessLayer.Support
 {
     public abstract class RepositoryConnection
     {
-        private static readonly string _host = "localhost";
-        private static readonly string _port = "3306";
-        private static readonly string _username = "GymCore";
-        private static readonly string _password = "Gym@Core123";
-        private static readonly string _database = "GymCore";
-
         private static MySqlConnection _connection;
         private static MySqlTransaction _transaction;
 
@@ -22,7 +17,7 @@ namespace DataAccessLayer.Support
                 lock (_lock)
                 {
                     if (_connection == null)
-                        _connection = new MySqlConnection("Server=" + _host + ";Port=" + _port + ";Uid=" + _username + ";Pwd=" + _password + ";Database=" + _database);
+                        _connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["MySqlConnectionString"].ConnectionString);
                 }
             }
 

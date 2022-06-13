@@ -183,6 +183,8 @@ namespace BusinessLayer.Models
                     LoginCache.Username = user.Username;
                     LoginCache.Type = user.Type;
 
+                    UsersCache.GetInstance().Resource = await GetAll();
+
                     return new AcctionResult(true);
                 }
                 else
