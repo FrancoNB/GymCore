@@ -18,8 +18,7 @@ git clone https://github.com/FrancoNB/GymCore.git
 ```
 
 ### **Documentación del proyecto 📋**
-* [Plan de Manejo de las Configuraciones, Especificación de los Requerimientos, Arquitectura, Diseño del Sistema y Pruebas](https://docs.google.com/document/d/1gNIYFkrgnq-DQjq8rlAhcr1HoIXEehbKwcM8DGF94Ko/edit)
-
+* [Plan de Manejo de las Configuraciones, Especificación de los Requerimientos, Arquitectura, Diseño del Sistema y Pruebas](https://drive.google.com/drive/folders/1tVPT3BST0qW5aiHbNS-Nk1X84_OfrxJK)
 
 ### **Construido con 🛠️**
 [VisualStudio-2022](https://visualstudio.microsoft.com/es/vs/) - IDE de desarrollo.  
