@@ -20,6 +20,10 @@ git clone https://github.com/FrancoNB/GymCore.git
 ### **Documentación del proyecto 📋**
 * [Plan de Manejo de las Configuraciones, Especificación de los Requerimientos, Arquitectura, Diseño del Sistema y Pruebas](https://drive.google.com/drive/folders/1tVPT3BST0qW5aiHbNS-Nk1X84_OfrxJK)
 
+### **¿Como Empezar a Usar GymCore?**
+Descarga y ejecuta el instalador [GymCoreSetup.exe](https://drive.google.com/file/d/16dgnwHJ7yM7a603YboaTilptPEMDbHYK/view?usp=sharing). Sigue los pasos indicados y una vez finalizada la instalacion el programa estara listo para ser utilizado.  
+Para ingresar al programa por primera vez utiliza las credenciales: **usario = admin / contraseña = admin** (una vez dentro del programa por seguridad se recomienda modificar estas credenciales).
+
 ### **Construido con 🛠️**
 [VisualStudio-2022](https://visualstudio.microsoft.com/es/vs/) - IDE de desarrollo.  
 [C#](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) - Lenguaje de programación.  
