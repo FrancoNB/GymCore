@@ -37,3 +37,5 @@ Para ingresar al programa por primera vez utiliza las credenciales: **usario = a
 * **LAVEZZARI, Fausto**
 * **ROBLEDO, Valentín**
 
+### **Licencia 🧾**
+_MIT License Copyright (c) 2022 141 Errores_
