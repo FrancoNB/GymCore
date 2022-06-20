@@ -3,10 +3,14 @@ name: continuos integration GymCore
 
 on:
   push:
-    branches: [develop]
+    branches: 
+      - develop
+      - master
   pull_request:
-    branches: [develop]
-    
+    branches:
+      - develop
+      - master
+      
 jobs:     
   buil_and_test:
     runs-on: windows-latest
