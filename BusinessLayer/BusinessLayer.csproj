@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{741AFCD1-6E94-4B02-BB4F-C1161777CC31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessLayer</RootNamespace>
+    <AssemblyName>BusinessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\AssistsCache.cs" />
+    <Compile Include="Cache\ClientsCache.cs" />
+    <Compile Include="Cache\CurrentAccountsCache.cs" />
+    <Compile Include="Cache\ExercisesCache.cs" />
+    <Compile Include="Cache\PackagesCache.cs" />
+    <Compile Include="Cache\LoginCache.cs" />
+    <Compile Include="Cache\PaymentsCache.cs" />
+    <Compile Include="Cache\SubscriptionsCache.cs" />
+    <Compile Include="Mappers\AssistsMapper.cs" />
+    <Compile Include="Mappers\ClientsMapper.cs" />
+    <Compile Include="Mappers\CurrentAccountsMapper.cs" />
+    <Compile Include="Mappers\ExercisesMapper.cs" />
+    <Compile Include="Mappers\PackagesMapper.cs" />
+    <Compile Include="Mappers\PaymentsMapper.cs" />
+    <Compile Include="Mappers\RoutinesMapper.cs" />
+    <Compile Include="Mappers\SubscriptionsMapper.cs" />
+    <Compile Include="Mappers\UsersMapper.cs" />
+    <Compile Include="Mappers\WorkPlansMapper.cs" />
+    <Compile Include="Models\AssistsModel.cs" />
+    <Compile Include="Models\PaymentsModel.cs" />
+    <Compile Include="Models\SubscriptionsModel.cs" />
+    <Compile Include="Services\Assists\AssistsDeleteService.cs" />
+    <Compile Include="Services\Assists\AssistsAddService.cs" />
+    <Compile Include="Services\Payments\PaymentsDeleteService.cs" />
+    <Compile Include="Services\Payments\PaymentsUpdateService.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\Payments\PaymentsInsertService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsDeleteService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsInsertService.cs" />
+    <Compile Include="Services\Subscriptions\SubscriptionsInvalidateService.cs" />
+    <Compile Include="Support\IServiceStrategy.cs" />
+    <Compile Include="Support\Subscribeable.cs" />
+    <Compile Include="Cache\UsersCache.cs" />
+    <Compile Include="Models\CurrentAccountsModel.cs" />
+    <Compile Include="Models\ExercisesModel.cs" />
+    <Compile Include="Models\PackagesModel.cs" />
+    <Compile Include="Models\ClientsModel.cs" />
+    <Compile Include="Models\RoutinesModel.cs" />
+    <Compile Include="Models\UsersModel.cs" />
+    <Compile Include="Models\WorkPlansModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\ISubscribeable.cs" />
+    <Compile Include="Support\ISuscriber.cs" />
+    <Compile Include="ValueObjects\Operation.cs" />
+    <Compile Include="ValueObjects\AcctionResult.cs" />
+    <Compile Include="ValueObjects\Tickets.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{d98bab9f-0c02-4450-b8b1-c9d81bb5dbb9}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

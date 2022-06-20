@@ -1,0 +1,60 @@
+#Configure
+name: continuos integration GymCore
+
+on:
+  push:
+    branches: 
+      - develop
+      - master
+  pull_request:
+    branches:
+      - develop
+      - master
+      
+jobs:     
+  buil_and_test:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup MySQL
+      uses: ankane/setup-mysql@v1
+      with:
+        mysql-version: '8.0'
+        
+    - name: Create MySQL User
+      run: mysql --user=root --execute="CREATE USER 'GymCore'@'localhost' IDENTIFIED BY 'Gym@Core123';"
+   
+    - name: Setup MySQL User
+      run: mysql --user=root --execute="GRANT ALL PRIVILEGES ON * . * TO 'GymCore'@'localhost';" --execute="FLUSH PRIVILEGES;"
+      
+    - name: Create Database
+      run: mysql --user=GymCore --password=Gym@Core123 --execute="source DataBase/ScriptGenerationGymCoreDatabase.sql;"
+      
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      
+    - name: Setup VSTest
+      uses: darenm/Setup-VSTest@v1
+
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
+      
+    - name: Restore Packages
+      run: nuget restore GymCore.sln
+
+    - name: Build solution
+      run: msbuild GymCore.sln -t:rebuild -property:Configuration=Release
+    
+    - name: Run Data Access Layer Test
+      run: vstest.console.exe .\DataAccessLayerTest\bin\Release\DataAccessLayerTest.dll
+      
+    - name: Run Bussines Layer Tests
+      run: vstest.console.exe .\BusinessLayerTest\bin\Release\BusinessLayerTest.dll
+
+    - name: Run Integrations Tests
+      run: vstest.console.exe .\IntegrationTest\bin\Release\IntegrationTest.dll
